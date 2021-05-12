@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:html';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,6 +25,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+
+
+
+
+
   List propertyImage = [
     "assets/images/houseFirst.png",
     "assets/images/houseSec.png",
@@ -181,8 +188,38 @@ class LoginScreenState extends State<LoginScreen> {
   void hideIndicator(BuildContext context) {
     overlayEntry.remove();
   }
-  ScrollController scrollController= new ScrollController();
 
+  final sink = StreamController<double>();
+  final pager = PageController();
+  @override
+  void initState() {
+    super.initState();
+    throttle(sink.stream).listen((offset) {
+      pager.animateTo(
+        offset,
+        duration: Duration(milliseconds: 3000),
+        curve: Curves.ease,
+      );
+    });
+  }
+  Stream<double> throttle(Stream<double> src) async* {
+    double offset = pager.position.pixels;
+    DateTime dt = DateTime.now();
+    await for (var delta in src) {
+      if (DateTime.now().difference(dt) > Duration(milliseconds: 3000)) {
+        offset = pager.position.pixels;
+      }
+      dt = DateTime.now();
+      offset += delta;
+      yield offset;
+    }}
+
+  @override
+  void dispose() {
+    sink.close();
+    pager.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     double maxWidth = MediaQuery.of(context).size.width;
@@ -193,339 +230,334 @@ class LoginScreenState extends State<LoginScreen> {
       drawer: Drawer(
         child: drawerItems(context, false),
       ),
-      body: SmoothScrollWeb(
-        controller: scrollController,
-        child: Column(
+
+      body: Listener(
+        child: PageView(
+          controller: pager,scrollDirection: Axis.vertical,
           children: [
-            Expanded(
-              child: Scrollbar(
-                child: SingleChildScrollView(controller: scrollController,
+            ListView(
+              // shrinkWrap: true,
+              // physics: AlwaysScrollableScrollPhysics(),
+              // scrollDirection: Axis.vertical,
+              children: [
+                Container(
+                  width: maxWidth,
+                  height: 580,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          colorFilter:
+                              ColorFilter.mode(Colors.white, BlendMode.dstOver),
+                          fit: BoxFit.cover,
+                          image: AssetImage("assets/images/map.png"))),
                   child: Column(
-                    // shrinkWrap: true,
-                    // physics: AlwaysScrollableScrollPhysics(),
-                    // scrollDirection: Axis.vertical,
                     children: [
-                      Container(
-                        width: maxWidth,
-                        height: 580,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                colorFilter:
-                                    ColorFilter.mode(Colors.white, BlendMode.dstOver),
-                                fit: BoxFit.cover,
-                                image: AssetImage("assets/images/map.png"))),
-                        child: Column(
-                          children: [
-                            maxWidth >= 700
-                                ? optionMenu(context)
-                                : Align(
-                                    alignment: Alignment.topLeft,
-                                    child: IconButton(
-                                      icon: Icon(
-                                        Icons.menu,
-                                        color: Colors.white,
-                                      ),
-                                      onPressed: () {
-                                        return scaffoldKey.currentState.openDrawer();
-                                      },
-                                    ),
-                                  ),
-                            buttonWidget(context,),
-                          ],
-                        ),
-                      ),
-                      Container(
-                          width: MediaQuery.of(context).size.width,
-                          color: Colors.white,
-                          margin: EdgeInsets.only(top: 20, bottom: 20),
-                          child: Column(children: [
-                            // How revue Works For You
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: Text("How Revue works for you",
-                                  style: TextStyle(
-                                      color: ColorClass.blueColor,
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: "Mulish",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 27.0),
-                                  textAlign: TextAlign.center),
+                      maxWidth >= 700
+                          ? optionMenu(context)
+                          : Align(
+                              alignment: Alignment.topLeft,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.menu,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  return scaffoldKey.currentState.openDrawer();
+                                },
+                              ),
                             ),
-
-                            Container(
-                              alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width,
-                              margin: maxWidth >= 700
-                                  ? EdgeInsets.only(
-                                      left: 60, right: 60, top: 20, bottom: 10)
-                                  : EdgeInsets.all(10),
-                              child: maxWidth >= 700
-                                  ? Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          child: Column(
-                                            children: [
-                                              Icon(
-                                                CupertinoIcons.search,
-                                                color: ColorClass.redColor,
-                                                size: 40,
-                                              ),
-                                              // Search the right property
-                                              Text("Search the right property",
-                                                  style: TextStyle(
-                                                      color: ColorClass.blueColor,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontFamily: "Mulish",
-                                                      fontStyle: FontStyle.normal,
-                                                      fontSize: 20.0),
-                                                  textAlign: TextAlign.left)
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          child: Column(
-                                            children: [
-                                              Image.asset(
-                                                "assets/images/reviewicon.png",
-                                                height: 40,
-                                                width: 40,
-                                                fit: BoxFit.contain,
-                                                color: ColorClass.redColor,
-                                              ),
-                                              // Search the right property
-                                              Text("Review properties",
-                                                  style: TextStyle(
-                                                      color: ColorClass.blueColor,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontFamily: "Mulish",
-                                                      fontStyle: FontStyle.normal,
-                                                      fontSize: 20.0),
-                                                  textAlign: TextAlign.left)
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          child: Column(
-                                            children: [
-                                              Image.asset(
-                                                "assets/images/compare.png",
-                                                height: 40,
-                                                width: 40,
-                                                fit: BoxFit.contain,
-                                                color: ColorClass.redColor,
-                                              ), // Search the right property
-                                              Text("Compare Properties",
-                                                  style: TextStyle(
-                                                      color: ColorClass.blueColor,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontFamily: "Mulish",
-                                                      fontStyle: FontStyle.normal,
-                                                      fontSize: 18.0),
-                                                  textAlign: TextAlign.left)
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  : Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          child: Column(
-                                            children: [
-                                              Icon(
-                                                CupertinoIcons.search,
-                                                color: ColorClass.redColor,
-                                                size: 40,
-                                              ),
-                                              // Search the right property
-                                              Text("Search the right property",
-                                                  style: TextStyle(
-                                                      color: ColorClass.blueColor,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontFamily: "Mulish",
-                                                      fontStyle: FontStyle.normal,
-                                                      fontSize: 20.0),
-                                                  textAlign: TextAlign.left)
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          child: Column(
-                                            children: [
-                                              Image.asset(
-                                                "assets/images/reviewicon.png",
-                                                height: 40,
-                                                width: 40,
-                                                fit: BoxFit.contain,
-                                                color: ColorClass.redColor,
-                                              ),
-                                              // Search the right property
-                                              Text("Review properties",
-                                                  style: TextStyle(
-                                                      color: ColorClass.blueColor,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontFamily: "Mulish",
-                                                      fontStyle: FontStyle.normal,
-                                                      fontSize: 20.0),
-                                                  textAlign: TextAlign.left)
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          child: Column(
-                                            children: [
-                                              Image.asset(
-                                                "assets/images/compare.png",
-                                                height: 40,
-                                                width: 40,
-                                                fit: BoxFit.contain,
-                                                color: ColorClass.redColor,
-                                              ), // Search the right property
-                                              Text("Compare Properties",
-                                                  style: TextStyle(
-                                                      color: ColorClass.blueColor,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontFamily: "Mulish",
-                                                      fontStyle: FontStyle.normal,
-                                                      fontSize: 18.0),
-                                                  textAlign: TextAlign.left)
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 40, bottom: 20, left: 50, right: 50),
-                              child: Text(
-                                  "Millions of people are searching for Property, rent information, public reviews, and property information. See what others are looking for on revue today.",
-                                  style: const TextStyle(
-                                      color: const Color(0xe5000000),
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "Mulish",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 16.0),
-                                  textAlign: TextAlign.center),
-                            ),
-                          ])),
-
-                      SizedBox(height: 20,),
-                      Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 1,
-                          decoration: BoxDecoration(boxShadow: [
-                            // BoxShadow(
-                            //     color: const Color(0x40000000),
-                            //     offset: Offset(0, 4),
-                            //     blurRadius: 4,
-                            //     spreadRadius: 0)
-                          ], color: const Color(0x4d000000))),
-
-
-                      //Top rated compound
-
-                      Container(
-                        width: maxWidth,
-                        padding:   maxWidth >= 700? EdgeInsets.only(left: 60,right:60,top: 20,bottom: 10):
-                        EdgeInsets.all(20),
-                        color:Color(0xfff9f9f9),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Top Rated Compounds",
-                              style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w600),),
-
-                            maxWidth>=1200?
-                            GridView.builder(shrinkWrap: true,itemCount: propertyImage.length,
-                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
-                                (crossAxisCount: 3,),
-                              itemBuilder: (context,index){
-                                return topRatedCompound(context,index,maxWidth);
-                              }):
-                                maxWidth>=900?
-                                    GridView.builder(shrinkWrap: true,itemCount:  propertyImage.length,
-                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
-                                      (crossAxisCount: 2,),
-                                    itemBuilder: (context,index){
-                                      return topRatedCompound(context,index,maxWidth);
-                                    }):
-                                maxWidth>=500?
-                                GridView.builder(shrinkWrap: true,itemCount:  propertyImage.length,
-                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
-                                      (crossAxisCount: 1,),
-                                    itemBuilder: (context,index){
-                                      return topRatedCompound(context,index,maxWidth);
-                                    }):
-                                GridView.builder(shrinkWrap: true,itemCount:  propertyImage.length,
-                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
-                                      (crossAxisCount: 1,),
-                                    itemBuilder: (context,index){
-                                      return topRatedCompound(context,index,maxWidth);
-                                    })
-
-                          ],
-                        ),
-                      ),
-
-
-                      //recommmendedproperty
-
-
-
-                      Container(
-                        width: maxWidth,
-                        padding:   maxWidth >= 700? EdgeInsets.only(left: 60,right:60,top: 20,bottom: 10):
-                        EdgeInsets.all(20),
-                        color:Color(0xfff9f9f9),
-
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Recommended Compounds",
-                              style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w600),),
-                            SizedBox(height: 20,),
-                            SizedBox(
-                              width: maxWidth,height: 500,
-                              child: ListView.builder(
-                                shrinkWrap: true,itemCount: 5,
-                                scrollDirection:Axis.horizontal,
-                                itemBuilder: (context,index){
-                                  return recommendedProperty(context,maxWidth,index);
-                                },),
-                            )
-                          ],
-                        ),
-                      ),
-
-
-
-
-                      // Container(
-                      //     width: MediaQuery.of(context).size.width,
-                      //     height: 1,
-                      //     decoration: BoxDecoration(boxShadow: [
-                      //       BoxShadow(
-                      //           color: const Color(0x40000000),
-                      //           offset: Offset(0, 4),
-                      //           blurRadius: 4,
-                      //           spreadRadius: 0)
-                      //     ], color: const Color(0x4d000000))),
-
-                      SizedBox(
-                        height: 30,
-                      ),
-
-                      FooterWidget()
-
-
-
+                      buttonWidget(context,),
                     ],
                   ),
                 ),
-              ),
+                Container(
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.white,
+                    margin: EdgeInsets.only(top: 20, bottom: 20),
+                    child: Column(children: [
+                      // How revue Works For You
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Text("How Revue works for you",
+                            style: TextStyle(
+                                color: ColorClass.blueColor,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: "Mulish",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 27.0),
+                            textAlign: TextAlign.center),
+                      ),
+
+                      Container(
+                        alignment: Alignment.center,
+                        width: MediaQuery.of(context).size.width,
+                        margin: maxWidth >= 700
+                            ? EdgeInsets.only(
+                                left: 60, right: 60, top: 20, bottom: 10)
+                            : EdgeInsets.all(10),
+                        child: maxWidth >= 700
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          CupertinoIcons.search,
+                                          color: ColorClass.redColor,
+                                          size: 40,
+                                        ),
+                                        // Search the right property
+                                        Text("Search the right property",
+                                            style: TextStyle(
+                                                color: ColorClass.blueColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: "Mulish",
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 20.0),
+                                            textAlign: TextAlign.left)
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/reviewicon.png",
+                                          height: 40,
+                                          width: 40,
+                                          fit: BoxFit.contain,
+                                          color: ColorClass.redColor,
+                                        ),
+                                        // Search the right property
+                                        Text("Review properties",
+                                            style: TextStyle(
+                                                color: ColorClass.blueColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: "Mulish",
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 20.0),
+                                            textAlign: TextAlign.left)
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/compare.png",
+                                          height: 40,
+                                          width: 40,
+                                          fit: BoxFit.contain,
+                                          color: ColorClass.redColor,
+                                        ), // Search the right property
+                                        Text("Compare Properties",
+                                            style: TextStyle(
+                                                color: ColorClass.blueColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: "Mulish",
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 18.0),
+                                            textAlign: TextAlign.left)
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              )
+                            : Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          CupertinoIcons.search,
+                                          color: ColorClass.redColor,
+                                          size: 40,
+                                        ),
+                                        // Search the right property
+                                        Text("Search the right property",
+                                            style: TextStyle(
+                                                color: ColorClass.blueColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: "Mulish",
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 20.0),
+                                            textAlign: TextAlign.left)
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/reviewicon.png",
+                                          height: 40,
+                                          width: 40,
+                                          fit: BoxFit.contain,
+                                          color: ColorClass.redColor,
+                                        ),
+                                        // Search the right property
+                                        Text("Review properties",
+                                            style: TextStyle(
+                                                color: ColorClass.blueColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: "Mulish",
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 20.0),
+                                            textAlign: TextAlign.left)
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/compare.png",
+                                          height: 40,
+                                          width: 40,
+                                          fit: BoxFit.contain,
+                                          color: ColorClass.redColor,
+                                        ), // Search the right property
+                                        Text("Compare Properties",
+                                            style: TextStyle(
+                                                color: ColorClass.blueColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: "Mulish",
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 18.0),
+                                            textAlign: TextAlign.left)
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 40, bottom: 20, left: 50, right: 50),
+                        child: Text(
+                            "Millions of people are searching for Property, rent information, public reviews, and property information. See what others are looking for on revue today.",
+                            style: const TextStyle(
+                                color: const Color(0xe5000000),
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Mulish",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 16.0),
+                            textAlign: TextAlign.center),
+                      ),
+                    ])),
+
+                SizedBox(height: 20,),
+                Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 1,
+                    decoration: BoxDecoration(boxShadow: [
+                      // BoxShadow(
+                      //     color: const Color(0x40000000),
+                      //     offset: Offset(0, 4),
+                      //     blurRadius: 4,
+                      //     spreadRadius: 0)
+                    ], color: const Color(0x4d000000))),
+
+
+                //Top rated compound
+
+                // Container(
+                //   width: maxWidth,
+                //   padding:   maxWidth >= 700? EdgeInsets.only(left: 60,right:60,top: 20,bottom: 10):
+                //   EdgeInsets.all(20),
+                //   color:Color(0xfff9f9f9),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text("Top Rated Compounds",
+                //         style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w600),),
+                //
+                //       maxWidth>=1200?
+                //       GridView.builder(shrinkWrap: true,itemCount: propertyImage.length,
+                //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
+                //           (crossAxisCount: 3,),
+                //         itemBuilder: (context,index){
+                //           return topRatedCompound(context,index,maxWidth);
+                //         }):
+                //           maxWidth>=900?
+                //               GridView.builder(shrinkWrap: true,itemCount:  propertyImage.length,
+                //               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
+                //                 (crossAxisCount: 2,),
+                //               itemBuilder: (context,index){
+                //                 return topRatedCompound(context,index,maxWidth);
+                //               }):
+                //           maxWidth>=500?
+                //           GridView.builder(shrinkWrap: true,itemCount:  propertyImage.length,
+                //               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
+                //                 (crossAxisCount: 1,),
+                //               itemBuilder: (context,index){
+                //                 return topRatedCompound(context,index,maxWidth);
+                //               }):
+                //           GridView.builder(shrinkWrap: true,itemCount:  propertyImage.length,
+                //               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
+                //                 (crossAxisCount: 1,),
+                //               itemBuilder: (context,index){
+                //                 return topRatedCompound(context,index,maxWidth);
+                //               })
+                //
+                //     ],
+                //   ),
+                // ),
+
+
+                //recommmendedproperty
+
+
+
+                // Container(
+                //   width: maxWidth,
+                //   padding:   maxWidth >= 700? EdgeInsets.only(left: 60,right:60,top: 20,bottom: 10):
+                //   EdgeInsets.all(20),
+                //   color:Color(0xfff9f9f9),
+                //
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text("Recommended Compounds",
+                //         style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w600),),
+                //       SizedBox(height: 20,),
+                //       SizedBox(
+                //         width: maxWidth,height: 500,
+                //         child: ListView.builder(
+                //           shrinkWrap: true,itemCount: 5,
+                //           scrollDirection:Axis.horizontal,
+                //           itemBuilder: (context,index){
+                //             return recommendedProperty(context,maxWidth,index);
+                //           },),
+                //       )
+                //     ],
+                //   ),
+                // ),
+
+
+
+
+                // Container(
+                //     width: MediaQuery.of(context).size.width,
+                //     height: 1,
+                //     decoration: BoxDecoration(boxShadow: [
+                //       BoxShadow(
+                //           color: const Color(0x40000000),
+                //           offset: Offset(0, 4),
+                //           blurRadius: 4,
+                //           spreadRadius: 0)
+                //     ], color: const Color(0x4d000000))),
+
+                SizedBox(
+                  height: 30,
+                ),
+
+                FooterWidget()
+
+
+
+              ],
             ),
           ],
         ),
@@ -1131,4 +1163,6 @@ class LoginScreenState extends State<LoginScreen> {
 
 
 }
+
+
 

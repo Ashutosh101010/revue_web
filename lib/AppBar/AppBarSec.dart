@@ -271,10 +271,10 @@ class AppBarSecState extends State<AppBarSec>{
                         ),
                       )),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 40,top: 10),
-                      child:searchWidget(),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(bottom: 40,top: 10),
+                    //   child:searchWidget(),
+                    // ),
                   ],
                 ),
               )
@@ -285,7 +285,7 @@ class AppBarSecState extends State<AppBarSec>{
     );
   }
 
-  Widget searchWidget(){
+  Widget searchWidget(double width){
     return Padding(
       padding: const EdgeInsets.only(top:8.0,bottom: 8),
       child: Row(
@@ -295,18 +295,18 @@ class AppBarSecState extends State<AppBarSec>{
             behavior: HitTestBehavior.translucent,
             onTap: () {},
             child: Container(
-              margin: EdgeInsets.only(left: 10, right: 10,),
-              width: 600,
+              margin: EdgeInsets.only(right: 10,),
+              width: width,
               height: 40,alignment: Alignment.center,
               decoration: BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(7),
-                  border: Border.all(color: ColorClass.blueColor, width: 2)),
+                  border: Border.all(color: ColorClass.blueColor, width: 1)),
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left:8.0,right:8),
+                    padding: const EdgeInsets.only(left:8,right:8),
                     child: Icon(
                       CupertinoIcons.search,
                       color: ColorClass.blueColor,
@@ -339,13 +339,13 @@ class AppBarSecState extends State<AppBarSec>{
 
           Container(
             height: 40,
-            width: 300,
+            width: width/2,
             margin: EdgeInsets.only(left: 10, right: 10,),
             decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(7),
-                border: Border.all(color: ColorClass.blueColor, width: 2)),
+                border: Border.all(color: ColorClass.blueColor, width: 1)),
             child: DropdownButtonHideUnderline(
               child: GFDropdown(
                 borderRadius: BorderRadius.circular(10),
@@ -373,13 +373,13 @@ class AppBarSecState extends State<AppBarSec>{
 
           Container(
             height: 40,
-            width: 300,
+            width: width/2,
             margin: EdgeInsets.only(left: 10, right: 10,),
             decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(7),
-                border: Border.all(color: ColorClass.blueColor, width: 2)),
+                border: Border.all(color: ColorClass.blueColor, width: 1)),
             child: DropdownButtonHideUnderline(
               child: GFDropdown(
                 borderRadius: BorderRadius.circular(10),

@@ -67,7 +67,6 @@ class CompoundListState extends State<CompoundList>{
     });
   }
 
-  ScrollController scrollController=new ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -89,59 +88,60 @@ class CompoundListState extends State<CompoundList>{
               return scaffoldKey.currentState.openDrawer();
             },),
           ),
-          body:SmoothScrollWeb(controller: controller,
-            child: Column(
-              children: [
-              Expanded(
-              child: Scrollbar(
-                child: SingleChildScrollView(controller: controller,
-                  child:  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      maxWidth>=900?Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border(bottom: BorderSide(color: Colors.black12))
-                        ),
-                        child: AppBarSecState().searchWidget(),
-                      ):Container(),
+          body:Column(
+            children: [
+            Expanded(
+            child: Scrollbar(
+              child: SingleChildScrollView(
+                child:  Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    maxWidth>=900?Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border(bottom: BorderSide(color: Colors.black12))
+                      ),
+                      child: AppBarSecState().searchWidget(maxWidth/2.3),
+                    ):Container(),
 
-                      filterWidget(width),
-                     filter? OverlayContainer(
-                          show: filter,
-                          position: OverlayContainerPosition(0, 0,),
-                          child: FilterScreen()
-                      ):Container(),
+                    Padding(
+                      padding: EdgeInsets.only(left: maxWidth/30,bottom: 40),
+                      child: filterWidget(width,maxWidth),
+                    ),
+                   filter? OverlayContainer(
+                        show: filter,
+                        position: OverlayContainerPosition(0, 0,),
+                        child: FilterScreen()
+                    ):Container(),
 
-                      maxWidth>=1300?
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                        leftSide(maxWidth/2,scrollController),
-                        rightSide(maxWidth/3)
-                      ],):
-                      maxWidth>=1000?
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                        leftSide(maxWidth/2,scrollController),
-                        rightSide(maxWidth/3)
-                      ],):
-                      leftSide(maxWidth,scrollController)
+                    maxWidth>=1300?
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      leftSide(maxWidth/2),
+                      rightSide(maxWidth/3)
+                    ],):
+                    maxWidth>=1000?
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      leftSide(maxWidth/2),
+                      rightSide(maxWidth/3)
+                    ],):
+                    leftSide(maxWidth)
 
-                    ],
-                  ),
+                  ],
                 ),
               ),
-              ),
+            ),
+            ),
 
 
-            ],),
-          ),
+          ],),
         );
 
       },),
@@ -150,9 +150,9 @@ class CompoundListState extends State<CompoundList>{
 
 
 
-  Widget filterWidget(bool width){
+  Widget filterWidget(bool width,double maxWidth){
     return Padding(
-      padding: const EdgeInsets.only(left: 30,right: 30,top: 10),
+      padding: const EdgeInsets.only(left: 30,top: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -179,13 +179,14 @@ class CompoundListState extends State<CompoundList>{
               },
 
               child: Container(
+                margin: EdgeInsets.only(right:maxWidth/(maxWidth/150)),
                   width: 100,
                   height: 35,
                   decoration: BoxDecoration(
                       color:Colors.white,
                       border:Border.all(
                           color: const Color(0xff000000),
-                          width: 2,style: BorderStyle.solid
+                          width: 1.5,style: BorderStyle.solid
                       ),
                       borderRadius: BorderRadius.circular(10)),
                   child: Row(
@@ -220,7 +221,7 @@ class CompoundListState extends State<CompoundList>{
     );
   }
 
-  Widget leftSide(double width,ScrollController controller){
+  Widget leftSide(double width){
     print("leftside"+width.toString());
     return Container(
       width:width,alignment: Alignment.topCenter,

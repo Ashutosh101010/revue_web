@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         initialRoute:initialroute,
         navigatorKey: navKey,
         onGenerateRoute:router.generateRoute,
-      theme: ThemeData(
+      theme: ThemeData(pageTransitionsTheme: NoTransitionsOnWeb(),
         bottomSheetTheme: Theme.of(context).bottomSheetTheme,
         // This is the theme of your application.
         //
@@ -696,3 +697,24 @@ class MyApp extends StatelessWidget {
 // }
 
 
+class NoTransitionsOnWeb extends PageTransitionsTheme {
+  @override
+  Widget buildTransitions<T>(
+      route,
+      context,
+      animation,
+      secondaryAnimation,
+      child,
+      ) {
+    if (kIsWeb) {
+      return child;
+    }
+    return super.buildTransitions(
+      route,
+      context,
+      animation,
+      secondaryAnimation,
+      child,
+    );
+  }
+}
