@@ -133,7 +133,7 @@ class ReviewTabState extends State{
                style:  TextStyle(
                    color: Colors.black ,
                    fontWeight: FontWeight.w700,
-                   fontFamily: "Mulish",
+
                    fontStyle:  FontStyle.normal,
                    fontSize: 17.0
                ),
@@ -211,7 +211,7 @@ class ReviewTabState extends State{
                 "Price ",
                 style: TextStyle(
                     color:  Colors.black,
-                    fontFamily: "Mulish",
+
                     fontWeight: FontWeight.w600,
                     fontStyle:  FontStyle.normal,
                     fontSize: 16.0
@@ -223,7 +223,7 @@ class ReviewTabState extends State{
                 style:  TextStyle(
                     color: Colors.black87,
                     fontWeight: FontWeight.w500,
-                    fontFamily: "Mulish",
+
                     fontStyle:  FontStyle.normal,
                     fontSize: 15.0
                 ),
@@ -246,7 +246,7 @@ class ReviewTabState extends State{
                 style:  TextStyle(
                     color:  Colors.black,
                     fontWeight: FontWeight.w600,
-                    fontFamily: "Mulish",
+
                     fontStyle:  FontStyle.normal,
                     fontSize: 16.0
                 ),
@@ -257,7 +257,7 @@ class ReviewTabState extends State{
                 style:  TextStyle(
                     color: Colors.black87,
                     fontWeight: FontWeight.w500,
-                    fontFamily: "Mulish",
+
                     fontStyle:  FontStyle.normal,
                     fontSize: 15.0
                 ),
@@ -297,7 +297,7 @@ class ReviewTabState extends State{
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w700,
-                          fontFamily: "Mulish",
+
                           fontStyle:  FontStyle.normal,
                           fontSize: 16.0
                       ),
@@ -335,7 +335,7 @@ class ReviewTabState extends State{
                 style:  TextStyle(
                     color:  Colors.black,
                     fontWeight: FontWeight.w600,
-                    fontFamily: "Mulish",
+
                     fontStyle:  FontStyle.normal,
                     fontSize: 16.0
                 ),
@@ -346,7 +346,7 @@ class ReviewTabState extends State{
                 style:  TextStyle(
                     color: Colors.black87,
                     fontWeight: FontWeight.w500,
-                    fontFamily: "Mulish",
+
                     fontStyle:  FontStyle.normal,
                     fontSize: 15.0
                 ),
@@ -366,7 +366,7 @@ class ReviewTabState extends State{
               "Review Date ",
               style:  TextStyle(
                   color:  Colors.black,
-                  fontFamily: "Mulish",
+
                   fontWeight: FontWeight.w600,
                   fontStyle:  FontStyle.normal,
                   fontSize: 16.0
@@ -378,7 +378,7 @@ class ReviewTabState extends State{
               " 23 Dec 2020",
               style:  TextStyle(
 
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 15.0,
                   color: Colors.black87,
@@ -401,7 +401,7 @@ class ReviewTabState extends State{
               "  Bath Rooms :",
               style: TextStyle(
                   color:  Colors.black,
-                  fontFamily: "Mulish",
+
                   fontWeight: FontWeight.w600,
                   fontStyle:  FontStyle.normal,
                   fontSize: 16.0
@@ -413,7 +413,7 @@ class ReviewTabState extends State{
               style:  TextStyle(
                   color: Colors.black87,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 15.0
               ),

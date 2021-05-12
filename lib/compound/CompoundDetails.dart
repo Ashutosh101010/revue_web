@@ -157,7 +157,7 @@ ScrollController controller=new ScrollController();
                       children: [
                         Text("Properties  ",
                           style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
-                            fontSize: 23, fontFamily: "Mulish",
+                            fontSize: 23,
                             fontStyle:  FontStyle.normal,),),
 
                         Container(
@@ -302,7 +302,6 @@ ScrollController controller=new ScrollController();
                   style: const TextStyle(
                       color:  const Color(0xffffffff),
                       fontWeight: FontWeight.w700,
-                      fontFamily: "Mulish",
                       fontStyle:  FontStyle.normal,
                       fontSize: 16.0
                   ),
@@ -316,7 +315,6 @@ ScrollController controller=new ScrollController();
                 style:  TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w700,
-                    fontFamily: "Mulish",
                     fontStyle:  FontStyle.normal,
                     fontSize: 16.0
                 ),
@@ -368,7 +366,6 @@ ScrollController controller=new ScrollController();
                           "The Trilogy, M15",
                           style:  TextStyle(
                               color:  Colors.black,
-                              fontFamily: "Mulish",
                               fontWeight: FontWeight.w600,
                               fontStyle:  FontStyle.normal,
                               fontSize: 16.0
@@ -382,7 +379,6 @@ ScrollController controller=new ScrollController();
                           "More ‘Superenting’, Allsop Letting and Managementr",
                           style:  TextStyle(
                               color:  Colors.black,
-                              fontFamily: "Mulish",
                               fontStyle:  FontStyle.normal,
                               fontSize: 15.0
                           ),
@@ -415,7 +411,6 @@ ScrollController controller=new ScrollController();
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w700,
-                                        fontFamily: "Mulish",
                                         fontStyle:  FontStyle.normal,
                                         fontSize: 16.0
                                     ),
@@ -426,7 +421,6 @@ ScrollController controller=new ScrollController();
                                     " (54 reviews)",
                                     style: TextStyle(
                                         color: Colors.black,
-                                        fontFamily: "Mulish",
                                         fontStyle:  FontStyle.normal,
                                         fontSize: 16.0
                                     ),

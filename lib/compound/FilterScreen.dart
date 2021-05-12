@@ -219,7 +219,7 @@ class FilterScreenState extends State<FilterScreen>{
           child: GFDropdown(
             hint: Text(
               "Rent",
-              style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+              style: TextStyle(color:Colors.grey,),
             ),
             dropdownButtonColor: Colors.white,
             iconEnabledColor: ColorClass.blueColor,
@@ -234,7 +234,7 @@ class FilterScreenState extends State<FilterScreen>{
               value: value,
               child: Text(value, style:  TextStyle(
                 color: Colors.black,
-                fontFamily: 'Mulish',
+
               ),),
             ))
                 .toList(),
@@ -261,7 +261,7 @@ class FilterScreenState extends State<FilterScreen>{
             child: GFDropdown(
               hint: Text(
                 "Property Type",
-                style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                style: TextStyle(color:Colors.grey,),
               ),
               dropdownButtonColor: Colors.white,
               iconEnabledColor: ColorClass.blueColor,
@@ -276,7 +276,7 @@ class FilterScreenState extends State<FilterScreen>{
                 value: value,
                 child: Text(value, style:  TextStyle(
                   color: Colors.black,
-                  fontFamily: 'Mulish',
+
                 ),),
               ))
                   .toList(),
@@ -297,7 +297,7 @@ class FilterScreenState extends State<FilterScreen>{
             child: GFDropdown(
               hint: Text(
                 "Monthly",
-                style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                style: TextStyle(color:Colors.grey),
               ),
               dropdownButtonColor: Colors.white,
               iconEnabledColor: ColorClass.blueColor,
@@ -312,7 +312,7 @@ class FilterScreenState extends State<FilterScreen>{
                 value: value,
                 child: Text(value, style:  TextStyle(
                   color: Colors.black,
-                  fontFamily: 'Mulish',
+
                 ),),
               ))
                   .toList(),
@@ -355,12 +355,12 @@ class FilterScreenState extends State<FilterScreen>{
                 style: const TextStyle(
                     color: const Color(0x99000000),
                     fontWeight: FontWeight.w400,
-                    fontFamily: "Mulish",
+
                     fontStyle: FontStyle.normal,
                     fontSize: 18.0),
                 decoration: InputDecoration(
                     hintText: "Search Compound",
-                    hintStyle: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                    hintStyle: TextStyle(color:Colors.grey, ),
                     border: InputBorder.none,
                     fillColor: Colors.white),
                 cursorColor: Colors.black,
@@ -383,7 +383,7 @@ class FilterScreenState extends State<FilterScreen>{
             child: GFDropdown(
               hint: Text(
                 "Min Price",
-                style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                style: TextStyle(color:Colors.grey, ),
               ),
               borderRadius: BorderRadius.circular(5),
               dropdownButtonColor: Colors.white,
@@ -401,7 +401,7 @@ class FilterScreenState extends State<FilterScreen>{
                 value: value,
                 child: Text(value, style:  TextStyle(
                   color: Colors.black,
-                  fontFamily: 'Mulish',
+
                 ),),
               ))
                   .toList(),
@@ -416,7 +416,7 @@ class FilterScreenState extends State<FilterScreen>{
             child: GFDropdown(
               hint: Text(
                 "Max Price",
-                style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                style: TextStyle(color:Colors.grey,),
               ),
               borderRadius: BorderRadius.circular(5),
               dropdownButtonColor: Colors.white,
@@ -434,7 +434,7 @@ class FilterScreenState extends State<FilterScreen>{
                 value: value,
                 child: Text(value, style:  TextStyle(
                   color: Colors.black,
-                  fontFamily: 'Mulish',
+
                 ),),
               ))
                   .toList(),
@@ -456,7 +456,7 @@ class FilterScreenState extends State<FilterScreen>{
             child: GFDropdown(
               hint: Text(
                 "Min Bed",
-                style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                style: TextStyle(color:Colors.grey, ),
               ),
               borderRadius: BorderRadius.circular(5),
               dropdownButtonColor: Colors.white,
@@ -474,7 +474,7 @@ class FilterScreenState extends State<FilterScreen>{
                 value: value,
                 child: Text(value, style:  TextStyle(
                   color: Colors.black,
-                  fontFamily: 'Mulish',
+
                 ),),
               ))
                   .toList(),
@@ -489,7 +489,7 @@ class FilterScreenState extends State<FilterScreen>{
             child: GFDropdown(
               hint: Text(
                 "Max Bed",
-                style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                style: TextStyle(color:Colors.grey, ),
               ),
               borderRadius: BorderRadius.circular(5),
               dropdownButtonColor: Colors.white,
@@ -507,7 +507,7 @@ class FilterScreenState extends State<FilterScreen>{
                 value: value,
                 child: Text(value, style:  TextStyle(
                   color: Colors.black,
-                  fontFamily: 'Mulish',
+
                 ),),
               ))
                   .toList(),
@@ -531,7 +531,7 @@ class FilterScreenState extends State<FilterScreen>{
               child: GFDropdown(
                 hint: Text(
                   "Min Bath",
-                  style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                  style: TextStyle(color:Colors.grey,),
                 ),
                 borderRadius: BorderRadius.circular(5),
                 border: const BorderSide(
@@ -549,7 +549,7 @@ class FilterScreenState extends State<FilterScreen>{
                   value: value,
                   child: Text(value, style:  TextStyle(
                     color: Colors.black,
-                    fontFamily: 'Mulish',
+
                   ),),
                 ))
                     .toList(),
@@ -564,7 +564,7 @@ class FilterScreenState extends State<FilterScreen>{
               child: GFDropdown(
                 hint: Text(
                   "Max Bath",
-                  style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                  style: TextStyle(color:Colors.grey,),
                 ),
                 borderRadius: BorderRadius.circular(5),
                 border: const BorderSide(
@@ -582,7 +582,7 @@ class FilterScreenState extends State<FilterScreen>{
                   value: value,
                   child: Text(value, style:  TextStyle(
                     color: Colors.black,
-                    fontFamily: 'Mulish',
+
                   ),),
                 ))
                     .toList(),
@@ -606,7 +606,7 @@ class FilterScreenState extends State<FilterScreen>{
             child: GFDropdown(
               hint: Text(
                 "Min Area",
-                style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                style: TextStyle(color:Colors.grey, ),
               ),
               borderRadius: BorderRadius.circular(5),
               border: const BorderSide(
@@ -624,7 +624,7 @@ class FilterScreenState extends State<FilterScreen>{
                 value: value,
                 child: Text(value, style:  TextStyle(
                   color: Colors.black,
-                  fontFamily: 'Mulish',
+
                 ),),
               ))
                   .toList(),
@@ -639,7 +639,7 @@ class FilterScreenState extends State<FilterScreen>{
             child: GFDropdown(
               hint: Text(
                 "Max Area",
-                style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                style: TextStyle(color:Colors.grey, ),
               ),
               borderRadius: BorderRadius.circular(5),
               border: const BorderSide(
@@ -657,7 +657,7 @@ class FilterScreenState extends State<FilterScreen>{
                 value: value,
                 child: Text(value, style:  TextStyle(
                   color: Colors.black,
-                  fontFamily: 'Mulish',
+
                 ),),
               ))
                   .toList(),
@@ -679,7 +679,7 @@ class FilterScreenState extends State<FilterScreen>{
             child: GFDropdown(
               hint: Text(
                 "All Furnishing",
-                style: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+                style: TextStyle(color:Colors.grey,),
               ),
               borderRadius: BorderRadius.circular(5),
               border: const BorderSide(
@@ -697,7 +697,7 @@ class FilterScreenState extends State<FilterScreen>{
                 value: value,
                 child: Text(value,style:  TextStyle(
                   color: Colors.black,
-                  fontFamily: 'Mulish',
+
                 ),),
               ))
                   .toList(),
@@ -713,10 +713,10 @@ class FilterScreenState extends State<FilterScreen>{
             autofocus: false,
             style:  TextStyle(
               color: Colors.black,
-              fontFamily: 'Mulish',
+
             ),
             placeholder: "Keyword",
-            placeholderStyle: TextStyle(color:Colors.grey, fontFamily: 'Mulish',),
+            placeholderStyle: TextStyle(color:Colors.grey, ),
           ),
         ),
       ],),

@@ -73,7 +73,6 @@ class ForgetPasswordState extends State<ForgetPassword>{
                           style: TextStyle(
                               color:  ColorClass.redColor,
                               fontWeight: FontWeight.bold,
-                              fontFamily: "Mulish",
                               fontStyle:  FontStyle.normal,
                               fontSize: 25.0
                           ),
@@ -98,7 +97,6 @@ class ForgetPasswordState extends State<ForgetPassword>{
                             style: TextStyle(
                                 color:  ColorClass.lightTextColor,
                                 fontWeight: FontWeight.w400,
-                                fontFamily: "Mulish",
                                 fontStyle:  FontStyle.normal,
                                 fontSize: 16.0
                             ),
@@ -117,12 +115,10 @@ class ForgetPasswordState extends State<ForgetPassword>{
                             style:  TextStyle(
                               color: Colors.black,
                               fontSize: 16,
-                              fontFamily: 'Mulish',
                             ),
                             placeholder: "Enter Email or phone.",
                             placeholderStyle:TextStyle(
                                 color:  const Color(0x99000000),
-                                fontFamily: "Mulish",
                                 fontStyle:  FontStyle.normal,
                                 fontSize: 16.0
                             ),

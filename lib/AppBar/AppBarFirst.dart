@@ -53,7 +53,6 @@ class AppBarFirstState extends State<AppBarFirst>{
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w700,
-                              fontFamily: "Mulish",
                               fontStyle: FontStyle.normal,
                               fontSize: 23.0),
                           textAlign: TextAlign.left),
@@ -76,7 +75,6 @@ class AppBarFirstState extends State<AppBarFirst>{
                                       style: TextStyle(
                                           color: const Color(0x99000000),
                                           fontWeight: FontWeight.w600,
-                                          fontFamily: "Mulish",
                                           fontStyle: FontStyle.normal,
                                           fontSize: 17.0),
                                       textAlign: TextAlign.left),
@@ -87,7 +85,6 @@ class AppBarFirstState extends State<AppBarFirst>{
                                     style: const TextStyle(
                                         color: const Color(0xcc006492),
                                         fontWeight: FontWeight.w400,
-                                        fontFamily: "Mulish",
                                         fontStyle: FontStyle.normal,
                                         fontSize: 16.0),
                                     textAlign: TextAlign.left)
@@ -107,7 +104,6 @@ class AppBarFirstState extends State<AppBarFirst>{
                                       style: TextStyle(
                                           color: const Color(0x99000000),
                                           fontWeight: FontWeight.w600,
-                                          fontFamily: "Mulish",
                                           fontStyle: FontStyle.normal,
                                           fontSize: 17.0),
                                       textAlign: TextAlign.left),
@@ -118,7 +114,6 @@ class AppBarFirstState extends State<AppBarFirst>{
                                     style: const TextStyle(
                                         color: const Color(0xcc006492),
                                         fontWeight: FontWeight.w400,
-                                        fontFamily: "Mulish",
                                         fontStyle: FontStyle.normal,
                                         fontSize: 16.0),
                                     textAlign: TextAlign.left)
@@ -138,7 +133,6 @@ class AppBarFirstState extends State<AppBarFirst>{
                                       style: TextStyle(
                                         color: const Color(0x99000000),
                                         fontWeight: FontWeight.w600,
-                                        fontFamily: "Mulish",
                                         fontStyle: FontStyle.normal,
                                         fontSize: 17.0,
                                       ),
@@ -150,7 +144,6 @@ class AppBarFirstState extends State<AppBarFirst>{
                                     style: const TextStyle(
                                       color: const Color(0xcc006492),
                                       fontWeight: FontWeight.w400,
-                                      fontFamily: "Mulish",
                                       fontStyle: FontStyle.normal,
                                       fontSize: 16.0,
                                     ),
@@ -311,7 +304,6 @@ class AppBarFirstState extends State<AppBarFirst>{
             child: Text("Sign In",style: TextStyle(
                 color:  Colors.black,
                 fontWeight: FontWeight.w700,
-                fontFamily: "Mulish",
                 fontStyle:  FontStyle.normal,
                 wordSpacing: 5,letterSpacing: 0.5,
                 fontSize: 20.0
@@ -428,14 +420,12 @@ class AppBarFirstState extends State<AppBarFirst>{
                     hintStyle: TextStyle(
                       color: Color(0x7f3c2f47),
                       fontSize: 15,
-                      fontFamily: 'Mulish',
                     ),
                     border: InputBorder.none,
                     fillColor: Colors.white),
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
-                  fontFamily: 'Mulish',
                 ),
               ),
               data: Theme.of(context)
@@ -464,14 +454,12 @@ class AppBarFirstState extends State<AppBarFirst>{
                     hintStyle: TextStyle(
                       color: Color(0x7f3c2f47),
                       fontSize: 15,
-                      fontFamily: 'Mulish',
                     ),
                     border: InputBorder.none,
                     fillColor: Colors.white),
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
-                  fontFamily: 'Mulish',
                 ),
               ),
               data: Theme.of(context)

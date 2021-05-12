@@ -100,7 +100,6 @@ class MessagingScreenState extends State<MessagingScreen>{
                               style: TextStyle(
                                   color: ColorClass.redColor,
                                   fontWeight: FontWeight.w700,
-                                  fontFamily: "Mulish",
                                   fontStyle: FontStyle.normal,
                                   fontSize: 25.0),
                               textAlign: TextAlign.left),
@@ -160,7 +159,6 @@ class MessagingScreenState extends State<MessagingScreen>{
                                   style: const TextStyle(
                                       color:  const Color(0xff000000),
                                       fontWeight: FontWeight.w600,
-                                      fontFamily: "Mulish",
                                       fontStyle:  FontStyle.normal,
                                       fontSize: 25.0
                                   ),
@@ -177,7 +175,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                                       style:  TextStyle(
                                           color:Colors.black54  ,
                                           fontWeight: FontWeight.w600,
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: maxWidth?14.0:12,
                                       ),
@@ -214,7 +212,6 @@ class MessagingScreenState extends State<MessagingScreen>{
                                             style: const TextStyle(
                                                 color:  const Color(0x99000000),
                                                 fontWeight: FontWeight.w400,
-                                                fontFamily: "Mulish",
                                                 fontStyle:  FontStyle.normal,
                                                 fontSize: 20.0
                                             ),
@@ -237,7 +234,6 @@ class MessagingScreenState extends State<MessagingScreen>{
                                           style: const TextStyle(
                                               color:  const Color(0xe5000000),
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: "Mulish",
                                               fontStyle:  FontStyle.normal,
                                               fontSize: 18.0
                                           ),
@@ -254,7 +250,6 @@ class MessagingScreenState extends State<MessagingScreen>{
                                                 style: const TextStyle(
                                                     color:  const Color(0xff000000),
                                                     fontWeight: FontWeight.w600,
-                                                    fontFamily: "Mulish",
                                                     fontStyle:  FontStyle.normal,
                                                     fontSize: 16.0
                                                 ),
@@ -285,7 +280,6 @@ class MessagingScreenState extends State<MessagingScreen>{
                                                       style: const TextStyle(
                                                           color:  const Color(0x66000000),
                                                           fontWeight: FontWeight.w600,
-                                                          fontFamily: "Mulish",
                                                           fontStyle:  FontStyle.normal,
                                                           fontSize: 14.0
                                                       ),
@@ -301,7 +295,6 @@ class MessagingScreenState extends State<MessagingScreen>{
                                               style: const TextStyle(
                                                   color:  const Color(0x80000000),
                                                   fontWeight: FontWeight.w600,
-                                                  fontFamily: "Mulish",
                                                   fontStyle:  FontStyle.normal,
                                                   fontSize: 15.0
                                               ),
@@ -359,7 +352,6 @@ class MessagingScreenState extends State<MessagingScreen>{
               style: const TextStyle(
                   color:  const Color(0xe5000000),
                   fontWeight: FontWeight.w600,
-                  fontFamily: "Mulish",
                   fontStyle:  FontStyle.normal,
                   fontSize: 25.0
               ),
@@ -382,7 +374,6 @@ class MessagingScreenState extends State<MessagingScreen>{
                   hintStyle: TextStyle(
                     color: Color(0x7f3c2f47),
                     fontSize: 18,
-                    fontFamily: 'Mulish',
                   ),
                   border: InputBorder.none,
                   fillColor: Colors.white
@@ -397,7 +388,6 @@ class MessagingScreenState extends State<MessagingScreen>{
               style: const TextStyle(
                   color:  const Color(0x80000000),
                   fontWeight: FontWeight.w600,
-                  fontFamily: "Mulish",
                   fontStyle:  FontStyle.normal,
                   fontSize: 16.0
               ),

@@ -76,7 +76,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               "Price ",
               style: TextStyle(
                   color:  Colors.black,
-                  fontFamily: "Mulish",
+
                   fontWeight: FontWeight.w600,
                   fontStyle:  FontStyle.normal,
                   fontSize: 16.0
@@ -88,7 +88,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               style:  TextStyle(
                   color: Colors.black87,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 15.0
               ),
@@ -108,7 +108,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               style:  TextStyle(
                   color:  Colors.black,
                   fontWeight: FontWeight.w600,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 16.0
               ),
@@ -119,7 +119,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               style:  TextStyle(
                   color: Colors.black87,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 15.0
               ),
@@ -155,7 +155,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w700,
-                        fontFamily: "Mulish",
+
                         fontStyle:  FontStyle.normal,
                         fontSize: 14.0
                     ),
@@ -190,7 +190,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               style:  TextStyle(
                   color:  Colors.black,
                   fontWeight: FontWeight.w600,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 16.0
               ),
@@ -201,7 +201,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               style:  TextStyle(
                   color: Colors.black87,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 15.0
               ),
@@ -220,7 +220,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               "  Bath Rooms :",
               style: TextStyle(
                   color:  Colors.black,
-                  fontFamily: "Mulish",
+
                   fontWeight: FontWeight.w600,
                   fontStyle:  FontStyle.normal,
                   fontSize: 16.0
@@ -232,7 +232,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               style:  TextStyle(
                   color: Colors.black87,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 15.0
               ),
@@ -249,7 +249,7 @@ class ReviewDetailState extends State<ReviewDetails> {
             "Review Date ",
             style:  TextStyle(
                 color:  Colors.black,
-                fontFamily: "Mulish",
+
                 fontWeight: FontWeight.w600,
                 fontStyle:  FontStyle.normal,
                 fontSize: 16.0
@@ -261,7 +261,7 @@ class ReviewDetailState extends State<ReviewDetails> {
             " 23 Dec 2020",
             style:  TextStyle(
 
-                fontFamily: "Mulish",
+
                 fontStyle:  FontStyle.normal,
                 fontSize: 15.0,
                 color: Colors.black87,
@@ -287,7 +287,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               style: TextStyle(
                   color: const Color(0xff000000),
                   fontWeight: FontWeight.w700,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 18.0),
             ),
@@ -324,7 +324,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               style: TextStyle(
                   color: const Color(0xff000000),
                   fontWeight: FontWeight.w700,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 18.0),
             ),
@@ -377,7 +377,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                     child: Text("Facilities",
                         style: const TextStyle(
                             color: const Color(0xff000000),
-                            fontFamily: "Mulish",
+
                             fontStyle: FontStyle.normal,
                             fontSize: 13.5),
                         textAlign: TextAlign.left),
@@ -405,7 +405,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                     child: Text("Design",
                         style: const TextStyle(
                             color: const Color(0xff000000),
-                            fontFamily: "Mulish",
+
                             fontStyle: FontStyle.normal,
                             fontSize: 13.5),
                         textAlign: TextAlign.left),
@@ -433,7 +433,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                     child: Text("Location",
                         style: const TextStyle(
                             color: const Color(0xff000000),
-                            fontFamily: "Mulish",
+
                             fontStyle: FontStyle.normal,
                             fontSize: 13.5),
                         textAlign: TextAlign.left),
@@ -461,7 +461,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                     child: Text("Value",
                         style: const TextStyle(
                             color: const Color(0xff000000),
-                            fontFamily: "Mulish",
+
                             fontStyle: FontStyle.normal,
                             fontSize: 13.5),
                         textAlign: TextAlign.left),
@@ -489,7 +489,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                     child: Text("Management",
                         style: const TextStyle(
                             color: const Color(0xff000000),
-                            fontFamily: "Mulish",
+
                             fontStyle: FontStyle.normal,
                             fontSize: 13.5),
                         textAlign: TextAlign.left),
@@ -530,7 +530,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                   style: const TextStyle(
                       color:  const Color(0xff000000),
                       fontWeight: FontWeight.w700,
-                      fontFamily: "Mulish",
+
                       fontStyle:  FontStyle.normal,
                       fontSize: 14.0,letterSpacing: 0.5
                   ),
@@ -554,7 +554,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                 style: const TextStyle(
                     color: const Color(0xff000000),
                     fontWeight: FontWeight.w700,
-                    fontFamily: "Mulish",
+
                     fontStyle: FontStyle.normal,
                     fontSize: 18.0),
               ),
@@ -627,7 +627,7 @@ class ReviewDetailState extends State<ReviewDetails> {
             style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w700,
-                fontFamily: "Mulish",
+
                 fontStyle: FontStyle.normal,
                 fontSize: 16.0),
           ),
@@ -694,7 +694,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                       child: AutoSizeText("Was this review helpful?",
                           style: const TextStyle(
                               color: Colors.black,
-                              fontFamily: "Mulish",
+
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.normal,
                               fontSize: 16.0),
@@ -716,7 +716,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                       child: AutoSizeText("Report",
                           style: const TextStyle(
                               color: Colors.black,
-                              fontFamily: "Mulish",
+
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.normal,
                               fontSize: 16.0),
@@ -738,7 +738,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                       child: AutoSizeText("Share",
                           style: const TextStyle(
                               color: Colors.black,
-                              fontFamily: "Mulish",
+
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.normal,
                               fontSize: 16.0),
@@ -764,7 +764,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                       child: AutoSizeText("Was this review helpful?",
                           style: const TextStyle(
                               color: Colors.black,
-                              fontFamily: "Mulish",
+
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.normal,
                               fontSize: 16.0),
@@ -786,7 +786,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                       child: AutoSizeText("Report",
                           style: const TextStyle(
                               color: Colors.black,
-                              fontFamily: "Mulish",
+
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.normal,
                               fontSize: 16.0),
@@ -808,7 +808,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                       child: AutoSizeText("Share",
                           style: const TextStyle(
                               color: Colors.black,
-                              fontFamily: "Mulish",
+
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.normal,
                               fontSize: 16.0),

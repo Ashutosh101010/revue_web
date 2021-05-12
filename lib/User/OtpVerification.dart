@@ -495,7 +495,7 @@ class OtpVerificationState extends State<OtpVerification>{
                               style: TextStyle(
                                   color:  ColorClass.redColor,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: "Mulish",
+
                                   fontStyle:  FontStyle.normal,
                                   fontSize: 25.0
                               ),
@@ -523,7 +523,7 @@ class OtpVerificationState extends State<OtpVerification>{
                                   style: TextStyle(
                                       color:  ColorClass.lightTextColor,
                                       fontWeight: FontWeight.w600,
-                                      fontFamily: "Mulish",
+
                                       fontStyle:  FontStyle.normal,
                                       fontSize: 18.0
                                   ),
@@ -563,12 +563,12 @@ class OtpVerificationState extends State<OtpVerification>{
                                       style:  TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
-                                        fontFamily: 'Mulish',
+
                                       ),
                                       placeholderStyle:TextStyle(
                                           color:  const Color(0x99000000),
                                           fontWeight: FontWeight.w400,
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 20.0
                                       ),
@@ -604,12 +604,12 @@ class OtpVerificationState extends State<OtpVerification>{
                                       style:  TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
-                                        fontFamily: 'Mulish',
+
                                       ),
                                       placeholderStyle:TextStyle(
                                           color:  const Color(0x99000000),
                                           fontWeight: FontWeight.w400,
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 20.0
                                       ),
@@ -645,12 +645,11 @@ class OtpVerificationState extends State<OtpVerification>{
                                       style:  TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
-                                        fontFamily: 'Mulish',
                                       ),
                                       placeholderStyle:TextStyle(
                                           color:  const Color(0x99000000),
                                           fontWeight: FontWeight.w400,
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 20.0
                                       ),
@@ -686,12 +685,12 @@ class OtpVerificationState extends State<OtpVerification>{
                                       style:  TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
-                                        fontFamily: 'Mulish',
+
                                       ),
                                       placeholderStyle:TextStyle(
                                           color:  const Color(0x99000000),
                                           fontWeight: FontWeight.w400,
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 20.0
                                       ),
@@ -727,12 +726,11 @@ class OtpVerificationState extends State<OtpVerification>{
                                       style:  TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
-                                        fontFamily: 'Mulish',
+
                                       ),
                                       placeholderStyle:TextStyle(
                                           color:  const Color(0x99000000),
                                           fontWeight: FontWeight.w400,
-                                          fontFamily: "Mulish",
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 20.0
                                       ),
@@ -768,12 +766,12 @@ class OtpVerificationState extends State<OtpVerification>{
                                       style:  TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
-                                        fontFamily: 'Mulish',
+
                                       ),
                                       placeholderStyle:TextStyle(
                                           color:  const Color(0x99000000),
                                           fontWeight: FontWeight.w400,
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 20.0
                                       ),

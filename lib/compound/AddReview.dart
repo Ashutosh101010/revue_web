@@ -116,7 +116,6 @@ class AddReviewState extends State<AddReview>{
                 labelStyle: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
-                  fontFamily: 'Mulish',
                 ),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Color(0x66000000)),
@@ -149,7 +148,6 @@ class AddReviewState extends State<AddReview>{
                 labelStyle: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
-                  fontFamily: 'Mulish',
                 ),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Color(0x66000000)),
@@ -221,7 +219,6 @@ class AddReviewState extends State<AddReview>{
                             style: TextStyle(
                                 color:  ColorClass.redColor,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: "Mulish",
                                 fontStyle:  FontStyle.normal,
                                 fontSize: 30.0
                             ),
@@ -257,7 +254,6 @@ class AddReviewState extends State<AddReview>{
                                 style: const TextStyle(
                                     color:  const Color(0xffffffff),
                                     fontWeight: FontWeight.w600,
-                                    fontFamily: "Mulish",
                                     fontStyle:  FontStyle.normal,
                                     fontSize: 30.0
                                 ),
@@ -275,7 +271,6 @@ class AddReviewState extends State<AddReview>{
                                         style: TextStyle(
                                             color:Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            fontFamily: "Mulish",
                                             fontStyle:  FontStyle.normal,
                                             fontSize: 23.0
                                         ),
@@ -286,7 +281,6 @@ class AddReviewState extends State<AddReview>{
                                         style:  TextStyle(
                                             color:Colors.white,
                                             fontWeight: FontWeight.w400,
-                                            fontFamily: "Mulish",
                                             fontStyle: FontStyle.normal,
                                             fontSize: 23.0),
                                         textAlign: TextAlign.left)
@@ -306,7 +300,6 @@ class AddReviewState extends State<AddReview>{
                           style: TextStyle(
                               color:  Colors.black,
                               fontWeight: FontWeight.w600,
-                              fontFamily: "Mulish",
                               fontStyle:  FontStyle.normal,
                               fontSize: 20.0
                           ),
@@ -337,7 +330,6 @@ class AddReviewState extends State<AddReview>{
                                         style: TextStyle(
                                             color:Colors.black,
                                             fontWeight: FontWeight.w500,
-                                            fontFamily: "Mulish",
                                             fontStyle:  FontStyle.normal,
                                             fontSize: 18.0
                                         ),
@@ -359,7 +351,6 @@ class AddReviewState extends State<AddReview>{
                                           labelStyle: TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
-                                            fontFamily: 'Mulish',
                                           ),
                                           border: InputBorder.none,
                                           // enabledBorder: UnderlineInputBorder(
@@ -385,7 +376,6 @@ class AddReviewState extends State<AddReview>{
                                         style:  TextStyle(
                                             color:Colors.black,
                                             fontWeight: FontWeight.w500,
-                                            fontFamily: "Mulish",
                                             fontStyle:  FontStyle.normal,
                                             fontSize: 18.0
                                         ),
@@ -408,7 +398,6 @@ class AddReviewState extends State<AddReview>{
                                           labelStyle: TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
-                                            fontFamily: 'Mulish',
                                           ),
 
                                           fillColor: Colors.white
@@ -430,7 +419,6 @@ class AddReviewState extends State<AddReview>{
                                         style: const TextStyle(
                                             color:  Colors.black,
                                             fontWeight: FontWeight.w500,
-                                            fontFamily: "Mulish",
                                             fontStyle:  FontStyle.normal,
                                             fontSize: 18.0
                                         ),
@@ -453,7 +441,6 @@ class AddReviewState extends State<AddReview>{
                                           labelStyle: TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
-                                            fontFamily: 'Mulish',
                                           ),
 
                                           fillColor: Colors.white
@@ -488,7 +475,6 @@ class AddReviewState extends State<AddReview>{
                                   style: TextStyle(
                                       color:  ColorClass.blueColor,
                                       fontWeight: FontWeight.w600,
-                                      fontFamily: "Mulish",
                                       fontStyle:  FontStyle.normal,
                                       fontSize: 20.0
                                   ),
@@ -508,7 +494,6 @@ class AddReviewState extends State<AddReview>{
                                         style: const TextStyle(
                                             color:  Colors.black,
                                             fontWeight: FontWeight.w500,
-                                            fontFamily: "Mulish",
                                             fontStyle:  FontStyle.normal,
                                             fontSize: 18.0
                                         ),
@@ -529,7 +514,6 @@ class AddReviewState extends State<AddReview>{
                                           labelStyle: TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
-                                            fontFamily: 'Mulish',
                                           ),
                                           hintText: "Add Description here",
                                           hintStyle: TextStyle(color: Colors.grey),
@@ -553,7 +537,6 @@ class AddReviewState extends State<AddReview>{
                                         style: TextStyle(
                                             color:Colors.black,
                                             fontWeight: FontWeight.w500,
-                                            fontFamily: "Mulish",
                                             fontStyle:  FontStyle.normal,
                                             fontSize: 18.0
                                         ),
@@ -586,7 +569,7 @@ class AddReviewState extends State<AddReview>{
                                         style:  TextStyle(
                                             color:Colors.black,
                                             fontWeight: FontWeight.w500,
-                                            fontFamily: "Mulish",
+
                                             fontStyle:  FontStyle.normal,
                                             fontSize: 18.0
                                         ),
@@ -630,7 +613,7 @@ class AddReviewState extends State<AddReview>{
                                   style: TextStyle(
                                       color:  ColorClass.blueColor,
                                       fontWeight: FontWeight.w600,
-                                      fontFamily: "Mulish",
+
                                       fontStyle:  FontStyle.normal,
                                       fontSize: 20.0
                                   ),
@@ -647,7 +630,7 @@ class AddReviewState extends State<AddReview>{
                                       style: TextStyle(
                                           color:  Colors.black,
                                           fontWeight: FontWeight.w500,
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 18.0
                                       ),
@@ -679,7 +662,7 @@ class AddReviewState extends State<AddReview>{
                                       style:  TextStyle(
                                           color:  Colors.black,
                                           fontWeight: FontWeight.w500,
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 18.0
                                       ),
@@ -710,7 +693,7 @@ class AddReviewState extends State<AddReview>{
                                       style:  TextStyle(
                                           color:  Colors.black,
                                           fontWeight: FontWeight.w500,
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 18.0
                                       ),
@@ -741,7 +724,7 @@ class AddReviewState extends State<AddReview>{
                                       style: TextStyle(
                                           color:  Colors.black,
                                           fontWeight: FontWeight.w500,
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 18.0
                                       ),
@@ -772,7 +755,7 @@ class AddReviewState extends State<AddReview>{
                                       style:  TextStyle(
                                           color:  Colors.black,
                                           fontWeight: FontWeight.w500,
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 18.0
                                       ),
@@ -816,7 +799,7 @@ class AddReviewState extends State<AddReview>{
                                 style: const TextStyle(
                                     color:  const Color(0xff000000),
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: "Mulish",
+
                                     fontStyle:  FontStyle.normal,
                                     fontSize: 18.0
                                 ),
@@ -865,7 +848,7 @@ class AddReviewState extends State<AddReview>{
                                           style: TextStyle(
                                               color:Colors.black,
                                               fontWeight: FontWeight.w500,
-                                              fontFamily: "Mulish",
+
                                               fontStyle:  FontStyle.normal,
                                               fontSize: 18.0
                                           ),
@@ -893,7 +876,7 @@ class AddReviewState extends State<AddReview>{
                                           labelStyle: TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
-                                            fontFamily: 'Mulish',
+
                                           ),
                                           border: InputBorder.none,
                                           hintText: "Select date",
@@ -918,7 +901,7 @@ class AddReviewState extends State<AddReview>{
                                           style: TextStyle(
                                               color:Colors.black,
                                               fontWeight: FontWeight.w500,
-                                              fontFamily: "Mulish",
+
                                               fontStyle:  FontStyle.normal,
                                               fontSize: 18.0
                                           ),
@@ -947,7 +930,7 @@ class AddReviewState extends State<AddReview>{
                                           labelStyle: TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
-                                            fontFamily: 'Mulish',
+
                                           ),
                                           border: InputBorder.none,
                                           hintText: "Select date",

@@ -104,7 +104,6 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                   style: TextStyle(
                                       color: ColorClass.redColor,
                                       fontWeight: FontWeight.w700,
-                                      fontFamily: "Mulish",
                                       fontStyle: FontStyle.normal,
                                       fontSize: 25.0),
                                   textAlign: TextAlign.left),
@@ -167,7 +166,6 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                     style: const TextStyle(
                                         color: const Color(0xe5000000),
                                         fontWeight: FontWeight.w600,
-                                        fontFamily: "Mulish",
                                         fontStyle: FontStyle.normal, fontSize: 18.0),
                                     textAlign: TextAlign.left),
                               ),
@@ -195,7 +193,6 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                 style: const TextStyle(
                                                     color: const Color(0xff000000),
                                                     fontWeight: FontWeight.w600,
-                                                    fontFamily: "Mulish",
                                                     fontStyle: FontStyle.normal,
                                                     fontSize: 16.0),
                                                 textAlign: TextAlign.left),
@@ -225,7 +222,6 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                                     0x66000000),
                                                                 fontWeight:
                                                                 FontWeight.w600,
-                                                                fontFamily: "Mulish",
                                                                 fontStyle:
                                                                 FontStyle.normal,
                                                                 fontSize: 15.0),
@@ -245,7 +241,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                               0x80000000),
                                                           fontWeight:
                                                           FontWeight.w600,
-                                                          fontFamily: "Mulish",
+
                                                           fontStyle:
                                                           FontStyle.normal,
                                                           fontSize: 15.0),
@@ -270,7 +266,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                                 0x80000000),
                                                             fontWeight:
                                                             FontWeight.w600,
-                                                            fontFamily: "Mulish",
+
                                                             fontStyle:
                                                             FontStyle.normal,
                                                             fontSize: 15.0),
@@ -301,7 +297,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                                   0xcc000000),
                                                               fontWeight:
                                                               FontWeight.w600,
-                                                              fontFamily: "Mulish",
+
                                                               fontStyle:
                                                               FontStyle.normal,
                                                               fontSize: 20.0),
@@ -322,7 +318,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                                   0xcc000000),
                                                               fontWeight:
                                                               FontWeight.w600,
-                                                              fontFamily: "Mulish",
+
                                                               fontStyle:
                                                               FontStyle.normal,
                                                               fontSize: 20.0),
@@ -350,7 +346,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                           color:
                                                           const Color(0xcc000000),
                                                           fontWeight: FontWeight.w600,
-                                                          fontFamily: "Mulish",
+
                                                           fontStyle: FontStyle.normal,
                                                           fontSize: 15.0),
                                                       textAlign: TextAlign.left),
@@ -419,7 +415,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                   style: const TextStyle(
                       color: const Color(0xe5000000),
                       fontWeight: FontWeight.w600,
-                      fontFamily: "Mulish",
+
                       fontStyle: FontStyle.normal,
                       fontSize: 20.0),
                   textAlign: TextAlign.left),
@@ -442,7 +438,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                       hintStyle: TextStyle(
                         color: Color(0x7f3c2f47),
                         fontSize: 18,
-                        fontFamily: 'Mulish',
+
                       ),
                       border: InputBorder.none,
                       fillColor: Colors.white),
@@ -458,7 +454,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                         style: const TextStyle(
                             color: const Color(0x80000000),
                             fontWeight: FontWeight.w600,
-                            fontFamily: "Mulish",
+
                             fontStyle: FontStyle.normal,
                             fontSize: 15.0),
                         textAlign: TextAlign.left)),
@@ -536,7 +532,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                         style: const TextStyle(
                             color: const Color(0xe5000000),
                             fontWeight: FontWeight.w600,
-                            fontFamily: "Mulish",
+
                             fontStyle: FontStyle.normal,
                             fontSize: 20.0),
                         textAlign: TextAlign.left)),
@@ -551,7 +547,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                         style: const TextStyle(
                             color: const Color(0x80000000),
                             fontWeight: FontWeight.w600,
-                            fontFamily: "Mulish",
+
                             fontStyle: FontStyle.normal,
                             fontSize: 16.0),
                         textAlign: TextAlign.left)),

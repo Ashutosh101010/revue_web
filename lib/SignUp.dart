@@ -36,7 +36,6 @@ class SignUpState extends State<SignUp> {
                   style:  TextStyle(
                       color:  ColorClass.redColor,
                       fontWeight: FontWeight.w700,
-                      fontFamily: "Mulish",
                       fontStyle:  FontStyle.normal,
                       wordSpacing: 5,letterSpacing: 0.5,
                       fontSize: 25.0
@@ -58,7 +57,6 @@ class SignUpState extends State<SignUp> {
                         Text("First Name",
                             style:  TextStyle(
                                 color: ColorClass.blueColor,
-                                fontFamily: "Mulish",
                                 fontStyle: FontStyle.normal,
                                 fontSize: 16.0),
                             textAlign: TextAlign.left),
@@ -72,7 +70,6 @@ class SignUpState extends State<SignUp> {
                                 labelStyle: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
-                                  fontFamily: 'Mulish',
                                 ),
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide:
@@ -100,7 +97,6 @@ class SignUpState extends State<SignUp> {
                         Text("Last Name",
                             style:  TextStyle(
                                 color:ColorClass.blueColor,
-                                fontFamily: "Mulish",
                                 fontStyle: FontStyle.normal,
                                 fontSize: 16.0),
                             textAlign: TextAlign.start),
@@ -114,7 +110,6 @@ class SignUpState extends State<SignUp> {
                                 labelStyle: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
-                                  fontFamily: 'Mulish',
                                 ),
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide:
@@ -138,7 +133,6 @@ class SignUpState extends State<SignUp> {
                   Text("Email Address",
                       style:  TextStyle(
                           color: ColorClass.blueColor,
-                          fontFamily: "Mulish",
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.left),
@@ -150,7 +144,6 @@ class SignUpState extends State<SignUp> {
                         labelStyle: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
-                          fontFamily: 'Mulish',
                         ),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Color(0x66000000)),
@@ -169,7 +162,6 @@ class SignUpState extends State<SignUp> {
                   Text("Mobile No.",
                       style:  TextStyle(
                           color: ColorClass.blueColor ,
-                          fontFamily: "Mulish",
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.left),
@@ -181,7 +173,6 @@ class SignUpState extends State<SignUp> {
                         labelStyle: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
-                          fontFamily: 'Mulish',
                         ),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Color(0x66000000)),
@@ -201,7 +192,6 @@ class SignUpState extends State<SignUp> {
                   Text("Password",
                       style:  TextStyle(
                           color:ColorClass.blueColor ,
-                          fontFamily: "Mulish",
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.left),
@@ -214,7 +204,6 @@ class SignUpState extends State<SignUp> {
                         labelStyle: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
-                          fontFamily: 'Mulish',
                         ),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Color(0x66000000)),
@@ -238,7 +227,6 @@ class SignUpState extends State<SignUp> {
                   Text("Confirm Password",
                       style: TextStyle(
                           color:ColorClass.blueColor ,
-                          fontFamily: "Mulish",
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.left),
@@ -251,7 +239,6 @@ class SignUpState extends State<SignUp> {
                         labelStyle: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
-                          fontFamily: 'Mulish',
                         ),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Color(0x66000000)),

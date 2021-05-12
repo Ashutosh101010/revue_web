@@ -71,7 +71,6 @@ class UpdatePasswordState extends State<UpdatePassword>{
                               style: TextStyle(
                                   color:  ColorClass.redColor,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: "Mulish",
                                   fontStyle:  FontStyle.normal,
                                   fontSize: 25.0
                               ),
@@ -97,7 +96,7 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                 style: TextStyle(
                                     color:  ColorClass.lightTextColor,
                                     fontWeight: FontWeight.w400,
-                                    fontFamily: "Mulish",
+
                                     fontStyle:  FontStyle.normal,
                                     fontSize: 16.0
                                 ),
@@ -114,7 +113,7 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                     "Set New Password",
                                     style: const TextStyle(
                                         color:  Colors.black,
-                                        fontFamily: "Mulish",
+
                                         fontStyle:  FontStyle.normal,
                                         fontSize: 18.0
                                     ),
@@ -129,12 +128,12 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                       style:  TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
-                                        fontFamily: 'Mulish',
+
                                       ),
                                       placeholder: "New Password",
                                       placeholderStyle:TextStyle(
                                           color:  const Color(0x99000000),
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 16.0
                                       ),
@@ -159,7 +158,7 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                     "Confirm Password",
                                     style: const TextStyle(
                                         color:  Colors.black,
-                                        fontFamily: "Mulish",
+
                                         fontStyle:  FontStyle.normal,
                                         fontSize: 18.0
                                     ),
@@ -174,12 +173,12 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                       style:  TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
-                                        fontFamily: 'Mulish',
+
                                       ),
                                       placeholder: "Confirm Password",
                                       placeholderStyle:TextStyle(
                                           color:  const Color(0x99000000),
-                                          fontFamily: "Mulish",
+
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 16.0
                                       ),

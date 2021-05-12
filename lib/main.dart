@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:webrevue/LoginScreen.dart';
 import 'package:webrevue/route/router.dart' as router;
@@ -10,7 +11,9 @@ import 'ColorClass.dart';
 import 'route/routing_constant.dart';
 
 void main() {
+
   runApp(MyApp());
+  print(GoogleFonts.muli().fontFamily);
 }
 
 class MyApp extends StatelessWidget {
@@ -18,11 +21,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Revue',
         initialRoute:initialroute,
         navigatorKey: navKey,
         onGenerateRoute:router.generateRoute,
-      theme: ThemeData(pageTransitionsTheme: NoTransitionsOnWeb(),
+      theme: ThemeData(pageTransitionsTheme: NoTransitionsOnWeb(),fontFamily: GoogleFonts.muli().fontFamily,
         bottomSheetTheme: Theme.of(context).bottomSheetTheme,
         // This is the theme of your application.
         //

@@ -58,7 +58,6 @@ class FooterWidgetState extends State<FooterWidget> {
                                 style: TextStyle(
                                     color: ColorClass.lightTextColor,
                                     fontWeight: FontWeight.w700,
-                                    fontFamily: "Mulish",
                                     fontStyle: FontStyle.normal,
                                     fontSize: 15.0),
                                 textAlign: TextAlign.left),
@@ -195,7 +194,6 @@ class FooterWidgetState extends State<FooterWidget> {
               style: const TextStyle(
                   color: const Color(0xff000000),
                   fontWeight: FontWeight.w700,
-                  fontFamily: "Mulish",
                   fontStyle: FontStyle.normal,
                   fontSize: 20.0),
               textAlign: TextAlign.left),
@@ -218,7 +216,6 @@ class FooterWidgetState extends State<FooterWidget> {
                           ? ColorClass.redColor
                           : ColorClass.lightTextColor,
                       fontWeight: FontWeight.w500,
-                      fontFamily: "Mulish",
                       fontStyle: FontStyle.normal,
                       fontSize: 15.0),
                   textAlign: TextAlign.left),
@@ -238,7 +235,6 @@ class FooterWidgetState extends State<FooterWidget> {
               style: const TextStyle(
                   color: const Color(0xff000000),
                   fontWeight: FontWeight.w700,
-                  fontFamily: "Mulish",
                   fontStyle: FontStyle.normal,
                   fontSize: 20.0),
               textAlign: TextAlign.left),
@@ -250,7 +246,6 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -262,7 +257,6 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -274,7 +268,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -286,7 +280,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -298,7 +292,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -310,7 +304,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -322,7 +316,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -340,7 +334,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: const TextStyle(
                   color: const Color(0xff000000),
                   fontWeight: FontWeight.w700,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 20.0),
               textAlign: TextAlign.left),
@@ -352,7 +346,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -364,7 +358,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -375,7 +369,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -393,7 +387,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: const TextStyle(
                   color: const Color(0xff000000),
                   fontWeight: FontWeight.w700,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 20.0),
               textAlign: TextAlign.left),
@@ -405,7 +399,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -417,7 +411,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -429,7 +423,7 @@ class FooterWidgetState extends State<FooterWidget> {
               style: TextStyle(
                   color: ColorClass.lightTextColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Mulish",
+
                   fontStyle: FontStyle.normal,
                   fontSize: 15.0),
               textAlign: TextAlign.left),
@@ -451,7 +445,6 @@ class FooterWidgetState extends State<FooterWidget> {
           style: const TextStyle(
               color: const Color(0xff3c2f47),
               fontWeight: FontWeight.w400,
-              fontFamily: "Mulish",
               fontStyle: FontStyle.normal,
               fontSize: 17.0),
           textAlign: TextAlign.left),

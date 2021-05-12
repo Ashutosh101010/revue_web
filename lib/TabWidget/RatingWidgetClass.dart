@@ -90,7 +90,6 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                 style:TextStyle(
                     color:  const Color(0xff000000),
                     fontWeight: FontWeight.w600,
-                    fontFamily: "Mulish",
                     fontStyle:  FontStyle.normal,
                     fontSize: 18.0
                 ) ,),
@@ -220,7 +219,6 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
-                                    fontFamily: "Mulish",
                                     fontStyle:  FontStyle.normal,
                                     fontSize: 16.0
                                 ),
@@ -231,7 +229,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                                 " (54 reviews)",
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontFamily: "Mulish",
+
                                     fontStyle:  FontStyle.normal,
                                     fontSize: 16.0
                                 ),
@@ -327,7 +325,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
               Text("Excellent".toUpperCase(), style: const TextStyle(
                   color:  const Color(0xff000000),
                   fontWeight: FontWeight.w700,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 14.0
               ),),
@@ -337,7 +335,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                     style: const TextStyle(
                         color:  const Color(0xff000000),
                         fontWeight: FontWeight.w300,
-                        fontFamily: "Mulish",
+
                         fontStyle:  FontStyle.normal,
                         fontSize: 14.0
                     ),
@@ -366,7 +364,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
               Text("Very Good".toUpperCase(), style: const TextStyle(
                   color:  const Color(0xff000000),
                   fontWeight: FontWeight.w700,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 14.0
               ),),
@@ -376,7 +374,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                     style: const TextStyle(
                         color:  const Color(0xff000000),
                         fontWeight: FontWeight.w300,
-                        fontFamily: "Mulish",
+
                         fontStyle:  FontStyle.normal,
                         fontSize: 14.0
                     ),
@@ -403,7 +401,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
               Text("Average".toUpperCase(), style: const TextStyle(
                   color:  const Color(0xff000000),
                   fontWeight: FontWeight.w700,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 14.0
               ),),
@@ -413,7 +411,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                     style: const TextStyle(
                         color:  const Color(0xff000000),
                         fontWeight: FontWeight.w300,
-                        fontFamily: "Mulish",
+
                         fontStyle:  FontStyle.normal,
                         fontSize: 14.0
                     ),
@@ -442,7 +440,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
               Text("Poor".toUpperCase(), style: const TextStyle(
                   color:  const Color(0xff000000),
                   fontWeight: FontWeight.w700,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 14.0
               ),),
@@ -452,7 +450,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                     style: const TextStyle(
                         color:  const Color(0xff000000),
                         fontWeight: FontWeight.w300,
-                        fontFamily: "Mulish",
+
                         fontStyle:  FontStyle.normal,
                         fontSize: 14.0
                     ),
@@ -481,7 +479,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
               Text("Very Poor".toUpperCase(), style: const TextStyle(
                   color:  const Color(0xff000000),
                   fontWeight: FontWeight.w700,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 14.0
               ),),
@@ -491,7 +489,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                     style: const TextStyle(
                         color:  const Color(0xff000000),
                         fontWeight: FontWeight.w300,
-                        fontFamily: "Mulish",
+
                         fontStyle:  FontStyle.normal,
                         fontSize: 14.0
                     ),
@@ -545,7 +543,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                 style: const TextStyle(
                     color:  const Color(0xff000000),
                     fontWeight: FontWeight.w700,
-                    fontFamily: "Mulish",
+
                     fontStyle:  FontStyle.normal,
                     fontSize: 13.0,letterSpacing: 0.5
                 ),
@@ -577,7 +575,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                 style: const TextStyle(
                     color:  const Color(0xff000000),
                     fontWeight: FontWeight.w700,
-                    fontFamily: "Mulish",
+
                     fontStyle:  FontStyle.normal,
                     fontSize: 13.0,letterSpacing: 0.5
                 ),
@@ -608,7 +606,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                 style: const TextStyle(
                     color:  const Color(0xff000000),
                     fontWeight: FontWeight.w700,
-                    fontFamily: "Mulish",
+
                     fontStyle:  FontStyle.normal,
                     fontSize: 13.0,letterSpacing: 0.5
                 ),
@@ -639,7 +637,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                 style: const TextStyle(
                     color:  const Color(0xff000000),
                     fontWeight: FontWeight.w700,
-                    fontFamily: "Mulish",
+
                     fontStyle:  FontStyle.normal,
                     fontSize: 13.0,letterSpacing: 0.5
                 ),
@@ -671,7 +669,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                 style: const TextStyle(
                     color:  const Color(0xff000000),
                     fontWeight: FontWeight.w700,
-                    fontFamily: "Mulish",
+
                     fontStyle:  FontStyle.normal,
                     fontSize: 13.0,letterSpacing:0.5
                 ),
@@ -689,7 +687,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
       children: [
         Text("Amenities",
           style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
-            fontSize: 17, fontFamily: "Mulish",
+            fontSize: 17,
             fontStyle:  FontStyle.normal,),),
         Container(
           margin: EdgeInsets.only(top: 10,bottom: 10),
@@ -703,7 +701,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                   style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.w500,
-                      fontFamily: "Mulish",
+
                       fontStyle:  FontStyle.normal,
                       fontSize: 15.0),);
               },shrinkWrap: true,
@@ -744,7 +742,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
               style: const TextStyle(
                   color:  Colors.black54,
                   fontWeight: FontWeight.w600,
-                  fontFamily: "Mulish",
+
                   fontStyle:  FontStyle.normal,
                   fontSize: 16.0
               ),
@@ -756,7 +754,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             style: const TextStyle(
                 color: Colors.black87,
                 fontWeight: FontWeight.w600,
-                fontFamily: "Mulish",
+
                 fontStyle:  FontStyle.normal,
                 fontSize: 15.0
             ),
@@ -776,7 +774,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
           child: Text(
               "About Property",
               style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
-                fontSize: 17, fontFamily: "Mulish",
+                fontSize: 17,
                 fontStyle:  FontStyle.normal,),
               textAlign: TextAlign.left
           ),
@@ -792,7 +790,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
               wordSpacing: 5,
               color: Colors.black87,
               fontWeight: FontWeight.w500,
-              fontFamily: "Mulish",
+
               fontStyle:  FontStyle.normal,
               fontSize: 15.0),),
         ),

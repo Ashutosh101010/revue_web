@@ -113,7 +113,6 @@ class AppBarSecState extends State<AppBarSec>{
                        style:  TextStyle(
                            color:  Color(0x99000000),
                            fontWeight: FontWeight.w600,
-                           fontFamily: "Mulish",
                            fontStyle:  FontStyle.normal,
                            fontSize: 15.0
                        ),
@@ -149,7 +148,6 @@ class AppBarSecState extends State<AppBarSec>{
                                style:  TextStyle(
                                   color: Color(0x99000000),
                                    fontWeight: FontWeight.w500,
-                                   fontFamily: "Mulish",
                                    fontStyle:  FontStyle.normal,
                                    fontSize: 15.0
                                ),
@@ -182,7 +180,6 @@ class AppBarSecState extends State<AppBarSec>{
                                  style:  TextStyle(
                                      color:  Color(0x99000000),
                                      fontWeight: FontWeight.w600,
-                                     fontFamily: "Mulish",
                                      fontStyle:  FontStyle.normal,
                                      fontSize: 12.0
                                  ),
@@ -219,7 +216,6 @@ class AppBarSecState extends State<AppBarSec>{
                                style: const TextStyle(
                                    color:  const Color(0xffea4335),
                                    fontWeight: FontWeight.w600,
-                                   fontFamily: "Mulish",
                                    fontStyle:  FontStyle.normal,
                                    fontSize: 15.0
                                ),
@@ -318,7 +314,6 @@ class AppBarSecState extends State<AppBarSec>{
                     child: TextField(
                       style: const TextStyle(
                           color: Colors.black,
-                          fontFamily: "Mulish",
                           fontStyle: FontStyle.normal,
                           fontSize: 18.0),
                       decoration: InputDecoration(
