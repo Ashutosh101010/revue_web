@@ -193,11 +193,9 @@ class AddReviewState extends State<AddReview>{
         appBar: PreferredSize(preferredSize: Size.fromHeight(70),child: AppBarSec(),),
         body: Container(
           color: Colors.white,
-          width: constraints.maxWidth,
-          height: constraints.maxHeight,
           child: ListView(children: [
             Padding(
-              padding: EdgeInsets.only(left: 50,right: 20,top: 20,bottom: 20),
+              padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 20),
               child: Container(
                 alignment: Alignment.topLeft,
                 child: Padding(

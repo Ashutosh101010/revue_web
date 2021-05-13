@@ -32,171 +32,174 @@ class ReviewTabState extends State{
     double width= MediaQuery.of(context).size.width;
    return Container(
      margin: EdgeInsets.only(left: 50,right: 30,top: 20,bottom: 20),
-     decoration: BoxDecoration(border: Border.all(color: Colors.black12)),
-     child: Column(
-       crossAxisAlignment: CrossAxisAlignment.center,
-       children: [
-         Container(
-           height: 220,
-           decoration: BoxDecoration(image:
-           DecorationImage(
-             image: AssetImage("assets/images/house.png"),
-             fit: BoxFit.fill,
-           ),borderRadius: BorderRadius.circular(3)),
-         ),
-
-         Padding(
-           padding: const EdgeInsets.only(top: 8,bottom: 5,left: 8,right: 8),
-           child:
-           width>1000?
-           Column(
-             children: [
-               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                 priceWidget(),
-                 bedRoomWidget(),
-                 ratingWidget()
-               ],),
-               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                 floorPlanWidget(),
-                 bathRoomWidget(),
-                 reviewDateWidget()
-               ],)
-             ],
-           ):
-           width>600?
-           Column(
-             children: [
-               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                 priceWidget(),
-                 bedRoomWidget(),
-               ],),
-               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                 floorPlanWidget(),
-                 bathRoomWidget(),
-               ],),
-               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                 ratingWidget(),
-                 reviewDateWidget()
-               ],)
-             ],
-           ):
-           SizedBox(
-             width: width,
-             height: 300,
-             child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-              priceWidget(),
-               floorPlanWidget(),
-               bathRoomWidget(),
-               reviewDateWidget(),
-               bedRoomWidget(),
-              ratingWidget()
-
-             ],),
+     decoration: BoxDecoration(border: Border(bottom:BorderSide(color: Colors.black12,width: 1))),
+     child: Padding(
+       padding: const EdgeInsets.only(bottom:12.0),
+       child: Column(
+         crossAxisAlignment: CrossAxisAlignment.center,
+         children: [
+           Container(
+             height: 250,
+             decoration: BoxDecoration(image:
+             DecorationImage(
+               image: AssetImage("assets/images/house.png"),
+               fit: BoxFit.fill,
+             ),borderRadius: BorderRadius.circular(3)),
            ),
-         ),
+
+           Padding(
+             padding: const EdgeInsets.only(top: 8,bottom: 5,left: 8,right: 8),
+             child:
+             width>800?
+             Column(
+               children: [
+                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+                   priceWidget(),
+                   bedRoomWidget(),
+                   ratingWidget()
+                 ],),
+                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+                   floorPlanWidget(),
+                   bathRoomWidget(),
+                   reviewDateWidget()
+                 ],)
+               ],
+             ):
+             width>600?
+             Column(
+               children: [
+                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+                   priceWidget(),
+                   bedRoomWidget(),
+                 ],),
+                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+                   floorPlanWidget(),
+                   bathRoomWidget(),
+                 ],),
+                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+                   ratingWidget(),
+                   reviewDateWidget()
+                 ],)
+               ],
+             ):
+             SizedBox(
+               width: width,
+               height: 300,
+               child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+                priceWidget(),
+                 floorPlanWidget(),
+                 bathRoomWidget(),
+                 reviewDateWidget(),
+                 bedRoomWidget(),
+                ratingWidget()
+
+               ],),
+             ),
+           ),
 
 
-         // Padding(
-         //   padding: const EdgeInsets.only(top: 8,bottom: 5,left: 8,right: 8),
-         //   child:
-         //       width>1000?
-         //   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-         //
-         //   ],):
-         //           width>600?
-         //       SizedBox(
-         //         width: width,
-         //         height: 100,
-         //         child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-         //           floorPlanWidget(),
-         //           bathRoomWidget(),
-         //         ],),
-         //       ):
-         //           SizedBox(
-         //             width: width,
-         //             height: 100,
-         //             child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-         //               floorPlanWidget(),
-         //               bathRoomWidget(),
-         //               reviewDateWidget()
-         //             ],),
-         //           )
-         // ),
+           // Padding(
+           //   padding: const EdgeInsets.only(top: 8,bottom: 5,left: 8,right: 8),
+           //   child:
+           //       width>1000?
+           //   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+           //
+           //   ],):
+           //           width>600?
+           //       SizedBox(
+           //         width: width,
+           //         height: 100,
+           //         child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+           //           floorPlanWidget(),
+           //           bathRoomWidget(),
+           //         ],),
+           //       ):
+           //           SizedBox(
+           //             width: width,
+           //             height: 100,
+           //             child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+           //               floorPlanWidget(),
+           //               bathRoomWidget(),
+           //               reviewDateWidget()
+           //             ],),
+           //           )
+           // ),
 
 
-         Align(
-           alignment: Alignment.topLeft,
-           child: Padding(
-             padding: const EdgeInsets.all(5.0),
+           // Align(
+           //   alignment: Alignment.topLeft,
+           //   child: Padding(
+           //     padding: const EdgeInsets.all(10.0),
+           //     child: Text(
+           //       "Description",
+           //       style:  TextStyle(
+           //           color: Colors.black87 ,
+           //           fontWeight: FontWeight.w700,
+           //
+           //           fontStyle:  FontStyle.normal,
+           //           fontSize: 16.0
+           //       ),
+           //     ),
+           //   ),
+           // ),
+           Padding(
+             padding: const EdgeInsets.only(left:10.0,right:10,bottom:10,top:30),
              child: Text(
-               "Description",
-               style:  TextStyle(
-                   color: Colors.black ,
-                   fontWeight: FontWeight.w700,
+               reviews,
+               maxLines: viewMore ?reviews.length:5,
+               overflow:viewMore?TextOverflow.visible : TextOverflow.fade,
+               textAlign: TextAlign.left,
+               style: TextStyle(color: Colors.black54,fontWeight: FontWeight.w600,fontSize: 14),
+             ),
+           ),
 
-                   fontStyle:  FontStyle.normal,
-                   fontSize: 17.0
+           Container(
+             alignment: Alignment.centerRight,
+             margin: EdgeInsets.all(8),
+             child: MouseRegion(
+               cursor: SystemMouseCursors.click,
+               child: Row(
+                 mainAxisAlignment: MainAxisAlignment.end,
+                 children: [
+                   GestureDetector(
+                     onTap: (){
+                       showDialog(
+                           context: context,
+                           builder: (BuildContext c){
+                             return AlertDialog(
+                               backgroundColor: Colors.white,
+                               insetPadding:
+                               width>1000?
+                               EdgeInsets.only(left: 100,right: 100,top: 50,bottom: 50):
+                               EdgeInsets.all(15),
+                               contentPadding: EdgeInsets.all(10),
+                               clipBehavior: Clip.antiAliasWithSaveLayer,
+                               content: ReviewDetails(),
+                             );
+                           }
+                       );
+                     },
+                     child: Text("READ MORE",
+                         textAlign: TextAlign.end,
+                         style: TextStyle(color: ColorClass.redColor,fontWeight: FontWeight.w600,fontSize: 12)),
+                   ),
+                   GestureDetector(
+                     onTap: (){
+                       setState(() {
+                         viewMore = !viewMore;
+                       });
+                     },
+                       child: Icon(viewMore?Icons.keyboard_arrow_up:Icons.keyboard_arrow_down_outlined,color: Colors.black,))
+                 ],
                ),
              ),
            ),
-         ),
-         Padding(
-           padding: const EdgeInsets.all(5.0),
-           child: Text(
-             reviews,
-             maxLines: viewMore ?reviews.length:5,
-             overflow:viewMore?TextOverflow.visible : TextOverflow.fade,
-             textAlign: TextAlign.left,
-             style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w500),
-           ),
-         ),
-
-         Container(
-           alignment: Alignment.centerRight,
-           margin: EdgeInsets.all(8),
-           child: MouseRegion(
-             cursor: SystemMouseCursors.click,
-             child: Row(
-               mainAxisAlignment: MainAxisAlignment.end,
-               children: [
-                 GestureDetector(
-                   onTap: (){
-                     showDialog(
-                         context: context,
-                         builder: (BuildContext c){
-                           return AlertDialog(
-                             backgroundColor: Colors.white,
-                             insetPadding: 
-                             width>1000?
-                             EdgeInsets.only(left: 100,right: 100,top: 50,bottom: 50):
-                             EdgeInsets.all(15),
-                             contentPadding: EdgeInsets.all(10),
-                             clipBehavior: Clip.antiAliasWithSaveLayer,
-                             content: ReviewDetails(),
-                           );
-                         }
-                     );
-                   },
-                   child: Text("READ MORE",
-                       textAlign: TextAlign.end,
-                       style: TextStyle(color: ColorClass.redColor,fontWeight: FontWeight.w500)),
-                 ),
-                 GestureDetector(
-                   onTap: (){
-                     setState(() {
-                       viewMore = !viewMore;
-                     });
-                   },
-                     child: Icon(viewMore?Icons.keyboard_arrow_up:Icons.keyboard_arrow_down_outlined,color: Colors.black,))
-               ],
-             ),
-           ),
-         ),
-         // Divider(
-         //   color: Color(0x66000000),
-         //   thickness: 1,
-         // ),
-       ],
+           // Divider(
+           //   color: Color(0x66000000),
+           //   thickness: 1,
+           // ),
+         ],
+       ),
      ),
    );
   }
@@ -210,9 +213,9 @@ class ReviewTabState extends State{
             AutoSizeText(
                 "Price ",
                 style: TextStyle(
-                    color:  Colors.black,
+                    color:  Colors.black87,
 
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w700,
                     fontStyle:  FontStyle.normal,
                     fontSize: 16.0
                 ),
@@ -221,11 +224,11 @@ class ReviewTabState extends State{
             AutoSizeText(
                 " 45000 /month",
                 style:  TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w500,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600,
 
                     fontStyle:  FontStyle.normal,
-                    fontSize: 15.0
+                    fontSize: 16.0
                 ),
                 textAlign: TextAlign.left
             ),
@@ -240,12 +243,12 @@ class ReviewTabState extends State{
         padding: const EdgeInsets.all(4.0),
         child: Row(
           children: [
-            Icon(Icons.king_bed),
+            Icon(Icons.king_bed,size: 22,),
             AutoSizeText(
                 "  Bed Rooms :",
                 style:  TextStyle(
-                    color:  Colors.black,
-                    fontWeight: FontWeight.w600,
+                    color:  Colors.black87,
+                    fontWeight: FontWeight.w700,
 
                     fontStyle:  FontStyle.normal,
                     fontSize: 16.0
@@ -255,11 +258,11 @@ class ReviewTabState extends State{
             AutoSizeText(
                 " 2",
                 style:  TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w500,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600,
 
                     fontStyle:  FontStyle.normal,
-                    fontSize: 15.0
+                    fontSize: 16.0
                 ),
                 textAlign: TextAlign.left
             ),
@@ -295,7 +298,7 @@ class ReviewTabState extends State{
                   AutoSizeText(
                       "4.85",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.black87,
                           fontWeight: FontWeight.w700,
 
                           fontStyle:  FontStyle.normal,
@@ -307,9 +310,9 @@ class ReviewTabState extends State{
                   AutoSizeText(
                       " (54 reviews)",
                       style: TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w500,
+                          color: Colors.black54,
                           fontStyle:  FontStyle.normal,
+                          fontWeight: FontWeight.w600,
                           fontSize: 16.0
                       ),
                       textAlign: TextAlign.left
@@ -333,8 +336,8 @@ class ReviewTabState extends State{
             AutoSizeText(
                 "Floor Plan ",
                 style:  TextStyle(
-                    color:  Colors.black,
-                    fontWeight: FontWeight.w600,
+                    color:  Colors.black87,
+                    fontWeight: FontWeight.w700,
 
                     fontStyle:  FontStyle.normal,
                     fontSize: 16.0
@@ -344,11 +347,11 @@ class ReviewTabState extends State{
             AutoSizeText(
                 " 564 sqft / 52 sqm",
                 style:  TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w500,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600,
 
                     fontStyle:  FontStyle.normal,
-                    fontSize: 15.0
+                    fontSize: 16.0
                 ),
                 textAlign: TextAlign.left
             ),
@@ -365,9 +368,9 @@ class ReviewTabState extends State{
           AutoSizeText(
               "Review Date ",
               style:  TextStyle(
-                  color:  Colors.black,
+                  color:  Colors.black87,
 
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w700,
                   fontStyle:  FontStyle.normal,
                   fontSize: 16.0
               ),
@@ -380,9 +383,9 @@ class ReviewTabState extends State{
 
 
                   fontStyle:  FontStyle.normal,
-                  fontSize: 15.0,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w500
+                  fontSize: 16.0,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600
               ),
               textAlign: TextAlign.left
           ),
@@ -400,9 +403,9 @@ class ReviewTabState extends State{
           AutoSizeText(
               "  Bath Rooms :",
               style: TextStyle(
-                  color:  Colors.black,
+                  color:  Colors.black87,
 
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w700,
                   fontStyle:  FontStyle.normal,
                   fontSize: 16.0
               ),
@@ -411,11 +414,11 @@ class ReviewTabState extends State{
           AutoSizeText(
               " 2",
               style:  TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w500,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
 
                   fontStyle:  FontStyle.normal,
-                  fontSize: 15.0
+                  fontSize: 16.0
               ),
               textAlign: TextAlign.left
           ),

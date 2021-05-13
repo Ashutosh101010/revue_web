@@ -45,7 +45,9 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
      maxWidth = MediaQuery.of(context).size.width;
     return Container(
       margin: maxWidth>800?EdgeInsets.only(left: 50,top: 10,):EdgeInsets.only(top: 10,),
-      child: Column(
+      child: ListView(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         // crossAxisAlignment: CrossAxisAlignment.center,
         // mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -75,7 +77,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
           ),
             ),),
           decoration: BoxDecoration(image:
-          DecorationImage(image: ExactAssetImage("assets/images/hdimg.png"),
+          DecorationImage(image: Image.asset("assets/images/hdimg.png").image,
             fit: BoxFit.fill,),),
         ),
         Padding(
@@ -88,18 +90,19 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
               children: [
               AutoSizeText('Duet MediaCityUK, M50.',softWrap: true,
                 style:TextStyle(
-                    color:  const Color(0xff000000),
+                    color:  Colors.black87,
                     fontWeight: FontWeight.w600,
                     fontStyle:  FontStyle.normal,
                     fontSize: 18.0
                 ) ,),
                 AutoSizeText('‘Superenting’, Allsop Letting and Management',softWrap: true,
                 style: TextStyle(
-                    color:  ColorClass.lightTextColor,
+                    color:  Colors.black87,
                     fontSize: 16,fontWeight: FontWeight.w500),)
             ],),
 
-          maxWidth>=800?  Row(
+          maxWidth>=800?
+          Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -109,13 +112,13 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                       onTap: (){
                         Navigator.pushNamed(context,questionAns);
                       },
-                      child: Icon(CupertinoIcons.chat_bubble_2_fill,size: 30,
+                      child: Icon(CupertinoIcons.chat_bubble_2_fill,size: 25,
                       color:ColorClass.blueColor,),
                     ),
                       AutoSizeText('Q and A',
                         style: TextStyle(
                             color:  ColorClass.blueColor,
-                            fontSize: 17,fontWeight: FontWeight.w500),)
+                            fontSize: 14,fontWeight: FontWeight.w600),)
                     ],),
                 ),
                 Padding(
@@ -126,13 +129,13 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                         onTap: (){
                           print(window.location.href);
                           },
-                        child: Icon(Icons.share,size: 30,
+                        child: Icon(Icons.share,size: 25,
                           color:  ColorClass.blueColor,),
                       ),
                       AutoSizeText('Share',
                         style: TextStyle(
                             color:  ColorClass.blueColor,
-                            fontSize: 17,fontWeight: FontWeight.w500),)
+                            fontSize: 14,fontWeight: FontWeight.w600),)
                     ],),
                 ),
               ],
@@ -142,7 +145,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
 
         maxWidth>=800?Container():
         Row(
-         mainAxisAlignment: MainAxisAlignment.start,
+         mainAxisAlignment: MainAxisAlignment.end,
           children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -152,13 +155,13 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                   onTap: (){
                     Navigator.pushNamed(context,questionAns);
                   },
-                  child: Icon(CupertinoIcons.chat_bubble_2_fill,size: 30,
+                  child: Icon(CupertinoIcons.chat_bubble_2_fill,size: 25,
                     color:ColorClass.blueColor,),
                 ),
                 AutoSizeText('Q and A',
                   style: TextStyle(
                       color:  ColorClass.blueColor,
-                      fontSize: 17,fontWeight: FontWeight.w500),)
+                      fontSize: 14,fontWeight: FontWeight.w600),)
               ],),
           ),
           Padding(
@@ -169,93 +172,94 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                   onTap: (){
                     print(window.location.href);
                   },
-                  child: Icon(Icons.share,size: 30,
+                  child: Icon(Icons.share,size: 25,
                     color:  ColorClass.blueColor,),
                 ),
                 AutoSizeText('Share',
                   style: TextStyle(
                       color:  ColorClass.blueColor,
-                      fontSize: 17,fontWeight: FontWeight.w500),)
+                      fontSize: 14,fontWeight: FontWeight.w600),)
               ],),
           ),
         ],),
 
         Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: maxWidth>=1000?MainAxisAlignment.spaceEvenly:MainAxisAlignment.start,
+          mainAxisAlignment: maxWidth>=1000?MainAxisAlignment.spaceBetween:MainAxisAlignment.start,
           children: [
-          Container(
-            margin: EdgeInsets.only(right: 5),
-            decoration: BoxDecoration(
-                border: maxWidth>=1000?
-                Border(right: BorderSide(color: Colors.grey,width: 1)):null),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              // mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment:MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      GFRating(
-                        size: 30,
-                        value: valueRating,
-                        color: Colors.yellow,
-                        onChanged: (value) {
-                          setState(() {
-                            valueRating = value;
-                          });
-                        },
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            AutoSizeText(
-                                "4.85",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700,
-                                    fontStyle:  FontStyle.normal,
-                                    fontSize: 16.0
-                                ),
-                                textAlign: TextAlign.left
-                            ),
-
-                            AutoSizeText(
-                                " (54 reviews)",
-                                style: TextStyle(
-                                    color: Colors.black,
-
-                                    fontStyle:  FontStyle.normal,
-                                    fontSize: 16.0
-                                ),
-                                textAlign: TextAlign.left
-                            ),
-
-
-                          ],
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(right: 5),
+              decoration: BoxDecoration(
+                  border: maxWidth>=800?
+                  Border(right: BorderSide(color: Colors.grey,width: 1)):null),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment:MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GFRating(
+                          size: 30,
+                          value: valueRating,
+                          color: Colors.yellow,
+                          onChanged: (value) {
+                            setState(() {
+                              valueRating = value;
+                            });
+                          },
                         ),
-                      ),
-                    ],
-                  ),
-                ),
 
-                Container(
-                  alignment: Alignment.topLeft,
-                    margin: EdgeInsets.only(top: 10),
-                    child:circularRatingWidget(context)),
-              ],
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              AutoSizeText(
+                                  "4.85",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w700,
+                                      fontStyle:  FontStyle.normal,
+                                      fontSize: 16.0
+                                  ),
+                                  textAlign: TextAlign.left
+                              ),
+
+                              AutoSizeText(
+                                  " (54 reviews)",
+                                  style: TextStyle(
+                                      color: Colors.black54,
+
+                                      fontWeight: FontWeight.w700,
+                                      fontStyle:  FontStyle.normal,
+                                      fontSize: 16.0
+                                  ),
+                                  textAlign: TextAlign.left
+                              ),
+
+
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Container(
+                    alignment: Alignment.topLeft,
+                      margin: EdgeInsets.only(top: 10),
+                      child:circularRatingWidget(context)),
+                ],
+              ),
             ),
           ),
 
+            Container(width: 1,color: Colors.black87,),
             maxWidth>=800?
-            Flexible(
-              fit: FlexFit.loose,
-              flex: 1,
+            Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(top: 20,bottom: 10),
                 child: ratingBarWidget(context)
@@ -265,14 +269,13 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
           ],),
           maxWidth>=800?Container():
           Padding(
-              padding: const EdgeInsets.only(top: 10,bottom: 10),
+              padding: const EdgeInsets.only(top: 20,bottom: 10),
               child: ratingBarWidget(context)
           ),
 
         SizedBox(height: 20,),
 
         Row(
-          mainAxisSize: MainAxisSize.min,
           children: [
             Flexible(
               flex: 2,
@@ -283,7 +286,10 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             Flexible(
               fit: FlexFit.loose,
               flex: 1,
-              child:mapWidget(context)):Container()
+              child:Padding(
+                padding: const EdgeInsets.only(left:10,top:80.0,right:10),
+                child: mapWidget(context),
+              )):Container()
           ],
         ),
 
@@ -323,21 +329,21 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             ,
             children: [
               Text("Excellent".toUpperCase(), style: const TextStyle(
-                  color:  const Color(0xff000000),
+                  color:  Colors.black87,
                   fontWeight: FontWeight.w700,
 
                   fontStyle:  FontStyle.normal,
-                  fontSize: 14.0
+                  fontSize: 12.0
               ),),
               LinearPercentIndicator(
                 trailing: Text(
                     "70%",
                     style: const TextStyle(
-                        color:  const Color(0xff000000),
-                        fontWeight: FontWeight.w300,
+                        color:  Colors.black87,
+                        fontWeight: FontWeight.w700,
 
                         fontStyle:  FontStyle.normal,
-                        fontSize: 14.0
+                        fontSize: 12.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -362,21 +368,20 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Very Good".toUpperCase(), style: const TextStyle(
-                  color:  const Color(0xff000000),
+                  color:  Colors.black87,
                   fontWeight: FontWeight.w700,
 
                   fontStyle:  FontStyle.normal,
-                  fontSize: 14.0
+                  fontSize: 12.0
               ),),
               LinearPercentIndicator(
                 trailing: Text(
                     "80%",
                     style: const TextStyle(
-                        color:  const Color(0xff000000),
-                        fontWeight: FontWeight.w300,
-
+                        color:  Colors.black87,
+                        fontWeight: FontWeight.w700,
                         fontStyle:  FontStyle.normal,
-                        fontSize: 14.0
+                        fontSize: 12.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -399,21 +404,20 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Average".toUpperCase(), style: const TextStyle(
-                  color:  const Color(0xff000000),
+                  color:  Colors.black87,
                   fontWeight: FontWeight.w700,
-
                   fontStyle:  FontStyle.normal,
-                  fontSize: 14.0
+                  fontSize: 12.0
               ),),
               LinearPercentIndicator(
                 trailing: Text(
                     "09%",
                     style: const TextStyle(
-                        color:  const Color(0xff000000),
-                        fontWeight: FontWeight.w300,
+                        color:  Colors.black87,
+                        fontWeight: FontWeight.w700,
 
                         fontStyle:  FontStyle.normal,
-                        fontSize: 14.0
+                        fontSize: 12.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -438,21 +442,21 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Poor".toUpperCase(), style: const TextStyle(
-                  color:  const Color(0xff000000),
+                  color:  Colors.black87,
                   fontWeight: FontWeight.w700,
 
                   fontStyle:  FontStyle.normal,
-                  fontSize: 14.0
+                  fontSize: 12.0
               ),),
               LinearPercentIndicator(
                 trailing: Text(
                     "02%",
                     style: const TextStyle(
-                        color:  const Color(0xff000000),
-                        fontWeight: FontWeight.w300,
+                        color:  Colors.black87,
+                        fontWeight: FontWeight.w700,
 
                         fontStyle:  FontStyle.normal,
-                        fontSize: 14.0
+                        fontSize: 12.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -477,21 +481,21 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Very Poor".toUpperCase(), style: const TextStyle(
-                  color:  const Color(0xff000000),
+                  color:  Colors.black87,
                   fontWeight: FontWeight.w700,
 
                   fontStyle:  FontStyle.normal,
-                  fontSize: 14.0
+                  fontSize: 12.0
               ),),
               LinearPercentIndicator(
                 trailing: Text(
                     "00%",
                     style: const TextStyle(
-                        color:  const Color(0xff000000),
-                        fontWeight: FontWeight.w300,
+                        color:  Colors.black87,
+                        fontWeight: FontWeight.w700,
 
                         fontStyle:  FontStyle.normal,
-                        fontSize: 14.0
+                        fontSize: 12.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -516,11 +520,11 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
 
   Widget circularRatingWidget(BuildContext context){
     return  Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CircularPercentIndicator(
-          radius:maxWidth>=900? 50.0:maxWidth>=600?40:30,
+          radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
           lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
           animation: false,
 
@@ -528,8 +532,8 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
           center: new Text(
             "3.6",
             style:
-            new TextStyle(color:  Colors.black,
-                fontSize: 15.0),
+            new TextStyle(color:  Colors.black87,fontWeight: FontWeight.w700,
+                fontSize: 12.0),
           ),
           circularStrokeCap: CircularStrokeCap.butt,
           backgroundColor: Colors.black26,
@@ -541,18 +545,18 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             child: AutoSizeText(
                 "Facilities".toUpperCase(),
                 style: const TextStyle(
-                    color:  const Color(0xff000000),
+                    color:  Colors.black87,
                     fontWeight: FontWeight.w700,
 
                     fontStyle:  FontStyle.normal,
-                    fontSize: 13.0,letterSpacing: 0.5
+                    fontSize: 10.0
                 ),
                 textAlign: TextAlign.left
             ),
           ) ,
         ),
         CircularPercentIndicator(
-          radius:maxWidth>=900? 50.0:maxWidth>=600?40:30,
+          radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
           lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
 
           animation: false,
@@ -561,7 +565,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
           center: new Text(
             "3.2",
             style:
-            new TextStyle(color:  Colors.black, fontSize: 15.0),
+            new TextStyle(color:  Colors.black87, fontSize: 12.0,fontWeight: FontWeight.w700),
           ),
           circularStrokeCap: CircularStrokeCap.butt,
           backgroundColor: Colors.black26,
@@ -573,18 +577,18 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             child: AutoSizeText(
                 "Design".toUpperCase(),
                 style: const TextStyle(
-                    color:  const Color(0xff000000),
+                    color:  Colors.black87,
                     fontWeight: FontWeight.w700,
 
                     fontStyle:  FontStyle.normal,
-                    fontSize: 13.0,letterSpacing: 0.5
+                    fontSize: 10.0
                 ),
                 textAlign: TextAlign.left
             ),
           ),
         ),
         CircularPercentIndicator(
-          radius:maxWidth>=900? 50.0:maxWidth>=600?40:30,
+          radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
           lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
 
           animation: false,
@@ -592,7 +596,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
           center: new Text(
             "3.8",
             style:
-            new TextStyle(color:  Colors.black, fontSize: 15.0),
+            new TextStyle(color:  Colors.black87, fontSize: 12.0,fontWeight: FontWeight.w700),
           ),
           circularStrokeCap: CircularStrokeCap.butt,
           backgroundColor: Colors.black26,
@@ -608,7 +612,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                     fontWeight: FontWeight.w700,
 
                     fontStyle:  FontStyle.normal,
-                    fontSize: 13.0,letterSpacing: 0.5
+                    fontSize: 10.0,letterSpacing: 0.5
                 ),
                 textAlign: TextAlign.left
             ),
@@ -616,14 +620,14 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
         ),
         CircularPercentIndicator(
           animation: false,
-          radius:maxWidth>=900? 50.0:maxWidth>=600?40:30,
+          radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
           lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
 
           percent: 0.6,
           center: new Text(
             "3.6",
             style:
-            new TextStyle(   color:  Colors.black,fontSize: 15.0),
+            new TextStyle(   color:  Colors.black87,fontSize: 12.0,fontWeight: FontWeight.w700),
           ),
           circularStrokeCap: CircularStrokeCap.butt,
           backgroundColor: Colors.black26,
@@ -635,18 +639,18 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             child: AutoSizeText(
                 "Value".toUpperCase(),
                 style: const TextStyle(
-                    color:  const Color(0xff000000),
+                    color:  Colors.black87,
                     fontWeight: FontWeight.w700,
 
                     fontStyle:  FontStyle.normal,
-                    fontSize: 13.0,letterSpacing: 0.5
+                    fontSize: 10.0,
                 ),
                 textAlign: TextAlign.left
             ),
           ),
         ),
         CircularPercentIndicator(
-          radius:maxWidth>=900? 50.0:maxWidth>=600?40:30,
+          radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
           lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
 
           animation: false,
@@ -655,7 +659,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             "3.3",
             style:
             new TextStyle(
-                color:  Colors.black,fontSize: 15.0),
+                color:  Colors.black87,fontSize: 12.0,fontWeight: FontWeight.w700),
           ),
           circularStrokeCap: CircularStrokeCap.butt,
           backgroundColor: Colors.black26,
@@ -667,11 +671,11 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             child: AutoSizeText(
                 "Management".toUpperCase(),
                 style: const TextStyle(
-                    color:  const Color(0xff000000),
+                    color:  Colors.black87,
                     fontWeight: FontWeight.w700,
 
                     fontStyle:  FontStyle.normal,
-                    fontSize: 13.0,letterSpacing:0.5
+                    fontSize: 10.0,
                 ),
                 textAlign: TextAlign.left
             ),
@@ -686,11 +690,11 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Amenities",
-          style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
-            fontSize: 17,
+          style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w700,
+            fontSize: 18,
             fontStyle:  FontStyle.normal,),),
         Container(
-          margin: EdgeInsets.only(top: 10,bottom: 10),
+          margin: EdgeInsets.only(top: 40,bottom: 10),
           width: MediaQuery.of(context).size.width,
           child: Container(
             width: 300,
@@ -699,11 +703,11 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
               itemBuilder: (context,index){
                 return Text(amenitiesList[index],
                   style: TextStyle(
-                      color: Colors.black87,
-                      fontWeight: FontWeight.w500,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w600,
 
                       fontStyle:  FontStyle.normal,
-                      fontSize: 15.0),);
+                      fontSize: 14.0),);
               },shrinkWrap: true,
               itemCount: amenitiesList.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
@@ -720,7 +724,7 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          width:maxWidth>700? 170:120,height:maxWidth>700? 170:120,
+          width:maxWidth>700? 160:110,height:maxWidth>700? 160:110,
           decoration: BoxDecoration(color: Colors.black12,shape: BoxShape.circle,
               border:Border.all(color: Colors.black12),
               boxShadow: [
@@ -752,11 +756,11 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
         // Al Thumama Doha, Al Thumama
         AutoSizeText("Al Thumama Doha, Al Thumama",
             style: const TextStyle(
-                color: Colors.black87,
-                fontWeight: FontWeight.w600,
+                color: Colors.black54,
+                fontWeight: FontWeight.w700,
 
                 fontStyle:  FontStyle.normal,
-                fontSize: 15.0
+                fontSize: 14.0
             ),
             textAlign: TextAlign.left
         )
@@ -773,8 +777,8 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
           padding: EdgeInsets.only(top: 5,bottom: 10),
           child: Text(
               "About Property",
-              style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
-                fontSize: 17,
+              style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w700,
+                fontSize: 18,
                 fontStyle:  FontStyle.normal,),
               textAlign: TextAlign.left
           ),
@@ -788,15 +792,15 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
             overflow:descTextShowFlag?TextOverflow.visible : TextOverflow.fade,
             style:TextStyle (
               wordSpacing: 5,
-              color: Colors.black87,
-              fontWeight: FontWeight.w500,
+              color: Colors.black54,
+              fontWeight: FontWeight.w600,
 
               fontStyle:  FontStyle.normal,
-              fontSize: 15.0),),
+              fontSize: 14.0),),
         ),
 
         Container(
-            margin: EdgeInsets.only(top: 5,bottom: 5),
+            margin: EdgeInsets.only(top: 5,bottom: 20),
             alignment: Alignment.centerRight,
             child: descTextShowFlag ? MouseRegion(
               cursor: SystemMouseCursors.click,
@@ -811,7 +815,8 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                   children: [
                     Text("READ LESS",
                         textAlign: TextAlign.end,
-                        style: TextStyle(color: ColorClass.blueColor,fontWeight: FontWeight.w500)),
+                        style: TextStyle(fontSize: 12,
+                            color: ColorClass.blueColor,fontWeight: FontWeight.w600)),
                     Icon(Icons.keyboard_arrow_up_outlined,color: Colors.black,)
                   ],
                 ),
@@ -830,7 +835,8 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
                   children: [
                     Text("READ MORE",
                         textAlign: TextAlign.end,
-                        style: TextStyle(color: ColorClass.blueColor,fontWeight: FontWeight.w500)),
+                        style: TextStyle(fontSize: 12,
+                            color: ColorClass.blueColor,fontWeight: FontWeight.w600)),
                     Icon(Icons.keyboard_arrow_down_outlined,color: Colors.black,)
                   ],
                 ),

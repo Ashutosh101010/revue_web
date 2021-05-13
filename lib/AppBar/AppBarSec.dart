@@ -8,11 +8,16 @@ import 'package:webrevue/LoginScreen.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
 
+GlobalKey<AppBarSecState> MainAppBarKey=GlobalKey();
 class AppBarSec extends StatefulWidget{
+
+
   @override
   State<StatefulWidget> createState() {
   return AppBarSecState();
   }
+
+  AppBarSec({Key key}):super(key: key);
 }
 
 class AppBarSecState extends State<AppBarSec>{
@@ -161,34 +166,34 @@ class AppBarSecState extends State<AppBarSec>{
                  ),
                ),
              ),
-             Container(height: 80,
-                 alignment: Alignment.center,
-                 margin: EdgeInsets.only(right: 8,top: 5, bottom: 5),
-                 child: MouseRegion(
-                   cursor: SystemMouseCursors.click,
-                   child: GestureDetector(
-                     behavior: HitTestBehavior.translucent,onTap: (){},
-                     child: Column(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: [
-                         Image.asset("assets/images/filter.png",width: 20,height: 20,fit: BoxFit.contain,),
-                         Padding(
-                             padding: const EdgeInsets.only(top: 5),
-                             child: // Profile
-                             Text(
-                                 "Filter",
-                                 style:  TextStyle(
-                                     color:  Color(0x99000000),
-                                     fontWeight: FontWeight.w600,
-                                     fontStyle:  FontStyle.normal,
-                                     fontSize: 12.0
-                                 ),
-                                 textAlign: TextAlign.left
-                             )
-                         ),
-                       ],),
-                   ),
-                 )),
+             // Container(height: 80,
+             //     alignment: Alignment.center,
+             //     margin: EdgeInsets.only(right: 8,top: 5, bottom: 5),
+             //     child: MouseRegion(
+             //       cursor: SystemMouseCursors.click,
+             //       child: GestureDetector(
+             //         behavior: HitTestBehavior.translucent,onTap: (){},
+             //         child: Column(
+             //           mainAxisAlignment: MainAxisAlignment.center,
+             //           children: [
+             //             Image.asset("assets/images/filter.png",width: 20,height: 20,fit: BoxFit.contain,),
+             //             Padding(
+             //                 padding: const EdgeInsets.only(top: 5),
+             //                 child: // Profile
+             //                 Text(
+             //                     "Filter",
+             //                     style:  TextStyle(
+             //                         color:  Color(0x99000000),
+             //                         fontWeight: FontWeight.w600,
+             //                         fontStyle:  FontStyle.normal,
+             //                         fontSize: 12.0
+             //                     ),
+             //                     textAlign: TextAlign.left
+             //                 )
+             //             ),
+             //           ],),
+             //       ),
+             //     )),
 
 
 
@@ -196,7 +201,7 @@ class AppBarSecState extends State<AppBarSec>{
              Container(height: 80,
                  alignment: Alignment.center,
                  margin: EdgeInsets.only(
-                   left: 20, right: 50,top: 10, ),
+                   left: 20, right: 50,top: 5, ),
                  child: MouseRegion(
                    cursor: SystemMouseCursors.click,
                    child: GestureDetector(
@@ -214,10 +219,10 @@ class AppBarSecState extends State<AppBarSec>{
                            Text(
                                "Profile",
                                style: const TextStyle(
-                                   color:  const Color(0xffea4335),
+                                   color:  Colors.red,
                                    fontWeight: FontWeight.w600,
                                    fontStyle:  FontStyle.normal,
-                                   fontSize: 15.0
+                                   fontSize: 14.0
                                ),
                                textAlign: TextAlign.left
                            )
