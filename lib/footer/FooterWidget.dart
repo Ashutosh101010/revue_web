@@ -56,10 +56,10 @@ class FooterWidgetState extends State<FooterWidget> {
                             padding: const EdgeInsets.all(10.0),
                             child: Text("CONNECT WITH US ON",
                                 style: TextStyle(
-                                    color: ColorClass.lightTextColor,
+                                    color: Colors.black54,
                                     fontWeight: FontWeight.w700,
                                     fontStyle: FontStyle.normal,
-                                    fontSize: 15.0),
+                                    fontSize: 16.0),
                                 textAlign: TextAlign.left),
                           ),
                           Padding(
@@ -192,10 +192,10 @@ class FooterWidgetState extends State<FooterWidget> {
           // About
           Text("About",
               style: const TextStyle(
-                  color: const Color(0xff000000),
+                  color: Colors.black87,
                   fontWeight: FontWeight.w700,
                   fontStyle: FontStyle.normal,
-                  fontSize: 20.0),
+                  fontSize: 18.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 8,
@@ -214,10 +214,10 @@ class FooterWidgetState extends State<FooterWidget> {
                   style: TextStyle(
                       color: hovervalue
                           ? ColorClass.redColor
-                          : ColorClass.lightTextColor,
-                      fontWeight: FontWeight.w500,
+                          : Colors.black54,
+                      fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,
-                      fontSize: 15.0),
+                      fontSize: 14.0),
                   textAlign: TextAlign.left),
             ),
           ),
@@ -233,10 +233,10 @@ class FooterWidgetState extends State<FooterWidget> {
           // About
           Text("Community",
               style: const TextStyle(
-                  color: const Color(0xff000000),
+                  color: Colors.black87,
                   fontWeight: FontWeight.w700,
                   fontStyle: FontStyle.normal,
-                  fontSize: 20.0),
+                  fontSize: 18.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 8,
@@ -244,10 +244,10 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Help / Contact Us",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 5,
@@ -255,10 +255,10 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Guidelines",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 5,
@@ -266,11 +266,11 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Terms of Use",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
-
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
+
               textAlign: TextAlign.left),
           SizedBox(
             height: 5,
@@ -278,11 +278,10 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Privacy & Cookies (New)",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
-
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 5,
@@ -290,11 +289,10 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Privacy Center",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
-
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 5,
@@ -302,11 +300,10 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Do Not Sell My Personal Information",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
-
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 5,
@@ -314,11 +311,10 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Cookie Consent Tool",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
-
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
         ],
       ),
@@ -332,11 +328,11 @@ class FooterWidgetState extends State<FooterWidget> {
           // About
           Text("Work with us",
               style: const TextStyle(
-                  color: const Color(0xff000000),
+                  color: Colors.black87,
                   fontWeight: FontWeight.w700,
 
                   fontStyle: FontStyle.normal,
-                  fontSize: 20.0),
+                  fontSize: 18.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 8,
@@ -344,11 +340,10 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Advertisers",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
-
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 5,
@@ -356,22 +351,20 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Developers",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
-
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 5,
           ),
           Text("Careers",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
-
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
         ],
       ),
@@ -385,11 +378,11 @@ class FooterWidgetState extends State<FooterWidget> {
           // About
           Text("Property Owners",
               style: const TextStyle(
-                  color: const Color(0xff000000),
+                  color: Colors.black87,
                   fontWeight: FontWeight.w700,
 
                   fontStyle: FontStyle.normal,
-                  fontSize: 20.0),
+                  fontSize: 18.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 8,
@@ -397,11 +390,10 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Get a free owners Account",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
-
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 5,
@@ -409,11 +401,10 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Property Centre",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
-
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
           SizedBox(
             height: 5,
@@ -421,11 +412,10 @@ class FooterWidgetState extends State<FooterWidget> {
 
           Text("Post a property",
               style: TextStyle(
-                  color: ColorClass.lightTextColor,
-                  fontWeight: FontWeight.w500,
-
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
+                  fontSize: 14.0),
               textAlign: TextAlign.left),
         ],
       ),
@@ -441,36 +431,42 @@ class FooterWidgetState extends State<FooterWidget> {
         width: 200,
       ),
       // Download the app
-      Text("Download the app",
-          style: const TextStyle(
-              color: const Color(0xff3c2f47),
-              fontWeight: FontWeight.w400,
-              fontStyle: FontStyle.normal,
-              fontSize: 17.0),
-          textAlign: TextAlign.left),
+      Padding(
+        padding: const EdgeInsets.only(left:12.0),
+        child: Text("Download the app",
+            style: const TextStyle(
+                color: Colors.black54,
+                fontWeight: FontWeight.w600,
+                fontStyle: FontStyle.normal,
+                fontSize: 16.0),
+            textAlign: TextAlign.left),
+      ),
 
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              "assets/images/android.png",
-              width: 40,
-              height: 40,
-              fit: BoxFit.cover,
+      Padding(
+        padding:const EdgeInsets.only(left:14.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                "assets/images/android.png",
+                width: 40,
+                height: 40,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              "assets/images/apple.png",
-              width: 35,
-              height: 35,
-              fit: BoxFit.cover,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                "assets/images/apple.png",
+                width: 35,
+                height: 35,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
 
     ],);

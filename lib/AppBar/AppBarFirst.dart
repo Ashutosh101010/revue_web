@@ -51,10 +51,10 @@ class AppBarFirstState extends State<AppBarFirst>{
                       padding: const EdgeInsets.all(8.0),
                       child: Text("Register to Unlock REVUE",
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.black87,
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
-                              fontSize: 23.0),
+                              fontSize: 18.0),
                           textAlign: TextAlign.left),
                     ),
                     Padding(
@@ -73,20 +73,20 @@ class AppBarFirstState extends State<AppBarFirst>{
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text("Find the right property",
                                       style: TextStyle(
-                                          color: const Color(0x99000000),
+                                          color: Colors.black54,
                                           fontWeight: FontWeight.w600,
                                           fontStyle: FontStyle.normal,
-                                          fontSize: 17.0),
+                                          fontSize: 16.0),
                                       textAlign: TextAlign.left),
                                 ),
                                 Text(
                                     "Millions of Property."
                                         " Search by what matters to you and find the one thats right for you.",
-                                    style: const TextStyle(
-                                        color: const Color(0xcc006492),
-                                        fontWeight: FontWeight.w400,
+                                    style: TextStyle(
+                                        color: Colors.blue.shade900,
+                                        fontWeight: FontWeight.w500,
                                         fontStyle: FontStyle.normal,
-                                        fontSize: 16.0),
+                                        fontSize: 14.0),
                                     textAlign: TextAlign.left)
                               ],
                             ),
@@ -102,20 +102,20 @@ class AppBarFirstState extends State<AppBarFirst>{
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text("Are you paid fairly?",
                                       style: TextStyle(
-                                          color: const Color(0x99000000),
+                                          color: Colors.black54,
                                           fontWeight: FontWeight.w600,
                                           fontStyle: FontStyle.normal,
-                                          fontSize: 17.0),
+                                          fontSize: 16.0),
                                       textAlign: TextAlign.left),
                                 ),
                                 Text(
                                     "Read anonymous reviews on over 600,000 Properties "
                                         "worldwide from the people that register there.",
-                                    style: const TextStyle(
-                                        color: const Color(0xcc006492),
-                                        fontWeight: FontWeight.w400,
+                                    style:  TextStyle(
+                                        color: Colors.blue.shade900,
+                                        fontWeight: FontWeight.w500,
                                         fontStyle: FontStyle.normal,
-                                        fontSize: 16.0),
+                                        fontSize: 14.0),
                                     textAlign: TextAlign.left)
                               ],
                             ),
@@ -131,22 +131,20 @@ class AppBarFirstState extends State<AppBarFirst>{
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text("Compare Properties",
                                       style: TextStyle(
-                                        color: const Color(0x99000000),
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 17.0,
-                                      ),
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 16.0),
                                       textAlign: TextAlign.left),
                                 ),
                                 Text(
                                     "Are you paid fairly? Get a free, personalised salary"
                                         " estimate and compare with millions of Property.",
-                                    style: const TextStyle(
-                                      color: const Color(0xcc006492),
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 16.0,
-                                    ),
+                                    style:  TextStyle(
+                                        color: Colors.blue.shade900,
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 14.0),
                                     textAlign: TextAlign.left)
                               ],
                             ),

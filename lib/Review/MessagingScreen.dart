@@ -62,7 +62,12 @@ class MessagingScreenState extends State<MessagingScreen>{
                       child: Text(
                         "Write your Question",
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(
+                            color:  const Color(0xffffffff),
+                            fontWeight: FontWeight.w700,
+                            fontStyle:  FontStyle.normal,
+                            fontSize: 16.0
+                        ),
                       ),
                       padding: EdgeInsets.all(10),
                     ),
@@ -101,7 +106,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                                   color: ColorClass.redColor,
                                   fontWeight: FontWeight.w700,
                                   fontStyle: FontStyle.normal,
-                                  fontSize: 25.0),
+                                  fontSize: 18.0),
                               textAlign: TextAlign.left),
                           Expanded(
                             child: Align(
@@ -129,7 +134,12 @@ class MessagingScreenState extends State<MessagingScreen>{
                                   child: Text(
                                     "Write your Question",
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 16),
+                                    style:  TextStyle(
+                                        color:  const Color(0xffffffff),
+                                        fontWeight: FontWeight.w700,
+                                        fontStyle:  FontStyle.normal,
+                                        fontSize: 16.0
+                                    ),
                                   ),
                                   padding: EdgeInsets.all(10),
                                 ),
@@ -157,16 +167,16 @@ class MessagingScreenState extends State<MessagingScreen>{
                               AutoSizeText(
                                   "Trishla villa",
                                   style: const TextStyle(
-                                      color:  const Color(0xff000000),
-                                      fontWeight: FontWeight.w600,
+                                      color:  Colors.black87,
+                                      fontWeight: FontWeight.w700,
                                       fontStyle:  FontStyle.normal,
-                                      fontSize: 25.0
+                                      fontSize: 20.0
                                   ),
                                   textAlign: TextAlign.left
                               ),
                               Row(
                                 children: [
-                                Icon(CupertinoIcons.location_solid,size: 25,),
+                                Icon(CupertinoIcons.location_solid,size: 20,),
 
                                 // Southwest apartments, Green community West,Green C
                                 Container(
@@ -201,7 +211,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                                       padding: const EdgeInsets.all(8.0),
                                       child: Icon(
                                         CupertinoIcons.search,
-                                        size: 25,
+                                        size: 20,
                                       ),
                                     ),
                                     Padding(
@@ -210,10 +220,10 @@ class MessagingScreenState extends State<MessagingScreen>{
                                         Text(
                                             "Search Questions",
                                             style: const TextStyle(
-                                                color:  const Color(0x99000000),
-                                                fontWeight: FontWeight.w400,
+                                                color:  Colors.black54,
+                                                fontWeight: FontWeight.w500,
                                                 fontStyle:  FontStyle.normal,
-                                                fontSize: 20.0
+                                                fontSize: 16.0
                                             ),
                                             textAlign: TextAlign.left
                                         )),
@@ -232,10 +242,10 @@ class MessagingScreenState extends State<MessagingScreen>{
                                       Text(
                                           "Q.  Water facilities good or not?",
                                           style: const TextStyle(
-                                              color:  const Color(0xe5000000),
+                                              color:  Colors.black87,
                                               fontWeight: FontWeight.w600,
                                               fontStyle:  FontStyle.normal,
-                                              fontSize: 18.0
+                                              fontSize: 16.0
                                           ),
                                           textAlign: TextAlign.left
                                       ),
@@ -248,10 +258,10 @@ class MessagingScreenState extends State<MessagingScreen>{
                                             Text(
                                                 "A.  Yes,water is available 24 hrs",
                                                 style: const TextStyle(
-                                                    color:  const Color(0xff000000),
+                                                    color:  Colors.black87,
                                                     fontWeight: FontWeight.w600,
                                                     fontStyle:  FontStyle.normal,
-                                                    fontSize: 16.0
+                                                    fontSize: 14.0
                                                 ),
                                                 textAlign: TextAlign.left
                                             ),
@@ -272,7 +282,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                                             fit: FlexFit.tight,
                                             child: Row(
                                               children: [
-                                                Icon(CupertinoIcons.person_circle_fill,color: Colors.grey,),
+                                                Icon(CupertinoIcons.person_circle_fill,color: Colors.grey,size: 14,),
                                                 Padding(
                                                   padding: const EdgeInsets.all(8.0),
                                                   child: Text(
@@ -281,7 +291,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                                                           color:  const Color(0x66000000),
                                                           fontWeight: FontWeight.w600,
                                                           fontStyle:  FontStyle.normal,
-                                                          fontSize: 14.0
+                                                          fontSize: 12.0
                                                       ),
                                                       textAlign: TextAlign.left
                                                   ),
@@ -293,10 +303,10 @@ class MessagingScreenState extends State<MessagingScreen>{
                                           Text(
                                               "1 Month ago ",
                                               style: const TextStyle(
-                                                  color:  const Color(0x80000000),
+                                                  color:  Colors.black54,
                                                   fontWeight: FontWeight.w600,
                                                   fontStyle:  FontStyle.normal,
-                                                  fontSize: 15.0
+                                                  fontSize: 12.0
                                               ),
                                               textAlign: TextAlign.left
                                           ),)
@@ -341,7 +351,7 @@ class MessagingScreenState extends State<MessagingScreen>{
 
   Widget postQuestion(BuildContext context,double width){
     return Container(
-      height: 300,
+      height: 250,
       width: width,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
 // Post your question
@@ -350,10 +360,10 @@ class MessagingScreenState extends State<MessagingScreen>{
           child: Text(
               "Post your question",
               style: const TextStyle(
-                  color:  const Color(0xe5000000),
+                  color:  Colors.black87,
                   fontWeight: FontWeight.w600,
                   fontStyle:  FontStyle.normal,
-                  fontSize: 25.0
+                  fontSize: 18.0
               ),
               textAlign: TextAlign.left
           ),
@@ -372,8 +382,9 @@ class MessagingScreenState extends State<MessagingScreen>{
                 // contentPadding: EdgeInsets.only(left: 15),
                   hintText: "Write your question here",
                   hintStyle: TextStyle(
-                    color: Color(0x7f3c2f47),
-                    fontSize: 18,
+
+                    color: Colors.black54,
+                    fontSize: 16,
                   ),
                   border: InputBorder.none,
                   fillColor: Colors.white
@@ -405,7 +416,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
-                   style: ElevatedButton.styleFrom(
+                   style: ElevatedButton.styleFrom(minimumSize: Size(250, 40),
                      primary: Colors.grey.shade500,
                      shape: RoundedRectangleBorder(
                        borderRadius: BorderRadius.circular(5),
@@ -423,7 +434,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
+                    style: ElevatedButton.styleFrom(minimumSize:Size(250, 40) ,
                       primary: ColorClass.blueColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -434,7 +445,12 @@ class MessagingScreenState extends State<MessagingScreen>{
                     },
                     child: Text(
                       "Post",
-                      style: TextStyle(fontSize: 16),
+                      style:  TextStyle(
+                          color:  const Color(0xffffffff),
+                          fontWeight: FontWeight.w700,
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      ),
                     ),
                   ),
                 ),

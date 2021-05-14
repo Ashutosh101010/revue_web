@@ -130,7 +130,8 @@ class AddReviewState extends State<AddReview>{
                 });
               },
               child: Container(alignment: Alignment.centerRight,
-                  child: Text("+ Add More",style: TextStyle(color: ColorClass.blueColor,fontSize: 20),)))
+                  padding: EdgeInsets.only(top:8),
+                  child: Text("+ Add More",style: TextStyle(color: ColorClass.blueColor,fontSize: 14,fontWeight: FontWeight.w600),)))
         ],
       ),
     );
@@ -162,8 +163,9 @@ class AddReviewState extends State<AddReview>{
                 });
               },
               child: Container(
+                padding: EdgeInsets.only(top:8),
                   alignment: Alignment.centerRight,
-                  child: Text("+ Add More",style: TextStyle(color: ColorClass.blueColor,fontSize: 20),)))
+                  child: Text("+ Add More",style: TextStyle(color: ColorClass.blueColor,fontSize: 14,fontWeight: FontWeight.w600),)))
         ],
       ),
     );
@@ -216,9 +218,9 @@ class AddReviewState extends State<AddReview>{
                             "Write a Review",
                             style: TextStyle(
                                 color:  ColorClass.redColor,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w600,
                                 fontStyle:  FontStyle.normal,
-                                fontSize: 30.0
+                                fontSize: 20.0
                             ),
                             textAlign: TextAlign.left
                         ),
@@ -230,14 +232,18 @@ class AddReviewState extends State<AddReview>{
             ),
             Center(
               child: Container(
-                width: width?
-
-                constraints.maxWidth-600:constraints.maxWidth,alignment: Alignment.center,
+                alignment: Alignment.center,
+                padding: width?EdgeInsets.only(left: constraints.maxWidth/6,right: constraints.maxWidth/6):EdgeInsets.all(8),
+                // width: width?
+                // //
+                // constraints.maxWidth-600:constraints.maxWidth,alignment: Alignment.center,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      height: 300,width:  width? constraints.maxWidth-600:constraints.maxWidth,
+                      height: 300,
+                      padding: width?EdgeInsets.only(left: constraints.maxWidth/6,right: constraints.maxWidth/6):EdgeInsets.all(8),
+                      // width:  width? constraints.maxWidth-600:constraints.maxWidth,
                       decoration: BoxDecoration(image:
                       DecorationImage(image: ExactAssetImage("assets/images/hdimg.png"),
                         fit: BoxFit.fill,),),
@@ -250,7 +256,7 @@ class AddReviewState extends State<AddReview>{
                             Text(
                                 "Trishla Villa",
                                 style: const TextStyle(
-                                    color:  const Color(0xffffffff),
+                                    color:  Colors.white,
                                     fontWeight: FontWeight.w600,
                                     fontStyle:  FontStyle.normal,
                                     fontSize: 30.0
@@ -296,8 +302,8 @@ class AddReviewState extends State<AddReview>{
                       child: Text(
                           "Your Review",
                           style: TextStyle(
-                              color:  Colors.black,
-                              fontWeight: FontWeight.w600,
+                              color:  Colors.black87,
+                              fontWeight: FontWeight.w700,
                               fontStyle:  FontStyle.normal,
                               fontSize: 20.0
                           ),
@@ -326,10 +332,10 @@ class AddReviewState extends State<AddReview>{
                                     child: Text(
                                         "House/Flat no",
                                         style: TextStyle(
-                                            color:Colors.black,
-                                            fontWeight: FontWeight.w500,
+                                            color:Colors.black87,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:  FontStyle.normal,
-                                            fontSize: 18.0
+                                            fontSize: 14.0
                                         ),
                                         textAlign: TextAlign.left
                                     ),
@@ -348,7 +354,7 @@ class AddReviewState extends State<AddReview>{
                                           contentPadding: EdgeInsets.only(left: 15),
                                           labelStyle: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 16,
+                                            fontSize: 14,
                                           ),
                                           border: InputBorder.none,
                                           // enabledBorder: UnderlineInputBorder(
@@ -372,10 +378,10 @@ class AddReviewState extends State<AddReview>{
                                     child: Text(
                                         "Floor Plan (sqft)",
                                         style:  TextStyle(
-                                            color:Colors.black,
-                                            fontWeight: FontWeight.w500,
+                                            color:Colors.black87,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:  FontStyle.normal,
-                                            fontSize: 18.0
+                                            fontSize: 14.0
                                         ),
                                         textAlign: TextAlign.left
                                     ),
@@ -395,7 +401,7 @@ class AddReviewState extends State<AddReview>{
                                           contentPadding: EdgeInsets.only(left: 15),
                                           labelStyle: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 16,
+                                            fontSize: 14,
                                           ),
 
                                           fillColor: Colors.white
@@ -415,10 +421,10 @@ class AddReviewState extends State<AddReview>{
                                     child: Text(
                                         "Rent",
                                         style: const TextStyle(
-                                            color:  Colors.black,
-                                            fontWeight: FontWeight.w500,
+                                            color:  Colors.black87,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:  FontStyle.normal,
-                                            fontSize: 18.0
+                                            fontSize: 14.0
                                         ),
                                         textAlign: TextAlign.left
                                     ),
@@ -437,8 +443,8 @@ class AddReviewState extends State<AddReview>{
                                           hintStyle: TextStyle(color: Colors.grey),
                                           border: InputBorder.none,
                                           labelStyle: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontSize: 14,
                                           ),
 
                                           fillColor: Colors.white
@@ -474,7 +480,7 @@ class AddReviewState extends State<AddReview>{
                                       color:  ColorClass.blueColor,
                                       fontWeight: FontWeight.w600,
                                       fontStyle:  FontStyle.normal,
-                                      fontSize: 20.0
+                                      fontSize: 18.0
                                   ),
                                   textAlign: TextAlign.left
                               ),
@@ -485,19 +491,19 @@ class AddReviewState extends State<AddReview>{
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
 
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 5,bottom: 5),
-                                    child: Text(
-                                        "Description",
-                                        style: const TextStyle(
-                                            color:  Colors.black,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle:  FontStyle.normal,
-                                            fontSize: 18.0
-                                        ),
-                                        textAlign: TextAlign.left
-                                    ),
-                                  ),
+                                  // Padding(
+                                  //   padding: EdgeInsets.only(top: 5,bottom: 5),
+                                  //   child: Text(
+                                  //       "Description",
+                                  //       style: const TextStyle(
+                                  //           color:  Colors.black,
+                                  //           fontWeight: FontWeight.w500,
+                                  //           fontStyle:  FontStyle.normal,
+                                  //           fontSize: 18.0
+                                  //       ),
+                                  //       textAlign: TextAlign.left
+                                  //   ),
+                                  // ),
                                   Container(
                                     decoration: BoxDecoration(
                                         color: Colors.white,
@@ -508,10 +514,10 @@ class AddReviewState extends State<AddReview>{
                                       keyboardType: TextInputType.emailAddress,
                                       maxLines: 10,
                                       decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.only(left: 15,top: 4),
+                                          contentPadding: EdgeInsets.only(left: 15,top: 6),
                                           labelStyle: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16,
+                                            color: Colors.black87,
+                                            fontSize: 14,
                                           ),
                                           hintText: "Add Description here",
                                           hintStyle: TextStyle(color: Colors.grey),
@@ -533,10 +539,10 @@ class AddReviewState extends State<AddReview>{
                                     child: Text(
                                         "Pros",
                                         style: TextStyle(
-                                            color:Colors.black,
-                                            fontWeight: FontWeight.w500,
+                                            color:Colors.black87,
+                                            fontWeight: FontWeight.w600,
                                             fontStyle:  FontStyle.normal,
-                                            fontSize: 18.0
+                                            fontSize: 14.0
                                         ),
                                         textAlign: TextAlign.left
                                     ),
@@ -565,11 +571,11 @@ class AddReviewState extends State<AddReview>{
                                     child: Text(
                                         "Cons",
                                         style:  TextStyle(
-                                            color:Colors.black,
-                                            fontWeight: FontWeight.w500,
+                                            color:Colors.black87,
+                                            fontWeight: FontWeight.w600,
 
                                             fontStyle:  FontStyle.normal,
-                                            fontSize: 18.0
+                                            fontSize: 14.0
                                         ),
                                         textAlign: TextAlign.left
                                     ),
@@ -613,7 +619,7 @@ class AddReviewState extends State<AddReview>{
                                       fontWeight: FontWeight.w600,
 
                                       fontStyle:  FontStyle.normal,
-                                      fontSize: 20.0
+                                      fontSize: 18.0
                                   ),
                                   textAlign: TextAlign.left
                               ),
@@ -626,17 +632,17 @@ class AddReviewState extends State<AddReview>{
                                   Text(
                                       "Facilities",
                                       style: TextStyle(
-                                          color:  Colors.black,
-                                          fontWeight: FontWeight.w500,
+                                          color:  Colors.black54,
+                                          fontWeight: FontWeight.w600,
 
                                           fontStyle:  FontStyle.normal,
-                                          fontSize: 18.0
+                                          fontSize: 16.0
                                       ),
                                       textAlign: TextAlign.left
                                   ),
 
                                   GFRating(
-                                    size: 25,borderColor: Colors.black87,
+                                    size: 25,borderColor: Colors.black54,spacing: 10,
                                     value: facilitiesRating,
                                     color: ColorClass.redColor,
                                     onChanged: (value) {
@@ -658,22 +664,22 @@ class AddReviewState extends State<AddReview>{
                                   Text(
                                       "Design",
                                       style:  TextStyle(
-                                          color:  Colors.black,
-                                          fontWeight: FontWeight.w500,
+                                          color:  Colors.black54,
+                                          fontWeight: FontWeight.w600,
 
                                           fontStyle:  FontStyle.normal,
-                                          fontSize: 18.0
+                                          fontSize: 16.0
                                       ),
                                       textAlign: TextAlign.left
                                   ),
 
                                   GFRating(
-                                    size: 25,borderColor: Colors.black87,
-                                    value: designRating,
+                                    size: 25,borderColor: Colors.black54,spacing: 10,
+                                    value: facilitiesRating,
                                     color: ColorClass.redColor,
                                     onChanged: (value) {
                                       setState(() {
-                                        designRating = value;
+                                        facilitiesRating = value;
                                       });
                                     },
                                   )
@@ -689,22 +695,22 @@ class AddReviewState extends State<AddReview>{
                                   Text(
                                       "Location",
                                       style:  TextStyle(
-                                          color:  Colors.black,
-                                          fontWeight: FontWeight.w500,
+                                          color:  Colors.black54,
+                                          fontWeight: FontWeight.w600,
 
                                           fontStyle:  FontStyle.normal,
-                                          fontSize: 18.0
+                                          fontSize: 16.0
                                       ),
                                       textAlign: TextAlign.left
                                   ),
 
                                   GFRating(
-                                    size: 25,borderColor: Colors.black87,
-                                    value: locationRating,
+                                    size: 25,borderColor: Colors.black54,spacing: 10,
+                                    value: facilitiesRating,
                                     color: ColorClass.redColor,
                                     onChanged: (value) {
                                       setState(() {
-                                        locationRating = value;
+                                        facilitiesRating = value;
                                       });
                                     },
                                   )
@@ -720,22 +726,22 @@ class AddReviewState extends State<AddReview>{
                                   Text(
                                       "Value",
                                       style: TextStyle(
-                                          color:  Colors.black,
-                                          fontWeight: FontWeight.w500,
+                                          color:  Colors.black54,
+                                          fontWeight: FontWeight.w600,
 
                                           fontStyle:  FontStyle.normal,
-                                          fontSize: 18.0
+                                          fontSize: 16.0
                                       ),
                                       textAlign: TextAlign.left
                                   ),
 
                                   GFRating(
-                                    size: 25,borderColor: Colors.black87,
-                                    value: valueRating,
+                                    size: 25,borderColor: Colors.black54,spacing: 10,
+                                    value: facilitiesRating,
                                     color: ColorClass.redColor,
                                     onChanged: (value) {
                                       setState(() {
-                                        valueRating = value;
+                                        facilitiesRating = value;
                                       });
                                     },
                                   )
@@ -751,22 +757,22 @@ class AddReviewState extends State<AddReview>{
                                   Text(
                                       "Management",
                                       style:  TextStyle(
-                                          color:  Colors.black,
-                                          fontWeight: FontWeight.w500,
+                                          color:  Colors.black54,
+                                          fontWeight: FontWeight.w600,
 
                                           fontStyle:  FontStyle.normal,
-                                          fontSize: 18.0
+                                          fontSize: 16.0
                                       ),
                                       textAlign: TextAlign.left
                                   ),
 
                                   GFRating(
-                                    size: 25,borderColor: Colors.black87,
-                                    value: managementRating,
-                                    color: Colors.lightGreen,
+                                    size: 25,borderColor: Colors.black54,spacing: 10,
+                                    value: facilitiesRating,
+                                    color: ColorClass.redColor,
                                     onChanged: (value) {
                                       setState(() {
-                                        managementRating = value;
+                                        facilitiesRating = value;
                                       });
                                     },
                                   )
@@ -788,33 +794,41 @@ class AddReviewState extends State<AddReview>{
                           border: Border.all(color: Colors.black12)
                       ),
                       child:  Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.only(left:20.0,right: 20,top:10,bottom: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                                 "Currently staying the same",
                                 style: const TextStyle(
-                                    color:  const Color(0xff000000),
-                                    fontWeight: FontWeight.w500,
+                                    color:  Colors.black54,
+                                    fontWeight: FontWeight.w600,
 
                                     fontStyle:  FontStyle.normal,
-                                    fontSize: 18.0
+                                    fontSize: 14.0
                                 ),
                                 textAlign: TextAlign.left
                             ),
-                            GFCheckbox(
-                              size: 20,
-                              activeBorderColor: Colors.grey,
-                              activeBgColor: ColorClass.redColor,
-                              type: GFCheckboxType.square,
-                              value:checkBox,
-                              onChanged: (value){
-                                setState(() {
-                                  checkBox = value;
-                                });
-                              },
-                            ),
+
+
+                            Checkbox(
+                                value: checkBox, onChanged: (value){
+                                   setState(() {
+                                      checkBox = value;
+                                     });
+                            })
+                            // GFCheckbox(
+                            //   size: 16,
+                            //   activeBorderColor: Colors.grey,
+                            //   // activeBgColor: ColorClass.redColor,
+                            //   type: GFCheckboxType.square,
+                            //   value:checkBox,
+                            //   onChanged: (value){
+                            //     setState(() {
+                            //       checkBox = value;
+                            //     });
+                            //   },
+                            // ),
                           ],
                         ),
                       ),
@@ -844,11 +858,11 @@ class AddReviewState extends State<AddReview>{
                                       Text(
                                           "Start Date",
                                           style: TextStyle(
-                                              color:Colors.black,
-                                              fontWeight: FontWeight.w500,
+                                              color:Colors.black87,
+                                              fontWeight: FontWeight.w600,
 
                                               fontStyle:  FontStyle.normal,
-                                              fontSize: 18.0
+                                              fontSize: 16.0
                                           ),
                                           textAlign: TextAlign.left
                                       ),
@@ -857,7 +871,7 @@ class AddReviewState extends State<AddReview>{
                                           cursor: SystemMouseCursors.click,
                                           child: GestureDetector(
 
-                                            child: Icon(CupertinoIcons.calendar,size: 30,),))
+                                            child: Icon(CupertinoIcons.calendar,size: 25,),))
                                     ],
                                   ),
                                   Container(
@@ -872,8 +886,9 @@ class AddReviewState extends State<AddReview>{
                                       decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(left: 15),
                                           labelStyle: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16,
+                                            color: Colors.black54,
+                                            fontSize: 14,
+
 
                                           ),
                                           border: InputBorder.none,
@@ -897,16 +912,16 @@ class AddReviewState extends State<AddReview>{
                                       Text(
                                           "End Date",
                                           style: TextStyle(
-                                              color:Colors.black,
-                                              fontWeight: FontWeight.w500,
+                                              color:Colors.black87,
+                                              fontWeight: FontWeight.w600,
 
                                               fontStyle:  FontStyle.normal,
-                                              fontSize: 18.0
+                                              fontSize: 16.0
                                           ),
                                           textAlign: TextAlign.left
                                       ),
 
-                                      IconButton(icon: Icon(CupertinoIcons.calendar,size: 30,),
+                                      IconButton(icon: Icon(CupertinoIcons.calendar,size: 25,),
                                         onPressed: (){
 
                                           // showEndDatePickerWidget();
@@ -926,7 +941,7 @@ class AddReviewState extends State<AddReview>{
                                           contentPadding: EdgeInsets.only(left: 15),
 
                                           labelStyle: TextStyle(
-                                            color: Colors.black,
+                                            color: Colors.black54,
                                             fontSize: 16,
 
                                           ),
@@ -965,7 +980,12 @@ class AddReviewState extends State<AddReview>{
                           textColor: Colors.white,
                           child: Text(
                             "Submit Review",
-                            style: TextStyle(fontSize: 16),
+                            style: const TextStyle(
+                                color:  const Color(0xffffffff),
+                                fontWeight: FontWeight.w700,
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 16.0
+                            ),
                           ),
                           padding: EdgeInsets.all(10),
                         ),

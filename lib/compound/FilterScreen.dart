@@ -104,15 +104,18 @@ class FilterScreenState extends State<FilterScreen>{
             maxwidth>=700?
             SizedBox(
               width: maxwidth,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  rentWidget(),
-                  search(),
-                  buttonClass()
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    rentWidget(),
+                    search(),
+                    buttonClass()
 
-                ],
+                  ],
+                ),
               ),
             ):Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,10 +189,15 @@ class FilterScreenState extends State<FilterScreen>{
             maxwidth<700?
             Container(
               alignment: Alignment.center,
-              height: 50,color: Colors.white,
-              width: 400,padding: EdgeInsets.all(10),
-              child: RaisedButton(
-                child: Text("Search Property",style: TextStyle(color: Colors.white),),
+              height: 100,color: Colors.white,
+              width: 400,padding: EdgeInsets.all(20),
+              child: RaisedButton(padding: EdgeInsets.all(20),
+                child: Text("Search Property",style: TextStyle(
+                    color:  const Color(0xffffffff),
+                    fontWeight: FontWeight.w700,
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0
+                ),),
                 elevation: 5,color: ColorClass.blueColor,hoverColor: Colors.blue.shade900,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                 onPressed: (){
@@ -742,7 +750,12 @@ class FilterScreenState extends State<FilterScreen>{
             child: Text(
               "Find",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
+              style:  TextStyle(
+                  color:  const Color(0xffffffff),
+                  fontWeight: FontWeight.w700,
+                  fontStyle:  FontStyle.normal,
+                  fontSize: 16.0
+              ),
             ),
             padding: EdgeInsets.all(10),
           ),

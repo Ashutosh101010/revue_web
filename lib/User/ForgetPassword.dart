@@ -41,7 +41,7 @@ class ForgetPasswordState extends State<ForgetPassword>{
           decoration: BoxDecoration(
               color: Colors.white,
               image: DecorationImage(image: AssetImage("assets/images/mapbg.png",),
-                fit: BoxFit.fill,)),
+                fit: BoxFit.cover,)),
           child: Column(
             // fit: StackFit.expand,
             children: [
@@ -72,9 +72,9 @@ class ForgetPasswordState extends State<ForgetPassword>{
                           "Forget Password",
                           style: TextStyle(
                               color:  ColorClass.redColor,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w700,
                               fontStyle:  FontStyle.normal,
-                              fontSize: 25.0
+                              fontSize: 20.0
                           ),
                           textAlign: TextAlign.left
                       ),
@@ -95,8 +95,8 @@ class ForgetPasswordState extends State<ForgetPassword>{
                         child: AutoSizeText(
                             "Enter your email or phone number linked to your account to get back your Account ",
                             style: TextStyle(
-                                color:  ColorClass.lightTextColor,
-                                fontWeight: FontWeight.w400,
+                                color:  Colors.black87,
+                                fontWeight: FontWeight.w600,
                                 fontStyle:  FontStyle.normal,
                                 fontSize: 16.0
                             ),
@@ -113,18 +113,20 @@ class ForgetPasswordState extends State<ForgetPassword>{
                             padding: EdgeInsets.all(10),
                             autofocus: false,
                             style:  TextStyle(
-                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black87,
                               fontSize: 16,
                             ),
                             placeholder: "Enter Email or phone.",
                             placeholderStyle:TextStyle(
-                                color:  const Color(0x99000000),
+                                color:  Colors.black54,
+                                fontWeight: FontWeight.w500,
                                 fontStyle:  FontStyle.normal,
                                 fontSize: 16.0
                             ),
                             decoration: BoxDecoration(
                                 color: Color(0xfff9f9f9),
-                                border: Border.all(color: Colors.grey)
+                                border: Border.all(color: Colors.black26)
                             )
                         ),
 
@@ -138,7 +140,7 @@ class ForgetPasswordState extends State<ForgetPassword>{
                           width: 300,height: 40,
                           child: FlatButton(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(5),
                             ),
                             onPressed: (){
                               Navigator.pushNamed(context,otpVerification);
@@ -146,7 +148,12 @@ class ForgetPasswordState extends State<ForgetPassword>{
                             color: ColorClass.blueColor,
                             hoverColor: Colors.blue.shade900,
                             textColor: Colors.white,
-                            child: Text("Send OTP",style: TextStyle(fontSize: 16),),
+                            child: Text("Send OTP",style: TextStyle(
+                                color:  const Color(0xffffffff),
+                                fontWeight: FontWeight.w700,
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 16.0
+                            )),
                             padding: EdgeInsets.all(10),
                           ),
                         ),

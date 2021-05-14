@@ -463,7 +463,7 @@ class OtpVerificationState extends State<OtpVerification>{
               decoration: BoxDecoration(
                 color: Colors.white,
                   image: DecorationImage(image: AssetImage("assets/images/mapbg.png",),
-              fit: BoxFit.fill,)),
+              fit: BoxFit.cover,)),
               child: Column(
                 // fit: StackFit.expand,
                 children: [
@@ -494,10 +494,10 @@ class OtpVerificationState extends State<OtpVerification>{
                               "Forget Password",
                               style: TextStyle(
                                   color:  ColorClass.redColor,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w700,
 
                                   fontStyle:  FontStyle.normal,
-                                  fontSize: 25.0
+                                  fontSize: 20.0
                               ),
                               textAlign: TextAlign.left
                           ),
@@ -521,11 +521,11 @@ class OtpVerificationState extends State<OtpVerification>{
                               child: AutoSizeText(
                                   "Enter OTP ",
                                   style: TextStyle(
-                                      color:  ColorClass.lightTextColor,
+                                      color:  Colors.black87,
                                       fontWeight: FontWeight.w600,
 
                                       fontStyle:  FontStyle.normal,
-                                      fontSize: 18.0
+                                      fontSize: 16.0
                                   ),
                                   textAlign: TextAlign.start
                               ),
@@ -800,7 +800,7 @@ class OtpVerificationState extends State<OtpVerification>{
                               width: 300,height: 40,
                               child: FlatButton(
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                                 onPressed: (){
                                   Navigator.pushNamed(context,newpassword );
@@ -808,7 +808,12 @@ class OtpVerificationState extends State<OtpVerification>{
                                 color: ColorClass.blueColor,
                                 hoverColor: Colors.blue.shade900,
                                 textColor: Colors.white,
-                                child: Text("Submit",style: TextStyle(fontSize: 16),),
+                                child: Text("Submit",style: TextStyle(
+                                    color:  const Color(0xffffffff),
+                                    fontWeight: FontWeight.w700,
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                ),),
                                 padding: EdgeInsets.all(10),
                               ),
                             ),

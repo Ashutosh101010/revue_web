@@ -70,213 +70,230 @@ class ReviewDetailState extends State<ReviewDetails> {
 
   Widget priceWidget(){
     return  Flexible(flex: 1,
-      child: Row(
-        children: [
-          Text(
-              "Price ",
-              style: TextStyle(
-                  color:  Colors.black,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Row(
+          children: [
+            AutoSizeText(
+                "Price ",
+                style: TextStyle(
+                    color:  Colors.black87,
 
-                  fontWeight: FontWeight.w600,
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-              ),
-              textAlign: TextAlign.left
-          ),
-          Text(
-              " 45000 /month",
-              style:  TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w700,
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0
+                ),
+                textAlign: TextAlign.left
+            ),
+            AutoSizeText(
+                " 45000 /month",
+                style:  TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600,
 
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 15.0
-              ),
-              textAlign: TextAlign.left
-          ),
-        ],
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0
+                ),
+                textAlign: TextAlign.left
+            ),
+          ],
+        ),
       ),);
   }
 
   Widget bedRoomWidget(){
     return  Flexible(flex: 1,
-      child: Row(
-        children: [
-          Icon(Icons.king_bed),
-          Text(
-              "  Bed Rooms :",
-              style:  TextStyle(
-                  color:  Colors.black,
-                  fontWeight: FontWeight.w600,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Row(
+          children: [
+            Icon(Icons.king_bed,size: 22,),
+            AutoSizeText(
+                "  Bed Rooms :",
+                style:  TextStyle(
+                    color:  Colors.black87,
+                    fontWeight: FontWeight.w700,
 
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-              ),
-              textAlign: TextAlign.left
-          ),
-          Text(
-              " 2",
-              style:  TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w500,
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0
+                ),
+                textAlign: TextAlign.left
+            ),
+            AutoSizeText(
+                " 2",
+                style:  TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600,
 
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 15.0
-              ),
-              textAlign: TextAlign.left
-          ),
-        ],
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0
+                ),
+                textAlign: TextAlign.left
+            ),
+          ],
+        ),
       ),);
   }
+
   Widget ratingWidget(){
-    return  Flexible(
+    return   Flexible(
       flex: 1,
-      child:  Row(
-        children: [
-          GFRating(
-            size: 20,
-            value: valueRating,
-            color: Colors.yellow,
-            borderColor: Colors.yellow,
-            onChanged: (value) {
-              setState(() {
-                valueRating = value;
-              });
-            },
-          ),
-
-
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                AutoSizeText(
-                    "4.85",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 14.0
-                    ),
-                    textAlign: TextAlign.left
-                ),
-
-                AutoSizeText(
-                    " (54 reviews)",
-                    style: TextStyle(
-                        color: Colors.black87,
-                        fontWeight: FontWeight.w500,
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 14.0
-                    ),
-                    textAlign: TextAlign.left
-                ),
-
-
-              ],
+      child:  Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Row(
+          children: [
+            GFRating(
+              size: 20,
+              value: valueRating,
+              color: Colors.yellow,
+              borderColor: Colors.yellow,
+              onChanged: (value) {
+                setState(() {
+                  valueRating = value;
+                });
+              },
             ),
-          ),
-        ],
+
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  AutoSizeText(
+                      "4.85",
+                      style: TextStyle(
+                          color: Colors.black87,
+                          fontWeight: FontWeight.w700,
+
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      ),
+                      textAlign: TextAlign.left
+                  ),
+
+                  AutoSizeText(
+                      " (54 reviews)",
+                      style: TextStyle(
+                          color: Colors.black54,
+                          fontStyle:  FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16.0
+                      ),
+                      textAlign: TextAlign.left
+                  ),
+
+
+                ],
+              ),
+            ),
+          ],
+        ),
       ),);
   }
 
   Widget floorPlan(){
     return  Flexible(flex: 1,
-      child: Row(
-        children: [
-          Text(
-              "Floor Plan ",
-              style:  TextStyle(
-                  color:  Colors.black,
-                  fontWeight: FontWeight.w600,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Row(
+          children: [
+            AutoSizeText(
+                "Floor Plan ",
+                style:  TextStyle(
+                    color:  Colors.black87,
+                    fontWeight: FontWeight.w700,
 
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-              ),
-              textAlign: TextAlign.left
-          ),
-          Text(
-              " 564 sqft / 52 sqm",
-              style:  TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w500,
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0
+                ),
+                textAlign: TextAlign.left
+            ),
+            AutoSizeText(
+                " 564 sqft / 52 sqm",
+                style:  TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600,
 
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 15.0
-              ),
-              textAlign: TextAlign.left
-          ),
-        ],
-      ),);
-  }
-
-  Widget bathroomWidget(){
-    return Flexible(flex: 1,
-      child: Row(
-        children: [
-          Icon(Icons.bathtub_outlined),
-          Text(
-              "  Bath Rooms :",
-              style: TextStyle(
-                  color:  Colors.black,
-
-                  fontWeight: FontWeight.w600,
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-              ),
-              textAlign: TextAlign.left
-          ),
-          Text(
-              " 2",
-              style:  TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w500,
-
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 15.0
-              ),
-              textAlign: TextAlign.left
-          ),
-        ],
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0
+                ),
+                textAlign: TextAlign.left
+            ),
+          ],
+        ),
       ),);
   }
 
   Widget reviewDateWidget(){
-    return Flexible(flex: 1,child:  Row(
-      children: [
-        AutoSizeText(
-            "Review Date ",
-            style:  TextStyle(
-                color:  Colors.black,
+    return Flexible(flex: 1,child:  Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Row(
+        children: [
+          AutoSizeText(
+              "Review Date ",
+              style:  TextStyle(
+                  color:  Colors.black87,
 
-                fontWeight: FontWeight.w600,
-                fontStyle:  FontStyle.normal,
-                fontSize: 16.0
-            ),
-            textAlign: TextAlign.left
-        ),
+                  fontWeight: FontWeight.w700,
+                  fontStyle:  FontStyle.normal,
+                  fontSize: 16.0
+              ),
+              textAlign: TextAlign.left
+          ),
 
-        AutoSizeText(
-            " 23 Dec 2020",
-            style:  TextStyle(
+          AutoSizeText(
+              " 23 Dec 2020",
+              style:  TextStyle(
 
 
-                fontStyle:  FontStyle.normal,
-                fontSize: 15.0,
-                color: Colors.black87,
-                fontWeight: FontWeight.w500
-            ),
-            textAlign: TextAlign.left
-        ),
-      ],
+                  fontStyle:  FontStyle.normal,
+                  fontSize: 16.0,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600
+              ),
+              textAlign: TextAlign.left
+          ),
+        ],
+      ),
+    ),);
+  }
+
+  Widget bathRoomWidget(){
+    return Flexible(flex: 1, child: Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Row(
+        children: [
+          Icon(Icons.bathtub_outlined),
+          AutoSizeText(
+              "  Bath Rooms :",
+              style: TextStyle(
+                  color:  Colors.black87,
+
+                  fontWeight: FontWeight.w700,
+                  fontStyle:  FontStyle.normal,
+                  fontSize: 16.0
+              ),
+              textAlign: TextAlign.left
+          ),
+          AutoSizeText(
+              " 2",
+              style:  TextStyle(
+                  color: Colors.black54,
+                  fontWeight: FontWeight.w600,
+
+                  fontStyle:  FontStyle.normal,
+                  fontSize: 16.0
+              ),
+              textAlign: TextAlign.left
+          ),
+        ],
+      ),
     ),);
   }
   
-  
   Widget consWidget(BuildContext context){
    return Container(
-      margin: EdgeInsets.only(top: 5, bottom: 10),
+      margin: EdgeInsets.only(top: 5, bottom: 10,left:10),
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
@@ -285,11 +302,10 @@ class ReviewDetailState extends State<ReviewDetails> {
             child: Text(
               "Cons",
               style: TextStyle(
-                  color: const Color(0xff000000),
+                  color: Colors.black87,
                   fontWeight: FontWeight.w700,
-
                   fontStyle: FontStyle.normal,
-                  fontSize: 18.0),
+                  fontSize: 18),
             ),
           ),
           Padding(
@@ -299,7 +315,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               itemBuilder: (context, index) {
                 return Text(
                   "- " + consList[index],
-                  style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w500),
+                  style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w500,fontSize: 14),
                 );
               },
               shrinkWrap: true,
@@ -313,7 +329,7 @@ class ReviewDetailState extends State<ReviewDetails> {
 
   Widget proWidget(BuildContext context){
     return Container(
-      margin: EdgeInsets.only(top: 5, bottom: 10),
+      margin: EdgeInsets.only(top: 5, bottom: 10,left:10),
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
@@ -322,11 +338,10 @@ class ReviewDetailState extends State<ReviewDetails> {
             child: Text(
               "Pros",
               style: TextStyle(
-                  color: const Color(0xff000000),
+                  color: Colors.black87,
                   fontWeight: FontWeight.w700,
-
                   fontStyle: FontStyle.normal,
-                  fontSize: 18.0),
+                  fontSize: 18),
             ),
           ),
           Padding(
@@ -336,7 +351,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               itemBuilder: (context, index) {
                 return Text(
                   "- " + prosList[index],
-                  style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w500),
+                  style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w500,fontSize: 14),
                 );
               },
               shrinkWrap: true,
@@ -379,7 +394,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                             color: const Color(0xff000000),
 
                             fontStyle: FontStyle.normal,
-                            fontSize: 13.5),
+                            fontSize: 14),
                         textAlign: TextAlign.left),
                   ) ,
                 ),
@@ -407,7 +422,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                             color: const Color(0xff000000),
 
                             fontStyle: FontStyle.normal,
-                            fontSize: 13.5),
+                            fontSize: 14),
                         textAlign: TextAlign.left),
                   ),
                 ),
@@ -435,7 +450,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                             color: const Color(0xff000000),
 
                             fontStyle: FontStyle.normal,
-                            fontSize: 13.5),
+                            fontSize: 14),
                         textAlign: TextAlign.left),
                   ),
                 ),
@@ -463,7 +478,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                             color: const Color(0xff000000),
 
                             fontStyle: FontStyle.normal,
-                            fontSize: 13.5),
+                            fontSize: 14),
                         textAlign: TextAlign.left),
                   ),
                 ),
@@ -491,7 +506,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                             color: const Color(0xff000000),
 
                             fontStyle: FontStyle.normal,
-                            fontSize: 13.5),
+                            fontSize: 14),
                         textAlign: TextAlign.left),
                   ),
                 ),
@@ -532,7 +547,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                       fontWeight: FontWeight.w700,
 
                       fontStyle:  FontStyle.normal,
-                      fontSize: 14.0,letterSpacing: 0.5
+                      fontSize: 14.0
                   ),
                   textAlign: TextAlign.left
               ),
@@ -563,7 +578,7 @@ class ReviewDetailState extends State<ReviewDetails> {
               padding: const EdgeInsets.all(5.0),
               child: AutoSizeText(
                 "Southwest apartments, Green community West,Green Community,Dubai",
-                style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w500),
+                style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w500,fontSize: 14),
               ),
             )
           ],
@@ -621,7 +636,7 @@ class ReviewDetailState extends State<ReviewDetails> {
       Align(
         alignment: Alignment.topLeft,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(12.0),
           child: Text(
             "Review",
             style: TextStyle(
@@ -636,8 +651,7 @@ class ReviewDetailState extends State<ReviewDetails> {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(reviews,
-            style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w500
-            ),
+            style: TextStyle(color: Colors.black54,fontWeight: FontWeight.w600,fontSize: 14),
             textAlign: TextAlign.left),
       ),
     ],);
@@ -844,7 +858,7 @@ class ReviewDetailState extends State<ReviewDetails> {
 
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
               floorPlan(),
-              bathroomWidget(),
+              bathRoomWidget(),
               reviewDateWidget()
 
             ],),

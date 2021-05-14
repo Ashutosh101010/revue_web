@@ -63,7 +63,12 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                           child: Text(
                             "Write your Question",
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 16),
+                            style:  TextStyle(
+                                color:  const Color(0xffffffff),
+                                fontWeight: FontWeight.w700,
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 16.0
+                            ),
                           ),
                           padding: EdgeInsets.all(10),
                         ),
@@ -105,7 +110,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                       color: ColorClass.redColor,
                                       fontWeight: FontWeight.w700,
                                       fontStyle: FontStyle.normal,
-                                      fontSize: 25.0),
+                                      fontSize: 18.0),
                                   textAlign: TextAlign.left),
                               Expanded(
                                 child: Align(
@@ -134,7 +139,12 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                       child: Text(
                                         "Write your Answer",
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 16),
+                                        style:  TextStyle(
+                                            color:  const Color(0xffffffff),
+                                            fontWeight: FontWeight.w700,
+                                            fontStyle:  FontStyle.normal,
+                                            fontSize: 16.0
+                                        ),
                                       ),
                                       padding: EdgeInsets.all(10),
                                     ),
@@ -164,9 +174,11 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text("Q1.  Water facilities good or not?",
                                     style: const TextStyle(
-                                        color: const Color(0xe5000000),
+                                        color:  Colors.black87,
                                         fontWeight: FontWeight.w600,
-                                        fontStyle: FontStyle.normal, fontSize: 18.0),
+                                        fontStyle:  FontStyle.normal,
+                                        fontSize: 16.0
+                                    ),
                                     textAlign: TextAlign.left),
                               ),
                               Divider(
@@ -191,10 +203,11 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                             child: Text(
                                                 "A.  Yes,water is available 24 hrs",
                                                 style: const TextStyle(
-                                                    color: const Color(0xff000000),
+                                                    color:  Colors.black87,
                                                     fontWeight: FontWeight.w600,
-                                                    fontStyle: FontStyle.normal,
-                                                    fontSize: 16.0),
+                                                    fontStyle:  FontStyle.normal,
+                                                    fontSize: 14.0
+                                                ),
                                                 textAlign: TextAlign.left),
                                           ),
                                           Padding(
@@ -218,13 +231,11 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                         child: Text(
                                                             "Anand bakshi.......",
                                                             style: const TextStyle(
-                                                                color: const Color(
-                                                                    0x66000000),
-                                                                fontWeight:
-                                                                FontWeight.w600,
-                                                                fontStyle:
-                                                                FontStyle.normal,
-                                                                fontSize: 15.0),
+                                                                color:  const Color(0x66000000),
+                                                                fontWeight: FontWeight.w600,
+                                                                fontStyle:  FontStyle.normal,
+                                                                fontSize: 12.0
+                                                            ),
                                                             textAlign:
                                                             TextAlign.left),
                                                       ),
@@ -237,14 +248,11 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                   child: // 1 Month ago
                                                   Text("1 Month ago ",
                                                       style: const TextStyle(
-                                                          color: const Color(
-                                                              0x80000000),
-                                                          fontWeight:
-                                                          FontWeight.w600,
-
-                                                          fontStyle:
-                                                          FontStyle.normal,
-                                                          fontSize: 15.0),
+                                                          color:  Colors.black54,
+                                                          fontWeight: FontWeight.w600,
+                                                          fontStyle:  FontStyle.normal,
+                                                          fontSize: 12.0
+                                                      ),
                                                       textAlign: TextAlign.left),
                                                 )
                                               ],
@@ -262,14 +270,13 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                   children: [
                                                     Text("Helpful?",
                                                         style: const TextStyle(
-                                                            color: const Color(
-                                                                0x80000000),
+                                                            color: Colors.black87,
                                                             fontWeight:
                                                             FontWeight.w600,
 
                                                             fontStyle:
                                                             FontStyle.normal,
-                                                            fontSize: 15.0),
+                                                            fontSize: 14.0),
                                                         textAlign: TextAlign.left),
                                                     Row(
                                                       children: [
@@ -277,11 +284,13 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                           icon: likelist[index]
                                                               ? Icon(
                                                             Icons.thumb_up,
-                                                            color: Colors.black,
+                                                            color: Colors.black87,
+                                                            size: 20,
                                                           )
                                                               : Icon(
                                                             Icons.thumb_up,
                                                             color: Colors.red,
+                                                            size: 20,
                                                           ),
                                                           onPressed: () {
                                                             setState(() {
@@ -293,14 +302,13 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                         Text(
                                                           likes.toString(),
                                                           style: const TextStyle(
-                                                              color: const Color(
-                                                                  0xcc000000),
+                                                              color: Colors.black87,
                                                               fontWeight:
                                                               FontWeight.w600,
 
                                                               fontStyle:
                                                               FontStyle.normal,
-                                                              fontSize: 20.0),
+                                                              fontSize: 16.0),
                                                         )
                                                       ],
                                                     ),
@@ -308,20 +316,19 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                       children: [
                                                         IconButton(
                                                           icon:
-                                                          Icon(Icons.thumb_down),
+                                                          Icon(Icons.thumb_down,size: 20,),
                                                           onPressed: () {},
                                                         ),
                                                         Text(
                                                           disLikes.toString(),
                                                           style: const TextStyle(
-                                                              color: const Color(
-                                                                  0xcc000000),
+                                                              color: Colors.black87,
                                                               fontWeight:
                                                               FontWeight.w600,
 
                                                               fontStyle:
                                                               FontStyle.normal,
-                                                              fontSize: 20.0),
+                                                              fontSize: 18.0),
                                                         )
                                                       ],
                                                     ),
@@ -344,11 +351,11 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                   child: Text("Report",
                                                       style: const TextStyle(
                                                           color:
-                                                          const Color(0xcc000000),
+                                                          Colors.black87,
                                                           fontWeight: FontWeight.w600,
 
                                                           fontStyle: FontStyle.normal,
-                                                          fontSize: 15.0),
+                                                          fontSize: 14.0),
                                                       textAlign: TextAlign.left),
                                                 )
                                               ],
@@ -530,11 +537,11 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                 child: // Report
                     Text("Report",
                         style: const TextStyle(
-                            color: const Color(0xe5000000),
-                            fontWeight: FontWeight.w600,
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w700,
 
                             fontStyle: FontStyle.normal,
-                            fontSize: 20.0),
+                            fontSize: 18.0),
                         textAlign: TextAlign.left)),
 
             Container(
@@ -545,11 +552,11 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                     Text(
                         "If you find this content inappropriate and think it should be removed from this website,let us know by clicking the butto below.",
                         style: const TextStyle(
-                            color: const Color(0x80000000),
+                            color: Colors.black54,
                             fontWeight: FontWeight.w600,
 
                             fontStyle: FontStyle.normal,
-                            fontSize: 16.0),
+                            fontSize: 14.0),
                         textAlign: TextAlign.left)),
 
             Expanded(
@@ -561,7 +568,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                   margin: EdgeInsets.all(10),
                   child: FlatButton(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(5),
                     ),
                     onPressed: () {},
                     color: ColorClass.blueColor,
@@ -569,7 +576,12 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                     textColor: Colors.white,
                     child: Text(
                       "Report",
-                      style: TextStyle(fontSize: 16),
+                      style:  TextStyle(
+                          color:  const Color(0xffffffff),
+                          fontWeight: FontWeight.w700,
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      ),
                     ),
                     padding: EdgeInsets.all(10),
                   ),

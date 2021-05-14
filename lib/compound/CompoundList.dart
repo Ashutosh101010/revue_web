@@ -84,6 +84,57 @@ class CompoundListState extends State<CompoundList>{
           appBar: width?
           PreferredSize(preferredSize: Size.fromHeight(80),child:  AppBarFirst( constraints.maxWidth),)
               :AppBar(
+            actions: [
+            MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,onTap: (){
+                    Navigator.pushNamed(context, filtercompound);
+                  },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset("assets/images/filter.png",width: 20,height: 20,fit: BoxFit.contain,),
+                        Padding(
+                            padding: const EdgeInsets.only(top: 5,left:10,right:10),
+                            child: // Profile
+                            Text(
+                                "Filter",
+                                style:  TextStyle(
+                                    color:  Color(0x99000000),
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 12.0
+                                ),
+                                textAlign: TextAlign.left
+                            )
+                        ),
+                      ],),
+                  ),
+          ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5,left:20,right:20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/images/Profile.png",width: 20,height: 20,fit: BoxFit.contain,),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: // Profile
+                        Text(
+                            "Profile",
+                            style: const TextStyle(
+                                color:   Colors.red,
+                                fontWeight: FontWeight.w600,
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 12.0
+                            ),
+                            textAlign: TextAlign.left
+                        )
+                    ),
+                  ],),
+              ),
+            ],
             backgroundColor: Colors.white,
             leading: IconButton(icon: Icon(Icons.menu,color: Colors.black,),onPressed: (){
               return scaffoldKey.currentState.openDrawer();
@@ -107,10 +158,10 @@ class CompoundListState extends State<CompoundList>{
                       child: AppBarSecState().searchWidget(maxWidth/2.3),
                     ):Container(),
 
-                    Padding(
+                    width?Padding(
                       padding: EdgeInsets.only(left: maxWidth/30,bottom: 40),
                       child: filterWidget(width,maxWidth),
-                    ),
+                    ):Container(),
                    filter? OverlayContainer(
                         show: filter,
                         position: OverlayContainerPosition(0, 0,),
@@ -238,11 +289,12 @@ class CompoundListState extends State<CompoundList>{
             return
               Container(
                 width:width,
-                height: 280,
+                height: width>=700?280:450,
                 decoration: BoxDecoration(color: Colors.white,),
                 child: Column(
                   children: [
-                    Row(mainAxisAlignment: MainAxisAlignment.start,
+                   width>=700?
+                   Row(mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
                           width:width/2,
@@ -250,7 +302,7 @@ class CompoundListState extends State<CompoundList>{
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min, children: [
+                            children: [
                             Container(
                               height: 150, alignment: Alignment.topCenter,
                               width: width/2,  margin: EdgeInsets.only(left: 5,right: 5,bottom: 5),
@@ -318,11 +370,11 @@ class CompoundListState extends State<CompoundList>{
                                           child: AutoSizeText(
                                               "Trishla villa".toUpperCase(),
                                               style: const TextStyle(
-                                                  color:  Colors.black54,
-                                                  fontWeight: FontWeight.w600,
+                                                  color:  Colors.black87,
+                                                  fontWeight: FontWeight.w700,
 
                                                   fontStyle:  FontStyle.normal,
-                                                  fontSize: 17.0
+                                                  fontSize: 16.0
                                               ),
                                               textAlign: TextAlign.left
                                           ),
@@ -331,11 +383,11 @@ class CompoundListState extends State<CompoundList>{
                                           child: AutoSizeText(
                                               "Address: ",
                                               style: TextStyle(
-                                                  color:Colors.black54,
+                                                  color:Colors.black87,
                                                   fontWeight: FontWeight.w600,
 
                                                   fontStyle:  FontStyle.normal,
-                                                  fontSize: 13.0
+                                                  fontSize: 14.0
                                               ),
                                               textAlign: TextAlign.left
                                           ),
@@ -360,7 +412,8 @@ class CompoundListState extends State<CompoundList>{
                                           padding: const EdgeInsets.all(5.0),
                                           child: AutoSizeText("54 Reviews",
                                               style:  TextStyle(
-                                                  color:Colors.black,
+                                                  color:Colors.black54,
+                                                  fontWeight: FontWeight.w600,
                                                   decorationStyle: TextDecorationStyle.solid,
                                                   fontStyle: FontStyle.normal,
                                                   fontSize: 10.0),
@@ -378,8 +431,8 @@ class CompoundListState extends State<CompoundList>{
                                 child: AutoSizeText(
                                     "Southwest apartments, Green community West,Green Community,Dubai",
                                     style:  TextStyle(
-                                        color:Colors.black54,
-                                        fontWeight: FontWeight.w700,
+                                        color:Colors.black87,
+                                        fontWeight: FontWeight.w600,
 
                                         fontStyle: FontStyle.normal,
                                         fontSize: 12.0,
@@ -388,7 +441,7 @@ class CompoundListState extends State<CompoundList>{
                               ),
 
                               Padding(
-                                padding: const EdgeInsets.only(left:16.0,right: 16,top:16,bottom:10),
+                                padding: EdgeInsets.only(left:16.0,right: 16,top:16,bottom:10),
                                 child: ratingBar(context,width),
                               ),
 
@@ -463,7 +516,186 @@ class CompoundListState extends State<CompoundList>{
                           ),
                         ),
                       ],
-                    ),
+                    ):
+                   Column(children: [
+                     Container(
+                       height: 150, alignment: Alignment.topCenter,
+                       width: width,  margin: EdgeInsets.only(left: 5,right: 5,bottom: 5),
+                       decoration: BoxDecoration(
+                           borderRadius: BorderRadius.circular(5), image: DecorationImage(
+                         image: AssetImage(
+                             propertyImage[index]),
+                         fit: BoxFit.cover,
+                       )),
+                     ),
+
+                     Container(
+                       width: width,alignment: Alignment.topCenter,
+                       child:
+                       Column(
+                         crossAxisAlignment: CrossAxisAlignment.start,
+                         mainAxisAlignment: MainAxisAlignment.start,
+                         mainAxisSize: MainAxisSize.min,
+                         children: [
+                           // assets/images/userLocation.png
+                           SizedBox(
+                             child: Row(
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               children: [
+                                 // Trishla Villa
+                                 Column( crossAxisAlignment: CrossAxisAlignment.start,
+                                   children: [
+                                     Padding(
+                                       padding: const EdgeInsets.only(left: 8),
+                                       child: AutoSizeText(
+                                           "Trishla villa".toUpperCase(),
+                                           style: const TextStyle(
+                                               color:  Colors.black87,
+                                               fontWeight: FontWeight.w700,
+
+                                               fontStyle:  FontStyle.normal,
+                                               fontSize: 16.0
+                                           ),
+                                           textAlign: TextAlign.left
+                                       ),
+                                     ), Padding(
+                                       padding: const EdgeInsets.only(left:8,top:10),
+                                       child: AutoSizeText(
+                                           "Address: ",
+                                           style: TextStyle(
+                                               color:Colors.black87,
+                                               fontWeight: FontWeight.w600,
+
+                                               fontStyle:  FontStyle.normal,
+                                               fontSize: 14.0
+                                           ),
+                                           textAlign: TextAlign.left
+                                       ),
+                                     ),
+                                   ],
+                                 ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(left: 8,right: 8,top:20),
+                                   child: CircularPercentIndicator(
+                                     radius: width>=600?38.0:25,
+                                     lineWidth:width>=600? 4.0:2.0,
+                                     backgroundColor: Colors.black26,
+                                     percent: 0.5,
+                                     center: new Text(
+                                       "3.5",
+                                       style: new TextStyle(
+                                           fontWeight: FontWeight.bold, fontSize: 10.0),
+                                     ),
+                                     circularStrokeCap: CircularStrokeCap.butt,
+                                     progressColor: Colors.red,
+                                     footer: Padding(
+                                       padding: const EdgeInsets.all(5.0),
+                                       child: AutoSizeText("54 Reviews",
+                                           style:  TextStyle(
+                                               color:Colors.black54,
+                                               fontWeight: FontWeight.w600,
+                                               decorationStyle: TextDecorationStyle.solid,
+                                               fontStyle: FontStyle.normal,
+                                               fontSize: 10.0),
+                                           textAlign:
+                                           TextAlign.left),
+                                     ),
+                                   ),
+                                 ),
+                               ],
+                             ),
+                           ),
+
+                           Padding(
+                             padding: const EdgeInsets.only(left: 8,right: 8),
+                             child: AutoSizeText(
+                                 "Southwest apartments, Green community West,Green Community,Dubai",
+                                 style:  TextStyle(
+                                   color:Colors.black87,
+                                   fontWeight: FontWeight.w600,
+
+                                   fontStyle: FontStyle.normal,
+                                   fontSize: 12.0,
+                                 ),
+                                 textAlign: TextAlign.center),
+                           ),
+
+                           Padding(
+                             padding: EdgeInsets.only(left:16.0,right: 16,top:16,bottom:10),
+                             child: ratingBar(context,width),
+                           ),
+
+                           Container(
+                             child: Row(
+                               mainAxisAlignment: MainAxisAlignment.center,
+                               children: [
+                                 FittedBox(
+                                   child: Row(
+                                     children: [
+                                       Icon(CupertinoIcons.chat_bubble_2,
+                                         color: Colors.black,size: 18,),
+                                       Padding(padding: const EdgeInsets.only(right: 20,),
+                                         child: AutoSizeText("Q & A",
+                                             style: const TextStyle(shadows: [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],
+                                                 color: const Color(0xff000000),
+                                                 fontWeight: FontWeight.w500,
+                                                 fontStyle: FontStyle.normal,
+                                                 fontSize: 14.0),
+                                             textAlign: TextAlign.left),
+                                       )
+                                     ],
+                                   ),
+                                 ),
+                                 FittedBox(
+                                   child: Container(
+                                     child: Row(
+                                       children: [
+                                         Padding(
+                                           padding: const EdgeInsets.only(left:20.0,right:5),
+                                           child: Icon(CupertinoIcons.heart,color: Colors.black,size: 18,),
+                                         ),
+                                         AutoSizeText("Save",
+                                             style: const TextStyle(shadows: [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],
+                                                 color: const Color(0xff000000),
+                                                 fontWeight: FontWeight.w500,
+                                                 fontStyle: FontStyle.normal,
+                                                 fontSize: 14.0),
+                                             textAlign: TextAlign.left)
+                                       ],
+                                     ),
+                                   ),
+                                 ),
+                               ],
+                             ),
+                           ),
+
+                           InkWell(
+                             onTap: (){
+                               Navigator.pushNamed(context, compoundDetails);
+                               // Navigator.push(context,
+                               //     MaterialPageRoute(builder: (context)=>CompoundDetails()));
+                             },onHover: (value){
+                             texthover[index] = value;
+                             viewmore = value;
+                             (context as Element).markNeedsBuild();
+                           },
+                             child: Container(
+                               margin: EdgeInsets.only(right: 10,top: 10),
+                              alignment: Alignment.centerRight,
+                               child: AutoSizeText("View more".toUpperCase(),
+                                   style: TextStyle(
+                                       color:texthover[index]?Colors.blue.shade900:
+                                       ColorClass.blueColor,
+                                       fontWeight: texthover[index]?FontWeight.w700:FontWeight.w500,
+                                       fontStyle: FontStyle.normal,
+                                       fontSize: 10.0),
+                                   textAlign: TextAlign.left),
+                             ),
+                           )
+                         ],
+                       ),
+                     ),
+                   ],),
                     Padding(
                       padding: const EdgeInsets.only(top:10.0),
                       child: Divider(color: Colors.black12,thickness: 1,height: 2,),

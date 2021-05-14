@@ -39,7 +39,7 @@ class UpdatePasswordState extends State<UpdatePassword>{
               decoration: BoxDecoration(
                   color: Colors.white,
                   image: DecorationImage(image: AssetImage("assets/images/mapbg.png",),
-                    fit: BoxFit.fill,)),
+                    fit: BoxFit.cover,)),
               child: Column(
                 // fit: StackFit.expand,
                 children: [
@@ -70,9 +70,9 @@ class UpdatePasswordState extends State<UpdatePassword>{
                               "Forget Password",
                               style: TextStyle(
                                   color:  ColorClass.redColor,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w700,
                                   fontStyle:  FontStyle.normal,
-                                  fontSize: 25.0
+                                  fontSize: 20.0
                               ),
                               textAlign: TextAlign.left
                           ),
@@ -94,8 +94,8 @@ class UpdatePasswordState extends State<UpdatePassword>{
                             child: AutoSizeText(
                                 "Set your new password to again Login into your account",
                                 style: TextStyle(
-                                    color:  ColorClass.lightTextColor,
-                                    fontWeight: FontWeight.w400,
+                                    color:  Colors.black87,
+                                    fontWeight: FontWeight.w700,
 
                                     fontStyle:  FontStyle.normal,
                                     fontSize: 16.0
@@ -112,10 +112,10 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                 AutoSizeText(
                                     "Set New Password",
                                     style: const TextStyle(
-                                        color:  Colors.black,
-
+                                        color:  Colors.black87,
+                                        fontWeight: FontWeight.w500,
                                         fontStyle:  FontStyle.normal,
-                                        fontSize: 18.0
+                                        fontSize: 16.0
                                     ),
                                     textAlign: TextAlign.left
                                 ),
@@ -132,8 +132,8 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                       ),
                                       placeholder: "New Password",
                                       placeholderStyle:TextStyle(
-                                          color:  const Color(0x99000000),
-
+                                          color:  Colors.black54,
+                                            fontWeight: FontWeight.w500,
                                           fontStyle:  FontStyle.normal,
                                           fontSize: 16.0
                                       ),
@@ -157,10 +157,11 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                 AutoSizeText(
                                     "Confirm Password",
                                     style: const TextStyle(
-                                        color:  Colors.black,
+                                        color:  Colors.black87,
+fontWeight: FontWeight.w500,
 
                                         fontStyle:  FontStyle.normal,
-                                        fontSize: 18.0
+                                        fontSize: 16.0
                                     ),
                                     textAlign: TextAlign.left
                                 ),
@@ -168,6 +169,7 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                   width: 400,
                                   margin: EdgeInsets.only(top: 10,bottom: 10),
                                   child: CupertinoTextField(
+                                      obscureText: true,
                                       padding: EdgeInsets.all(10),
                                       autofocus: false,
                                       style:  TextStyle(
@@ -202,7 +204,7 @@ class UpdatePasswordState extends State<UpdatePassword>{
                               width: 300,height: 40,
                               child: FlatButton(
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                                 onPressed: (){
                                   Navigator.pushNamed(context,loginRoute );
@@ -210,7 +212,12 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                 color: ColorClass.blueColor,
                                 hoverColor: Colors.blue.shade900,
                                 textColor: Colors.white,
-                                child: Text("Submit",style: TextStyle(fontSize: 16),),
+                                child: Text("Submit",style: TextStyle(
+                                    color:  const Color(0xffffffff),
+                                    fontWeight: FontWeight.w700,
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                ),),
                                 padding: EdgeInsets.all(10),
                               ),
                             ),
