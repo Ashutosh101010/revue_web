@@ -347,171 +347,171 @@ body: CustomScrollView(controller: controller,
     );
   }
   
-  Widget leftPanel(BuildContext context,double _width,double _height){
-    return Container(
-      alignment: Alignment.topCenter,
-      margin: EdgeInsets.only(top: 20),
-      width:_width>=1200?_width-500:_width>=1000?_width-300:_width,
-      height:_height,
-      child:  ScrollableListTabView(
-        tabHeight: 60,
-        bodyAnimationDuration: const Duration(milliseconds: 150),
-        tabAnimationCurve: Curves.easeOut,
-        tabAnimationDuration: const Duration(milliseconds: 200),
-        tabs: [
-          ScrollableListTab(
-              tab: ListTab(
-                  activeBackgroundColor: Colors.white,
-                  inactiveBackgroundColor: Colors.white,
-                  borderColor: Colors.white,
-                  label: Text('Rating', style: TextStyle(color: Colors.white)),
-                  showIconOnList: false),
-              body:ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: 1,
-                itemBuilder: (context,index){
-                  return RatingWidgetClass();
-                },
-              )),
-
-          ScrollableListTab(
-              tab: ListTab(
-                  activeBackgroundColor: Colors.white,
-                  inactiveBackgroundColor: Colors.white,
-                  borderColor: Colors.white,
-                  label: Text('Review',
-                      style: TextStyle(color: Colors.white,)),
-                  showIconOnList: false),
-              body: ListView(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                children: [
-                  Padding(
-                    padding:  EdgeInsets.only(left: 50,bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Properties  ",
-                          style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
-                            fontSize: 23,
-                            fontStyle:  FontStyle.normal,),),
-
-                        Container(
-                          height: 50,
-                          margin: EdgeInsets.only(left: 10, right: 10,),
-                          child: DropdownButtonHideUnderline(
-                            child: GFDropdown(
-                              hint: Text(
-                                "Filter",
-                                style: TextStyle(color: Colors.black87),
-                              ),
-                              dropdownButtonColor: Colors.white,
-                              padding: EdgeInsets.all(10),
-                              itemHeight: 4,
-                              icon: Icon(Icons.keyboard_arrow_down_outlined),
-                              iconEnabledColor: ColorClass.blueColor,
-                              value:filterProperty,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  filterProperty = newValue;
-                                });
-                              },
-                              items: filterList
-                                  .map((value) => DropdownMenuItem(
-                                value: value,
-                                child: Text(value,style: TextStyle(fontWeight: FontWeight.w500),),
-                              ))
-                                  .toList(),
-                            ),
-                          ),
-                        ),
-
-
-                      ],
-                    ),
-                  ),
-                  ListView.builder(shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: 4,itemBuilder: (context,index){
-
-                      return ReviewsTab();
-
-                    },),
-                ],
-              )
-          ),
-          ScrollableListTab(
-              tab: ListTab(
-                  activeBackgroundColor: Colors.white,
-                  inactiveBackgroundColor: Colors.white,
-                  borderColor: Colors.white,
-                  label: Text('Facilities',
-                      style: TextStyle(color: Colors.white,)),
-                  showIconOnList: false),
-              body: ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: 1,
-                itemBuilder: (context,index){
-                  return Padding(
-                    padding:  EdgeInsets.only(left: 50,right: 50,bottom: 10),
-                    child: Container(
-                      width:_width,
-                      height: 500,
-                      child: GridView.builder(
-                        itemCount: propertyImage.length,
-                          physics: NeverScrollableScrollPhysics(),
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: _width>=1200?4:_width>=1000?3:1
-                          ),
-                          shrinkWrap: true,
-                          itemBuilder: (context,ind){
-                            return Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: SizedBox(
-                                child: Image.network(propertyImage[index],fit: BoxFit.fill,),
-                              ),
-                            );
-                          }),
-                    ),
-                  );
-                },
-              )),
-
-          ScrollableListTab(
-              tab: ListTab(
-                  activeBackgroundColor: Colors.white,
-                  inactiveBackgroundColor: Colors.white,
-                  borderColor: Colors.white,
-                  label: Text('Location',
-                      style: TextStyle(color: Colors.white,)),
-                  showIconOnList: false),
-              body: ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: 1,
-                itemBuilder: (context,index){
-                  return Padding(
-                    padding:  EdgeInsets.only(left: 50,right: 50,bottom: 10),
-                    child: Container(
-                      width: _width,
-                      height: 300,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              colorFilter: ColorFilter.mode(
-                                  Colors.white, BlendMode.dstOver),
-                              fit: BoxFit.cover,
-                              image: AssetImage("assets/images/map.png"))),
-                    ),
-                  );
-                },
-              )),
-
-        ],
-
-      ),);
-  }
+  // Widget leftPanel(BuildContext context,double _width,double _height){
+  //   return Container(
+  //     alignment: Alignment.topCenter,
+  //     margin: EdgeInsets.only(top: 20),
+  //     width:_width>=1200?_width-500:_width>=1000?_width-300:_width,
+  //     height:_height,
+  //     child:  ScrollableListTabView(
+  //       tabHeight: 60,
+  //       bodyAnimationDuration: const Duration(milliseconds: 150),
+  //       tabAnimationCurve: Curves.easeOut,
+  //       tabAnimationDuration: const Duration(milliseconds: 200),
+  //       tabs: [
+  //         ScrollableListTab(
+  //             tab: ListTab(
+  //                 activeBackgroundColor: Colors.white,
+  //                 inactiveBackgroundColor: Colors.white,
+  //                 borderColor: Colors.white,
+  //                 label: Text('Rating', style: TextStyle(color: Colors.white)),
+  //                 showIconOnList: false),
+  //             body:ListView.builder(
+  //               shrinkWrap: true,
+  //               physics: NeverScrollableScrollPhysics(),
+  //               itemCount: 1,
+  //               itemBuilder: (context,index){
+  //                 return RatingWidgetClass();
+  //               },
+  //             )),
+  //
+  //         ScrollableListTab(
+  //             tab: ListTab(
+  //                 activeBackgroundColor: Colors.white,
+  //                 inactiveBackgroundColor: Colors.white,
+  //                 borderColor: Colors.white,
+  //                 label: Text('Review',
+  //                     style: TextStyle(color: Colors.white,)),
+  //                 showIconOnList: false),
+  //             body: ListView(
+  //               physics: NeverScrollableScrollPhysics(),
+  //               shrinkWrap: true,
+  //               children: [
+  //                 Padding(
+  //                   padding:  EdgeInsets.only(left: 50,bottom: 10),
+  //                   child: Row(
+  //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                     children: [
+  //                       Text("Properties  ",
+  //                         style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
+  //                           fontSize: 23,
+  //                           fontStyle:  FontStyle.normal,),),
+  //
+  //                       Container(
+  //                         height: 50,
+  //                         margin: EdgeInsets.only(left: 10, right: 10,),
+  //                         child: DropdownButtonHideUnderline(
+  //                           child: GFDropdown(
+  //                             hint: Text(
+  //                               "Filter",
+  //                               style: TextStyle(color: Colors.black87),
+  //                             ),
+  //                             dropdownButtonColor: Colors.white,
+  //                             padding: EdgeInsets.all(10),
+  //                             itemHeight: 4,
+  //                             icon: Icon(Icons.keyboard_arrow_down_outlined),
+  //                             iconEnabledColor: ColorClass.blueColor,
+  //                             value:filterProperty,
+  //                             onChanged: (newValue) {
+  //                               setState(() {
+  //                                 filterProperty = newValue;
+  //                               });
+  //                             },
+  //                             items: filterList
+  //                                 .map((value) => DropdownMenuItem(
+  //                               value: value,
+  //                               child: Text(value,style: TextStyle(fontWeight: FontWeight.w500),),
+  //                             ))
+  //                                 .toList(),
+  //                           ),
+  //                         ),
+  //                       ),
+  //
+  //
+  //                     ],
+  //                   ),
+  //                 ),
+  //                 ListView.builder(shrinkWrap: true,
+  //                   physics: NeverScrollableScrollPhysics(),
+  //                   itemCount: 4,itemBuilder: (context,index){
+  //
+  //                     return ReviewsTab();
+  //
+  //                   },),
+  //               ],
+  //             )
+  //         ),
+  //         ScrollableListTab(
+  //             tab: ListTab(
+  //                 activeBackgroundColor: Colors.white,
+  //                 inactiveBackgroundColor: Colors.white,
+  //                 borderColor: Colors.white,
+  //                 label: Text('Facilities',
+  //                     style: TextStyle(color: Colors.white,)),
+  //                 showIconOnList: false),
+  //             body: ListView.builder(
+  //               shrinkWrap: true,
+  //               physics: NeverScrollableScrollPhysics(),
+  //               itemCount: 1,
+  //               itemBuilder: (context,index){
+  //                 return Padding(
+  //                   padding:  EdgeInsets.only(left: 50,right: 50,bottom: 10),
+  //                   child: Container(
+  //                     width:_width,
+  //                     height: 500,
+  //                     child: GridView.builder(
+  //                       itemCount: propertyImage.length,
+  //                         physics: NeverScrollableScrollPhysics(),
+  //                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+  //                           crossAxisCount: _width>=1200?4:_width>=1000?3:1
+  //                         ),
+  //                         shrinkWrap: true,
+  //                         itemBuilder: (context,ind){
+  //                           return Padding(
+  //                             padding: const EdgeInsets.all(10.0),
+  //                             child: SizedBox(
+  //                               child: Image.network(propertyImage[index],fit: BoxFit.fill,),
+  //                             ),
+  //                           );
+  //                         }),
+  //                   ),
+  //                 );
+  //               },
+  //             )),
+  //
+  //         ScrollableListTab(
+  //             tab: ListTab(
+  //                 activeBackgroundColor: Colors.white,
+  //                 inactiveBackgroundColor: Colors.white,
+  //                 borderColor: Colors.white,
+  //                 label: Text('Location',
+  //                     style: TextStyle(color: Colors.white,)),
+  //                 showIconOnList: false),
+  //             body: ListView.builder(
+  //               shrinkWrap: true,
+  //               physics: NeverScrollableScrollPhysics(),
+  //               itemCount: 1,
+  //               itemBuilder: (context,index){
+  //                 return Padding(
+  //                   padding:  EdgeInsets.only(left: 50,right: 50,bottom: 10),
+  //                   child: Container(
+  //                     width: _width,
+  //                     height: 300,
+  //                     decoration: BoxDecoration(
+  //                         image: DecorationImage(
+  //                             colorFilter: ColorFilter.mode(
+  //                                 Colors.white, BlendMode.dstOver),
+  //                             fit: BoxFit.cover,
+  //                             image: AssetImage("assets/images/map.png"))),
+  //                   ),
+  //                 );
+  //               },
+  //             )),
+  //
+  //       ],
+  //
+  //     ),);
+  // }
   
   Widget rightPanel(BuildContext context){
     return  Container(
