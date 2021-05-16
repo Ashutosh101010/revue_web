@@ -7,6 +7,7 @@ import 'package:webrevue/AppBar/AppBarSec.dart';
 import 'package:webrevue/ColorClass.dart';
 import 'package:webrevue/TabWidget/RatingWidgetClass.dart';
 import 'package:webrevue/TabWidget/ReviewsTab.dart';
+import 'package:webrevue/footer/FooterWidget.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
 import '../LoginScreen.dart';
@@ -194,8 +195,10 @@ body: CustomScrollView(controller: controller,
               ),
               constraints.maxWidth>=1100?rightPanel(context):Container()
             ],
-          )
-
+          ),
+              Container(margin: EdgeInsets.only(top:10,left: 8,right: 8),
+              color: Colors.black26,width: MediaQuery.of(context).size.width,height: 1,)
+,FooterWidget()
         ])
     )
 

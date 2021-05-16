@@ -31,7 +31,7 @@ class ReviewTabState extends State{
   Widget build(BuildContext context) {
     double width= MediaQuery.of(context).size.width;
    return Container(
-     margin: EdgeInsets.only(left: 50,right: 30,top: 20,bottom: 20),
+     margin: EdgeInsets.only(left: width>800?50:0,right: width>800?30:0,top: 20,bottom: 20),
      decoration: BoxDecoration(border: Border(bottom:BorderSide(color: Colors.black12,width: 1))),
      child: Padding(
        padding: const EdgeInsets.only(bottom:12.0),
@@ -169,9 +169,9 @@ class ReviewTabState extends State{
                              return AlertDialog(
                                backgroundColor: Colors.white,
                                insetPadding:
-                               width>1000?
+                               width>700?
                                EdgeInsets.only(left: 100,right: 100,top: 50,bottom: 50):
-                               EdgeInsets.all(15),
+                               EdgeInsets.all(5),
                                contentPadding: EdgeInsets.all(10),
                                clipBehavior: Clip.antiAliasWithSaveLayer,
                                content: ReviewDetails(),
@@ -208,31 +208,33 @@ class ReviewTabState extends State{
     return  Flexible(flex: 1,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
-        child: Row(
-          children: [
-            AutoSizeText(
-                "Price ",
-                style: TextStyle(
-                    color:  Colors.black87,
+        child: FittedBox(fit: BoxFit.fitWidth,
+          child: Row(
+            children: [
+              AutoSizeText(
+                  "Price ",
+                  style: TextStyle(
+                      color:  Colors.black87,
 
-                    fontWeight: FontWeight.w700,
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
-                ),
-                textAlign: TextAlign.left
-            ),
-            AutoSizeText(
-                " 45000 /month",
-                style:  TextStyle(
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w700,
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  ),
+                  textAlign: TextAlign.left
+              ),
+              AutoSizeText(
+                  " 45000 /month",
+                  style:  TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w600,
 
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
-                ),
-                textAlign: TextAlign.left
-            ),
-          ],
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  ),
+                  textAlign: TextAlign.left
+              ),
+            ],
+          ),
         ),
       ),);
   }
@@ -241,15 +243,182 @@ class ReviewTabState extends State{
     return  Flexible(flex: 1,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
+        child: FittedBox(fit: BoxFit.fitWidth,
+          child: Row(
+            children: [
+              Icon(Icons.king_bed,size: 22,),
+              AutoSizeText(
+                  "  Bed Rooms :",
+                  style:  TextStyle(
+                      color:  Colors.black87,
+                      fontWeight: FontWeight.w700,
+
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  ),
+                  textAlign: TextAlign.left
+              ),
+              AutoSizeText(
+                  " 2",
+                  style:  TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w600,
+
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  ),
+                  textAlign: TextAlign.left
+              ),
+            ],
+          ),
+        ),
+      ),);
+  }
+
+  Widget ratingWidget(){
+    return   Flexible(
+      flex: 1,
+      child:  Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: FittedBox(fit: BoxFit.fitWidth,
+          child: Row(
+            children: [
+              GFRating(
+                size: 20,
+                value: valueRating,
+                color: Colors.yellow,
+                borderColor: Colors.yellow,
+                onChanged: (value) {
+                  setState(() {
+                    valueRating = value;
+                  });
+                },
+              ),
+
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: FittedBox(fit: BoxFit.fitWidth,
+                  child: Row(
+                    children: [
+                      AutoSizeText(
+                          "4.85",
+                          style: TextStyle(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w700,
+
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          ),
+                          textAlign: TextAlign.left
+                      ),
+
+                      AutoSizeText(
+                          " (54 reviews)",
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontStyle:  FontStyle.normal,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.0
+                          ),
+                          textAlign: TextAlign.left
+                      ),
+
+
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),);
+  }
+
+  Widget floorPlanWidget(){
+    return  Flexible(flex: 1,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: FittedBox(fit: BoxFit.fitWidth,
+          child: Row(
+            children: [
+              AutoSizeText(
+                  "Floor Plan ",
+                  style:  TextStyle(
+                      color:  Colors.black87,
+                      fontWeight: FontWeight.w700,
+
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  ),
+                  textAlign: TextAlign.left
+              ),
+              AutoSizeText(
+                  " 564 sqft / 52 sqm",
+                  style:  TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w600,
+
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  ),
+                  textAlign: TextAlign.left
+              ),
+            ],
+          ),
+        ),
+      ),);
+  }
+
+  Widget reviewDateWidget(){
+    return Flexible(flex: 1,child:  Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: FittedBox(fit: BoxFit.fitWidth,
         child: Row(
           children: [
-            Icon(Icons.king_bed,size: 22,),
             AutoSizeText(
-                "  Bed Rooms :",
+                "Review Date ",
                 style:  TextStyle(
                     color:  Colors.black87,
-                    fontWeight: FontWeight.w700,
 
+                    fontWeight: FontWeight.w700,
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0
+                ),
+                textAlign: TextAlign.left
+            ),
+
+            AutoSizeText(
+                " 23 Dec 2020",
+                style:  TextStyle(
+
+
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600
+                ),
+                textAlign: TextAlign.left
+            ),
+          ],
+        ),
+      ),
+    ),);
+  }
+
+  Widget bathRoomWidget(){
+    return Flexible(flex: 1, child: Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: FittedBox(fit: BoxFit.fitWidth,
+        child: Row(
+          children: [
+            Icon(Icons.bathtub_outlined),
+            AutoSizeText(
+                "  Bath Rooms :",
+                style: TextStyle(
+                    color:  Colors.black87,
+
+                    fontWeight: FontWeight.w700,
                     fontStyle:  FontStyle.normal,
                     fontSize: 16.0
                 ),
@@ -268,161 +437,6 @@ class ReviewTabState extends State{
             ),
           ],
         ),
-      ),);
-  }
-
-  Widget ratingWidget(){
-    return   Flexible(
-      flex: 1,
-      child:  Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: Row(
-          children: [
-            GFRating(
-              size: 20,
-              value: valueRating,
-              color: Colors.yellow,
-              borderColor: Colors.yellow,
-              onChanged: (value) {
-                setState(() {
-                  valueRating = value;
-                });
-              },
-            ),
-
-
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  AutoSizeText(
-                      "4.85",
-                      style: TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w700,
-
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
-                      ),
-                      textAlign: TextAlign.left
-                  ),
-
-                  AutoSizeText(
-                      " (54 reviews)",
-                      style: TextStyle(
-                          color: Colors.black54,
-                          fontStyle:  FontStyle.normal,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16.0
-                      ),
-                      textAlign: TextAlign.left
-                  ),
-
-
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),);
-  }
-
-  Widget floorPlanWidget(){
-    return  Flexible(flex: 1,
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: Row(
-          children: [
-            AutoSizeText(
-                "Floor Plan ",
-                style:  TextStyle(
-                    color:  Colors.black87,
-                    fontWeight: FontWeight.w700,
-
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
-                ),
-                textAlign: TextAlign.left
-            ),
-            AutoSizeText(
-                " 564 sqft / 52 sqm",
-                style:  TextStyle(
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w600,
-
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
-                ),
-                textAlign: TextAlign.left
-            ),
-          ],
-        ),
-      ),);
-  }
-
-  Widget reviewDateWidget(){
-    return Flexible(flex: 1,child:  Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Row(
-        children: [
-          AutoSizeText(
-              "Review Date ",
-              style:  TextStyle(
-                  color:  Colors.black87,
-
-                  fontWeight: FontWeight.w700,
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-              ),
-              textAlign: TextAlign.left
-          ),
-
-          AutoSizeText(
-              " 23 Dec 2020",
-              style:  TextStyle(
-
-
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0,
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w600
-              ),
-              textAlign: TextAlign.left
-          ),
-        ],
-      ),
-    ),);
-  }
-
-  Widget bathRoomWidget(){
-    return Flexible(flex: 1, child: Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Row(
-        children: [
-          Icon(Icons.bathtub_outlined),
-          AutoSizeText(
-              "  Bath Rooms :",
-              style: TextStyle(
-                  color:  Colors.black87,
-
-                  fontWeight: FontWeight.w700,
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-              ),
-              textAlign: TextAlign.left
-          ),
-          AutoSizeText(
-              " 2",
-              style:  TextStyle(
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w600,
-
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-              ),
-              textAlign: TextAlign.left
-          ),
-        ],
       ),
     ),);
   }

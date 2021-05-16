@@ -39,7 +39,7 @@ class ReviewDetailState extends State<ReviewDetails> {
      maxWidth = MediaQuery.of(context).size.width;
     return Container(
       width: MediaQuery.of(context).size.width,
-      child: maxWidth>=1000?
+      child: maxWidth>=700?
       Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -136,9 +136,8 @@ class ReviewDetailState extends State<ReviewDetails> {
   }
 
   Widget ratingWidget(){
-    return   Flexible(
-      flex: 1,
-      child:  Padding(
+    return   FittedBox(fit: BoxFit.fitWidth,
+      child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Row(
           children: [
@@ -188,38 +187,41 @@ class ReviewDetailState extends State<ReviewDetails> {
             ),
           ],
         ),
-      ),);
+      ),
+    );
   }
 
   Widget floorPlan(){
     return  Flexible(flex: 1,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
-        child: Row(
-          children: [
-            AutoSizeText(
-                "Floor Plan ",
-                style:  TextStyle(
-                    color:  Colors.black87,
-                    fontWeight: FontWeight.w700,
+        child: FittedBox(fit: BoxFit.fitWidth,
+          child: Row(
+            children: [
+              AutoSizeText(
+                  "Floor Plan ",
+                  style:  TextStyle(
+                      color:  Colors.black87,
+                      fontWeight: FontWeight.w700,
 
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
-                ),
-                textAlign: TextAlign.left
-            ),
-            AutoSizeText(
-                " 564 sqft / 52 sqm",
-                style:  TextStyle(
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w600,
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  ),
+                  textAlign: TextAlign.left
+              ),
+              AutoSizeText(
+                  " 564 sqft / 52 sqm",
+                  style:  TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w600,
 
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
-                ),
-                textAlign: TextAlign.left
-            ),
-          ],
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 16.0
+                  ),
+                  textAlign: TextAlign.left
+              ),
+            ],
+          ),
         ),
       ),);
   }
@@ -227,33 +229,35 @@ class ReviewDetailState extends State<ReviewDetails> {
   Widget reviewDateWidget(){
     return Flexible(flex: 1,child:  Padding(
       padding: const EdgeInsets.all(4.0),
-      child: Row(
-        children: [
-          AutoSizeText(
-              "Review Date ",
-              style:  TextStyle(
-                  color:  Colors.black87,
+      child: FittedBox(fit: BoxFit.fitWidth,
+        child: Row(
+          children: [
+            AutoSizeText(
+                "Review Date ",
+                style:  TextStyle(
+                    color:  Colors.black87,
 
-                  fontWeight: FontWeight.w700,
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-              ),
-              textAlign: TextAlign.left
-          ),
+                    fontWeight: FontWeight.w700,
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0
+                ),
+                textAlign: TextAlign.left
+            ),
 
-          AutoSizeText(
-              " 23 Dec 2020",
-              style:  TextStyle(
+            AutoSizeText(
+                " 23 Dec 2020",
+                style:  TextStyle(
 
 
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0,
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w600
-              ),
-              textAlign: TextAlign.left
-          ),
-        ],
+                    fontStyle:  FontStyle.normal,
+                    fontSize: 16.0,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600
+                ),
+                textAlign: TextAlign.left
+            ),
+          ],
+        ),
       ),
     ),);
   }
@@ -366,153 +370,153 @@ class ReviewDetailState extends State<ReviewDetails> {
   Widget ratingPercentWidget(BuildContext context){
     return  Padding(
       padding: const EdgeInsets.only(left: 8,right: 8),
-      child: SizedBox(
-        // height: 100,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: CircularPercentIndicator(
-                  radius: 40.0,
-                  animation: false,
-                  lineWidth: 4.0,
-                  percent: 0.4,
-                  center: new Text(
-                    "3.6",
-                    style: new TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0),
-                  ),
-                  circularStrokeCap: CircularStrokeCap.butt,
-                  backgroundColor: Colors.black26,
-                  progressColor: Colors.orange,
-                  footer: Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text("Facilities",
-                        style: const TextStyle(
-                            color: const Color(0xff000000),
+      child: FittedBox(fit: BoxFit.fitWidth,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: CircularPercentIndicator(
+                radius: 40.0,
+                animation: false,
+                lineWidth: 4.0,
+                percent: 0.4,
+                center: new Text(
+                  "3.6",
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15.0),
+                ),
+                circularStrokeCap: CircularStrokeCap.butt,
+                backgroundColor: Colors.black26,
+                progressColor: Colors.orange,
+                footer: Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text("Facilities",
+                      style: const TextStyle(
+                          color: const Color(0xff000000),
 
-                            fontStyle: FontStyle.normal,
-                            fontSize: 14),
-                        textAlign: TextAlign.left),
-                  ) ,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14),
+                      textAlign: TextAlign.left),
+                ) ,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: CircularPercentIndicator(
+                radius: 40.0,
+                animation: false,
+                lineWidth: 4.0,
+                percent: 0.3,
+                center: new Text(
+                  "3.2",
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15.0),
+                ),
+                circularStrokeCap: CircularStrokeCap.butt,
+                backgroundColor: Colors.black26,
+                progressColor: Colors.blue,
+                footer: Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text("Design",
+                      style: const TextStyle(
+                          color: const Color(0xff000000),
+
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14),
+                      textAlign: TextAlign.left),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: CircularPercentIndicator(
-                  radius: 40.0,
-                  animation: false,
-                  lineWidth: 4.0,
-                  percent: 0.3,
-                  center: new Text(
-                    "3.2",
-                    style: new TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0),
-                  ),
-                  circularStrokeCap: CircularStrokeCap.butt,
-                  backgroundColor: Colors.black26,
-                  progressColor: Colors.blue,
-                  footer: Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text("Design",
-                        style: const TextStyle(
-                            color: const Color(0xff000000),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: CircularPercentIndicator(
+                radius: 40.0,
+                animation: false,
+                lineWidth: 4.0,
+                percent: 0.5,
+                center: new Text(
+                  "3.5",
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15.0),
+                ),
+                circularStrokeCap: CircularStrokeCap.butt,
+                backgroundColor: Colors.black26,
+                progressColor: Colors.red,
+                footer: Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text("Location",
+                      style: const TextStyle(
+                          color: const Color(0xff000000),
 
-                            fontStyle: FontStyle.normal,
-                            fontSize: 14),
-                        textAlign: TextAlign.left),
-                  ),
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14),
+                      textAlign: TextAlign.left),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: CircularPercentIndicator(
-                  radius: 40.0,
-                  animation: false,
-                  lineWidth: 4.0,
-                  percent: 0.5,
-                  center: new Text(
-                    "3.5",
-                    style: new TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0),
-                  ),
-                  circularStrokeCap: CircularStrokeCap.butt,
-                  backgroundColor: Colors.black26,
-                  progressColor: Colors.red,
-                  footer: Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text("Location",
-                        style: const TextStyle(
-                            color: const Color(0xff000000),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: CircularPercentIndicator(
+                radius: 40.0,
+                animation: false,
+                lineWidth: 4.0,
+                percent: 0.5,
+                center: new Text(
+                  "3.5",
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15.0),
+                ),
+                circularStrokeCap: CircularStrokeCap.butt,
+                backgroundColor: Colors.black26,
+                progressColor: Colors.yellow,
+                footer: Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text("Value",
+                      style: const TextStyle(
+                          color: const Color(0xff000000),
 
-                            fontStyle: FontStyle.normal,
-                            fontSize: 14),
-                        textAlign: TextAlign.left),
-                  ),
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14),
+                      textAlign: TextAlign.left),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: CircularPercentIndicator(
-                  radius: 40.0,
-                  animation: false,
-                  lineWidth: 4.0,
-                  percent: 0.5,
-                  center: new Text(
-                    "3.5",
-                    style: new TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0),
-                  ),
-                  circularStrokeCap: CircularStrokeCap.butt,
-                  backgroundColor: Colors.black26,
-                  progressColor: Colors.yellow,
-                  footer: Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text("Value",
-                        style: const TextStyle(
-                            color: const Color(0xff000000),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: CircularPercentIndicator(
+                radius: 40.0,
+                animation: false,
+                lineWidth: 4.0,
+                percent: 0.5,
+                center: new Text(
+                  "3.5",
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15.0),
+                ),
+                circularStrokeCap: CircularStrokeCap.butt,
+                backgroundColor: Colors.black26,
+                progressColor: Colors.purple,
+                footer: Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text("Management",
+                      style: const TextStyle(
+                          color: const Color(0xff000000),
 
-                            fontStyle: FontStyle.normal,
-                            fontSize: 14),
-                        textAlign: TextAlign.left),
-                  ),
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14),
+                      textAlign: TextAlign.left),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: CircularPercentIndicator(
-                  radius: 40.0,
-                  animation: false,
-                  lineWidth: 4.0,
-                  percent: 0.5,
-                  center: new Text(
-                    "3.5",
-                    style: new TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0),
-                  ),
-                  circularStrokeCap: CircularStrokeCap.butt,
-                  backgroundColor: Colors.black26,
-                  progressColor: Colors.purple,
-                  footer: Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text("Management",
-                        style: const TextStyle(
-                            color: const Color(0xff000000),
-
-                            fontStyle: FontStyle.normal,
-                            fontSize: 14),
-                        textAlign: TextAlign.left),
-                  ),
-                ),
-              ),
-            ],
-          )),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -523,10 +527,10 @@ class ReviewDetailState extends State<ReviewDetails> {
         child: Column(
           children: [
             CircularPercentIndicator(
-              radius: 60.0,
+              radius: 50.0,
               animation: true,
               animationDuration: 1200,
-              lineWidth: 6.0,
+              lineWidth: 5.0,
               percent: 0.4,
               center: new Text(
                 "3.2",
@@ -543,11 +547,11 @@ class ReviewDetailState extends State<ReviewDetails> {
               child: Text(
                   "Overall Rating".toUpperCase(),
                   style: const TextStyle(
-                      color:  const Color(0xff000000),
+                      color:  Colors.black87,
                       fontWeight: FontWeight.w700,
 
                       fontStyle:  FontStyle.normal,
-                      fontSize: 14.0
+                      fontSize: 12.0
                   ),
                   textAlign: TextAlign.left
               ),

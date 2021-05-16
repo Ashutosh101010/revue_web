@@ -187,8 +187,10 @@ class CompoundListState extends State<CompoundList>{
                       leftSide(maxWidth/2),
                       rightSide(maxWidth/3)
                     ],):
-                    leftSide(maxWidth)
-
+                    leftSide(maxWidth),
+                    Container(margin: EdgeInsets.only(top:10,left: 8,right: 8),
+        color: Colors.black26,width: MediaQuery.of(context).size.width,height: 1,)
+,FooterWidget()
                   ],
                 ),
               ),
@@ -288,235 +290,237 @@ class CompoundListState extends State<CompoundList>{
           itemBuilder: (context,index){
             return
               Container(
-                width:width,
-                height: width>=700?280:450,
+                height: width>=600?280:450,
                 decoration: BoxDecoration(color: Colors.white,),
                 child: Column(
                   children: [
-                   width>=700?
-                   Row(mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          width:width/2,
-                          alignment: Alignment.topCenter,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                            Container(
-                              height: 150, alignment: Alignment.topCenter,
-                              width: width/2,  margin: EdgeInsets.only(left: 5,right: 5,bottom: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5), image: DecorationImage(
-                                image: AssetImage(
-                                    propertyImage[index]),
-                                fit: BoxFit.cover,
-                              )),
-                            ),
-
-                            width>=600?
-                            Container(width: width/2,
-                              child: FittedBox(fit:BoxFit.fitWidth,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      height: 95,
-                                      width: width/4,
-                                      margin: EdgeInsets.only(left: 5,right: 5),
-                                      decoration: BoxDecoration(
-                                          borderRadius:BorderRadius.circular(5), image: DecorationImage(
-                                        image: AssetImage(
-                                            propertyImage[index]),
-                                        fit: BoxFit.cover,
-                                      )),
-                                    ),
-                                    Container(
-                                      height: 95,
-                                      width:width/4,
-                                      margin: EdgeInsets.only(left: 5,right: 5),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(5), image: DecorationImage(
-                                        image: AssetImage(
-                                            propertyImage[index]),
-                                        fit: BoxFit.cover,
-                                      )),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ):Container()
-                          ],),
-                        ),
-                        Container(
-                          width: width/2,alignment: Alignment.topCenter,
-                          child:
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              // assets/images/userLocation.png
-                              SizedBox(width: width/2,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    // Trishla Villa
-                                    Column( crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 8),
-                                          child: AutoSizeText(
-                                              "Trishla villa".toUpperCase(),
-                                              style: const TextStyle(
-                                                  color:  Colors.black87,
-                                                  fontWeight: FontWeight.w700,
-
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 16.0
-                                              ),
-                                              textAlign: TextAlign.left
-                                          ),
-                                        ), Padding(
-                                          padding: const EdgeInsets.only(left:8,top:10),
-                                          child: AutoSizeText(
-                                              "Address: ",
-                                              style: TextStyle(
-                                                  color:Colors.black87,
-                                                  fontWeight: FontWeight.w600,
-
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 14.0
-                                              ),
-                                              textAlign: TextAlign.left
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8,right: 8,top:20),
-                                      child: CircularPercentIndicator(
-                                        radius: width>=600?38.0:25,
-                                        lineWidth:width>=600? 4.0:2.0,
-                                        backgroundColor: Colors.black26,
-                                        percent: 0.5,
-                                        center: new Text(
-                                          "3.5",
-                                          style: new TextStyle(
-                                              fontWeight: FontWeight.bold, fontSize: 10.0),
-                                        ),
-                                        circularStrokeCap: CircularStrokeCap.butt,
-                                        progressColor: Colors.red,
-                                        footer: Padding(
-                                          padding: const EdgeInsets.all(5.0),
-                                          child: AutoSizeText("54 Reviews",
-                                              style:  TextStyle(
-                                                  color:Colors.black54,
-                                                  fontWeight: FontWeight.w600,
-                                                  decorationStyle: TextDecorationStyle.solid,
-                                                  fontStyle: FontStyle.normal,
-                                                  fontSize: 10.0),
-                                              textAlign:
-                                              TextAlign.left),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8,right: 8),
-                                child: AutoSizeText(
-                                    "Southwest apartments, Green community West,Green Community,Dubai",
-                                    style:  TextStyle(
-                                        color:Colors.black87,
-                                        fontWeight: FontWeight.w600,
-
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 12.0,
-                                    ),
-                                    textAlign: TextAlign.center),
-                              ),
-
-                              Padding(
-                                padding: EdgeInsets.only(left:16.0,right: 16,top:16,bottom:10),
-                                child: ratingBar(context,width),
-                              ),
-
+                   width>=600?
+                   FittedBox(fit: BoxFit.fitWidth,
+                     child: Row(
+                       mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width:width/2,
+                            alignment: Alignment.topCenter,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
                               Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    FittedBox(
-                                      child: Row(
+                                height: 150, alignment: Alignment.topCenter,
+                                width: width/2,  margin: EdgeInsets.only(left: 5,right: 5,bottom: 5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5), image: DecorationImage(
+                                  image: AssetImage(
+                                      propertyImage[index]),
+                                  fit: BoxFit.cover,
+                                )),
+                              ),
+
+                              width>=600?
+                              Container(width: width/2,
+                                child: FittedBox(fit:BoxFit.fitWidth,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height: 95,
+                                        width: width/4,
+                                        margin: EdgeInsets.only(left: 5,right: 5),
+                                        decoration: BoxDecoration(
+                                            borderRadius:BorderRadius.circular(5), image: DecorationImage(
+                                          image: AssetImage(
+                                              propertyImage[index]),
+                                          fit: BoxFit.cover,
+                                        )),
+                                      ),
+                                      Container(
+                                        height: 95,
+                                        width:width/4,
+                                        margin: EdgeInsets.only(left: 5,right: 5),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5), image: DecorationImage(
+                                          image: AssetImage(
+                                              propertyImage[index]),
+                                          fit: BoxFit.cover,
+                                        )),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ):Container()
+                            ],),
+                          ),
+                          Container(
+                            width: width/2,alignment: Alignment.topCenter,
+                            child:
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                // assets/images/userLocation.png
+                                SizedBox(width: width/2,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      // Trishla Villa
+                                      Column( crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Icon(CupertinoIcons.chat_bubble_2,
-                                            color: Colors.black,size: 18,),
-                                          Padding(padding: const EdgeInsets.only(right: 20,),
-                                            child: AutoSizeText("Q & A",
-                                                style: const TextStyle(shadows: [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],
-                                                    color: const Color(0xff000000),
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle: FontStyle.normal,
-                                                    fontSize: 14.0),
-                                                textAlign: TextAlign.left),
-                                          )
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 8),
+                                            child: AutoSizeText(
+                                                "Trishla villa".toUpperCase(),
+                                                style: const TextStyle(
+                                                    color:  Colors.black87,
+                                                    fontWeight: FontWeight.w700,
+
+                                                    fontStyle:  FontStyle.normal,
+                                                    fontSize: 16.0
+                                                ),
+                                                textAlign: TextAlign.left
+                                            ),
+                                          ), Padding(
+                                            padding: const EdgeInsets.only(left:8,top:10),
+                                            child: AutoSizeText(
+                                                "Address: ",
+                                                style: TextStyle(
+                                                    color:Colors.black87,
+                                                    fontWeight: FontWeight.w600,
+
+                                                    fontStyle:  FontStyle.normal,
+                                                    fontSize: 14.0
+                                                ),
+                                                textAlign: TextAlign.left
+                                            ),
+                                          ),
                                         ],
                                       ),
-                                    ),
-                                    FittedBox(
-                                      child: Container(
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 8,right: 8,top:20),
+                                        child: CircularPercentIndicator(
+                                          radius: width>=600?38.0:25,
+                                          lineWidth:width>=600? 4.0:2.0,
+                                          backgroundColor: Colors.black26,
+                                          percent: 0.5,
+                                          center: new Text(
+                                            "3.5",
+                                            style: new TextStyle(
+                                                fontWeight: FontWeight.bold, fontSize: 10.0),
+                                          ),
+                                          circularStrokeCap: CircularStrokeCap.butt,
+                                          progressColor: Colors.red,
+                                          footer: Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: AutoSizeText("54 Reviews",
+                                                style:  TextStyle(
+                                                    color:Colors.black54,
+                                                    fontWeight: FontWeight.w600,
+                                                    decorationStyle: TextDecorationStyle.solid,
+                                                    fontStyle: FontStyle.normal,
+                                                    fontSize: 10.0),
+                                                textAlign:
+                                                TextAlign.left),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8,right: 8),
+                                  child: AutoSizeText(
+                                      "Southwest apartments, Green community West,Green Community,Dubai",
+                                      style:  TextStyle(
+                                          color:Colors.black87,
+                                          fontWeight: FontWeight.w600,
+
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 12.0,
+                                      ),
+                                      textAlign: TextAlign.center),
+                                ),
+
+                                Padding(
+                                  padding: EdgeInsets.only(left:16.0,right: 16,top:16,bottom:10),
+                                  child: ratingBar(context,width),
+                                ),
+
+                                Container(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      FittedBox(
                                         child: Row(
                                           children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(left:20.0,right:5),
-                                              child: Icon(CupertinoIcons.heart,color: Colors.black,size: 18,),
-                                            ),
-                                            AutoSizeText("Save",
-                                                style: const TextStyle(shadows: [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],
-                                                    color: const Color(0xff000000),
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle: FontStyle.normal,
-                                                    fontSize: 14.0),
-                                                textAlign: TextAlign.left)
+                                            Icon(CupertinoIcons.chat_bubble_2,
+                                              color: Colors.black,size: 18,),
+                                            Padding(padding: const EdgeInsets.only(right: 20,),
+                                              child: AutoSizeText("Q & A",
+                                                  style: const TextStyle(shadows: [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],
+                                                      color: const Color(0xff000000),
+                                                      fontWeight: FontWeight.w500,
+                                                      fontStyle: FontStyle.normal,
+                                                      fontSize: 14.0),
+                                                  textAlign: TextAlign.left),
+                                            )
                                           ],
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      FittedBox(
+                                        child: Container(
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(left:20.0,right:5),
+                                                child: Icon(CupertinoIcons.heart,color: Colors.black,size: 18,),
+                                              ),
+                                              AutoSizeText("Save",
+                                                  style: const TextStyle(shadows: [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],
+                                                      color: const Color(0xff000000),
+                                                      fontWeight: FontWeight.w500,
+                                                      fontStyle: FontStyle.normal,
+                                                      fontSize: 14.0),
+                                                  textAlign: TextAlign.left)
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
 
-                              InkWell(
-                                onTap: (){
-                                  Navigator.pushNamed(context, compoundDetails);
-                                  // Navigator.push(context,
-                                  //     MaterialPageRoute(builder: (context)=>CompoundDetails()));
-                                },onHover: (value){
-                                texthover[index] = value;
-                                viewmore = value;
-                                (context as Element).markNeedsBuild();
-                              },
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 10,top: 10),
-                                  width: width/2,alignment: Alignment.centerRight,
-                                  child: AutoSizeText("View more".toUpperCase(),
-                                      style: TextStyle(
-                                          color:texthover[index]?Colors.blue.shade900:
-                                          ColorClass.blueColor,
-                                          fontWeight: texthover[index]?FontWeight.w700:FontWeight.w500,
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: 10.0),
-                                      textAlign: TextAlign.left),
-                                ),
-                              )
-                            ],
+                                InkWell(
+                                  onTap: (){
+                                    Navigator.pushNamed(context, compoundDetails);
+                                    // Navigator.push(context,
+                                    //     MaterialPageRoute(builder: (context)=>CompoundDetails()));
+                                  },onHover: (value){
+                                  texthover[index] = value;
+                                  viewmore = value;
+                                  (context as Element).markNeedsBuild();
+                                },
+                                  child: Container(
+                                    margin: EdgeInsets.only(right: 10,top: 10),
+                                    width: width/2,alignment: Alignment.centerRight,
+                                    child: AutoSizeText("View more".toUpperCase(),
+                                        style: TextStyle(
+                                            color:texthover[index]?Colors.blue.shade900:
+                                            ColorClass.blueColor,
+                                            fontWeight: texthover[index]?FontWeight.w700:FontWeight.w500,
+                                            fontStyle: FontStyle.normal,
+                                            fontSize: 10.0),
+                                        textAlign: TextAlign.left),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ):
+                        ],
+                      ),
+                   ):
                    Column(children: [
                      Container(
                        height: 150, alignment: Alignment.topCenter,
@@ -698,7 +702,7 @@ class CompoundListState extends State<CompoundList>{
                    ],),
                     Padding(
                       padding: const EdgeInsets.only(top:10.0),
-                      child: Divider(color: Colors.black12,thickness: 1,height: 2,),
+                      child: index!=(propertyImage.length-1)?Divider(color: Colors.black12,thickness: 1,height: 2,):Container(),
                     )
                   ],
                 ),);
@@ -859,9 +863,9 @@ class CompoundListState extends State<CompoundList>{
 
   Widget ratingBar(BuildContext context,double rwidth){
     return  Container(
-        width: rwidth,
+        // width: rwidth,
         margin: EdgeInsets.only(top: 5,bottom: 5),
-        child: FittedBox(
+        child: FittedBox(fit: BoxFit.fitWidth,
           alignment: Alignment.centerLeft,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

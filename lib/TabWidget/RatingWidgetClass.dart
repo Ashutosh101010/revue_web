@@ -519,169 +519,171 @@ class RatingWidgetClassState extends State<RatingWidgetClass>{
   }
 
   Widget circularRatingWidget(BuildContext context){
-    return  Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CircularPercentIndicator(
-          radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
-          lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
-          animation: false,
+    return  FittedBox(fit:BoxFit.fitWidth,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircularPercentIndicator(
+            radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
+            lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
+            animation: false,
 
-          percent: 0.6,
-          center: new Text(
-            "3.6",
-            style:
-            new TextStyle(color:  Colors.black87,fontWeight: FontWeight.w700,
-                fontSize: 12.0),
-          ),
-          circularStrokeCap: CircularStrokeCap.butt,
-          backgroundColor: Colors.black26,
-          progressColor:  ColorClass.redColor,
-          fillColor: Colors.white,
-          footer: Padding(
-            padding: const EdgeInsets.only(
-              top: 8,right: 4),
-            child: AutoSizeText(
-                "Facilities".toUpperCase(),
-                style: const TextStyle(
-                    color:  Colors.black87,
-                    fontWeight: FontWeight.w700,
-
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 10.0
-                ),
-                textAlign: TextAlign.left
+            percent: 0.6,
+            center: new Text(
+              "3.6",
+              style:
+              new TextStyle(color:  Colors.black87,fontWeight: FontWeight.w700,
+                  fontSize: 12.0),
             ),
-          ) ,
-        ),
-        CircularPercentIndicator(
-          radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
-          lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
-
-          animation: false,
-
-          percent: 0.2,
-          center: new Text(
-            "3.2",
-            style:
-            new TextStyle(color:  Colors.black87, fontSize: 12.0,fontWeight: FontWeight.w700),
-          ),
-          circularStrokeCap: CircularStrokeCap.butt,
-          backgroundColor: Colors.black26,
-          progressColor:  ColorClass.blueColor,
-          fillColor: Colors.white,
-          footer:  Padding(
-            padding: const EdgeInsets.only(
+            circularStrokeCap: CircularStrokeCap.butt,
+            backgroundColor: Colors.black26,
+            progressColor:  ColorClass.redColor,
+            fillColor: Colors.white,
+            footer: Padding(
+              padding: const EdgeInsets.only(
                 top: 8,right: 4),
-            child: AutoSizeText(
-                "Design".toUpperCase(),
-                style: const TextStyle(
-                    color:  Colors.black87,
-                    fontWeight: FontWeight.w700,
+              child: AutoSizeText(
+                  "Facilities".toUpperCase(),
+                  style: const TextStyle(
+                      color:  Colors.black87,
+                      fontWeight: FontWeight.w700,
 
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 10.0
-                ),
-                textAlign: TextAlign.left
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 10.0
+                  ),
+                  textAlign: TextAlign.left
+              ),
+            ) ,
+          ),
+          CircularPercentIndicator(
+            radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
+            lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
+
+            animation: false,
+
+            percent: 0.2,
+            center: new Text(
+              "3.2",
+              style:
+              new TextStyle(color:  Colors.black87, fontSize: 12.0,fontWeight: FontWeight.w700),
+            ),
+            circularStrokeCap: CircularStrokeCap.butt,
+            backgroundColor: Colors.black26,
+            progressColor:  ColorClass.blueColor,
+            fillColor: Colors.white,
+            footer:  Padding(
+              padding: const EdgeInsets.only(
+                  top: 8,right: 4),
+              child: AutoSizeText(
+                  "Design".toUpperCase(),
+                  style: const TextStyle(
+                      color:  Colors.black87,
+                      fontWeight: FontWeight.w700,
+
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 10.0
+                  ),
+                  textAlign: TextAlign.left
+              ),
             ),
           ),
-        ),
-        CircularPercentIndicator(
-          radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
-          lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
+          CircularPercentIndicator(
+            radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
+            lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
 
-          animation: false,
-          percent: 0.6,
-          center: new Text(
-            "3.8",
-            style:
-            new TextStyle(color:  Colors.black87, fontSize: 12.0,fontWeight: FontWeight.w700),
-          ),
-          circularStrokeCap: CircularStrokeCap.butt,
-          backgroundColor: Colors.black26,
-          progressColor: Colors.green,
-          fillColor: Colors.white,
-          footer: Padding(
-            padding: const EdgeInsets.only(
-                top: 8,right: 4),
-            child: AutoSizeText(
-                "Location".toUpperCase(),
-                style: const TextStyle(
-                    color:  const Color(0xff000000),
-                    fontWeight: FontWeight.w700,
+            animation: false,
+            percent: 0.6,
+            center: new Text(
+              "3.8",
+              style:
+              new TextStyle(color:  Colors.black87, fontSize: 12.0,fontWeight: FontWeight.w700),
+            ),
+            circularStrokeCap: CircularStrokeCap.butt,
+            backgroundColor: Colors.black26,
+            progressColor: Colors.green,
+            fillColor: Colors.white,
+            footer: Padding(
+              padding: const EdgeInsets.only(
+                  top: 8,right: 4),
+              child: AutoSizeText(
+                  "Location".toUpperCase(),
+                  style: const TextStyle(
+                      color:  const Color(0xff000000),
+                      fontWeight: FontWeight.w700,
 
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 10.0,letterSpacing: 0.5
-                ),
-                textAlign: TextAlign.left
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 10.0,letterSpacing: 0.5
+                  ),
+                  textAlign: TextAlign.left
+              ),
             ),
           ),
-        ),
-        CircularPercentIndicator(
-          animation: false,
-          radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
-          lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
+          CircularPercentIndicator(
+            animation: false,
+            radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
+            lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
 
-          percent: 0.6,
-          center: new Text(
-            "3.6",
-            style:
-            new TextStyle(   color:  Colors.black87,fontSize: 12.0,fontWeight: FontWeight.w700),
-          ),
-          circularStrokeCap: CircularStrokeCap.butt,
-          backgroundColor: Colors.black26,
-          progressColor:  Colors.orangeAccent,
-          fillColor: Colors.white,
-          footer: Padding(
-            padding: const EdgeInsets.only(
-                top: 8,right: 4),
-            child: AutoSizeText(
-                "Value".toUpperCase(),
-                style: const TextStyle(
-                    color:  Colors.black87,
-                    fontWeight: FontWeight.w700,
+            percent: 0.6,
+            center: new Text(
+              "3.6",
+              style:
+              new TextStyle(   color:  Colors.black87,fontSize: 12.0,fontWeight: FontWeight.w700),
+            ),
+            circularStrokeCap: CircularStrokeCap.butt,
+            backgroundColor: Colors.black26,
+            progressColor:  Colors.orangeAccent,
+            fillColor: Colors.white,
+            footer: Padding(
+              padding: const EdgeInsets.only(
+                  top: 8,right: 4),
+              child: AutoSizeText(
+                  "Value".toUpperCase(),
+                  style: const TextStyle(
+                      color:  Colors.black87,
+                      fontWeight: FontWeight.w700,
 
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 10.0,
-                ),
-                textAlign: TextAlign.left
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 10.0,
+                  ),
+                  textAlign: TextAlign.left
+              ),
             ),
           ),
-        ),
-        CircularPercentIndicator(
-          radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
-          lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
+          CircularPercentIndicator(
+            radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
+            lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
 
-          animation: false,
-          percent: 0.3,
-          center: new Text(
-            "3.3",
-            style:
-            new TextStyle(
-                color:  Colors.black87,fontSize: 12.0,fontWeight: FontWeight.w700),
-          ),
-          circularStrokeCap: CircularStrokeCap.butt,
-          backgroundColor: Colors.black26,
-          progressColor: Colors.indigo,
-          fillColor: Colors.white,
-          footer: Padding(
-            padding: const EdgeInsets.only(
-                top: 8,right: 4),
-            child: AutoSizeText(
-                "Management".toUpperCase(),
-                style: const TextStyle(
-                    color:  Colors.black87,
-                    fontWeight: FontWeight.w700,
+            animation: false,
+            percent: 0.3,
+            center: new Text(
+              "3.3",
+              style:
+              new TextStyle(
+                  color:  Colors.black87,fontSize: 12.0,fontWeight: FontWeight.w700),
+            ),
+            circularStrokeCap: CircularStrokeCap.butt,
+            backgroundColor: Colors.black26,
+            progressColor: Colors.indigo,
+            fillColor: Colors.white,
+            footer: Padding(
+              padding: const EdgeInsets.only(
+                  top: 8,right: 4),
+              child: AutoSizeText(
+                  "Management".toUpperCase(),
+                  style: const TextStyle(
+                      color:  Colors.black87,
+                      fontWeight: FontWeight.w700,
 
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 10.0,
-                ),
-                textAlign: TextAlign.left
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 10.0,
+                  ),
+                  textAlign: TextAlign.left
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
