@@ -170,15 +170,20 @@ class FooterWidgetState extends State<FooterWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          revue(),
+          Row(mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              revue(),
+            ],
+          ),
           SizedBox(height: 20,),
           aboutWidget(),
           SizedBox(height: 20,),
-          propertyOwner(),
-          SizedBox(height: 20,),
           community(),
           SizedBox(height: 20,),
-          workWithUs()
+          propertyOwner(),
+          SizedBox(height: 20,),
+          workWithUs(),
+          SizedBox(height: 20,),
         ],
       ),
     );
@@ -448,7 +453,7 @@ class FooterWidgetState extends State<FooterWidget> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left:20.0,right:8,top:8,bottom:8),
               child: Image.asset(
                 "assets/images/android.png",
                 width: 40,

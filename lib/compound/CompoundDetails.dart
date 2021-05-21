@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -144,10 +145,13 @@ ScrollController controller=new ScrollController();
            },),
          ),
 
-body: CustomScrollView(controller: controller,
+body: CustomScrollView(shrinkWrap: true,
+  controller: controller,
   slivers: [
-    SliverPersistentHeader(pinned: true,
-        delegate:PersistentHeader(controller: controller,widget:
+    SliverPersistentHeader(
+        pinned: true,
+        delegate:PersistentHeader(
+            controller: controller,widget:
      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
        children: [
          Expanded(
@@ -276,7 +280,7 @@ body: CustomScrollView(controller: controller,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Properties  ",
+              Text("Reviews  ",
                 style: TextStyle(
                   color: Colors.black87,fontWeight: FontWeight.w700,
                   fontSize: 18,
@@ -525,29 +529,6 @@ body: CustomScrollView(controller: controller,
         shrinkWrap: true,physics: NeverScrollableScrollPhysics(),
         children: <Widget>[
 
-          // Container(
-          //   width: 200,
-          //   height: 40,
-          //   margin: EdgeInsets.only( left: 50,right:50 ,  top: 10, bottom: 10),
-          //   child: FlatButton(
-          //     onPressed: (){
-          //       Navigator.pushNamed(context, addreview);
-          //     },
-          //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          //     color: ColorClass.blueColor,
-          //     hoverColor: Colors.blue.shade900,
-          //     child: // Write Review
-          //     Text(
-          //         "Write Review",
-          //         style: const TextStyle(
-          //             color:  const Color(0xffffffff),
-          //             fontWeight: FontWeight.w700,
-          //             fontStyle:  FontStyle.normal,
-          //             fontSize: 16.0
-          //         ),
-          //         textAlign: TextAlign.left
-          //     ),),
-          // ),
           Padding(
             padding: EdgeInsets.only( left: 20,right:20 ,  top: 20, bottom: 10),
             child: Text(
@@ -745,66 +726,70 @@ class HeaderState extends State<Header>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-  return  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      TextButton(child:
-      Container(width:60, height: 50,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+  return  Container(color: Colors.white,
+    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        TextButton(child:
+        Container(width:60, height: 50,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
 
-            Text("Rating",style: TextStyle(color: selectedTab==1?Colors.red:Colors.black54,fontWeight: FontWeight.w700,),),
+             AutoSizeText("Rating",maxLines: 1,
+               style: TextStyle(color: selectedTab==1?Colors.red:Colors.black54,fontWeight: FontWeight.w700,),),
 
-            selectedTab==1? Container( width: 500,
-                height:2,color:Colors.red):Container()
-          ],
-        ),
-      ),autofocus: false,
-        onPressed: (){
-          this.widget.controller.animateTo(0, duration: Duration(milliseconds: 1000), curve: Curves.ease);
-        },),
-      TextButton(child:
-      Container(width:60, height: 50,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+              selectedTab==1? Container( width: 500,
+                  height:2,color:Colors.red):Container()
+            ],
+          ),
+        ),autofocus: false,
+          onPressed: (){
+            this.widget.controller.animateTo(0, duration: Duration(milliseconds: 1000), curve: Curves.ease);
+          },),
+        TextButton(child:
+        Container(width:60, height: 50,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
 
-            Text("Facilities",style:TextStyle(fontWeight: FontWeight.w700,
-                color: selectedTab==2?Colors.red:Colors.black54)),
+              AutoSizeText("Facilities",maxLines: 1,
+                  style:TextStyle(fontWeight: FontWeight.w700,
+                  color: selectedTab==2?Colors.red:Colors.black54)),
 
-            selectedTab==2? Container(
-                width: 500,
-                height:2,color:Colors.red):Container()
-          ],
-        ),
-      ),autofocus: false,
-        onPressed: (){
-          this.widget.controller.animateTo(695, duration: Duration(milliseconds: 1000), curve: Curves.ease);
-        },),
-      TextButton(child:
-      Container(width:60, height: 50,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+              selectedTab==2? Container(
+                  width: 500,
+                  height:2,color:Colors.red):Container()
+            ],
+          ),
+        ),autofocus: false,
+          onPressed: (){
+            this.widget.controller.animateTo(695, duration: Duration(milliseconds: 1000), curve: Curves.ease);
+          },),
+        TextButton(child:
+        Container(width:60, height: 50,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
 
-            Text("Review",
-                style:TextStyle(
-                fontWeight: FontWeight.w700,
-                color: selectedTab==3?Colors.red:Colors.black54)),
+              AutoSizeText("Review",maxLines: 1,
+                  style:TextStyle(
+                  fontWeight: FontWeight.w700,
+                  color: selectedTab==3?Colors.red:Colors.black54)),
 
-            selectedTab==3?Container(
-                width: 500,
-                height:2,color:Colors.red):Container()
-          ],
-        ),
-      ),autofocus: false,
-        onPressed: (){
-          this.widget.controller.animateTo(1170, duration: Duration(milliseconds: 1000), curve: Curves.ease);
-        },),
+              selectedTab==3?Container(
+                  width: 500,
+                  height:2,color:Colors.red):Container()
+            ],
+          ),
+        ),autofocus: false,
+          onPressed: (){
+            this.widget.controller.animateTo(1170, duration: Duration(milliseconds: 1000), curve: Curves.ease);
+          },),
 
 
 
-    ],
+      ],
+    ),
   );
   }
 
