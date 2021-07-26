@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-import '../ColorClass.dart';
-import 'CompoundList.dart';
+import '../constants/ColorClass.dart';
+import '../home/CompoundList.dart';
 
 class FilterScreen extends StatefulWidget{
   @override

@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:webrevue/constants/loading_dialog.dart';
+import 'package:webrevue/model/UserModal.dart';
+import 'package:webrevue/service/Webservice.dart';
 
-import 'ColorClass.dart';
+import 'constants/ColorClass.dart';
 
 
 class SignUp extends StatefulWidget {
@@ -13,6 +16,17 @@ class SignUp extends StatefulWidget {
 }
 
 class SignUpState extends State<SignUp> {
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+  TextEditingController confirmPasswordController = new TextEditingController();
+  TextEditingController firstNameController = new TextEditingController();
+  TextEditingController lastNameController = new TextEditingController();
+  TextEditingController mobileNumberController = new TextEditingController();
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -65,6 +79,7 @@ class SignUpState extends State<SignUp> {
                           child: TextField(
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.name,
+                            controller: firstNameController,
                             decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(left: 15),
                                 labelStyle: TextStyle(
@@ -105,6 +120,7 @@ class SignUpState extends State<SignUp> {
                           child: TextField(
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.name,
+                            controller: lastNameController,
                             decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(left: 15),
                                 labelStyle: TextStyle(
@@ -139,6 +155,7 @@ class SignUpState extends State<SignUp> {
                   TextField(
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
+                    controller: emailController,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(left: 15),
                         labelStyle: TextStyle(
@@ -168,6 +185,7 @@ class SignUpState extends State<SignUp> {
                   TextField(
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.phone,
+                    controller: mobileNumberController,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(left: 15),
                         labelStyle: TextStyle(
@@ -197,7 +215,8 @@ class SignUpState extends State<SignUp> {
                       textAlign: TextAlign.left),
                   TextField(
                     textInputAction: TextInputAction.next,
-                    obscureText: true,
+                    obscureText: false,
+                    controller: passwordController,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(left: 15),
@@ -233,6 +252,7 @@ class SignUpState extends State<SignUp> {
                   TextField(
                     textInputAction: TextInputAction.next,
                     obscureText: true,
+                    controller: confirmPasswordController,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(left: 15),
@@ -257,7 +277,27 @@ class SignUpState extends State<SignUp> {
                       borderRadius: BorderRadius.circular(3)),
                   color: ColorClass.blueColor,
                   hoverColor: Colors.blue.shade900,
-                  onPressed: (){},
+                  onPressed: (){
+                    if(firstNameController.text.isNotEmpty
+                        &&lastNameController.text.isNotEmpty
+                        &&mobileNumberController.text.isNotEmpty
+                    &&passwordController.text.isNotEmpty&&passwordController.text.isNotEmpty
+                    &&emailController.text.isNotEmpty){
+
+                      if(passwordController.text==confirmPasswordController.text){
+                        signUpRequest();
+                      }else{
+                        Scaffold.of(context).showSnackBar(SnackBar(content: Text("Enter Same Password")));
+                      }
+
+                    }else{
+                      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Please complete all Fields")));
+
+                    }
+
+
+
+                  },
                   child: Text(
                     "Sign Up",
                     style: const TextStyle(
@@ -273,5 +313,28 @@ class SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+
+
+ signUpRequest()async{
+    UserModal userModal = new UserModal();
+    userModal.email = emailController.text;
+    userModal.password = passwordController.text;
+    userModal.firstName = firstNameController.text;
+    userModal.lastName = lastNameController.text;
+    userModal.mobileNumber = mobileNumberController.text;
+
+    showLoadingDialog(context);
+   bool register = await Webservice.registerRequest(context, userModal);
+    Navigator.pop(context);
+
+    if(register==true){
+       Navigator.pop(context);
+
+    }else{
+      displayAlertDialog(context,title: "Create Account",content: "Unable to Register");
+    }
+
   }
 }

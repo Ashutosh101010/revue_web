@@ -5,7 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:getwidget/components/rating/gf_rating.dart';
 
 import '../AppBar/AppBarSec.dart';
-import '../ColorClass.dart';
+import '../constants/ColorClass.dart';
 import '../footer/FooterWidget.dart';
 import 'ReviewDetails.dart';
 

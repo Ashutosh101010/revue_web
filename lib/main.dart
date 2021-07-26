@@ -5,15 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:webrevue/LoginScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/route/router.dart' as router;
-import 'ColorClass.dart';
+import 'constants/ColorClass.dart';
 import 'route/routing_constant.dart';
 
-void main() {
-
+void main(){
   runApp(MyApp());
-  print(GoogleFonts.muli().fontFamily);
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +20,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       title: 'Revue',
         initialRoute:initialroute,
         navigatorKey: navKey,

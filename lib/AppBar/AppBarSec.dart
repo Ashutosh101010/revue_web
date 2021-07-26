@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:webrevue/ColorClass.dart';
-import 'package:webrevue/LoginScreen.dart';
+import 'package:webrevue/constants/ColorClass.dart';
+import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
 
@@ -91,7 +91,7 @@ class AppBarSecState extends State<AppBarSec>{
              padding: const EdgeInsets.only(left: 10,top: 10,bottom: 10),
              child: InkWell(
                onTap: (){
-                 Navigator.pushReplacementNamed(context,MainscreenRoute);
+                 Navigator.pushReplacementNamed(context,mainscreenRoute);
                },
                child: Image.asset(
                  "assets/images/revue.png",

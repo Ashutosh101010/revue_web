@@ -40,6 +40,9 @@ dependencies:
   auto_size_text: ^2.1.0
   smooth_scroll_web: ^0.0.4
   google_fonts: ^2.0.0
+  shared_preferences: ^2.0.6
+  flutter_swiper: ^1.1.6
+  flutter_widget_from_html_core: ^0.6.1+4
 
 dev_dependencies:
   flutter_test:
@@ -65,11 +68,6 @@ flutter:
     - assets/images/android.png
     - assets/images/apple.png
     - assets/images/filterAndSort.png
-    - assets/images/houseFirst.png
-    - assets/images/houseSec.png
-    - assets/images/houseThird.png
-    - assets/images/houseForth.png
-    - assets/images/houseFifth.png
     - assets/images/star.png
     - assets/images/filter.png
     - assets/images/heart.png
@@ -81,6 +79,7 @@ flutter:
     - assets/images/Profile.png
     - assets/images/circularMap.png
     - assets/images/hdimg.png
+    - assets/images/animatedQues.jpg
 
 
   # To add assets to your application, add an assets section, like this:

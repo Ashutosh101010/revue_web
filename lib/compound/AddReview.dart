@@ -10,7 +10,7 @@ import 'package:webrevue/footer/FooterWidget.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
 
-import '../ColorClass.dart';
+import '../constants/ColorClass.dart';
 
 class AddReview extends StatefulWidget{
   @override

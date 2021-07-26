@@ -1,20 +1,27 @@
-import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:smooth_scroll_web/smooth_scroll_web.dart';
 import 'package:webrevue/AppBar/AppBarSec.dart';
-import 'package:webrevue/ColorClass.dart';
-import 'package:webrevue/TabWidget/RatingWidgetClass.dart';
+import 'package:webrevue/compound/widget/Header.dart';
+import 'package:webrevue/compound/widget/PersistentHeader.dart';
+import 'package:webrevue/constants/ColorClass.dart';
+import 'package:webrevue/TabWidget/CompoundDetailTab.dart';
 import 'package:webrevue/TabWidget/ReviewsTab.dart';
 import 'package:webrevue/footer/FooterWidget.dart';
 import 'package:webrevue/route/routing_constant.dart';
+import 'package:webrevue/service/Webservice.dart';
 
-import '../LoginScreen.dart';
-import 'scrollable_list_tabview.dart';
+import '../LoginDashboard/LoginScreen.dart';
 
 class CompoundDetails extends StatefulWidget{
+
+  String compoundID;
+
+
+  CompoundDetails({this.compoundID});
+
   @override
   State<StatefulWidget> createState() {
     return CompoundDetailState();
@@ -36,13 +43,6 @@ var optionMenuSelected;
 String filterProperty;
 List filterList =["Most Recent","Most Useful","Highest Rating"];
 
-List propertyImage = [
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZsmuFTDaUChoTxaDvUsSEk5CdUzc1FZ6rFA&usqp=CAU",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp_Bl9CBscbW5R7ybrm6nKVupKCTEdnLdm8Q&usqp=CAU",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScNe5S2tg9HBwDMgYXPUJHaf3KyNip-Oi_Kg&usqp=CAU",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQamaovVKPSjAZvTrE3Mx0nyiA669Yk6NjlSw&usqp=CAU",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRynn64tApqf-fY10Y5JHa-s-HCnjfNTVQcFA&usqp=CAU"
-];
 
   bool favhover = false;
 
@@ -51,11 +51,9 @@ int selectedTab=1;
   void initState() {
     // TODO: implement initState
     super.initState();
-    setState(() {
-      filterProperty = filterList[0];
-    });
 
 
+    filterProperty = filterList[0];
     controller.addListener(() {
 
 
@@ -82,18 +80,29 @@ int selectedTab=1;
     });
 
 
-
-
+    fetchReview();
   }
+
+
+List reviewList = [];
+
+
+fetchReview(){
+  Webservice.fetchAllReviews(context,
+      widget.compoundID,reviewList).then((value) => this.setState(() {
+
+  }));
+
+}
 
 
 ScrollController controller=new ScrollController();
 
 
+
   @override
   Widget build(BuildContext context)
   {
-
 
     return Material(
       child: LayoutBuilder(builder: (context, constraints) {
@@ -161,13 +170,13 @@ body: CustomScrollView(shrinkWrap: true,
            width: 200,
            height: 40,
            margin: EdgeInsets.only( left: constraints.maxWidth>=1200?constraints.maxWidth/2:constraints.maxWidth/4,right:50 ,  top: 10, bottom: 10),
-           child: FlatButton(
+           child: MaterialButton(
              onPressed: (){
                Navigator.pushNamed(context, addreview);
              },
              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
              color: ColorClass.blueColor,
-             hoverColor: Colors.blue.shade900,
+             hoverColor: Colors.blue.shade900,elevation: 10,
              child: // Write Review
              Text(
                  "Write Review",
@@ -194,7 +203,7 @@ body: CustomScrollView(shrinkWrap: true,
               Flexible(child:
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: left(context,constraints.maxWidth),
+                child: leftPanel(context,constraints.maxWidth),
               )
               ),
               constraints.maxWidth>=1100?rightPanel(context):Container()
@@ -202,7 +211,8 @@ body: CustomScrollView(shrinkWrap: true,
           ),
               Container(margin: EdgeInsets.only(top:10,left: 8,right: 8),
               color: Colors.black26,width: MediaQuery.of(context).size.width,height: 1,)
-,FooterWidget()
+
+              ,FooterWidget()
         ])
     )
 
@@ -214,70 +224,16 @@ body: CustomScrollView(shrinkWrap: true,
     );
   }
 
-// @override
-//   Widget build(BuildContext context) {
-//    return Material(
-//      child:LayoutBuilder(builder: (context,constraints){
-//        var maxWidth = constraints.maxWidth>700;
-//        return  Scaffold(
-//          key: scaffoldKey,
-//          backgroundColor: Colors.white,
-//          appBar:  maxWidth?
-//         PreferredSize(preferredSize: Size.fromHeight(70),child:  AppBarSec(),)
-//              :AppBar(
-//            backgroundColor: Colors.white,
-//            leading: IconButton(icon: Icon(Icons.menu,color: Colors.black,),onPressed: (){
-//              return scaffoldKey.currentState.openDrawer();
-//            },),
-//          ),
-//
-//          body: SmoothScrollWeb(controller: controller,
-//            child: SingleChildScrollView(controller: controller,
-//              scrollDirection: Axis.vertical,
-//              clipBehavior: Clip.antiAliasWithSaveLayer,
-//              physics:AlwaysScrollableScrollPhysics(),
-//              child: Stack(
-//                children: [
-//                  constraints.maxWidth>=1200?  Row(mainAxisAlignment: MainAxisAlignment.center,
-//                    crossAxisAlignment: CrossAxisAlignment.start,
-//                    children: [
-//                      leftPanel(context,constraints.maxWidth,constraints.maxHeight),
-//                      rightPanel(context)
-//                    ],):
-//                  constraints.maxWidth>=1000?  Row(mainAxisAlignment: MainAxisAlignment.center,
-//                    crossAxisAlignment: CrossAxisAlignment.start,
-//                    children: [
-//                      leftPanel(context,constraints.maxWidth,constraints.maxHeight),
-//                      rightPanel(context)
-//                    ],):
-//              leftPanel(context,constraints.maxWidth,constraints.maxHeight),
-//                  Positioned(
-//                    top: 70,
-//                    child: Container(width: MediaQuery.of(context).size.width
-//                      ,height: 1,color: Colors.black12,),
-//                  ),
-//                ],
-//              ),
-//            ),
-//          ),
-//
-//        );
-//      },)
-//    );
-//   }
-//
-//
 
-  Widget left(BuildContext context,double width)
+
+  Widget leftPanel(BuildContext context,double width)
   {
     return   Column(
       children: [
-        RatingWidgetClass(),
+        CompoundDetailTab(widget.compoundID),
         Padding(
           padding:  EdgeInsets.only(left: width<=800?10:50,bottom: 10),
-          child:
-
-          Row(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Reviews  ",
@@ -321,35 +277,8 @@ body: CustomScrollView(shrinkWrap: true,
             ],
           ),
         ),
-        ListView.builder(shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: 4,itemBuilder: (context,index){
+        ReviewsTab(reviewList)
 
-            return ReviewsTab();
-
-          },),
-        // Padding(
-        //   padding:  EdgeInsets.only(left: 50,right: 50,bottom: 10),
-        //   child: Container(
-        //     width:constraints.maxWidth,
-        //     height: 500,
-        //     child: GridView.builder(
-        //         itemCount: propertyImage.length,
-        //         physics: NeverScrollableScrollPhysics(),
-        //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //             crossAxisCount: constraints.maxWidth>=1200?4:constraints.maxWidth>=1000?3:1
-        //         ),
-        //         shrinkWrap: true,
-        //         itemBuilder: (context,ind){
-        //           return Padding(
-        //             padding: const EdgeInsets.all(10.0),
-        //             child: SizedBox(
-        //               child: Image.network(propertyImage[0],fit: BoxFit.fill,),
-        //             ),
-        //           );
-        //         }),
-        //   ),
-        // )
       ],
     );
   }
@@ -708,123 +637,3 @@ body: CustomScrollView(shrinkWrap: true,
 
 }
 
-class Header extends StatefulWidget{
-
-  ScrollController controller;
-
-  Header({this.controller,Key key}):super(key: key);
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return HeaderState();
-  }
-
-}
-GlobalKey<HeaderState> HeaderKey=new GlobalKey();
-class HeaderState extends State<Header>{
-  int selectedTab=1;
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-  return  Container(color: Colors.white,
-    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        TextButton(child:
-        Container(width:60, height: 50,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-             AutoSizeText("Rating",maxLines: 1,
-               style: TextStyle(color: selectedTab==1?Colors.red:Colors.black54,fontWeight: FontWeight.w700,),),
-
-              selectedTab==1? Container( width: 500,
-                  height:2,color:Colors.red):Container()
-            ],
-          ),
-        ),autofocus: false,
-          onPressed: (){
-            this.widget.controller.animateTo(0, duration: Duration(milliseconds: 1000), curve: Curves.ease);
-          },),
-        TextButton(child:
-        Container(width:60, height: 50,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-              AutoSizeText("Facilities",maxLines: 1,
-                  style:TextStyle(fontWeight: FontWeight.w700,
-                  color: selectedTab==2?Colors.red:Colors.black54)),
-
-              selectedTab==2? Container(
-                  width: 500,
-                  height:2,color:Colors.red):Container()
-            ],
-          ),
-        ),autofocus: false,
-          onPressed: (){
-            this.widget.controller.animateTo(695, duration: Duration(milliseconds: 1000), curve: Curves.ease);
-          },),
-        TextButton(child:
-        Container(width:60, height: 50,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-              AutoSizeText("Review",maxLines: 1,
-                  style:TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: selectedTab==3?Colors.red:Colors.black54)),
-
-              selectedTab==3?Container(
-                  width: 500,
-                  height:2,color:Colors.red):Container()
-            ],
-          ),
-        ),autofocus: false,
-          onPressed: (){
-            this.widget.controller.animateTo(1170, duration: Duration(milliseconds: 1000), curve: Curves.ease);
-          },),
-
-
-
-      ],
-    ),
-  );
-  }
-
-}
-class PersistentHeader extends SliverPersistentHeaderDelegate {
-  final Widget widget;
-  final ScrollController controller;
-
-  PersistentHeader({this.widget,this.controller});
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      width: double.infinity,
-      height: 56.0,
-      child: Card(
-        margin: EdgeInsets.all(0),
-        color: Colors.white,
-        child: Center(child: widget
-        ),
-      ),
-    );
-  }
-
-  @override
-  double get maxExtent => 56.0;
-
-  @override
-  double get minExtent => 56.0;
-
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
-  }
-
-
-}

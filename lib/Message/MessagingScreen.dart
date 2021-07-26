@@ -1,15 +1,23 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:webrevue/Message/widget/answerWidget.dart';
+import 'package:webrevue/model/CompoundModal.dart';
+import 'package:webrevue/model/QuestionModal.dart';
+import 'package:webrevue/service/Webservice.dart';
 
 
 import '../AppBar/AppBarSec.dart';
-import '../ColorClass.dart';
+import '../constants/ColorClass.dart';
 import '../footer/FooterWidget.dart';
 import 'QuestionAnswerScreen.dart';
 
 class MessagingScreen extends StatefulWidget{
+
+  CompoundModal compoundModal;
+
+  MessagingScreen(this.compoundModal);
+
   @override
   State<StatefulWidget> createState() {
    return MessagingScreenState();
@@ -18,6 +26,30 @@ class MessagingScreen extends StatefulWidget{
 }
 
 class MessagingScreenState extends State<MessagingScreen>{
+
+  List questionsList = [];
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    print(widget.compoundModal.address);
+    print(widget.compoundModal.compoundname);
+
+    getAllQuestions();
+
+
+  }
+
+  getAllQuestions(){
+    Webservice.getAllRequestedQuestions(questionsList, widget.compoundModal.id).then((value) => this.setState(() {
+
+    }));
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -42,7 +74,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                   child: SizedBox(
                     height: 40,
                     width: 200,
-                    child: FlatButton(
+                    child: MaterialButton(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -114,7 +146,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                               child: SizedBox(
                                 height: 40,
                                 width: 200,
-                                child: FlatButton(
+                                child: MaterialButton(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5),
                                   ),
@@ -165,7 +197,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                             physics: NeverScrollableScrollPhysics(),
                             children: [
                               AutoSizeText(
-                                  "Trishla villa",
+                                widget.compoundModal.compoundname,
                                   style: const TextStyle(
                                       color:  Colors.black87,
                                       fontWeight: FontWeight.w700,
@@ -180,8 +212,7 @@ class MessagingScreenState extends State<MessagingScreen>{
 
                                 // Southwest apartments, Green community West,Green C
                                 Container(
-                                  child: AutoSizeText(
-                                      "Southwest apartments, Green community West,Green Community,Dubai",
+                                  child: AutoSizeText(widget.compoundModal.address,
                                       style:  TextStyle(
                                           color:Colors.black54  ,
                                           fontWeight: FontWeight.w600,
@@ -230,17 +261,41 @@ class MessagingScreenState extends State<MessagingScreen>{
                                   ],
                                 ),
                               ),
+
+                              questionsList.isEmpty?
+                              Container(
+                                width: double.maxFinite,
+                                alignment: Alignment.center,
+
+                                height: MediaQuery.of(context).size.height,
+                                margin: EdgeInsets.only(top: 15,bottom: 10,left: 10,right: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  // mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("No Questions Posted",
+                                      style: TextStyle(color: Colors.black87,
+                                          fontWeight: FontWeight.w500,fontSize: 17),),
+                                    SizedBox(height: 6,),
+                                    Image.asset("assets/images/animatedQues.jpg",
+                                      fit: BoxFit.fill,height: 50,width: 50,)
+
+                                  ],
+                                ),
+                              ):
+
                               ListView.builder(
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
-                                itemCount: 10,
+                                itemCount:questionsList.length,
                                 itemBuilder: (context,index){
                                   return Container(
                                     margin: EdgeInsets.all(10),
                                     child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
                                       // Q.Water facilities good or not?
                                       Text(
-                                          "Q.  Water facilities good or not?",
+                                          "Q${index+1}. ${(questionsList[index] as QuestionModal).question} ?",
+
                                           style: const TextStyle(
                                               color:  Colors.black87,
                                               fontWeight: FontWeight.w600,
@@ -249,69 +304,11 @@ class MessagingScreenState extends State<MessagingScreen>{
                                           ),
                                           textAlign: TextAlign.left
                                       ),
-                                      // Yes,water is available 24 hrs
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                                "A.  Yes,water is available 24 hrs",
-                                                style: const TextStyle(
-                                                    color:  Colors.black87,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontStyle:  FontStyle.normal,
-                                                    fontSize: 14.0
-                                                ),
-                                                textAlign: TextAlign.left
-                                            ),
-                                            IconButton(onPressed: (){
-                                              Navigator.push(context,
-                                                  MaterialPageRoute(builder: (context)=>QuestionAnswerScreen()));
-                                            },
-                                              icon: Icon(Icons.arrow_forward_ios),)
-                                          ],
-                                        ),
-                                      ),
 
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 6),
-                                        child: Row(children: [
-                                          Flexible(
-                                            flex: 2,
-                                            fit: FlexFit.tight,
-                                            child: Row(
-                                              children: [
-                                                Icon(CupertinoIcons.person_circle_fill,color: Colors.grey,size: 14,),
-                                                Padding(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: Text(
-                                                      "Anand bakshi.......",
-                                                      style: const TextStyle(
-                                                          color:  const Color(0x66000000),
-                                                          fontWeight: FontWeight.w600,
-                                                          fontStyle:  FontStyle.normal,
-                                                          fontSize: 12.0
-                                                      ),
-                                                      textAlign: TextAlign.left
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Flexible(fit: FlexFit.tight,flex: 1,child: // 1 Month ago
-                                          Text(
-                                              "1 Month ago ",
-                                              style: const TextStyle(
-                                                  color:  Colors.black54,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontStyle:  FontStyle.normal,
-                                                  fontSize: 12.0
-                                              ),
-                                              textAlign: TextAlign.left
-                                          ),)
-                                        ],),
-                                      ),
+                                      answerWidget((questionsList[index] as QuestionModal).answerList),
+
+
+
 
                                       SizedBox(height: 10,),
 

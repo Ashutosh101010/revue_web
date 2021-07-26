@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:webrevue/ColorClass.dart';
-import 'package:webrevue/LoginScreen.dart';
+import 'package:webrevue/constants/ColorClass.dart';
+import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/SignUp.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
@@ -242,43 +242,44 @@ class AppBarFirstState extends State<AppBarFirst>{
             ),
           ),
         ),
-        Expanded(
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10,bottom: 10,left: 10,right: 50),
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                onHover: (_) => _hovered(true),
-                onExit: (_) => _hovered(false),
-                child: GestureDetector(
-                  onTap: (){
-                    return showDialog(
-                        context: context,
-                        builder: (BuildContext b) {
-                          return AlertDialog(
-                            backgroundColor: Colors.white,
-                            insetPadding: EdgeInsets.all(20),
-                            contentPadding: EdgeInsets.zero,
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            content: SignIn(context),
-                          );
-                        });
-                  },
-                  child: Text(
-                    "Sign in",
-                    style:  TextStyle(
-                        color:signInHover? Colors.black:ColorClass.blueColor,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "Montserrat",
-                        fontStyle: FontStyle.normal,
-                        fontSize: 20.0),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        )
+        Expanded(child: Container(),)
+        // Expanded(
+        //   child: Align(
+        //     alignment: Alignment.centerRight,
+        //     child: Padding(
+        //       padding: const EdgeInsets.only(top: 10,bottom: 10,left: 10,right: 50),
+        //       child: MouseRegion(
+        //         cursor: SystemMouseCursors.click,
+        //         onHover: (_) => _hovered(true),
+        //         onExit: (_) => _hovered(false),
+        //         child: GestureDetector(
+        //           onTap: (){
+        //             return showDialog(
+        //                 context: context,
+        //                 builder: (BuildContext b) {
+        //                   return AlertDialog(
+        //                     backgroundColor: Colors.white,
+        //                     insetPadding: EdgeInsets.all(20),
+        //                     contentPadding: EdgeInsets.zero,
+        //                     clipBehavior: Clip.antiAliasWithSaveLayer,
+        //                     content: SignIn(context),
+        //                   );
+        //                 });
+        //           },
+        //           child: Text(
+        //             "Sign in",
+        //             style:  TextStyle(
+        //                 color:signInHover? Colors.black:ColorClass.blueColor,
+        //                 fontWeight: FontWeight.w700,
+        //                 fontFamily: "Montserrat",
+        //                 fontStyle: FontStyle.normal,
+        //                 fontSize: 20.0),
+        //           ),
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // )
       ],
     );
   }

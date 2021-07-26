@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-const String MainscreenRoute = "/home";
+const String mainscreenRoute = "/home";
 const String loginRoute = "/login";
 const String compoundList = "/compoundList";
 const String compoundDetails = "/compoundDetail";

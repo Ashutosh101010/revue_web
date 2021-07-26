@@ -1,24 +1,29 @@
-import 'dart:html';
+
 
 import 'package:flutter/material.dart';
-import 'package:webrevue/LoginScreen.dart';
-import 'package:webrevue/Review/MessagingScreen.dart';
+import 'package:webrevue/LoginDashboard/LoginScreen.dart';
+import 'package:webrevue/Message/MessagingScreen.dart';
 import 'package:webrevue/SignUp.dart';
 import 'package:webrevue/User/ForgetPassword.dart';
-import 'package:webrevue/User/MyReviews.dart';
+import 'package:webrevue/Review/MyReviews.dart';
 import 'package:webrevue/User/OtpVerification.dart';
 import 'package:webrevue/User/UpdatePassword.dart';
 import 'package:webrevue/compound/AddReview.dart';
 import 'package:webrevue/compound/CompoundDetails.dart';
-import 'package:webrevue/compound/CompoundList.dart';
+import 'package:webrevue/home/CompoundList.dart';
 import 'package:webrevue/compound/FilterScreen.dart';
+import 'package:webrevue/model/arguments/CompoundArgument.dart';
+import 'package:webrevue/model/arguments/CompoundMessagingArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
 
   Route<dynamic> generateRoute(RouteSettings settings){
-    String name = settings.name;
-
-    switch(name) {
+    CompoundArgument compoundArgument;
+    CompoundMessagingArgument compoundMessagingArgument;
+    if(settings.name ==compoundDetails){
+      compoundArgument = settings.arguments;
+    }
+    switch(settings.name) {
       case initialroute:
         return MaterialPageRoute(builder: (context) => LoginScreen(),settings: RouteSettings(name: "/login"),);
         break;
@@ -26,13 +31,14 @@ import 'package:webrevue/route/routing_constant.dart';
       case loginRoute:
         return MaterialPageRoute(builder: (context) => LoginScreen(),settings: RouteSettings(name: "/login"));
         break;
-      case MainscreenRoute:
+      case mainscreenRoute:
         return MaterialPageRoute(builder: (context) => CompoundList(compoundListKey:compoundListKey ,),
             settings: RouteSettings(name: "/home"));
         break;
 
       case compoundDetails:
-        return MaterialPageRoute(builder: (context) => CompoundDetails(),
+        return MaterialPageRoute(builder: (context) =>
+            CompoundDetails(compoundID: compoundArgument.compoundId,),
             settings: RouteSettings(name: "/compoundDetail",),maintainState: true);
         break;
       case addreview:
@@ -44,7 +50,8 @@ import 'package:webrevue/route/routing_constant.dart';
         break;
 
       case otpVerification:
-        return MaterialPageRoute(builder: (context)=>OtpVerification(),settings: RouteSettings(name: "/verifyotp"));
+        return MaterialPageRoute(builder: (context)=>OtpVerification(),
+            settings: RouteSettings(name: "/verifyotp"));
         break;
 
       case newpassword:
@@ -52,7 +59,12 @@ import 'package:webrevue/route/routing_constant.dart';
         break;
 
       case questionAns:
-        return MaterialPageRoute(builder: (context)=>MessagingScreen(),settings: RouteSettings(name: "/messages"));
+
+        compoundMessagingArgument =  settings.arguments;
+
+        return MaterialPageRoute(builder: (context)=>
+            MessagingScreen(compoundMessagingArgument.compoundModal),
+            settings: RouteSettings(name: "/messages"));
         break;
 
 

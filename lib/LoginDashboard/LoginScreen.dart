@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:html';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,11 +11,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hovering/hovering.dart';
 import 'package:smooth_scroll_web/smooth_scroll_web.dart';
 import 'package:webrevue/AppBar/AppBarFirst.dart';
-import 'ColorClass.dart';
-import 'SignUp.dart';
-import 'compound/CompoundList.dart';
-import 'footer/FooterWidget.dart';
-import 'route/routing_constant.dart';
+import 'package:webrevue/LoginDashboard/widgets/login_dashboard.dart';
+import 'package:webrevue/LoginDashboard/widgets/side_drawer.dart';
+import 'package:webrevue/LoginDashboard/widgets/social_media_login.dart';
+import 'package:webrevue/model/UserModal.dart';
+import '../constants/ColorClass.dart';
+import '../SignUp.dart';
+import '../home/CompoundList.dart';
+import '../footer/FooterWidget.dart';
+import '../route/routing_constant.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -27,17 +30,6 @@ class LoginScreen extends StatefulWidget {
 
 class LoginScreenState extends State<LoginScreen> {
 
-
-
-
-
-  List propertyImage = [
-    "assets/images/houseFirst.png",
-    "assets/images/houseSec.png",
-    "assets/images/houseThird.png",
-    "assets/images/houseForth.png",
-    "assets/images/houseFifth.png"
-  ];
 
   bool signUp = false;
   var scaffoldKey = GlobalKey<ScaffoldState>();
@@ -541,8 +533,6 @@ class LoginScreenState extends State<LoginScreen> {
 
                 FooterWidget()
 
-
-
               ],
             ),
           ],
@@ -666,480 +656,23 @@ class LoginScreenState extends State<LoginScreen> {
     return Center(
       child: Column(
         children: [
-          Container(
-            height: 40,
-            width: 350,
-            margin: EdgeInsets.only(top: 10, bottom: 5),
-            child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    primary: ColorClass.blueColor
-                ),
-                onPressed: () {},
-                icon: Icon(
-                  FontAwesomeIcons.facebookSquare,
-                  size: 20,
-                  color: Colors.white,
-                ),
-                label: Text("Continue with Facebook",
-                    style: const TextStyle(
-                        color: const Color(0xffffffff),
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "Montserrat",
-                        fontStyle: FontStyle.normal,
-                        fontSize: 16.0),
-                    textAlign: TextAlign.left)),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 10, bottom: 10),
-            height: 40,
-            width: 350,
-            child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  primary: Colors.white
-                ),
-                onPressed: () {},
-                icon: Icon(
-                  FontAwesomeIcons.google,
-                  size: 20,
-                  color: Colors.red,
-                ),
-                label: Text("Continue with Google",
-                    style: TextStyle(
-                        color: ColorClass.redColor,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "Montserrat",
-                        fontStyle: FontStyle.normal,
-                        fontSize: 16.0),
-                    textAlign: TextAlign.left)),
-          ),
 
+          SocialMediaLogins(),
           SizedBox(
             height: 60,
           ),
 
-          Container(
-            height: 50,
-            width: 350,
-            margin: EdgeInsets.only(top: 20, bottom: 10),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage("assets/images/textfieldbg.png")),
-            ),
-            child: Theme(
-              child: TextField(
-                cursorColor: ColorClass.lightTextColor,
-                textInputAction: TextInputAction.next,
-                decoration: InputDecoration(
-                    suffixIcon: Icon(CupertinoIcons.mail_solid),
-                    contentPadding:
-                        EdgeInsets.only(left: 15, top: 15, bottom: 15),
-                    hintText: "Enter Email",
-                    hintStyle: TextStyle(
-                      color: Color(0x7f3c2f47),
-                      fontSize: 15,
-                    ),
-                    border: InputBorder.none,
-                    fillColor: Colors.white),
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                ),
-              ),
-              data: Theme.of(context).copyWith(
-                primaryColor: ColorClass.redColor,
-              ),
-            ),
-          ),
-          Container(
-            height: 50,
-            width: 350,
-            margin: EdgeInsets.only(bottom: 10),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage("assets/images/textfieldbg.png")),
-            ),
-            child: Theme(
-              child: TextField(
-                cursorColor: ColorClass.lightTextColor,
-                textInputAction: TextInputAction.done,
-                decoration: InputDecoration(
-                    suffixIcon: Icon(CupertinoIcons.lock_fill),
-                    contentPadding:
-                        EdgeInsets.only(left: 15, top: 15, bottom: 15),
-                    hintText: "Enter Password",
-                    hintStyle: TextStyle(
-                      color: Color(0x7f3c2f47),
-                      fontSize: 15,
-                    ),
-                    border: InputBorder.none,
-                    fillColor: Colors.white),
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                ),
-              ),
-              data: Theme.of(context).copyWith(
-                primaryColor: ColorClass.redColor,
-              ),
-            ),
-          ),
-          // Forget password?
-          Container(
-            width: 350,
-            alignment: Alignment.centerRight,
-            margin: EdgeInsets.only(top: 10, bottom: 10),
-            child: InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, forgetPassword);
-              },
-              child: Text("Forget password?",
-                  style: TextStyle(
-                      color: Color(0xffffffff),
-                      fontWeight: FontWeight.w600,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14.0),
-                  textAlign: TextAlign.end),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 10, bottom: 20),
-            height: 40,
-            width: 350,
-            alignment: Alignment.center,
-            child: ElevatedButton(
-
-              style: ElevatedButton.styleFrom(
-                elevation: 3,
-                  primary: Colors.black,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),),
-
-                onPressed: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>CompoundList()));
-                  Navigator.pushNamed(context, MainscreenRoute);
-                },
-                child: Row(
-                  children: [
-                    Container(
-                      width: 300,
-                      alignment: Alignment.center,
-                      child: Text("Continue with Email",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: "Montserrat",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 16.0),
-                          textAlign: TextAlign.center),
-                    ),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  ],
-                )),
-          ),
+          LoginPage()
         ],
       ),
     );
   }
 
   Widget drawerItems(BuildContext context, bool Status) {
-    return Container(
-      child: ListView(
-        children: <Widget>[
-          DrawerHeader(
-            decoration: new BoxDecoration(color: Colors.white),
-            child: Container(
-              alignment: Alignment.center,
-              margin: EdgeInsets.all(10),
-              child: Image.asset(
-                "assets/images/revue.png",
-                fit: BoxFit.contain,
-                width: MediaQuery.of(context).size.width - 200,
-                height: 200,
-              ),
-            ),
-          ),
-          ListTile(
-              title: Text("Home"),
-              onTap: () {
-                Navigator.pop(context);
-                print("home");
-              }),
-          ListTile(
-              title: Text("Find Property"),
-              onTap: () {
-                Navigator.pop(context);
-                print("booking");
-              }),
-          ListTile(
-              title: Text("Find Property by Owner"),
-              onTap: () {
-                Navigator.pop(context);
-                print("profile");
-              }),
-          ListTile(
-              title: Text("Sign Up"),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, signup);
-              }),
-        ],
-      ),
-    );
+    return SideDrawer();
   }
 
 
-  Widget topRatedCompound(BuildContext context,int index,double width){
-    bool maxwidth = width>=500;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: (){
-              Navigator.pushNamed(context,compoundDetails);
-            },
-            child: Container(
-              width:maxwidth?350:width,
-              // cursor: SystemMouseCursors.click,
-              height:maxwidth? 370:320,
-              // hoverHeight:maxwidth? 380:null,
-              // hoverWidth:maxwidth? 350:null,
-              color: Colors.white,
-              // hoverColor: Colors.white,
-              foregroundDecoration:BoxDecoration(
-                  border: Border.all(color: Colors.black12)
-              ),
-              child:
-              Column(
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      propertyImage[index],
-                      fit: BoxFit.fill,height: maxwidth?200:100,),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Duet MediaCityUK, M50.',
-                          style:TextStyle(
-                              color:  const Color(0xff000000),
-                         wordSpacing: 2,
-                              decorationStyle: TextDecorationStyle.solid,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: maxwidth?20.0:16,fontWeight: FontWeight.w400
-                          ) ,),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "Southwest apartments, Green community West,Green Community,Dubai",
-                          style:  TextStyle(
-                              color:Colors.black54,
-                              fontWeight: FontWeight.w400,
-                              decorationStyle: TextDecorationStyle.solid,
-
-                              fontStyle: FontStyle.normal,
-                              fontSize: maxwidth?15.0:13),),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GFRating(
-                            size: maxwidth?20:15,
-                            value: 4.3,
-                            color: Colors.yellow,
-                            borderColor: Colors.black12,
-                            onChanged: (value) {
-                              setState(() {
-
-                              });
-                            },
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8),
-                            child: Row(
-                              children: [
-                                Text(
-                                    "4.85",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w700,
-
-                                        fontStyle:  FontStyle.normal,
-                                        fontSize:maxwidth? 16.0:13
-                                    ),
-                                    textAlign: TextAlign.left
-                                ),
-
-                                Text(
-                                    " (54 reviews)",
-                                    style: TextStyle(
-                                        color: Colors.black,
-
-                                        fontStyle:  FontStyle.normal,
-                                        fontSize:maxwidth? 16.0:13
-                                    ),
-                                    textAlign: TextAlign.left
-                                ),
-
-
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-
-                    ],)
-
-
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-
-  Widget recommendedProperty(BuildContext context,double width,int index){
-    bool maxwidth = width>700;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: (){
-              Navigator.pushNamed(context,compoundDetails);
-            },
-            child: HoverContainer(
-              width: maxwidth?300:width,
-              cursor: SystemMouseCursors.click,
-              height: maxwidth?350:220,
-              hoverHeight:maxwidth? 370:null,
-              hoverWidth:maxwidth? 305:null,
-              color: Colors.white,
-              hoverColor: Colors.white,
-              margin: EdgeInsets.all(10),
-              foregroundDecoration:BoxDecoration(
-                  border: Border.all(color: Colors.black12)
-              ),
-              child:
-              Column(
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                     propertyImage[index],
-                      fit: BoxFit.fill,height: maxwidth?200:100,),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Duet MediaCityUK, M50.',
-                          style:TextStyle(
-                              color:  const Color(0xff000000),
-                              wordSpacing: 2,
-                              decorationStyle: TextDecorationStyle.solid,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: maxwidth?20.0:16,fontWeight: FontWeight.w400
-                          ) ,),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "Southwest apartments, Green community West,Green Community,Dubai",
-                          style:  TextStyle(
-                              color:Colors.black54,
-                              fontWeight: FontWeight.w400,
-                              decorationStyle: TextDecorationStyle.solid,
-
-                              fontStyle: FontStyle.normal,
-                              fontSize: maxwidth?15.0:13),),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GFRating(
-                            size: maxwidth?20:15,
-                            value: 4.3,
-                            color: Colors.yellow,
-                            borderColor: Colors.black12,
-                            onChanged: (value) {
-                              setState(() {
-
-                              });
-                            },
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8),
-                            child: Row(
-                              children: [
-                                Text(
-                                    "4.85",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w700,
-
-                                        fontStyle:  FontStyle.normal,
-                                        fontSize:maxwidth? 16.0:13
-                                    ),
-                                    textAlign: TextAlign.left
-                                ),
-
-                                Text(
-                                    " (54 reviews)",
-                                    style: TextStyle(
-                                        color: Colors.black,
-
-                                        fontStyle:  FontStyle.normal,
-                                        fontSize:maxwidth? 16.0:13
-                                    ),
-                                    textAlign: TextAlign.left
-                                ),
-
-
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-
-                    ],)
-
-
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
 
 
 

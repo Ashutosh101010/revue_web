@@ -6,7 +6,7 @@ import 'package:webrevue/route/routing_constant.dart';
 
 
 import '../AppBar/AppBarFirst.dart';
-import '../ColorClass.dart';
+import '../constants/ColorClass.dart';
 
 import '../SignUp.dart';
 
