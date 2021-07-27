@@ -16,11 +16,12 @@ import 'package:webrevue/model/CompoundModal.dart';
 import 'package:webrevue/model/arguments/CompoundArgument.dart';
 import 'package:webrevue/model/arguments/CompoundMessagingArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
+import 'package:webrevue/service/ServerDetails.dart';
 import 'package:webrevue/service/Webservice.dart';
 
 class CompoundDetailTab extends StatefulWidget {
   String compoundID;
-
+  CompoundModal compoundModal;
   CompoundDetailTab(this.compoundID);
 
   @override
@@ -76,7 +77,7 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
               Swiper(
                 itemBuilder: (BuildContext context, int index) {
                   return new Image.network(
-                    compoundModal.images[index],
+                    ServerDetails.get_images+compoundModal.images[index],
                     fit: BoxFit.fill,
                   );
                 },
@@ -143,7 +144,11 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                     children: [
                     InkWell(
                       onTap: (){
-                        Navigator.pushNamed(context,questionAns);
+                        Navigator.pushNamed(context,questionAns,
+                            arguments:CompoundMessagingArgument(
+                            compoundID:compoundModal.id,
+                            compoundName: compoundModal.compoundname,
+                            compoundAddress: compoundModal.address));
                       },
                       child: Icon(CupertinoIcons.chat_bubble_2_fill,size: 25,
                       color:ColorClass.blueColor,),
@@ -188,7 +193,10 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                   onTap: (){
 
                     Navigator.pushNamed(context,questionAns,
-                        arguments:CompoundMessagingArgument(compoundModal));
+                        arguments:CompoundMessagingArgument(
+                            compoundID:compoundModal.id,
+                            compoundName: compoundModal.compoundname,
+                        compoundAddress: compoundModal.address));
                   },
                   child: Icon(CupertinoIcons.chat_bubble_2_fill,size: 25,
                     color:ColorClass.blueColor,),

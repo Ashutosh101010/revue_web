@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:webrevue/Message/QuestionAnswerScreen.dart';
 import 'package:webrevue/constants/getDates.dart';
 import 'package:webrevue/model/AnswerModal.dart';
+import 'package:webrevue/model/arguments/QuestionAnswerArgument.dart';
+import 'package:webrevue/route/routing_constant.dart';
 
-Widget answerWidget(List ansList){
+Widget answerWidget({@required List ansList,
+  @required String question,
+  @required String questionId,
+  @required String compoundId}){
   return SizedBox(
     child: Column(children: [
       ansList.isEmpty?
@@ -38,15 +43,16 @@ Widget answerWidget(List ansList){
                         textAlign: TextAlign.left
                     ),
                     IconButton(onPressed: (){
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context)=>QuestionAnswerScreen()));
+                      Navigator.pushNamed(context,answerOfQuestion,arguments:
+                      QuestionAnswerArgument(compoundID: compoundId,
+                          question:question,questionID: questionId ));
                     },
                       icon: Icon(Icons.arrow_forward_ios),)
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 6),
+                padding: const EdgeInsets.only(top: 2),
                 child: Row(children: [
                   Flexible(
                     flex: 2,

@@ -11,12 +11,14 @@ import '../AppBar/AppBarSec.dart';
 import '../constants/ColorClass.dart';
 import '../footer/FooterWidget.dart';
 import 'QuestionAnswerScreen.dart';
+import 'widget/postQuestion.dart';
 
 class MessagingScreen extends StatefulWidget{
+  final String compoundID;
+  final String compoundName;
+  final String compoundAddress;
 
-  CompoundModal compoundModal;
-
-  MessagingScreen(this.compoundModal);
+  MessagingScreen({Key key,this.compoundID, this.compoundName, this.compoundAddress}):super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -34,8 +36,8 @@ class MessagingScreenState extends State<MessagingScreen>{
   void initState() {
     super.initState();
 
-    print(widget.compoundModal.address);
-    print(widget.compoundModal.compoundname);
+    print(widget.compoundName);
+    print(widget.compoundAddress);
 
     getAllQuestions();
 
@@ -43,7 +45,8 @@ class MessagingScreenState extends State<MessagingScreen>{
   }
 
   getAllQuestions(){
-    Webservice.getAllRequestedQuestions(questionsList, widget.compoundModal.id).then((value) => this.setState(() {
+    Webservice.getAllRequestedQuestions(questionsList,
+        widget.compoundID).then((value) => this.setState(() {
 
     }));
   }
@@ -84,7 +87,8 @@ class MessagingScreenState extends State<MessagingScreen>{
                             builder: (BuildContext con) {
                               return AlertDialog(
                                 backgroundColor: Colors.white,
-                                content: postQuestion(context, constraints.maxWidth),
+                                content: PostQuestion(compoundId: widget.compoundID,
+                                  compoundName:widget.compoundName ,width: constraints.maxWidth,),
                               );
                             });
                       },
@@ -109,7 +113,9 @@ class MessagingScreenState extends State<MessagingScreen>{
             ),
             body: Column(children: [
               Expanded(
-                child: SingleChildScrollView(child: Column(children: [
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  child: Column(children: [
                   maxWidth?
                   Container(
                     decoration: BoxDecoration(
@@ -156,7 +162,8 @@ class MessagingScreenState extends State<MessagingScreen>{
                                         builder: (BuildContext con) {
                                           return AlertDialog(
                                             backgroundColor: Colors.white,
-                                            content: postQuestion(context, 600.0),
+                                            content: PostQuestion(compoundId: widget.compoundID,
+                                                compoundName:widget.compoundName ,width:600.0),
                                           );
                                         });
                                   },
@@ -197,7 +204,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                             physics: NeverScrollableScrollPhysics(),
                             children: [
                               AutoSizeText(
-                                widget.compoundModal.compoundname,
+                                widget.compoundName,
                                   style: const TextStyle(
                                       color:  Colors.black87,
                                       fontWeight: FontWeight.w700,
@@ -206,25 +213,28 @@ class MessagingScreenState extends State<MessagingScreen>{
                                   ),
                                   textAlign: TextAlign.left
                               ),
-                              Row(
-                                children: [
-                                Icon(CupertinoIcons.location_solid,size: 20,),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Row(
+                                  children: [
+                                  Icon(CupertinoIcons.location_solid,size: 20,),
 
-                                // Southwest apartments, Green community West,Green C
-                                Container(
-                                  child: AutoSizeText(widget.compoundModal.address,
-                                      style:  TextStyle(
-                                          color:Colors.black54  ,
-                                          fontWeight: FontWeight.w600,
+                                  // Southwest apartments, Green community West,Green C
+                                  Container(
+                                    child: AutoSizeText(widget.compoundAddress,
+                                        style:  TextStyle(
+                                            color:Colors.black54  ,
+                                            fontWeight: FontWeight.w600,
 
-                                          fontStyle:  FontStyle.normal,
-                                          fontSize: maxWidth?14.0:12,
-                                      ),
-                                      maxLines: 2,
-                                      textAlign: TextAlign.left
-                                  ),
-                                )
-                              ],),
+                                            fontStyle:  FontStyle.normal,
+                                            fontSize: maxWidth?14.0:12,
+                                        ),
+                                        maxLines: 2,
+                                        textAlign: TextAlign.left
+                                    ),
+                                  )
+                                ],),
+                              ),
 
                               Container(
                                 margin:
@@ -283,39 +293,41 @@ class MessagingScreenState extends State<MessagingScreen>{
                                   ],
                                 ),
                               ):
+                              Container(
+                                width: double.maxFinite,
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount:questionsList.length,
+                                  itemBuilder: (context,index){
+                                    return Container(
+                                      margin: EdgeInsets.all(10),
+                                      child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
+                                        // Q.Water facilities good or not?
+                                        Text(
+                                            "Q${index+1}. ${(questionsList[index] as QuestionModal).question} ?",
+                                            style: const TextStyle(
+                                                color:  Colors.black87,
+                                                fontWeight: FontWeight.w600,
+                                                fontStyle:  FontStyle.normal,
+                                                fontSize: 16.0
+                                            ),
+                                            textAlign: TextAlign.left
+                                        ),
 
-                              ListView.builder(
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                itemCount:questionsList.length,
-                                itemBuilder: (context,index){
-                                  return Container(
-                                    margin: EdgeInsets.all(10),
-                                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
-                                      // Q.Water facilities good or not?
-                                      Text(
-                                          "Q${index+1}. ${(questionsList[index] as QuestionModal).question} ?",
+                                        answerWidget(
+                                            ansList:(questionsList[index] as QuestionModal).answerList,
+                                        question: (questionsList[index] as QuestionModal).question,
+                                        compoundId: widget.compoundID,
+                                        questionId: (questionsList[index] as QuestionModal).id),
 
-                                          style: const TextStyle(
-                                              color:  Colors.black87,
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle:  FontStyle.normal,
-                                              fontSize: 16.0
-                                          ),
-                                          textAlign: TextAlign.left
-                                      ),
+                                        SizedBox(height: 10,),
 
-                                      answerWidget((questionsList[index] as QuestionModal).answerList),
-
-
-
-
-                                      SizedBox(height: 10,),
-
-                                      Divider(color: Color(0x33000000),height: 1,thickness: 1,)
-                                    ],),
-                                  );
-                                },
+                                        Divider(color: Color(0x33000000),height: 1,thickness: 1,)
+                                      ],),
+                                    );
+                                  },
+                                ),
                               )
 
                             ],),
@@ -345,117 +357,5 @@ class MessagingScreenState extends State<MessagingScreen>{
     );
   }
 
-
-  Widget postQuestion(BuildContext context,double width){
-    return Container(
-      height: 250,
-      width: width,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
-// Post your question
-        Padding(
-          padding: const EdgeInsets.only(top: 20,bottom: 10),
-          child: Text(
-              "Post your question",
-              style: const TextStyle(
-                  color:  Colors.black87,
-                  fontWeight: FontWeight.w600,
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 18.0
-              ),
-              textAlign: TextAlign.left
-          ),
-        ),
-
-        Container(
-          height: 50,width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
-          decoration: BoxDecoration(
-              color: Color(0xfffaf7f7),border: Border.all(color: Colors.black26)
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                // contentPadding: EdgeInsets.only(left: 15),
-                  hintText: "Write your question here",
-                  hintStyle: TextStyle(
-
-                    color: Colors.black54,
-                    fontSize: 16,
-                  ),
-                  border: InputBorder.none,
-                  fillColor: Colors.white
-              ),),
-          ),
-        ),
-
-        Padding(
-          padding:EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
-          child: Text(
-              "Your question might be answered by any user who lived there",
-              style: const TextStyle(
-                  color:  const Color(0x80000000),
-                  fontWeight: FontWeight.w600,
-                  fontStyle:  FontStyle.normal,
-                  fontSize: 16.0
-              ),
-              textAlign: TextAlign.left
-          ),
-        ),
-
-        Expanded(child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            width: width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                   style: ElevatedButton.styleFrom(minimumSize:Size(width/3, 40) ,
-                     primary: Colors.grey.shade500,
-                     shape: RoundedRectangleBorder(
-                       borderRadius: BorderRadius.circular(5),
-                  ),
-                   ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "Cancel",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(minimumSize:Size(width/3, 40) ,
-                      primary: ColorClass.blueColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "Post",
-                      style:  TextStyle(
-                          color:  const Color(0xffffffff),
-                          fontWeight: FontWeight.w700,
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
-                      ),
-                    ),
-                  ),
-                ),
-              ],),
-          ),
-        ),)
-      ],),
-    );
-  }
 
 }

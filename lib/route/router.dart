@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/Message/MessagingScreen.dart';
+import 'package:webrevue/Message/QuestionAnswerScreen.dart';
 import 'package:webrevue/SignUp.dart';
 import 'package:webrevue/User/ForgetPassword.dart';
 import 'package:webrevue/Review/MyReviews.dart';
@@ -10,19 +11,34 @@ import 'package:webrevue/User/OtpVerification.dart';
 import 'package:webrevue/User/UpdatePassword.dart';
 import 'package:webrevue/compound/AddReview.dart';
 import 'package:webrevue/compound/CompoundDetails.dart';
+import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/home/CompoundList.dart';
 import 'package:webrevue/compound/FilterScreen.dart';
+import 'package:webrevue/model/arguments/AddReviewArgument.dart';
 import 'package:webrevue/model/arguments/CompoundArgument.dart';
 import 'package:webrevue/model/arguments/CompoundMessagingArgument.dart';
+import 'package:webrevue/model/arguments/QuestionAnswerArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
 
   Route<dynamic> generateRoute(RouteSettings settings){
     CompoundArgument compoundArgument;
     CompoundMessagingArgument compoundMessagingArgument;
-    if(settings.name ==compoundDetails){
+    QuestionAnswerArgument questionAnswerArgument;
+    AddReviewArgument addReviewArgument;
+    if(settings.name == compoundDetails){
       compoundArgument = settings.arguments;
     }
+    if(settings.name == questionAns){
+      compoundMessagingArgument = settings.arguments;
+    }
+    if(settings.name == answerOfQuestion){
+      questionAnswerArgument = settings.arguments;
+    }
+    if(settings.name == addreview){
+      addReviewArgument = settings.arguments;
+    }
+
     switch(settings.name) {
       case initialroute:
         return MaterialPageRoute(builder: (context) => LoginScreen(),settings: RouteSettings(name: "/login"),);
@@ -38,11 +54,23 @@ import 'package:webrevue/route/routing_constant.dart';
 
       case compoundDetails:
         return MaterialPageRoute(builder: (context) =>
-            CompoundDetails(compoundID: compoundArgument.compoundId,),
+            CompoundDetails(
+              key: GlobalKeys.compoundDetailsKey,
+              compoundID: compoundArgument.compoundId,
+              compoundName: compoundArgument.compoundName,
+            images: compoundArgument.images,
+            address: compoundArgument.address,),
             settings: RouteSettings(name: "/compoundDetail",),maintainState: true);
         break;
       case addreview:
-        return MaterialPageRoute(builder: (context) => AddReview(),settings: RouteSettings(name: "/addreview"));
+        return MaterialPageRoute(builder: (context) =>
+            AddReview(
+                key: GlobalKeys.addReviewClassKey,
+              compoundID:   addReviewArgument.compoundId,
+               compoundName:  addReviewArgument.compoundName,
+               images: addReviewArgument.images,
+            address: addReviewArgument.address,),
+            settings: RouteSettings(name: "/addreview"));
         break;
 
       case forgetPassword:
@@ -60,10 +88,12 @@ import 'package:webrevue/route/routing_constant.dart';
 
       case questionAns:
 
-        compoundMessagingArgument =  settings.arguments;
-
         return MaterialPageRoute(builder: (context)=>
-            MessagingScreen(compoundMessagingArgument.compoundModal),
+            MessagingScreen(
+              key: GlobalKeys.postQuestionClassKey,
+              compoundID: compoundMessagingArgument.compoundID,
+              compoundName: compoundMessagingArgument.compoundName,
+            compoundAddress: compoundMessagingArgument.compoundAddress,),
             settings: RouteSettings(name: "/messages"));
         break;
 
@@ -79,6 +109,16 @@ import 'package:webrevue/route/routing_constant.dart';
       case signup:
         return MaterialPageRoute(builder: (context)=>SignUp(),settings: RouteSettings(name: "/signup"));
         break;
+
+      case answerOfQuestion:
+        return MaterialPageRoute(builder: (context)=>
+            QuestionAnswerScreen(key: GlobalKeys.postAnswerClassKey,
+            compoundId: questionAnswerArgument.compoundID,
+            question: questionAnswerArgument.question,
+            questionId: questionAnswerArgument.questionID,),
+
+            settings: RouteSettings(name: "/question-answer"));
+
 
       default:
         return MaterialPageRoute(builder: (context) => LoginScreen(),settings: RouteSettings(name: "/login"));

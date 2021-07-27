@@ -7,7 +7,17 @@ import '../../constants/ColorClass.dart';
 import '../../model/UserModal.dart';
 import '../../route/routing_constant.dart';
 
-class LoginPage extends StatelessWidget{
+class LoginPage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return LoginPageState();
+  }
+
+}
+
+
+
+class LoginPageState extends State<LoginPage>{
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   @override
@@ -121,6 +131,9 @@ class LoginPage extends StatelessWidget{
              showLoadingDialog(context);
 
            bool loginStatus = await  Webservice.loginRequest(context, userModal);
+           setState(() {
+
+           });
              Navigator.pop(context);
            if(loginStatus == true){
              Navigator.pushNamed(context, mainscreenRoute);

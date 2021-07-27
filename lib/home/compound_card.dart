@@ -4,7 +4,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/constants/circular_rating.dart';
@@ -65,16 +64,7 @@ class CompoundCardState extends State<CompoundCard>{
                           itemBuilder: (BuildContext context, int ind) {
                             return ClipRRect(
                               borderRadius: BorderRadius.circular(5.0),
-                              // child:HtmlWidget('''
-                              // <!DOCTYPE html>
-                              // <html>
-                              // <body>
-                              // <img src="${widget.compoundModal.images[ind]}",width="${width}" height="150">
-                              // </body>
-                              // </html>
-                              //
-                              // ''')
-                              child: Image.network(widget.compoundModal.images[ind],fit: BoxFit.cover,),
+                            child: Image.network(ServerDetails.get_images+widget.compoundModal.images[ind],fit: BoxFit.cover,),
                             );
                           },
                           autoplay: false,
@@ -98,7 +88,7 @@ class CompoundCardState extends State<CompoundCard>{
                                 decoration: BoxDecoration(
                                     borderRadius:BorderRadius.circular(5), image: DecorationImage(
                                   image: NetworkImage(
-                                      widget.compoundModal.images[0]),
+                                      ServerDetails.get_images+widget.compoundModal.images[0]),
                                   fit: BoxFit.cover,
                                 )),
                               ),
@@ -109,7 +99,7 @@ class CompoundCardState extends State<CompoundCard>{
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5), image: DecorationImage(
                                   image: NetworkImage(
-                                      widget.compoundModal.images[1]),
+                                      ServerDetails.get_images+widget.compoundModal.images[1]),
                                   fit: BoxFit.cover,
                                 )),
                               ),
@@ -266,7 +256,11 @@ class CompoundCardState extends State<CompoundCard>{
                       InkWell(
                         onTap: (){
                           Navigator.pushNamed(context, compoundDetails,
-                              arguments: CompoundArgument(compoundId: widget.compoundModal.id));
+                              arguments: CompoundArgument(
+                                  compoundId: widget.compoundModal.id,
+                              compoundName: widget.compoundModal.compoundname,
+                              images: widget.compoundModal.images,
+                              address: widget.compoundModal.address));
                           // Navigator.push(context,
                           //     MaterialPageRoute(builder: (context)=>CompoundDetails()));
                         },onHover: (value){
@@ -301,7 +295,7 @@ class CompoundCardState extends State<CompoundCard>{
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(5.0),
                     child: new Image.network(
-                      widget.compoundModal.images[ind],
+                      ServerDetails.get_images+widget.compoundModal.images[ind],
                       fit: BoxFit.fill,
                     ),
                   );
@@ -368,7 +362,7 @@ class CompoundCardState extends State<CompoundCard>{
                             backgroundColor: Colors.black26,
                             percent:getpercentage(widget.compoundModal.rating),
                             center: new Text(
-                             getpercentage(widget.compoundModal.rating).toStringAsFixed(2),
+                             getpercentage(widget.compoundModal.rating).toStringAsFixed(1),
                               style: new TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 10.0),
                             ),
@@ -457,10 +451,15 @@ class CompoundCardState extends State<CompoundCard>{
 
                   InkWell(
                     onTap: (){
-                      Navigator.pushNamed(context, compoundDetails);
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (context)=>CompoundDetails()));
-                    },onHover: (value){
+
+                      Navigator.pushNamed(context, compoundDetails,
+                          arguments: CompoundArgument(
+                              compoundId: widget.compoundModal.id,
+                              compoundName: widget.compoundModal.compoundname,
+                              images: widget.compoundModal.images,
+                              address: widget.compoundModal.address));
+
+                      },onHover: (value){
                     viewmore = value;
                     (context as Element).markNeedsBuild();
                   },

@@ -327,10 +327,13 @@ class SignUpState extends State<SignUp> {
 
     showLoadingDialog(context);
    bool register = await Webservice.registerRequest(context, userModal);
+   setState(() {
+
+   });
     Navigator.pop(context);
 
     if(register==true){
-       Navigator.pop(context);
+      displayAlertDialog(context,title: "Create Account",content: "Registration Success");
 
     }else{
       displayAlertDialog(context,title: "Create Account",content: "Unable to Register");

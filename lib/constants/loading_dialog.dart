@@ -32,7 +32,7 @@ Future<void> displayAlertDialog(BuildContext context,{String title="Error Occurs
           title: Text(title,textAlign: TextAlign.center,
             style: TextStyle(color: Colors.black87,fontSize: 16,fontWeight: FontWeight.w700),),
           content: Text(content,style: TextStyle(color: ColorClass.blueColor,
-              fontSize: 14,fontWeight: FontWeight.w600)),
+              fontSize: 14,fontWeight: FontWeight.w600),textAlign: TextAlign.center,),
         );
       }
   );

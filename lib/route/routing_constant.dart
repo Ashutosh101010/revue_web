@@ -14,6 +14,8 @@ const String myreviews = "/my-reviews";
 const String filtercompound = "/filter";
 const String signup = "/signup";
 const String initialroute = "/";
+const String answerOfQuestion = "/question-answer";
+
 
 final navKey = new GlobalKey<NavigatorState>();
 

@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -15,6 +16,7 @@ import 'package:webrevue/Review/widget/review_ratings.dart';
 import 'package:webrevue/Review/widget/reviewdate_widget.dart';
 import 'package:webrevue/constants/get_rating_percent.dart';
 import 'package:webrevue/model/ReviewModal.dart';
+import 'package:webrevue/service/ServerDetails.dart';
 
 import '../constants/ColorClass.dart';
 
@@ -474,30 +476,44 @@ class ReviewDetailState extends State<ReviewDetails> {
   Widget compoundImage(BuildContext context){
     return  Container(
       height: 230,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: Container(
-          width: 30,
-          height: 30,
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Icon(
-                  Icons.clear,
-                  color: Colors.black,
-                )),
+      child: Stack(
+        children: [
+          SizedBox(
+            height: 230,
+            child: Swiper(
+              itemBuilder: (BuildContext context, int index) {
+                return new Image.network(
+                  ServerDetails.get_images+widget.reviewModal.images[index],
+                  fit: BoxFit.fill,
+                );
+              },
+              autoplay: true,
+              itemCount:widget.reviewModal.images.length,
+              pagination: new SwiperPagination(),
+            ),
           ),
-        ),
+
+          Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              width: 30,
+              height: 30,
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.clear,
+                      color: Colors.black,
+                    )),
+              ),
+            ),
+          ),
+        ],
       ),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/house.png"),
-          fit: BoxFit.fitWidth,
-        ),
-      ),
+
     );
   }
   

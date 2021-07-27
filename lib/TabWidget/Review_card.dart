@@ -9,6 +9,7 @@ import 'package:webrevue/Review/ReviewDetails.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/constants/get_rating_percent.dart';
 import 'package:webrevue/model/ReviewModal.dart';
+import 'package:webrevue/service/ServerDetails.dart';
 
 import '../Review/widget/bedroom_widget.dart';
 import '../Review/widget/floor_plan.dart';
@@ -42,7 +43,7 @@ class ReviewCardState extends State<ReviewCard>{
               height: 250,
               decoration: BoxDecoration(image:
               DecorationImage(
-                image: AssetImage("assets/images/house.png"),
+                image: NetworkImage(ServerDetails.get_images+widget.reviewModal.images[0]),
                 fit: BoxFit.fill,
               ),borderRadius: BorderRadius.circular(3)),
             ),

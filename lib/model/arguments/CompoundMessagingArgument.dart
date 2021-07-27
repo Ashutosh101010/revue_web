@@ -1,7 +1,10 @@
 import 'package:webrevue/model/CompoundModal.dart';
 
 class CompoundMessagingArgument{
-  final CompoundModal compoundModal;
+  final String compoundID;
+  final String compoundName;
+  final String compoundAddress;
 
-  CompoundMessagingArgument(this.compoundModal);
+  CompoundMessagingArgument(
+  {this.compoundID, this.compoundName, this.compoundAddress});
 }

@@ -10,6 +10,8 @@ import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/TabWidget/CompoundDetailTab.dart';
 import 'package:webrevue/TabWidget/ReviewsTab.dart';
 import 'package:webrevue/footer/FooterWidget.dart';
+import 'package:webrevue/model/CompoundModal.dart';
+import 'package:webrevue/model/arguments/AddReviewArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/Webservice.dart';
 
@@ -18,9 +20,12 @@ import '../LoginDashboard/LoginScreen.dart';
 class CompoundDetails extends StatefulWidget{
 
   String compoundID;
+  String compoundName;
+  List images= [];
+  String address;
 
 
-  CompoundDetails({this.compoundID});
+  CompoundDetails({Key key,this.compoundID,this.compoundName,this.images,this.address}):super(key:key);
 
   @override
   State<StatefulWidget> createState() {
@@ -85,6 +90,7 @@ int selectedTab=1;
 
 
 List reviewList = [];
+
 
 
 fetchReview(){
@@ -172,12 +178,17 @@ body: CustomScrollView(shrinkWrap: true,
            margin: EdgeInsets.only( left: constraints.maxWidth>=1200?constraints.maxWidth/2:constraints.maxWidth/4,right:50 ,  top: 10, bottom: 10),
            child: MaterialButton(
              onPressed: (){
-               Navigator.pushNamed(context, addreview);
+               Navigator.pushNamed(context, addreview,
+               arguments: AddReviewArgument(widget.compoundID,
+                   widget.compoundName,
+                  widget.images,widget.address,
+
+               ));
              },
              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
              color: ColorClass.blueColor,
              hoverColor: Colors.blue.shade900,elevation: 10,
-             child: // Write Review
+             child:
              Text(
                  "Write Review",
                  style: const TextStyle(

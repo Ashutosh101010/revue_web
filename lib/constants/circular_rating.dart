@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:webrevue/constants/get_rating_percent.dart';
 import 'package:webrevue/model/CompoundModal.dart';
 
 class CompoundRating extends StatelessWidget{
@@ -25,7 +26,7 @@ class CompoundRating extends StatelessWidget{
                   radius: 38.0,
                   lineWidth: 3.8,
                   backgroundColor: Colors.black26,
-                  percent: 0.6,
+                  percent: getpercentage(compoundModal.facility),
                   center: new Text(
                     compoundModal.facility.toStringAsFixed(1),
                     style: new TextStyle(
@@ -55,7 +56,7 @@ class CompoundRating extends StatelessWidget{
                   radius: 38.0,
                   lineWidth: 3.8,
                   backgroundColor: Colors.black26,
-                  percent: 0.3,
+                  percent: getpercentage(compoundModal.design),
                   center: new Text(
                     compoundModal.design.toStringAsFixed(1),
                     style: new TextStyle(
@@ -86,7 +87,7 @@ class CompoundRating extends StatelessWidget{
                   radius: 38.0,
                   lineWidth: 3.8,
                   backgroundColor: Colors.black26,
-                  percent: 0.5,
+                  percent: getpercentage(compoundModal.location),
                   center: new Text(compoundModal.location.toStringAsFixed(1),
                     style: new TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 10.0),
@@ -113,7 +114,7 @@ class CompoundRating extends StatelessWidget{
                   radius: 38.0,
                   lineWidth: 3.8,
                   backgroundColor: Colors.black26,
-                  percent: 0.5,
+                  percent: getpercentage(compoundModal.management),
                   center: new Text(
                     compoundModal.management.toStringAsFixed(1),
                     style: new TextStyle(
