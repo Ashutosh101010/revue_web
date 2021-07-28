@@ -26,20 +26,33 @@ class ReviewTabState extends State<ReviewsTab> {
 
 
 
-
   @override
   void initState() {
     super.initState();
+    checkReview();
   }
 
+  bool exists;
+  checkReview()async{
+    exists = await Webservice.checkReview(widget.compoundID);
+    setState(() {
+
+    });
+  }
 
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: ListView.builder(shrinkWrap: true,
+      child:
+      widget.reviewList.isEmpty?
+          Text("No Review Posted for this Compound"):
+
+      ListView.builder(shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        itemCount: widget.reviewList.length, itemBuilder: (context, index) {
+        itemCount: exists?
+        widget.reviewList.length:
+        widget.reviewList.length>2?2:widget.reviewList.length, itemBuilder: (context, index) {
           return ReviewCard(widget.reviewList[index] as ReviewModal);
         },),
     );

@@ -5,13 +5,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/constants/circular_rating.dart';
 import 'package:webrevue/constants/get_rating_percent.dart';
+import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
 import 'package:webrevue/model/CompoundModal.dart';
+import 'package:webrevue/model/FavoriteModal.dart';
 import 'package:webrevue/model/arguments/CompoundArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/ServerDetails.dart';
+import 'package:webrevue/service/Webservice.dart';
+
+import 'CompoundList.dart';
 
 class CompoundCard extends StatefulWidget{
   double width;
@@ -29,17 +35,26 @@ class CompoundCard extends StatefulWidget{
 class CompoundCardState extends State<CompoundCard>{
   double width;
   bool viewmore = false;
-
+  bool favourite =  false;
   @override
   void initState() {
     super.initState();
     width = widget.width;
+
+
+    if(favouriteIDList.contains(widget.compoundModal.id)){
+      favourite = !favourite;
+    }
+
+    print(favourite);
   }
+
 
 
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       height: width>=600?280:450,
       decoration: BoxDecoration(color: Colors.white,),
@@ -234,17 +249,57 @@ class CompoundCardState extends State<CompoundCard>{
                               child: Container(
                                 child: Row(
                                   children: [
+
+                                    InkWell(
+                                    mouseCursor: SystemMouseCursors.click,
+                                        onTap: (){
+
+                                          setState(() {
+                                            favourite = !favourite;
+                                            // isFavourite[index] = !isFavourite[index];
+                                            FavoriteModal favModal = new FavoriteModal();
+
+                                            if(favourite == false){
+                                              favouriteIDList.remove(widget.compoundModal.id);
+                                              favList.remove(widget.compoundModal);
+                                              favModal.compoundID =widget.compoundModal.id;
+                                              Webservice.removeFavoriteRequest(context,favModal)
+                                                  .then((value) => this.setState(() {}));
+
+                                            }
+                                            else{
+                                              favouriteIDList.add(widget.compoundModal.id);
+                                              favList.add(widget.compoundModal);
+                                              favModal.compoundID =   widget.compoundModal.id;
+                                              Webservice.addFavoriteRequest(context,favModal)
+                                                  .then((value) => this.setState(() {
+
+                                              }));
+
+                                            }
+                                          });
+
+                                        },
+                                        child
+                                            : favourite == false
+                                            ? Icon(CupertinoIcons.heart,color: ColorClass.blueColor,)
+                                            : Icon(CupertinoIcons.heart_fill,color: ColorClass.blueColor)),
+
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(left:20.0,right:5),
+                                    //   child: Icon(CupertinoIcons.heart,color: Colors.black,size: 18,),
+                                    // ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left:20.0,right:5),
-                                      child: Icon(CupertinoIcons.heart,color: Colors.black,size: 18,),
-                                    ),
-                                    AutoSizeText("Save",
-                                        style: const TextStyle(shadows: [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],
-                                            color: const Color(0xff000000),
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FontStyle.normal,
-                                            fontSize: 14.0),
-                                        textAlign: TextAlign.left)
+                                      padding: const EdgeInsets.only(left: 5,right: 20,),
+                                      child: AutoSizeText("Save",
+                                          style: const TextStyle(shadows:
+                                          [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],
+                                              color: const Color(0xff000000),
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle: FontStyle.normal,
+                                              fontSize: 14.0),
+                                          textAlign: TextAlign.left),
+                                    )
                                   ],
                                 ),
                               ),
@@ -430,10 +485,41 @@ class CompoundCardState extends State<CompoundCard>{
                           child: Container(
                             child: Row(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left:20.0,right:5),
-                                  child: Icon(CupertinoIcons.heart,color: Colors.black,size: 18,),
-                                ),
+
+                                InkWell(
+                                    mouseCursor: SystemMouseCursors.click,
+                                    onTap: (){
+
+                                      setState(() {
+                                        favourite = !favourite;
+                                        // isFavourite[index] = !isFavourite[index];
+                                        FavoriteModal favModal = new FavoriteModal();
+
+                                        if(favourite == false){
+                                          favouriteIDList.remove(widget.compoundModal.id);
+                                          favList.remove(widget.compoundModal);
+                                          favModal.compoundID =widget.compoundModal.id;
+                                          Webservice.removeFavoriteRequest(context,favModal)
+                                              .then((value) => this.setState(() {}));
+
+                                        }
+                                        else{
+                                          favouriteIDList.add(widget.compoundModal.id);
+                                          favList.add(widget.compoundModal);
+                                          favModal.compoundID =   widget.compoundModal.id;
+                                          Webservice.addFavoriteRequest(context,favModal)
+                                              .then((value) => this.setState(() {
+
+                                          }));
+
+                                        }
+                                      });
+
+                                    },
+                                    child
+                                        : favourite == false
+                                        ? Icon(CupertinoIcons.heart,color: ColorClass.blueColor,)
+                                        : Icon(CupertinoIcons.heart_fill,color: ColorClass.blueColor)),
                                 AutoSizeText("Save",
                                     style: const TextStyle(shadows: [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],
                                         color: const Color(0xff000000),

@@ -15,6 +15,7 @@ import 'package:webrevue/LoginDashboard/widgets/login_dashboard.dart';
 import 'package:webrevue/LoginDashboard/widgets/side_drawer.dart';
 import 'package:webrevue/LoginDashboard/widgets/social_media_login.dart';
 import 'package:webrevue/model/UserModal.dart';
+import 'package:webrevue/service/Webservice.dart';
 import '../constants/ColorClass.dart';
 import '../SignUp.dart';
 import '../home/CompoundList.dart';
@@ -28,6 +29,7 @@ class LoginScreen extends StatefulWidget {
   }
 }
 
+List favList = [];
 class LoginScreenState extends State<LoginScreen> {
 
 
@@ -37,6 +39,9 @@ class LoginScreenState extends State<LoginScreen> {
   int selectedCard = -1;
   OverlayEntry overlayEntry;
   bool showOverlay = false;
+
+
+
 
   void showIndicator(BuildContext context) {
     // indicatorOffset = getIndicatorOffset(details.localPosition);
@@ -187,7 +192,22 @@ class LoginScreenState extends State<LoginScreen> {
         curve: Curves.ease,
       );
     });
+
+
+    getFavoriteCompound();
+
+
+
   }
+
+
+  Future<void> getFavoriteCompound()async{
+   await Webservice.getAllFavoritesCompoundRequest();
+   setState(() {
+
+   });
+  }
+
   Stream<double> throttle(Stream<double> src) async* {
     double offset = pager.position.pixels;
     DateTime dt = DateTime.now();

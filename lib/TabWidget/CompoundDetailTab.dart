@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/TabWidget/widget/AboutWidget.dart';
 import 'package:webrevue/TabWidget/widget/AmenitiesWidget.dart';
 import 'package:webrevue/TabWidget/widget/MapsWidget.dart';
@@ -12,7 +13,9 @@ import 'package:webrevue/TabWidget/widget/compound_rating.dart';
 import 'package:webrevue/TabWidget/widget/compound_rating_bar.dart';
 import 'package:webrevue/TabWidget/widget/star_rating.dart';
 import 'package:webrevue/constants/ColorClass.dart';
+import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
 import 'package:webrevue/model/CompoundModal.dart';
+import 'package:webrevue/model/FavoriteModal.dart';
 import 'package:webrevue/model/arguments/CompoundArgument.dart';
 import 'package:webrevue/model/arguments/CompoundMessagingArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
@@ -39,12 +42,17 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
   bool favhover = false;
   double maxWidth;
   CompoundModal compoundModal;
-
+    bool favourite=false;
 
   @override
   void initState() {
     super.initState();
     getCompoundDetails();
+
+
+    if(favouriteIDList.contains(widget.compoundID)){
+      favourite = !favourite;
+    }
   }
 
 
@@ -101,13 +109,40 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                     margin: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                    color: favhover?ColorClass.blueColor:Colors.white,),
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child:  Image.asset(
-                        "assets/images/heart.png",color: favhover?Colors.white:ColorClass.blueColor,
-                        fit: BoxFit.contain,height: 20,width: 20,),
-                    ),
+                    color: ColorClass.blueColor,),
+                    child: IconButton(icon:  favourite?
+                    Icon(
+                      CupertinoIcons.suit_heart_fill,
+                      color: Colors.white,
+                    ):Icon(
+                      CupertinoIcons.heart,
+                      color: Colors.white,
+                    ),alignment: Alignment.center,
+                      color: ColorClass.blueColor,
+                      onPressed: () async{
+                        favourite = !favourite;
+                        FavoriteModal favModal = new FavoriteModal();
+
+                        if(favourite == false){
+                          favouriteIDList.remove(widget.compoundID);
+                          favList.remove(widget.compoundModal);
+                          favModal.compoundID =widget.compoundID;
+                         await Webservice.removeFavoriteRequest(context,favModal);
+
+                         setState(() {
+
+                         });
+                        }
+                        else{
+                          favouriteIDList.add(widget.compoundID);
+                          favList.add(widget.compoundModal);
+                          favModal.compoundID =   widget.compoundID;
+                         await Webservice.addFavoriteRequest(context,favModal);
+                         setState(() {
+
+                         });
+                        }
+                      },),
               ),
                 ),),
             ],

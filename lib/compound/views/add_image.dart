@@ -31,7 +31,7 @@ class AddImageReviewState extends State<AddImageReview>{
 Future<void> getImages(ReviewModal reviewModal)async{
     List<MultipartFile> tempList =[];
 
-    for(XFile xFile in _imageFileList){
+    for(XFile xFile in imageFileList){
       print(xFile.mimeType);
 
       Uint8List  bytes  = await xFile.readAsBytes();
@@ -64,7 +64,7 @@ Future<void> getImages(ReviewModal reviewModal)async{
       try {
         final pickedFileList = await _picker.pickMultiImage();
         setState(() {
-          _imageFileList = pickedFileList;
+          imageFileList = pickedFileList;
         });
       } catch (e) {
         setState(() {
@@ -85,7 +85,7 @@ Future<void> getImages(ReviewModal reviewModal)async{
     if (retrieveError != null) {
       return retrieveError;
     }
-    if (_imageFileList != null) {
+    if (imageFileList != null) {
       return Semantics(
           child: GridView.builder(
             key: UniqueKey(),
@@ -99,11 +99,11 @@ Future<void> getImages(ReviewModal reviewModal)async{
                     ? Container(
                     height: 70,width: 70,
                     margin: EdgeInsets.all(10),
-                    child: Image.network(_imageFileList[index].path,fit: BoxFit.fill,))
+                    child: Image.network(imageFileList[index].path,fit: BoxFit.fill,))
                     : Image.asset(""),
               );
             },
-            itemCount: _imageFileList.length,
+            itemCount: imageFileList.length,
           ),
           label: 'pick images');
     } else if (_pickImageError != null) {
@@ -157,7 +157,7 @@ Future<void> getImages(ReviewModal reviewModal)async{
                  textAlign: TextAlign.left)
          ),
          Container(margin: EdgeInsets.only(left:30,right:30,top:10,bottom: 20),
-             child:  _imageFileList.isEmpty
+             child:  imageFileList.isEmpty
                  ? Padding(
                  padding: const EdgeInsets.all(8.0),
                  child:// Rectangle 54
@@ -197,12 +197,12 @@ Future<void> getImages(ReviewModal reviewModal)async{
   }
 
 
-  List<XFile> _imageFileList=[];
+  List<XFile> imageFileList=[];
 
   final ImagePicker _picker = ImagePicker();
 
   set _imageFile(XFile value) {
-    _imageFileList = value == null ? null : [value];
+    imageFileList = value == null ? null : [value];
   }
 
   dynamic _pickImageError;
@@ -212,7 +212,7 @@ Future<void> getImages(ReviewModal reviewModal)async{
 
 
   bool validate(){
-    return _imageFileList.isNotEmpty;
+    return imageFileList.isNotEmpty;
   }
 
 

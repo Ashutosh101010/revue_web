@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/route/routing_constant.dart';
@@ -27,9 +28,7 @@ class AppBarSecState extends State<AppBarSec>{
   bool profileHover = false;
   bool searchHover = false;
   var optionMenuSelected;
-  String selectedCategory;
-  String selectedLocation;
-  List category = ['1', '2', '3', '4', '5', '6'];
+
 
 
   showPopupMenu(Offset offset) async {
@@ -63,17 +62,22 @@ class AppBarSecState extends State<AppBarSec>{
       if(itemSelected == "1"){
 
       }else if(itemSelected == "2"){
-
+        Navigator.pushNamed(context, myFavourite);
       }else if(itemSelected == "3"){
         Navigator.pushNamed(context, myreviews);
 
       }else if(itemSelected == "4"){
+       clearSharedPreferences();
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
       }
 
     });
   }
 
+  void clearSharedPreferences()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
 
 
   @override
@@ -286,126 +290,4 @@ class AppBarSecState extends State<AppBarSec>{
     );
   }
 
-  Widget searchWidget(double width){
-    return Padding(
-      padding: const EdgeInsets.only(top:8.0,bottom: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {},
-            child: Container(
-              margin: EdgeInsets.only(right: 10,),
-              width: width,
-              height: 40,alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(7),
-                  border: Border.all(color: ColorClass.blueColor, width: 1)),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left:8,right:8),
-                    child: Icon(
-                      CupertinoIcons.search,
-                      color: ColorClass.blueColor,
-                      size: 30,
-                    ),
-                  ),
-                  Container(
-                    width: 300,alignment: Alignment.center,
-                    child: TextField(
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 18.0),
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 15,bottom: 10),
-                          hintText: "Search Compound",
-                          hintStyle: TextStyle(
-                            color: Colors.grey,
-                          ),
-                          border: InputBorder.none,
-                          fillColor: Colors.white),
-                      cursorColor: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          Container(
-            height: 40,
-            width: width/2,
-            margin: EdgeInsets.only(left: 10, right: 10,),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(7),
-                border: Border.all(color: ColorClass.blueColor, width: 1)),
-            child: DropdownButtonHideUnderline(
-              child: GFDropdown(
-                borderRadius: BorderRadius.circular(10),
-                hint: Text(
-                  "Select Category",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                dropdownButtonColor: Colors.white,
-                iconEnabledColor: ColorClass.blueColor,
-                value: selectedCategory,
-                onChanged: (newValue) {
-                  setState(() {
-                    selectedCategory = newValue;
-                  });
-                },
-                items: category
-                    .map((value) => DropdownMenuItem(
-                  value: value,
-                  child: Text(value),
-                ))
-                    .toList(),
-              ),
-            ),
-          ),
-
-          Container(
-            height: 40,
-            width: width/2,
-            margin: EdgeInsets.only(left: 10, right: 10,),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(7),
-                border: Border.all(color: ColorClass.blueColor, width: 1)),
-            child: DropdownButtonHideUnderline(
-              child: GFDropdown(
-                borderRadius: BorderRadius.circular(10),
-                hint: Text(
-                  "Select location",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                dropdownButtonColor: Colors.white,
-                iconEnabledColor: ColorClass.blueColor,
-                value: selectedCategory,
-                onChanged: (newValue) {
-                  setState(() {
-                    selectedCategory = newValue;
-                  });
-                },
-                items: category
-                    .map((value) => DropdownMenuItem(
-                  value: value,
-                  child: Text(value),
-                ))
-                    .toList(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

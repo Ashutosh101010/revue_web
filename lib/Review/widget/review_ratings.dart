@@ -5,9 +5,14 @@ import 'package:webrevue/constants/get_rating_percent.dart';
 import 'package:webrevue/model/ReviewModal.dart';
 
 class ReviewRatings extends StatelessWidget{
-  ReviewModal reviewModal;
 
-  ReviewRatings(this.reviewModal);
+  double facility;
+  double management;
+  double value;
+  double location;
+  double design;
+
+  ReviewRatings({this.facility,this.management,this.location,this.value,this.design});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +28,9 @@ class ReviewRatings extends StatelessWidget{
                 radius: 40.0,
                 animation: false,
                 lineWidth: 4.0,
-                percent: getpercentage(reviewModal.facilities),
+                percent: getpercentage(facility),
                 center: new Text(
-                  reviewModal.facilities.toStringAsFixed(1),
+                  facility.toStringAsFixed(1),
                   style: new TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15.0),
@@ -51,9 +56,9 @@ class ReviewRatings extends StatelessWidget{
                 radius: 40.0,
                 animation: false,
                 lineWidth: 4.0,
-                percent: getpercentage(reviewModal.design),
+                percent: getpercentage(design),
                 center: new Text(
-                  reviewModal.design.toStringAsFixed(1),
+                  design.toStringAsFixed(1),
                   style: new TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15.0),
@@ -79,9 +84,9 @@ class ReviewRatings extends StatelessWidget{
                 radius: 40.0,
                 animation: false,
                 lineWidth: 4.0,
-                percent: getpercentage(reviewModal.location),
+                percent: getpercentage(location),
                 center: new Text(
-                  reviewModal.location.toStringAsFixed(1),
+                  location.toStringAsFixed(1),
                   style: new TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15.0),
@@ -107,9 +112,9 @@ class ReviewRatings extends StatelessWidget{
                 radius: 40.0,
                 animation: false,
                 lineWidth: 4.0,
-                percent: getpercentage(reviewModal.value),
+                percent: getpercentage(value),
                 center: new Text(
-                  reviewModal.value.toStringAsFixed(1),
+                 value.toStringAsFixed(1),
                   style: new TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15.0),
@@ -135,9 +140,9 @@ class ReviewRatings extends StatelessWidget{
                 radius: 40.0,
                 animation: false,
                 lineWidth: 4.0,
-                percent: getpercentage(reviewModal.management),
+                percent: getpercentage(management),
                 center: new Text(
-                  reviewModal.management.toStringAsFixed(1),
+                management.toStringAsFixed(1),
                   style: new TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15.0),

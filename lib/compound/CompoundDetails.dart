@@ -9,6 +9,7 @@ import 'package:webrevue/compound/widget/PersistentHeader.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/TabWidget/CompoundDetailTab.dart';
 import 'package:webrevue/TabWidget/ReviewsTab.dart';
+import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/footer/FooterWidget.dart';
 import 'package:webrevue/model/CompoundModal.dart';
 import 'package:webrevue/model/arguments/AddReviewArgument.dart';
@@ -86,11 +87,20 @@ int selectedTab=1;
 
 
     fetchReview();
+    checkReview();
   }
 
 
 List reviewList = [];
 
+
+  bool exists;
+  checkReview()async{
+    exists = await Webservice.checkReview(widget.compoundID);
+    setState(() {
+
+    });
+  }
 
 
 fetchReview(){
@@ -178,12 +188,18 @@ body: CustomScrollView(shrinkWrap: true,
            margin: EdgeInsets.only( left: constraints.maxWidth>=1200?constraints.maxWidth/2:constraints.maxWidth/4,right:50 ,  top: 10, bottom: 10),
            child: MaterialButton(
              onPressed: (){
-               Navigator.pushNamed(context, addreview,
-               arguments: AddReviewArgument(widget.compoundID,
-                   widget.compoundName,
-                  widget.images,widget.address,
 
-               ));
+               if(!exists){
+                 Navigator.pushNamed(context, addreview,
+                     arguments: AddReviewArgument(widget.compoundID,
+                       widget.compoundName,
+                       widget.images,widget.address,
+
+                     ));
+               }else{
+                 displayAlertDialog(context,content: "Your review already exists",title: "Post Review");
+               }
+
              },
              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
              color: ColorClass.blueColor,
@@ -288,177 +304,15 @@ body: CustomScrollView(shrinkWrap: true,
             ],
           ),
         ),
-        ReviewsTab(reviewList)
+        ReviewsTab(reviewList),
+        exists?Container():Text("Please Add Review to view more Reviews",
+          style: TextStyle(color: ColorClass.redColor,fontSize: 16,fontWeight: FontWeight.w500),)
 
       ],
     );
   }
   
-  // Widget leftPanel(BuildContext context,double _width,double _height){
-  //   return Container(
-  //     alignment: Alignment.topCenter,
-  //     margin: EdgeInsets.only(top: 20),
-  //     width:_width>=1200?_width-500:_width>=1000?_width-300:_width,
-  //     height:_height,
-  //     child:  ScrollableListTabView(
-  //       tabHeight: 60,
-  //       bodyAnimationDuration: const Duration(milliseconds: 150),
-  //       tabAnimationCurve: Curves.easeOut,
-  //       tabAnimationDuration: const Duration(milliseconds: 200),
-  //       tabs: [
-  //         ScrollableListTab(
-  //             tab: ListTab(
-  //                 activeBackgroundColor: Colors.white,
-  //                 inactiveBackgroundColor: Colors.white,
-  //                 borderColor: Colors.white,
-  //                 label: Text('Rating', style: TextStyle(color: Colors.white)),
-  //                 showIconOnList: false),
-  //             body:ListView.builder(
-  //               shrinkWrap: true,
-  //               physics: NeverScrollableScrollPhysics(),
-  //               itemCount: 1,
-  //               itemBuilder: (context,index){
-  //                 return RatingWidgetClass();
-  //               },
-  //             )),
-  //
-  //         ScrollableListTab(
-  //             tab: ListTab(
-  //                 activeBackgroundColor: Colors.white,
-  //                 inactiveBackgroundColor: Colors.white,
-  //                 borderColor: Colors.white,
-  //                 label: Text('Review',
-  //                     style: TextStyle(color: Colors.white,)),
-  //                 showIconOnList: false),
-  //             body: ListView(
-  //               physics: NeverScrollableScrollPhysics(),
-  //               shrinkWrap: true,
-  //               children: [
-  //                 Padding(
-  //                   padding:  EdgeInsets.only(left: 50,bottom: 10),
-  //                   child: Row(
-  //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                     children: [
-  //                       Text("Properties  ",
-  //                         style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
-  //                           fontSize: 23,
-  //                           fontStyle:  FontStyle.normal,),),
-  //
-  //                       Container(
-  //                         height: 50,
-  //                         margin: EdgeInsets.only(left: 10, right: 10,),
-  //                         child: DropdownButtonHideUnderline(
-  //                           child: GFDropdown(
-  //                             hint: Text(
-  //                               "Filter",
-  //                               style: TextStyle(color: Colors.black87),
-  //                             ),
-  //                             dropdownButtonColor: Colors.white,
-  //                             padding: EdgeInsets.all(10),
-  //                             itemHeight: 4,
-  //                             icon: Icon(Icons.keyboard_arrow_down_outlined),
-  //                             iconEnabledColor: ColorClass.blueColor,
-  //                             value:filterProperty,
-  //                             onChanged: (newValue) {
-  //                               setState(() {
-  //                                 filterProperty = newValue;
-  //                               });
-  //                             },
-  //                             items: filterList
-  //                                 .map((value) => DropdownMenuItem(
-  //                               value: value,
-  //                               child: Text(value,style: TextStyle(fontWeight: FontWeight.w500),),
-  //                             ))
-  //                                 .toList(),
-  //                           ),
-  //                         ),
-  //                       ),
-  //
-  //
-  //                     ],
-  //                   ),
-  //                 ),
-  //                 ListView.builder(shrinkWrap: true,
-  //                   physics: NeverScrollableScrollPhysics(),
-  //                   itemCount: 4,itemBuilder: (context,index){
-  //
-  //                     return ReviewsTab();
-  //
-  //                   },),
-  //               ],
-  //             )
-  //         ),
-  //         ScrollableListTab(
-  //             tab: ListTab(
-  //                 activeBackgroundColor: Colors.white,
-  //                 inactiveBackgroundColor: Colors.white,
-  //                 borderColor: Colors.white,
-  //                 label: Text('Facilities',
-  //                     style: TextStyle(color: Colors.white,)),
-  //                 showIconOnList: false),
-  //             body: ListView.builder(
-  //               shrinkWrap: true,
-  //               physics: NeverScrollableScrollPhysics(),
-  //               itemCount: 1,
-  //               itemBuilder: (context,index){
-  //                 return Padding(
-  //                   padding:  EdgeInsets.only(left: 50,right: 50,bottom: 10),
-  //                   child: Container(
-  //                     width:_width,
-  //                     height: 500,
-  //                     child: GridView.builder(
-  //                       itemCount: propertyImage.length,
-  //                         physics: NeverScrollableScrollPhysics(),
-  //                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-  //                           crossAxisCount: _width>=1200?4:_width>=1000?3:1
-  //                         ),
-  //                         shrinkWrap: true,
-  //                         itemBuilder: (context,ind){
-  //                           return Padding(
-  //                             padding: const EdgeInsets.all(10.0),
-  //                             child: SizedBox(
-  //                               child: Image.network(propertyImage[index],fit: BoxFit.fill,),
-  //                             ),
-  //                           );
-  //                         }),
-  //                   ),
-  //                 );
-  //               },
-  //             )),
-  //
-  //         ScrollableListTab(
-  //             tab: ListTab(
-  //                 activeBackgroundColor: Colors.white,
-  //                 inactiveBackgroundColor: Colors.white,
-  //                 borderColor: Colors.white,
-  //                 label: Text('Location',
-  //                     style: TextStyle(color: Colors.white,)),
-  //                 showIconOnList: false),
-  //             body: ListView.builder(
-  //               shrinkWrap: true,
-  //               physics: NeverScrollableScrollPhysics(),
-  //               itemCount: 1,
-  //               itemBuilder: (context,index){
-  //                 return Padding(
-  //                   padding:  EdgeInsets.only(left: 50,right: 50,bottom: 10),
-  //                   child: Container(
-  //                     width: _width,
-  //                     height: 300,
-  //                     decoration: BoxDecoration(
-  //                         image: DecorationImage(
-  //                             colorFilter: ColorFilter.mode(
-  //                                 Colors.white, BlendMode.dstOver),
-  //                             fit: BoxFit.cover,
-  //                             image: AssetImage("assets/images/map.png"))),
-  //                   ),
-  //                 );
-  //               },
-  //             )),
-  //
-  //       ],
-  //
-  //     ),);
-  // }
+
   
   Widget rightPanel(BuildContext context){
     return  Container(

@@ -25,4 +25,5 @@ class ServerDetails{
   static String forget_password_request = base_url+"/sendOtp";
   static String validate_OTP_request = base_url+"/verifyOtp";
   static String change_password = base_url+"/updatePassword";
+  static String check_review = base_url+"/checkReview";
 }

@@ -1,17 +1,20 @@
 
 
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/Message/MessagingScreen.dart';
 import 'package:webrevue/Message/QuestionAnswerScreen.dart';
 import 'package:webrevue/SignUp.dart';
 import 'package:webrevue/User/ForgetPassword.dart';
-import 'package:webrevue/Review/MyReviews.dart';
+import 'package:webrevue/MyReview/MyReviews.dart';
 import 'package:webrevue/User/OtpVerification.dart';
 import 'package:webrevue/User/UpdatePassword.dart';
 import 'package:webrevue/compound/AddReview.dart';
 import 'package:webrevue/compound/CompoundDetails.dart';
 import 'package:webrevue/constants/keys.dart';
+import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
 import 'package:webrevue/home/CompoundList.dart';
 import 'package:webrevue/compound/FilterScreen.dart';
 import 'package:webrevue/model/arguments/AddReviewArgument.dart';
@@ -48,7 +51,7 @@ import 'package:webrevue/route/routing_constant.dart';
         return MaterialPageRoute(builder: (context) => LoginScreen(),settings: RouteSettings(name: "/login"));
         break;
       case mainscreenRoute:
-        return MaterialPageRoute(builder: (context) => CompoundList(compoundListKey:compoundListKey ,),
+        return MaterialPageRoute(builder: (context) => CompoundList(key: GlobalKeys.compoundListKey ,),
             settings: RouteSettings(name: "/home"));
         break;
 
@@ -60,7 +63,7 @@ import 'package:webrevue/route/routing_constant.dart';
               compoundName: compoundArgument.compoundName,
             images: compoundArgument.images,
             address: compoundArgument.address,),
-            settings: RouteSettings(name: "/compoundDetail",),maintainState: true);
+            settings: RouteSettings(name: "$mainscreenRoute/compoundDetail",),maintainState: true);
         break;
       case addreview:
         return MaterialPageRoute(builder: (context) =>
@@ -70,7 +73,7 @@ import 'package:webrevue/route/routing_constant.dart';
                compoundName:  addReviewArgument.compoundName,
                images: addReviewArgument.images,
             address: addReviewArgument.address,),
-            settings: RouteSettings(name: "/addreview"));
+            settings: RouteSettings(name: "$mainscreenRoute$compoundDetails/addreview"));
         break;
 
       case forgetPassword:
@@ -83,7 +86,8 @@ import 'package:webrevue/route/routing_constant.dart';
         break;
 
       case newpassword:
-        return MaterialPageRoute(builder: (context)=>UpdatePassword(),settings: RouteSettings(name: "/new-password"));
+        return MaterialPageRoute(builder: (context)=>UpdatePassword(),
+            settings: RouteSettings(name: "/new-password"));
         break;
 
       case questionAns:
@@ -94,7 +98,7 @@ import 'package:webrevue/route/routing_constant.dart';
               compoundID: compoundMessagingArgument.compoundID,
               compoundName: compoundMessagingArgument.compoundName,
             compoundAddress: compoundMessagingArgument.compoundAddress,),
-            settings: RouteSettings(name: "/messages"));
+            settings: RouteSettings(name: "$mainscreenRoute$compoundDetails/messages"));
         break;
 
 
@@ -103,7 +107,9 @@ import 'package:webrevue/route/routing_constant.dart';
         break;
 
       case myreviews:
-        return MaterialPageRoute(builder: (context)=>MyReviews(),settings: RouteSettings(name: "/my-reviews"));
+        return MaterialPageRoute(builder: (context)=>
+            MyReviews(),
+            settings: RouteSettings(name: "/my-reviews"));
         break;
 
       case signup:
@@ -117,7 +123,14 @@ import 'package:webrevue/route/routing_constant.dart';
             question: questionAnswerArgument.question,
             questionId: questionAnswerArgument.questionID,),
 
-            settings: RouteSettings(name: "/question-answer"));
+            settings: RouteSettings(name: "$mainscreenRoute$compoundDetails$questionAns/question-answer"));
+        break;
+
+      case myFavourite:
+        return MaterialPageRoute(builder: (context)=>FavoriteCompound(),
+            settings: RouteSettings(name: "/myFavorites"));
+        break;
+
 
 
       default:

@@ -315,7 +315,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                                             textAlign: TextAlign.left
                                         ),
 
-                                        answerWidget(
+                                        answerWidget(context,
                                             ansList:(questionsList[index] as QuestionModal).answerList,
                                         question: (questionsList[index] as QuestionModal).question,
                                         compoundId: widget.compoundID,

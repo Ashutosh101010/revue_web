@@ -3,16 +3,22 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:webrevue/AppBar/SearchWidget.dart';
+import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
+import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
 import 'package:webrevue/home/CompoundList.dart';
 import 'package:webrevue/model/AnswerModal.dart';
 import 'package:webrevue/model/CompoundModal.dart';
+import 'package:webrevue/model/FavoriteModal.dart';
 import 'package:webrevue/model/LikeUnlikeModal.dart';
 import 'package:webrevue/model/MessagingModal.dart';
+import 'package:webrevue/model/MyReviewsModal.dart';
 import 'package:webrevue/model/QuestionModal.dart';
 import 'package:webrevue/model/ReportModal.dart';
 import 'package:webrevue/model/ReviewModal.dart';
+import 'package:webrevue/model/SearchModal.dart';
 import 'package:webrevue/model/UserModal.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
@@ -94,7 +100,7 @@ class Webservice{
 
     var request ={};
     request["lastObjectID"]= id;
-    request["category"] = "Any";
+    request["category"] = filterCategoryType;
     request["amenities"] = [];
     // if(radius>0 && radius<30 && currentPosition!=null)
     // {
@@ -391,6 +397,9 @@ class Webservice{
       print("valeue--------------"+value);
       Map map = json.decode(value);
       if(map["errorcode"] == 0 && map["status"]==true){
+
+        displayAlertDialog(context,content: "Review posted successfully",
+            title: "Post Review");
         GlobalKeys.compoundDetailsKey.currentState.fetchReview();
 
        return true;
@@ -404,10 +413,212 @@ class Webservice{
 
     });
 
+  }
+
+
+
+  static Future<dynamic>  getAllFavoritesCompoundRequest()async{
+
+    List tempFavList =[];
+    List tempFavIDList = [];
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var request ={};
+    request["userID"] = sharedPreferences.getString("userID");
+    // compoundList.clear();
+    var response = await http.post(
+        Uri.parse
+          (ServerDetails.get_favorites),
+        body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+
+    // print(request);
+
+    tempFavList.clear();tempFavIDList.clear();
+    var jsonResponse = convert.jsonDecode(response.body);
+    if(jsonResponse["status"]==true &&
+        jsonResponse["errorcode"] == 1){
+      List list = jsonResponse["compound"];
+      // print(list);
+      CompoundModal compoundModal;
+      if(list.isNotEmpty){
+        list.forEach((element) {
+          compoundModal = CompoundModal.fromJson(element);
+          tempFavIDList.add(compoundModal.id);
+          tempFavList.add(compoundModal);
+        });
+      }
+      favList = tempFavList;
+      favouriteIDList = tempFavIDList;
+
+
+
+    }
+  }
+
+
+  static Future<dynamic> addFavoriteRequest(BuildContext context,FavoriteModal favModal)async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    favModal.userID = sharedPreferences.getString("userId");
+    var request = favModal.toJson();
+    var response = await http.post(Uri.parse(ServerDetails.add_to_Favorite),
+        body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+
+    // print(response.body);
+
+    var jsonResponse = convert.jsonDecode(response.body);
+    print(jsonResponse);
+    if(jsonResponse["status"]== true &&
+        jsonResponse["errorcode"] ==0)
+    {
+      displayAlertDialog(context,title: "Favorite Compound",content: "Added from Favorite");
+
+    }else{
+      displayAlertDialog(context,title: "Favorite Compound",content: "Something Went wrong");
+
+    }
+
+    getAllFavoritesCompoundRequest();
+
+  }
+  static Future<dynamic> removeFavoriteRequest(BuildContext context,FavoriteModal favoriteModal)async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    favoriteModal.userID =sharedPreferences.getString("userId");
+    var request = favoriteModal.toJson();
+
+
+    var response = await http.post(Uri.parse(ServerDetails.remove_from_favorite),
+        body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+
+    var jsonResponse = convert.jsonDecode(response.body);
+    print(jsonResponse);
+    if(jsonResponse["status"]== true &&
+        jsonResponse["errorcode"] == 1)
+    {
+      displayAlertDialog(context,title: "Favorite Compound",content: "Removed from Favorite");
+
+    }else{
+      displayAlertDialog(context,title: "Favorite Compound",content: "Something went wrong");
+
+    }
+
+    getAllFavoritesCompoundRequest();
+
+  }
+
+
+  static Future<dynamic> getMyReviews(List myReviewList)async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var request = {};
+    request["userID"] = sharedPreferences.getString("userId");
+    var response = await http.post(Uri.parse(ServerDetails.my_Reviews),
+        body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        }
+    );
+
+    myReviewList.clear();
+    var jsonResponse = convert.jsonDecode(response.body);
+    if(jsonResponse["status"] == true
+        && jsonResponse["errorcode"] ==0 ){
+      MyReviewsModal reviewModal;
+      List list = jsonResponse["reviewList"];
+      list.forEach((element) {
+        reviewModal = MyReviewsModal.fromJson(element);
+        myReviewList.add(reviewModal);
+      });
+    }
+  }
+
+
+
+  static Future<dynamic> reportReviewRequest(BuildContext context,String reviewID)async{
+    var request={};
+    request["reviewID"] = reviewID;
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    request["userID"] = sharedPreferences.getString("userId");
+    request["userName"] = sharedPreferences.getString("name");
+    var response = await http.post(Uri.parse(ServerDetails.report_review),
+        body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+
+    var jsonResponse = convert.jsonDecode(response.body);
+    if(jsonResponse["status"] == true &&
+        jsonResponse["errorCode"] == 0)
+    {
+      displayAlertDialog(context,content: "Review Reported Successfully",title: "Report Review");
+
+    }else{
+      displayAlertDialog(context,content: "Something went wrong");
+    }
+
+  }
+
+
+  static Future<bool> checkReview(String compoundId)
+  async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var request ={};
+    request["userId"]= sharedPreferences.getString("userId");
+    request["compoundId"]= compoundId;
+    var response = await http.post(Uri.parse(ServerDetails.check_review),body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+    print(response.body);
+
+    var jsonResponse  = convert.jsonDecode(response.body);
+    return jsonResponse['reviewExists'];
 
 
   }
 
+  static Future<dynamic> searchCompoundRequest(SearchModal searchModal)async{
+    var request = searchModal.toJson();
+    var response = await http.post(Uri.parse(ServerDetails.search_compound),
+        body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+
+    CompoundModal compoundModal;
+    var jsonResponse = convert.jsonDecode(response.body);
+    if(jsonResponse["status"]==true &&
+        jsonResponse["code"]==1){
+      List cList = jsonResponse["compoundList"];
+      List list = [];
+      cList.forEach((element) {
+        compoundModal = new CompoundModal.fromJson(element);
+        list.add(compoundModal);
+      });
+      compoundSearchList = list;
+
+    }else if(jsonResponse["status"]==false &&
+        jsonResponse["code"]==2){
+
+
+      // print(jsonResponse["code"]);
+      // Scaffold.of(context).showSnackBar(SnackBar(content: Text("Unable to Fetch Compound")));
+    }
+  }
 
 
 }

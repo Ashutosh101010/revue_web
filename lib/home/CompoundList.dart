@@ -10,6 +10,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:smooth_scroll_web/smooth_scroll_web.dart';
 import 'package:webrevue/AppBar/AppBarFirst.dart';
 import 'package:webrevue/AppBar/AppBarSec.dart';
+import 'package:webrevue/AppBar/SearchWidget.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/footer/FooterWidget.dart';
 import 'package:webrevue/home/compound_card.dart';
@@ -19,16 +20,14 @@ import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/Webservice.dart';
 
 import '../compound/FilterScreen.dart';
-GlobalKey<CompoundListState> compoundListKey = new GlobalKey<CompoundListState>();
 
 class CompoundList extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     return CompoundListState();
   }
-  CompoundList({Key compoundListKey}):super(key:compoundListKey);
+  CompoundList({Key key}):super(key:key);
 }
-
 
 
 class CompoundListState extends State<CompoundList>{
@@ -37,7 +36,6 @@ class CompoundListState extends State<CompoundList>{
   String selectedCategory;
   String selectedLocation;
   List category = ['1', '2', '3', '4', '5', '6'];
-  double _width;
   bool viewmore = false;
   List  texthover;
 
@@ -50,6 +48,9 @@ class CompoundListState extends State<CompoundList>{
   void initState() {
     super.initState();
     _scrollController  = ScrollController();
+
+
+
     getCompoundList();
     // texthover  = List.filled(propertyImage.length, false);
   }
@@ -67,10 +68,10 @@ class CompoundListState extends State<CompoundList>{
    });
   }
 
-
+  double maxWidth;
   @override
   Widget build(BuildContext context) {
-    double maxWidth = MediaQuery.of(context).size.width;
+     maxWidth = MediaQuery.of(context).size.width;
     double maxheight = MediaQuery.of(context).size.height;
     return Material(
       child: LayoutBuilder(builder: (context,constraints){
@@ -98,18 +99,14 @@ class CompoundListState extends State<CompoundList>{
                           color: Colors.white,
                           border: Border(bottom: BorderSide(color: Colors.black12))
                       ),
-                      child: AppBarSecState().searchWidget(maxWidth/2.3),
+                      child: SearchWidget(maxWidth/2.3),
                     ):Container(),
 
                     width?Padding(
                       padding: EdgeInsets.only(left: maxWidth/30,bottom: 40),
                       child: filterWidget(width,maxWidth),
                     ):Container(),
-                   filter? OverlayContainer(
-                        show: filter,
-                        position: OverlayContainerPosition(0, 0,),
-                        child: FilterScreen()
-                    ):Container(),
+                   // filter? showOverLay(context):Container(),
 
                     maxWidth>=1300?
                     Row(
@@ -148,6 +145,28 @@ class CompoundListState extends State<CompoundList>{
     );
   }
 
+  //
+  //  showOverLay(BuildContext context){
+  //   overlayEntry = OverlayEntry(
+  //       builder: (BuildContext context) {
+  //         return Positioned(
+  //             top: 200.0,
+  //             left: 100,
+  //             right: 100,
+  //             bottom: 100,
+  //         child: Material(
+  //           child: FilterScreen(),
+  //         ),);});
+  //
+  //   Overlay.of(context).insert(overlayEntry);
+  // }
+  //
+  //
+  // OverlayEntry overlayEntry;
+  //
+  // void hideIndicator(BuildContext context) {
+  //   overlayEntry.remove();
+  // }
 
 
   Widget filterWidget(bool width,double maxWidth){
@@ -171,7 +190,13 @@ class CompoundListState extends State<CompoundList>{
             child: InkWell(
               onTap: (){
                 if(width){
-                  toggleDropdown();
+                  filter = !filter;
+                  if(filter==true){
+                    showFilterDialog(context);
+                  }else{
+                   Navigator.pop(context);
+                  }
+
                 }else
                 {
                   Navigator.pushNamed(context, filtercompound);
@@ -279,6 +304,23 @@ class CompoundListState extends State<CompoundList>{
         return scaffoldKey.currentState.openDrawer();
       },),
     );
+  }
+
+
+  showFilterDialog(BuildContext context){
+    showDialog(context: context, builder:(context){
+      return AlertDialog(
+        backgroundColor:  Color(0xfff9f9f9),
+        // clipBehavior: Clip.antiAliasWithSaveLayer,
+        // insetPadding:
+        // maxWidth>700?
+        // EdgeInsets.only(left: 100,right: 100,top: 50,bottom: 50):
+        // EdgeInsets.all(5),
+        // contentPadding: EdgeInsets.all(10),
+        shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(5)),
+
+        content: FilterScreen(),);
+    });
   }
 
 }

@@ -6,7 +6,7 @@ import 'package:webrevue/model/AnswerModal.dart';
 import 'package:webrevue/model/arguments/QuestionAnswerArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
-Widget answerWidget({@required List ansList,
+Widget answerWidget(BuildContext context,{@required List ansList,
   @required String question,
   @required String questionId,
   @required String compoundId}){
@@ -15,12 +15,23 @@ Widget answerWidget({@required List ansList,
       ansList.isEmpty?
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text("No answers",style:TextStyle(
-            color:   Colors.grey,
-            fontWeight: FontWeight.w500,
-            fontStyle:  FontStyle.normal,
-            fontSize: 15.0
-        ),),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("No answers",style:TextStyle(
+                color:   Colors.grey,
+                fontWeight: FontWeight.w500,
+                fontStyle:  FontStyle.normal,
+                fontSize: 15.0
+            ),),
+            IconButton(onPressed: (){
+              Navigator.pushNamed(context,answerOfQuestion,arguments:
+              QuestionAnswerArgument(compoundID: compoundId,
+                  question:question,questionID: questionId ));
+            },
+              icon: Icon(Icons.arrow_forward_ios),)
+          ],
+        ),
       ):
           ListView.builder(shrinkWrap: true,
             itemCount: 1,

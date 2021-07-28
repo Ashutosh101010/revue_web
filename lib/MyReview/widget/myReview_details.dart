@@ -1,11 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:webrevue/Review/views/consWidget.dart';
+import 'package:webrevue/Review/views/proWidget.dart';
 import 'package:webrevue/Review/widget/address_widget.dart';
 import 'package:webrevue/Review/widget/bathroom_widget.dart';
 import 'package:webrevue/Review/widget/bedroom_widget.dart';
@@ -14,36 +9,29 @@ import 'package:webrevue/Review/widget/floor_plan.dart';
 import 'package:webrevue/Review/widget/image_widget.dart';
 import 'package:webrevue/Review/widget/overall_rating.dart';
 import 'package:webrevue/Review/widget/price_widget.dart';
-import 'package:webrevue/Review/views/proWidget.dart';
 import 'package:webrevue/Review/widget/rating_widget.dart';
 import 'package:webrevue/Review/widget/review_description.dart';
 import 'package:webrevue/Review/widget/review_ratings.dart';
 import 'package:webrevue/Review/widget/reviewdate_widget.dart';
-import 'package:webrevue/constants/get_rating_percent.dart';
-import 'package:webrevue/model/ReviewModal.dart';
-import 'package:webrevue/service/ServerDetails.dart';
+import 'package:webrevue/model/MyReviewsModal.dart';
 
-import '../constants/ColorClass.dart';
+class MyReviewDetails extends StatefulWidget{
+  MyReviewsModal myReviewsModal;
 
-class ReviewDetails extends StatefulWidget {
-  ReviewModal reviewModal;
-
-
-  ReviewDetails({this.reviewModal});
+  MyReviewDetails(this.myReviewsModal);
 
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-
-    return ReviewDetailState();
+return MyReviewDetailState();
   }
 }
 
-class ReviewDetailState extends State<ReviewDetails> {
+class MyReviewDetailState extends State<MyReviewDetails>{
   double maxWidth;
   @override
   Widget build(BuildContext context) {
-     maxWidth = MediaQuery.of(context).size.width;
+    maxWidth = MediaQuery.of(context).size.width;
     return Container(
       width: MediaQuery.of(context).size.width,
       child: maxWidth>=700?
@@ -52,29 +40,29 @@ class ReviewDetailState extends State<ReviewDetails> {
         children: [
           leftReviewPanel(context),
           rightReviewPanel(context)
-         
+
         ],
       ):ListView(
         shrinkWrap: true,
         children: [
-          review_image(widget.reviewModal.images,context),
-          addressWidget("xzsxzs"),
-          overAllRating(widget.reviewModal.rating),
-        ReviewRatings(design: widget.reviewModal.design,
-          value: widget.reviewModal.value,
-          facility: widget.reviewModal.facilities,
-          location: widget.reviewModal.location,
-          management: widget.reviewModal.management,),
-          reviewDetail(widget.reviewModal.review),
+          review_image(widget.myReviewsModal.images,context),
+          // addressWidget("xzsxzs"),
+          overAllRating(widget.myReviewsModal.rating),
+          ReviewRatings(design: widget.myReviewsModal.design,
+            value: widget.myReviewsModal.value,
+            facility: widget.myReviewsModal.facilities,
+            location: widget.myReviewsModal.location,
+            management: widget.myReviewsModal.management,),
+          reviewDetail(widget.myReviewsModal.review),
 
-          ProsWidget(widget.reviewModal.pros),
-          ConsWidget(widget.reviewModal.cons),
-          bottomNav(context,widget.reviewModal.id)
-
-
+          ProsWidget(widget.myReviewsModal.pros),
+          ConsWidget(widget.myReviewsModal.cons),
+          bottomNav(context,widget.myReviewsModal.id)
 
 
-      ],),
+
+
+        ],),
     );
   }
 
@@ -82,10 +70,6 @@ class ReviewDetailState extends State<ReviewDetails> {
 
 
 
-
-
-  
-  
   Widget leftReviewPanel(BuildContext context){
     return Flexible(
       flex: 1,
@@ -100,30 +84,31 @@ class ReviewDetailState extends State<ReviewDetails> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                overAllRating(widget.reviewModal.rating),
-                ReviewRatings(design: widget.reviewModal.design,
-                  value: widget.reviewModal.value,
-                facility: widget.reviewModal.facilities,
-                location: widget.reviewModal.location,
-                management: widget.reviewModal.management,),
+                overAllRating(widget.myReviewsModal.rating),
+                ReviewRatings(design: widget.myReviewsModal.design,
+                  value: widget.myReviewsModal.value,
+                  facility: widget.myReviewsModal.facilities,
+                  location: widget.myReviewsModal.location,
+                  management: widget.myReviewsModal.management,),
+                reviewDetail(widget.myReviewsModal.review),
 
                 Divider(
                   thickness: 1,
                   color: Colors.black12,
                 ),
-                addressWidget("sxd"),
+                // addressWidget("sxd"),
 
                 SizedBox(
                   height: 20,
                 ),
 
-                ProsWidget(widget.reviewModal.pros),
+                ProsWidget(widget.myReviewsModal.pros),
 
                 SizedBox(
                   height: 20,
                 ),
 
-                ConsWidget(widget.reviewModal.cons)
+                ConsWidget(widget.myReviewsModal.cons)
 
               ],
             ),
@@ -143,13 +128,13 @@ class ReviewDetailState extends State<ReviewDetails> {
       child: ListView(
         children: [
 
-          review_image(widget.reviewModal.images,context),
+          review_image(widget.myReviewsModal.images,context),
           Padding(
             padding: const EdgeInsets.only(top: 8,bottom: 5,left: 8,right: 8),
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-              priceWidget(widget.reviewModal.price),
-              bedRoomWidget(widget.reviewModal.bedRooms.toString()),
-              ratingWidget(widget.reviewModal.rating)
+              priceWidget(widget.myReviewsModal.price),
+              bedRoomWidget(widget.myReviewsModal.bedRooms.toString()),
+              ratingWidget(widget.myReviewsModal.rating)
             ],),
           ),
 
@@ -158,16 +143,16 @@ class ReviewDetailState extends State<ReviewDetails> {
             padding: const EdgeInsets.only(top: 8,bottom: 5,left: 8,right: 8),
 
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-              floorPlanWidget(widget.reviewModal.floorplan),
-              bathRoomWidget(widget.reviewModal.bathRooms.toString()),
-              reviewDateWidget(widget.reviewModal.reviewDate)
+              floorPlanWidget(widget.myReviewsModal.floorplan),
+              bathRoomWidget(widget.myReviewsModal.bathRooms.toString()),
+              reviewDateWidget(widget.myReviewsModal.reviewDate)
 
             ],),
           ),
 
-          reviewDetail(widget.reviewModal.review),
-          bottomNav(context,widget.reviewModal.id)
-         
+          reviewDetail(widget.myReviewsModal.review),
+          bottomNav(context,widget.myReviewsModal.id)
+
         ],
       ),
     );

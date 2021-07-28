@@ -216,6 +216,10 @@ class AddReviewState extends State<AddReview>{
                           ),
                           onPressed: () async{
 
+                            if(GlobalKeys.addReviewImagesKey.currentState.imageFileList.isEmpty){
+                              displayAlertDialog(context,content: "Please select atLeast one Image",
+                                  title: "Post Review");
+                            }
 
 
                             if(
@@ -255,11 +259,6 @@ class AddReviewState extends State<AddReview>{
 
                             });
                             if(status==true){
-                              displayAlertDialog(context,content: "Review posted successfully",
-                                  title: "Post Review");
-
-
-
                               Navigator.popAndPushNamed(context, compoundDetails,
                                   arguments: CompoundArgument(
                                       compoundId: widget.compoundID,
@@ -267,11 +266,7 @@ class AddReviewState extends State<AddReview>{
                                       images: widget.images,
                                       address: widget.address));
 
-                            }else{
-                              displayAlertDialog(context,content: "Unable to post Review! Try again later",
-                                  title: "Post Review");
-                            }
-                              // Navigator.pop(context);
+                            }// Navigator.pop(context);
                             }
                             else
                             {

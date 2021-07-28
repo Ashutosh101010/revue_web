@@ -8,6 +8,7 @@ import 'package:webrevue/compound/views/addReview_forth_form.dart';
 import 'package:webrevue/compound/views/addReview_second_form.dart';
 import 'package:webrevue/compound/views/addReview_third_form.dart';
 import 'package:webrevue/compound/views/add_image.dart';
+import 'package:webrevue/home/CompoundList.dart';
 
 class GlobalKeys{
   static final postQuestionClassKey = new GlobalKey<MessagingScreenState>();
@@ -19,5 +20,6 @@ class GlobalKeys{
   static final addReviewForthKey = new GlobalKey<AddReviewForthFormState>();
   static final compoundDetailsKey = new GlobalKey<CompoundDetailState>();
   static final addReviewImagesKey = new GlobalKey<AddImageReviewState>();
+  static final compoundListKey =  new GlobalKey<CompoundListState>();
 
 }
