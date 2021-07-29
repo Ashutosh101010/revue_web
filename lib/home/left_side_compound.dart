@@ -1,21 +1,9 @@
-import 'dart:ui';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-import 'package:webrevue/constants/ColorClass.dart';
-import 'package:webrevue/constants/circular_rating.dart';
-import 'package:webrevue/constants/get_rating_percent.dart';
-import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
-import 'package:webrevue/home/CompoundList.dart';
+
 import 'package:webrevue/model/CompoundModal.dart';
-import 'package:webrevue/model/FavoriteModal.dart';
-import 'package:webrevue/model/arguments/CompoundArgument.dart';
-import 'package:webrevue/route/routing_constant.dart';
-import 'package:webrevue/service/ServerDetails.dart';
-import 'package:webrevue/service/Webservice.dart';
+
 
 import 'compound_card.dart';
 
@@ -54,6 +42,11 @@ class LeftSideCompoundState extends State<LeftSideCompound>{
             return CompoundCard(width: width,compoundModal: (widget.list[index] as CompoundModal),);
 
           }),
+
+
+
+
+
 
     );
   }

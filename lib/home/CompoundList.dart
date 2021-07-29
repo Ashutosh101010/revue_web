@@ -44,6 +44,9 @@ class CompoundListState extends State<CompoundList>{
   ScrollController _scrollController;
   String lastObjectId = "";
   List compoundList = [];
+  List amenityList = [];
+
+
   @override
   void initState() {
     super.initState();
@@ -191,11 +194,10 @@ class CompoundListState extends State<CompoundList>{
               onTap: (){
                 if(width){
                   filter = !filter;
-                  if(filter==true){
-                    showFilterDialog(context);
-                  }else{
-                   Navigator.pop(context);
-                  }
+                  showFilterDialog(context);
+                  // if(filter==true){
+                  //
+                  // }
 
                 }else
                 {

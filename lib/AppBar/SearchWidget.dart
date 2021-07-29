@@ -121,13 +121,15 @@ class SearchWidgetState extends State<SearchWidget> {
                   border: InputBorder.none,
                   fillColor: Colors.white),
               onChanged: (string) {
+
                 if (string.length > 3) {
                   print(string);
                   // searchableitem.clear();
                   searchModal.string = string;
+
                   Webservice.searchCompoundRequest(searchModal)
                       .then((value) => this.setState(() {
-                            showSearchOverLay(context);
+                        showSearchOverLay(context);
                           }));
                 } else {
                   compoundSearchList.clear();
@@ -232,7 +234,8 @@ class SearchWidgetState extends State<SearchWidget> {
             shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             child: SizedBox(
-              child: ListView.builder(
+              child:
+              ListView.builder(
                 shrinkWrap: true,
                 physics: AlwaysScrollableScrollPhysics(),
                 itemBuilder: (context, index) {

@@ -101,7 +101,7 @@ class Webservice{
     var request ={};
     request["lastObjectID"]= id;
     request["category"] = filterCategoryType;
-    request["amenities"] = [];
+    request["amenities"] = GlobalKeys.compoundListKey.currentState.amenityList;
     // if(radius>0 && radius<30 && currentPosition!=null)
     // {
     //   request["radius"]=radius;
