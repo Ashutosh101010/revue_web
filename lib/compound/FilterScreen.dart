@@ -5,6 +5,11 @@ import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:webrevue/AppBar/SearchWidget.dart';
 import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/model/AmenitiesModal.dart';
+import 'package:webrevue/model/CompoundModal.dart';
+import 'package:webrevue/model/SearchModal.dart';
+import 'package:webrevue/model/arguments/CompoundArgument.dart';
+import 'package:webrevue/route/routing_constant.dart';
+import 'package:webrevue/service/Webservice.dart';
 
 import '../constants/ColorClass.dart';
 
@@ -62,10 +67,100 @@ class FilterScreenState extends State<FilterScreen> {
   bool selected = false;
   int selectedIndex = 0;
 
+  OverlayEntry overlayEntry;
+TextEditingController searchController = new TextEditingController();
+ SearchModal searchModal;
+  void hideIndicator(BuildContext context) {
+    overlayEntry.remove();
+  }
+
+  void showSearchOverLay(BuildContext context) {
+    overlayEntry = OverlayEntry(
+      builder: (BuildContext context) {
+        return Positioned(
+          top: 160.0,
+          left: 460,
+          right: 460,
+          bottom: 80,
+          child: Material(
+            elevation: 5,
+            color: Colors.white,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            child: SizedBox(
+              child:
+              ListView.builder(
+                shrinkWrap: true,
+                physics: AlwaysScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  CompoundModal compoundModal =
+                  (compoundSearchList[index] as CompoundModal);
+                  return InkWell(
+                    mouseCursor: SystemMouseCursors.click,
+                    onTap: () {
+                      searchController.clear();
+                      hideIndicator(context);
+                      Navigator.pushNamed(context, compoundDetails,
+                          arguments: CompoundArgument(
+                              compoundId: compoundModal.id,
+                              compoundName: compoundModal.compoundname,
+                              images: compoundModal.images,
+                              address: compoundModal.address));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10, bottom: 10, left: 10, right: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            (compoundSearchList[index] as CompoundModal)
+                                .compoundname,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: ColorClass.lightTextColor),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            (compoundSearchList[index] as CompoundModal)
+                                .address,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: ColorClass.lightTextColor),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Divider(
+                            color: Colors.grey,
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                itemCount: compoundSearchList.length,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+    Overlay.of(context).insert(overlayEntry);
+  }
 
   @override
   void initState() {
     super.initState();
+
+    searchModal = new  SearchModal();
     if(filterCategoryType=="Apartment"){
       propertyType ="Apartment";
     }else if(filterCategoryType =="Compound"){
@@ -311,12 +406,44 @@ class FilterScreenState extends State<FilterScreen> {
                   fontStyle: FontStyle.normal,
                   fontSize: 18.0),
               decoration: InputDecoration(
-                  hintText: "Search Compound",
+                  hintText: "Search Compound, Apartment, Building or Area",
                   hintStyle: TextStyle(
                     color: Colors.grey,
                   ),
                   border: InputBorder.none,
-                  fillColor: Colors.white),
+                  fillColor: Colors.white,
+                suffix: searchController.text.isNotEmpty
+                    ? IconButton(
+                  icon: Icon(
+                    CupertinoIcons.clear_circled,
+                    color: ColorClass.lightTextColor,
+                  ),
+                  padding: EdgeInsets.all(8),
+                  onPressed: () {
+                    searchController.clear();
+                    compoundSearchList.clear();
+                    setState(() {
+                      hideIndicator(context);
+                    });
+                  },
+                )
+                    : null,),
+              onChanged: (string) {
+
+                if (string.length > 3) {
+                  print(string);
+                  // searchableitem.clear();
+                  searchModal.string = string;
+
+                  Webservice.searchCompoundRequest(searchModal)
+                      .then((value) => this.setState(() {
+                    showSearchOverLay(context);
+                  }));
+                } else {
+                  compoundSearchList.clear();
+                  setState(() {});
+                }
+              },
               cursorColor: Colors.black,
             ),
           ),
