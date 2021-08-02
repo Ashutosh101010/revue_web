@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:webrevue/constants/keys.dart';
 
 import 'package:webrevue/model/CompoundModal.dart';
 
@@ -28,24 +29,47 @@ class LeftSideCompoundState extends State<LeftSideCompound>{
   }
 
   @override
+
   Widget build(BuildContext context) {
     return Container(
       width:width,alignment: Alignment.topCenter,
       margin: width>=700?EdgeInsets.only(right: 40):EdgeInsets.all(10),
       child: widget.list.isEmpty?
           Text("Getting compounds")
-          : ListView.builder(
-          itemCount: widget.list.length,
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (context,index){
-            return CompoundCard(width: width,compoundModal: (widget.list[index] as CompoundModal),);
+          : Column(
+            children: [
+              ListView.builder(
+              itemCount: widget.list.length,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context,index){
+                return CompoundCard(width: width,compoundModal: (widget.list[index] as CompoundModal),);
 
-          }),
+              }),
 
+              SizedBox(height: 20,),
 
-
-
+              Container(
+                width: width-200,
+                height: 45,
+                alignment: Alignment.topRight,
+                child: ListView.builder(shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: 10,itemBuilder: (context,index){
+                  return Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: MaterialButton(
+                      onPressed: (){
+                        GlobalKeys.compoundListKey.currentState.updateCompounds();
+                      },color: Colors.grey.shade50,
+                      shape: RoundedRectangleBorder(side: BorderSide(color: Colors.grey)),
+                      child: Text((index+1).toString()),),
+                  );
+                    }),
+              )
+            ],
+          ),
 
 
     );

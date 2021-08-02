@@ -119,7 +119,7 @@ class Webservice{
           "accept": "application/json"
         });
 
-    cList.clear();
+    // cList.clear();
     // print(response.body);
     var jsonResponse = convert.jsonDecode(response.body);
     print(jsonResponse);
@@ -636,6 +636,7 @@ class Webservice{
     print(jsonResponse);
     if(jsonResponse["status"]==true && jsonResponse["errorCode"]==0){
     await displayAlertDialog(context,title: "Forget Password",content: "Otp is send to your Email Address");
+    Navigator.of(context).pop();
       Navigator.pushNamed(context, otpVerification,arguments: VerifyOtpArgument(email));
     }else{
       displayAlertDialog(context,content: "Fail to Send OTP",title: "Forget Password");
@@ -654,7 +655,8 @@ class Webservice{
 
     var jsonResponse = convert.jsonDecode(response.body);
     if(jsonResponse["status"]==true && jsonResponse["errorCode"]==0){
-      displayAlertDialog(context,title: "OTP Verification",content: "OTP verified successfully");
+     await displayAlertDialog(context,title: "OTP Verification",content: "OTP verified successfully");
+     Navigator.of(context).pop();
       Navigator.pushNamed(context, newpassword,arguments: ChangePasswordArgument(email));
     }else{
       displayAlertDialog(context,title: "OTP Verification",content: "Unable to Verify OTP, Request Again");
@@ -665,7 +667,6 @@ class Webservice{
     var request ={};
     request["email"]=email;
     request["password"]= newPassword;
-    request[""]= email;
     var response = await http.post(Uri.parse(ServerDetails.change_password),body: convert.jsonEncode(request),
         headers: {
           "content-type": "application/json",
@@ -673,10 +674,12 @@ class Webservice{
         });
     var jsonResponse  = convert.jsonDecode(response.body);
     if(jsonResponse["status"]==true && jsonResponse["errorCode"]==0){
-      displayAlertDialog(context,title: "Change Password",content: "Password changes Successfully");
+     await displayAlertDialog(context,title: "Change Password",content: "Password changes Successfully");
+     Navigator.of(context).pop();
       Navigator.of(context).pushReplacementNamed(initialroute);
     }else{
-      displayAlertDialog(context);
+     await displayAlertDialog(context);
+      Navigator.of(context).pop();
       Navigator.of(context).pushReplacementNamed(initialroute);
 
     }

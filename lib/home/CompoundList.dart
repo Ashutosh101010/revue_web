@@ -16,6 +16,7 @@ import 'package:webrevue/footer/FooterWidget.dart';
 import 'package:webrevue/home/compound_card.dart';
 import 'package:webrevue/home/left_side_compound.dart';
 import 'package:webrevue/home/nearby_property.dart';
+import 'package:webrevue/model/CompoundModal.dart';
 import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/Webservice.dart';
 
@@ -51,9 +52,6 @@ class CompoundListState extends State<CompoundList>{
   void initState() {
     super.initState();
     _scrollController  = ScrollController();
-
-
-
     getCompoundList();
     // texthover  = List.filled(propertyImage.length, false);
   }
@@ -69,6 +67,13 @@ class CompoundListState extends State<CompoundList>{
    setState(() {
 
    });
+  }
+
+
+  void updateCompounds(){
+    lastObjectId = (compoundList.last as CompoundModal).id;
+    Webservice.getCompoundRequest(context, compoundList, lastObjectId).then((
+        value) => this.setState(() {}));
   }
 
   double maxWidth;
