@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hovering/hovering.dart';
 import 'package:webrevue/route/routing_constant.dart';
+import 'package:webrevue/service/Webservice.dart';
 
 import '../AppBar/AppBarFirst.dart';
 import '../constants/ColorClass.dart';
@@ -17,6 +18,7 @@ class ForgetPassword extends StatefulWidget{
 
 class ForgetPasswordState extends State<ForgetPassword>{
   var scaffoldKey = GlobalKey<ScaffoldState>();
+TextEditingController emailController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +113,13 @@ class ForgetPasswordState extends State<ForgetPassword>{
                         margin: EdgeInsets.only(top: 30,bottom: 10),
                         child: CupertinoTextField(
                             padding: EdgeInsets.all(10),
+                            controller: emailController,
                             autofocus: false,
                             style:  TextStyle(
                               fontWeight: FontWeight.w500,
                               color: Colors.black87,
-                              fontSize: 16,
+                              fontSize: 16,letterSpacing: 0.2,
+                              wordSpacing: 0.4
                             ),
                             placeholder: "Enter Email or phone.",
                             placeholderStyle:TextStyle(
@@ -138,12 +142,13 @@ class ForgetPasswordState extends State<ForgetPassword>{
                         padding: const EdgeInsets.only(left: 50,right: 50,top: 30,bottom: 20),
                         child: SizedBox(
                           width: 300,height: 40,
-                          child: FlatButton(
+                          child: MaterialButton(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             ),
                             onPressed: (){
-                              Navigator.pushNamed(context,otpVerification);
+                              Webservice.forgetPasswordRequest(emailController.text,context);
+
                             },
                             color: ColorClass.blueColor,
                             hoverColor: Colors.blue.shade900,

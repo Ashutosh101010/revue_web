@@ -41,8 +41,6 @@ class LoginScreenState extends State<LoginScreen> {
   bool showOverlay = false;
 
 
-
-
   void showIndicator(BuildContext context) {
     // indicatorOffset = getIndicatorOffset(details.localPosition);
     overlayEntry = OverlayEntry(
@@ -446,16 +444,13 @@ class LoginScreenState extends State<LoginScreen> {
                     ])),
 
                 SizedBox(height: 20,),
-                Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 1,
-                    decoration: BoxDecoration(boxShadow: [
-                      // BoxShadow(
-                      //     color: const Color(0x40000000),
-                      //     offset: Offset(0, 4),
-                      //     blurRadius: 4,
-                      //     spreadRadius: 0)
-                    ], color: const Color(0x4d000000))),
+
+                Divider(height: 1,thickness: 1,color:  Color(0x4d000000),),
+
+                // Container(
+                //     width: MediaQuery.of(context).size.width,
+                //     height: 1,
+                //     color: const Color(0x4d000000)),
 
 
                 //Top rated compound

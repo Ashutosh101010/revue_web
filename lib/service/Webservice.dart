@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webrevue/AppBar/SearchWidget.dart';
 import 'package:webrevue/LoginDashboard/LoginScreen.dart';
+import 'package:webrevue/User/UpdatePassword.dart';
 import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
@@ -20,6 +21,8 @@ import 'package:webrevue/model/ReportModal.dart';
 import 'package:webrevue/model/ReviewModal.dart';
 import 'package:webrevue/model/SearchModal.dart';
 import 'package:webrevue/model/UserModal.dart';
+import 'package:webrevue/model/arguments/ChangePasswordArgument.dart';
+import 'package:webrevue/model/arguments/VerifyOtpArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
 import 'ServerDetails.dart';
@@ -617,6 +620,65 @@ class Webservice{
 
       // print(jsonResponse["code"]);
       // Scaffold.of(context).showSnackBar(SnackBar(content: Text("Unable to Fetch Compound")));
+    }
+  }
+
+  static void forgetPasswordRequest(String email,BuildContext context)async{
+    var request = {};
+    request["email"]= email;
+    var response = await http.post(Uri.parse(ServerDetails.forget_password_request),
+        body: convert.jsonEncode(request), headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+
+    var jsonResponse = convert.jsonDecode(response.body);
+    print(jsonResponse);
+    if(jsonResponse["status"]==true && jsonResponse["errorCode"]==0){
+    await displayAlertDialog(context,title: "Forget Password",content: "Otp is send to your Email Address");
+      Navigator.pushNamed(context, otpVerification,arguments: VerifyOtpArgument(email));
+    }else{
+      displayAlertDialog(context,content: "Fail to Send OTP",title: "Forget Password");
+    }
+  }
+
+  static void validateOtpRequest(BuildContext context,String email, String otp)async{
+    var request = {};
+    request["email"] =email;
+    request["otp"] = otp;
+    var response = await http.post(Uri.parse(ServerDetails.validate_OTP_request),
+        body: convert.jsonEncode(request), headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+
+    var jsonResponse = convert.jsonDecode(response.body);
+    if(jsonResponse["status"]==true && jsonResponse["errorCode"]==0){
+      displayAlertDialog(context,title: "OTP Verification",content: "OTP verified successfully");
+      Navigator.pushNamed(context, newpassword,arguments: ChangePasswordArgument(email));
+    }else{
+      displayAlertDialog(context,title: "OTP Verification",content: "Unable to Verify OTP, Request Again");
+    }
+  }
+
+  static Future<dynamic> changePasswordRequest(BuildContext context,String newPassword,String email)async{
+    var request ={};
+    request["email"]=email;
+    request["password"]= newPassword;
+    request[""]= email;
+    var response = await http.post(Uri.parse(ServerDetails.change_password),body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+    var jsonResponse  = convert.jsonDecode(response.body);
+    if(jsonResponse["status"]==true && jsonResponse["errorCode"]==0){
+      displayAlertDialog(context,title: "Change Password",content: "Password changes Successfully");
+      Navigator.of(context).pushReplacementNamed(initialroute);
+    }else{
+      displayAlertDialog(context);
+      Navigator.of(context).pushReplacementNamed(initialroute);
+
     }
   }
 

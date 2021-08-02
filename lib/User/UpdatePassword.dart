@@ -2,7 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hovering/hovering.dart';
+import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/route/routing_constant.dart';
+import 'package:webrevue/service/Webservice.dart';
 
 
 import '../AppBar/AppBarFirst.dart';
@@ -11,6 +13,10 @@ import '../constants/ColorClass.dart';
 import '../SignUp.dart';
 
 class UpdatePassword extends StatefulWidget{
+  String email;
+
+  UpdatePassword(this.email);
+
   @override
   State<StatefulWidget> createState() {
     return UpdatePasswordState();
@@ -18,6 +24,9 @@ class UpdatePassword extends StatefulWidget{
 }
 
 class UpdatePasswordState extends State<UpdatePassword>{
+  TextEditingController newPasswordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -125,6 +134,7 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                   child: CupertinoTextField(
                                       padding: EdgeInsets.all(10),
                                       autofocus: false,
+                                      controller: newPasswordController,
                                       style:  TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
@@ -158,7 +168,7 @@ class UpdatePasswordState extends State<UpdatePassword>{
                                     "Confirm Password",
                                     style: const TextStyle(
                                         color:  Colors.black87,
-fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w500,
 
                                         fontStyle:  FontStyle.normal,
                                         fontSize: 16.0
@@ -169,7 +179,7 @@ fontWeight: FontWeight.w500,
                                   width: 400,
                                   margin: EdgeInsets.only(top: 10,bottom: 10),
                                   child: CupertinoTextField(
-                                      obscureText: true,
+                                      obscureText: true,controller: confirmPasswordController,
                                       padding: EdgeInsets.all(10),
                                       autofocus: false,
                                       style:  TextStyle(
@@ -202,12 +212,21 @@ fontWeight: FontWeight.w500,
                             padding: const EdgeInsets.only(left: 50,right: 50,top: 30,bottom: 20),
                             child: SizedBox(
                               width: 300,height: 40,
-                              child: FlatButton(
+                              child: MaterialButton(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 onPressed: (){
-                                  Navigator.pushNamed(context,loginRoute );
+                                  if(newPasswordController.text.length<6||confirmPasswordController.text.length<6){
+                                    displayAlertDialog(context,
+                                        title: "Change Password",
+                                        content: "Password length must be more than 6 characters");
+                                  }
+                                  if(newPasswordController.text==confirmPasswordController.text){
+                                    Webservice.changePasswordRequest(context, confirmPasswordController.text, widget.email);
+                                  }else{
+                                    displayAlertDialog(context,content: "Password not matches",title: "Change Password");
+                                  }
                                 },
                                 color: ColorClass.blueColor,
                                 hoverColor: Colors.blue.shade900,

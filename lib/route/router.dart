@@ -18,9 +18,11 @@ import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
 import 'package:webrevue/home/CompoundList.dart';
 import 'package:webrevue/compound/FilterScreen.dart';
 import 'package:webrevue/model/arguments/AddReviewArgument.dart';
+import 'package:webrevue/model/arguments/ChangePasswordArgument.dart';
 import 'package:webrevue/model/arguments/CompoundArgument.dart';
 import 'package:webrevue/model/arguments/CompoundMessagingArgument.dart';
 import 'package:webrevue/model/arguments/QuestionAnswerArgument.dart';
+import 'package:webrevue/model/arguments/VerifyOtpArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
 
@@ -29,6 +31,9 @@ import 'package:webrevue/route/routing_constant.dart';
     CompoundMessagingArgument compoundMessagingArgument;
     QuestionAnswerArgument questionAnswerArgument;
     AddReviewArgument addReviewArgument;
+    VerifyOtpArgument verifyOtpArgument;
+    ChangePasswordArgument changePasswordArgument;
+
     if(settings.name == compoundDetails){
       compoundArgument = settings.arguments;
     }
@@ -40,6 +45,13 @@ import 'package:webrevue/route/routing_constant.dart';
     }
     if(settings.name == addreview){
       addReviewArgument = settings.arguments;
+    }
+    if(settings.name == otpVerification){
+      verifyOtpArgument = settings.arguments;
+    }
+
+    if(settings.name == newpassword){
+      changePasswordArgument= settings.arguments;
     }
 
     switch(settings.name) {
@@ -81,12 +93,12 @@ import 'package:webrevue/route/routing_constant.dart';
         break;
 
       case otpVerification:
-        return MaterialPageRoute(builder: (context)=>OtpVerification(),
+        return MaterialPageRoute(builder: (context)=>OtpVerification(verifyOtpArgument.email),
             settings: RouteSettings(name: "/verifyotp"));
         break;
 
       case newpassword:
-        return MaterialPageRoute(builder: (context)=>UpdatePassword(),
+        return MaterialPageRoute(builder: (context)=>UpdatePassword(changePasswordArgument.email),
             settings: RouteSettings(name: "/new-password"));
         break;
 

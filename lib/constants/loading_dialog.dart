@@ -19,12 +19,12 @@ showLoadingDialog(BuildContext context){
 }
 
 
-Future<void> displayAlertDialog(BuildContext context,{String title="Error Occurs",String content}){
-  showDialog(
+Future<void> displayAlertDialog(BuildContext context,{String title="Error Occurs",String content})async{
+ return showDialog<void>(
       context: context,
       barrierDismissible: true,
       builder: (context){
-        Future.delayed(Duration(seconds: 5), () {
+        Future.delayed(Duration(seconds: 3), () {
           Navigator.of(context).pop(true);
         });
         return  AlertDialog(

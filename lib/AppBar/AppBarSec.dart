@@ -68,7 +68,7 @@ class AppBarSecState extends State<AppBarSec>{
 
       }else if(itemSelected == "4"){
        clearSharedPreferences();
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+       Navigator.of(context).pushReplacementNamed(initialroute);
       }
 
     });
