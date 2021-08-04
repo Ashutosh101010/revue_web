@@ -193,60 +193,55 @@ class CompoundListState extends State<CompoundList>{
                   fontSize: 25.0),
               textAlign: TextAlign.left),
           // Rectangle 86
-          Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: (){
-                if(width){
-                  filter = !filter;
-                  showFilterDialog(context);
-                  // if(filter==true){
-                  //
-                  // }
+          Container(
+            margin: EdgeInsets.only(right:maxWidth/(maxWidth/150)),
+              width: 100,
+              height: 35,
+              decoration: BoxDecoration(
+                  color:Colors.white,
+                  border:Border.all(
+                      color: Colors.black54,
+                      width: 1.2,style: BorderStyle.solid
+                  ),
+                  borderRadius: BorderRadius.circular(10)),
+              child: InkWell(
+                onTap: (){
+                  if(width){
+                    filter = !filter;
+                    showFilterDialog(context);
+                    // if(filter==true){
+                    //
+                    // }
 
-                }else
-                {
-                  Navigator.pushNamed(context, filtercompound);
-                }
-              },
+                  }else
+                  {
+                    Navigator.pushNamed(context, filtercompound);
+                  }
+                },
+                hoverColor: Colors.grey.shade100,
+                mouseCursor: SystemMouseCursors.click,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Filter
+                    Text("Filter",
+                        style:  TextStyle(
+                            color: Color(0x99000000),
+                            fontWeight: FontWeight.w400,
 
-              child: Container(
-                margin: EdgeInsets.only(right:maxWidth/(maxWidth/150)),
-                  width: 100,
-                  height: 35,
-                  decoration: BoxDecoration(
-                      color:Colors.white,
-                      border:Border.all(
-                          color: const Color(0xff000000),
-                          width: 1.5,style: BorderStyle.solid
-                      ),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Filter
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Filter",
-                            style:  TextStyle(
-                                color: Color(0x99000000),
-                                fontWeight: FontWeight.w400,
-
-                                fontStyle: FontStyle.normal,
-                                fontSize: 16.0),
-                            textAlign: TextAlign.left),
-                      ),
-                      Image.asset(
-                        "assets/images/filterAndSort.png",
-                        width: 20,
-                        height: 20,
-                        fit: BoxFit.contain,
-                      ),
-                      Icon(Icons.keyboard_arrow_down_rounded,color: Colors.black,)
-                    ],
-                  )),
-            ),
-          )
+                            fontStyle: FontStyle.normal,
+                            fontSize: 16.0),
+                        textAlign: TextAlign.left),
+                    Image.asset(
+                      "assets/images/filterAndSort.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
+                    Icon(Icons.keyboard_arrow_down_rounded,color: Colors.black,)
+                  ],
+                ),
+              ))
 
         ],
       ),

@@ -2,7 +2,7 @@
     package="com.example.webrevue">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="webrevue"
+        android:label="Revue"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

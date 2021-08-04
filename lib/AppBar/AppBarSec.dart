@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -68,7 +70,9 @@ class AppBarSecState extends State<AppBarSec>{
 
       }else if(itemSelected == "4"){
        clearSharedPreferences();
-       Navigator.of(context).pushReplacementNamed(initialroute);
+       window.localStorage.clear();
+       Navigator.of(context).pushNamedAndRemoveUntil(initialroute,
+               (Route<dynamic> route) => false);
       }
 
     });

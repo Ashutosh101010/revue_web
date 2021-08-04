@@ -44,6 +44,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   image_picker: ^0.8.2
   multi_select_flutter: ^4.0.0
+  maps_launcher: ^2.0.1
 
 dev_dependencies:
   flutter_test:

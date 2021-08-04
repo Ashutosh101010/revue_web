@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:webrevue/constants/ColorClass.dart';
+import 'package:webrevue/service/Webservice.dart';
 
 class SocialMediaLogins extends StatelessWidget{
   @override
@@ -17,7 +18,12 @@ class SocialMediaLogins extends StatelessWidget{
                    borderRadius: BorderRadius.circular(10)),
                primary: ColorClass.blueColor
            ),
-           onPressed: () {},
+           onPressed: () {
+
+             Webservice.dummyApiCall();
+
+
+           },
            icon: Icon(
              FontAwesomeIcons.facebookSquare,
              size: 20,

@@ -132,8 +132,11 @@ class SearchWidgetState extends State<SearchWidget> {
                         showSearchOverLay(context);
                           }));
                 } else {
+                  searchController.clear();
                   compoundSearchList.clear();
-                  setState(() {});
+                  setState(() {
+                    hideIndicator(context);
+                  });
                 }
               },
               cursorColor: Colors.black,

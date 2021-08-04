@@ -47,10 +47,8 @@ Future<void> getImages(ReviewModal reviewModal)async{
 
     }
 
-
     print("templist"+tempList.toString());
     reviewModal.multipartImages = tempList;
-
 
   }
 

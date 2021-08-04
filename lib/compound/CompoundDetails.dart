@@ -305,7 +305,8 @@ body: CustomScrollView(shrinkWrap: true,
           ),
         ),
         ReviewsTab(reviewList),
-        exists?Container():Text("Please Add Review to view more Reviews",
+        exists?Container():filterList.length>2?Container():
+        Text("Please Add Review to view more Reviews",
           style: TextStyle(color: ColorClass.redColor,fontSize: 16,fontWeight: FontWeight.w500),)
 
       ],

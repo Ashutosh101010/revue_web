@@ -39,4 +39,18 @@ Future<void> displayAlertDialog(BuildContext context,{String title="Error Occurs
 
 }
 
+Future<void> selectDate(BuildContext context,TextEditingController controller) async {
+  final DateTime d = await showDatePicker( //we wait for the dialog to return
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate: DateTime(1900),
+    lastDate: DateTime(2150),
+  );
+  if (d != null) //if the user has selected a date
+   {
+     print(d);
+     controller.text = "${d.day}/${d.month}/${d.year}";
+  }
+}
+
 

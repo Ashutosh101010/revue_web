@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -73,6 +74,8 @@ class Webservice{
         jsonResponse["errorCode"] == 1){
 
       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+      window.localStorage["userID"]= jsonResponse["user"]["_id"];
       sharedPreferences.setString("userId", jsonResponse["user"]["_id"]);
       sharedPreferences.setString("name", jsonResponse["user"]["firstname"]+" " +jsonResponse["user"]["lastname"]);
       sharedPreferences.setString("email",jsonResponse["user"]["email"]);
@@ -122,7 +125,7 @@ class Webservice{
     // cList.clear();
     // print(response.body);
     var jsonResponse = convert.jsonDecode(response.body);
-    print(jsonResponse);
+    // print(jsonResponse);
     // List tempList = [];
     // CompoundModal compoundModal;
     if(jsonResponse["status"]==true &&
@@ -481,7 +484,7 @@ class Webservice{
     if(jsonResponse["status"]== true &&
         jsonResponse["errorcode"] ==0)
     {
-      displayAlertDialog(context,title: "Favorite Compound",content: "Added from Favorite");
+      displayAlertDialog(context,title: "Favorite Compound",content: "Compound added to your Favorites");
 
     }else{
       displayAlertDialog(context,title: "Favorite Compound",content: "Something Went wrong");
@@ -683,6 +686,21 @@ class Webservice{
       Navigator.of(context).pushReplacementNamed(initialroute);
 
     }
+  }
+
+
+
+  static void dummyApiCall()async{
+
+    var request = {"lastObjectId":null};
+    var response = await http.post(Uri.parse("http://192.168.1.12:5050/admin/getServices"),body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+    var jsonResponse  = convert.jsonDecode(response.body);
+    print(jsonResponse);
+
   }
 
 
