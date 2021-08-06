@@ -136,6 +136,7 @@ class LoginPageState extends State<LoginPage>{
            });
              Navigator.pop(context);
            if(loginStatus == true){
+             Navigator.of(context).pop();
              Navigator.pushNamed(context, mainscreenRoute);
            }else{
              displayAlertDialog(context,content: "Unable to Login");

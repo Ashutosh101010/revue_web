@@ -6,27 +6,40 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/route/router.dart' as router;
 import 'constants/ColorClass.dart';
 import 'constants/keys.dart';
+import 'constants/string_constant.dart';
 import 'home/CompoundList.dart';
 import 'route/routing_constant.dart';
+
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
 
 void main(){
 
 
-  var url = window.location.href;
-  print(url);
-
-  if(window.localStorage.containsKey("userID")){
-    runApp(MyDashboardApp());
-  }else{
-    runApp(MyApp());
+  if (kIsWeb) {
+    // initialiaze the facebook javascript SDK
+    FacebookAuth.i.webInitialize(
+      appId: facebook_app_id,//<-- YOUR APP_ID
+      cookie: true,
+      xfbml: true,
+      version: "v9.0",
+    );
   }
 
+  // var url = window.location.href;
+  // print(url);
+  //
+  // if(window.localStorage.containsKey("userID")){
+  //   runApp(MyDashboardApp());
+  // }else{
+  //   runApp(MyApp());
+  // }
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

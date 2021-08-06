@@ -43,15 +43,17 @@ Widget answerWidget(BuildContext context,{@required List ansList,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                        "A. ${(ansList[index] as AnswerModal).answer}",
-                        style: const TextStyle(
-                            color:  Colors.black87,
-                            fontWeight: FontWeight.w600,
-                            fontStyle:  FontStyle.normal,
-                            fontSize: 14.0
-                        ),
-                        textAlign: TextAlign.left
+                    Expanded(
+                      child: Text(
+                          "A. ${(ansList[index] as AnswerModal).answer}",
+                          style: const TextStyle(
+                              color:  Colors.black87,
+                              fontWeight: FontWeight.w600,
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 14.0
+                          ),
+                          textAlign: TextAlign.left
+                      ),
                     ),
                     IconButton(onPressed: (){
                       Navigator.pushNamed(context,answerOfQuestion,arguments:

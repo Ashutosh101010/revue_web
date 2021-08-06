@@ -29,6 +29,7 @@ class CompoundRating extends StatelessWidget{
                   percent: getpercentage(compoundModal.facility),
                   center: new Text(
                     compoundModal.facility.toStringAsFixed(1),
+                    textAlign: TextAlign.center,
                     style: new TextStyle(
                         fontWeight:
                         FontWeight.bold,
@@ -59,6 +60,7 @@ class CompoundRating extends StatelessWidget{
                   percent: getpercentage(compoundModal.design),
                   center: new Text(
                     compoundModal.design.toStringAsFixed(1),
+                    textAlign: TextAlign.center,
                     style: new TextStyle(
                         fontWeight:
                         FontWeight.bold,
@@ -89,6 +91,7 @@ class CompoundRating extends StatelessWidget{
                   backgroundColor: Colors.black26,
                   percent: getpercentage(compoundModal.location),
                   center: new Text(compoundModal.location.toStringAsFixed(1),
+                    textAlign: TextAlign.center,
                     style: new TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 10.0),
                   ),
@@ -117,6 +120,7 @@ class CompoundRating extends StatelessWidget{
                   percent: getpercentage(compoundModal.management),
                   center: new Text(
                     compoundModal.management.toStringAsFixed(1),
+                    textAlign: TextAlign.center,
                     style: new TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 10.0),
                   ),

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -54,16 +55,16 @@ class FooterWidgetState extends State<FooterWidget> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: Text("CONNECT WITH US ON",
+                            child: AutoSizeText("CONNECT WITH US ON",
                                 style: TextStyle(
                                     color: Colors.black54,
                                     fontWeight: FontWeight.w700,
                                     fontStyle: FontStyle.normal,
-                                    fontSize: 16.0),
+                                    fontSize: maxwidth?16.0:14),
                                 textAlign: TextAlign.left),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: maxwidth?const EdgeInsets.all(20):EdgeInsets.all(5),
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
@@ -82,7 +83,7 @@ class FooterWidgetState extends State<FooterWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: maxwidth?const EdgeInsets.all(20):EdgeInsets.all(5),
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
@@ -100,7 +101,7 @@ class FooterWidgetState extends State<FooterWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: maxwidth?const EdgeInsets.all(20):EdgeInsets.all(5),
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(

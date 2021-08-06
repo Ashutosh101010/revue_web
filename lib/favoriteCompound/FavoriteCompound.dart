@@ -101,7 +101,7 @@ class FavoriteCompoundState extends State<FavoriteCompound>{
 
           Container(
             margin: width>=600?EdgeInsets.only(left: 130,right: 130, top:20,bottom: 20):
-            EdgeInsets.only(left: 50,right: 50,top: 10,bottom: 10),
+            EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
 
             child: Column(
               children: [
@@ -149,7 +149,7 @@ class FavoriteCompoundState extends State<FavoriteCompound>{
     bool viewmore = false;
     return Container(
       margin: width>=600?EdgeInsets.only(left: 20,right: 20,top:10,bottom: 10):
-      EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
+      EdgeInsets.only(left: 5,right: 5,top: 5,bottom:5),
       width: width>=600?width/2:width,
       // height: width>=600?300:450,
       child:   width>=600?
@@ -245,7 +245,7 @@ class FavoriteCompoundState extends State<FavoriteCompound>{
                                           fontWeight: FontWeight.w700,
                                           fontFeatures: [FontFeature.proportionalFigures()],
                                           fontStyle:  FontStyle.normal,
-                                          fontSize: 18.0
+                                          fontSize: 18
                                       ),
                                       textAlign: TextAlign.left
                                   ),
@@ -273,7 +273,9 @@ class FavoriteCompoundState extends State<FavoriteCompound>{
                                 backgroundColor: Colors.black26,
                                 percent: getpercentage( (favList[index]as CompoundModal).rating),
                                 center: new Text(
-                                  (favList[index]as CompoundModal).rating.toStringAsFixed(1),textAlign: TextAlign.start,
+                                  (favList[index]as CompoundModal).rating.toStringAsFixed(1),
+                                  textAlign: TextAlign.center,
+
                                   style: new TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 12.0,
                                     fontFeatures: [FontFeature.proportionalFigures()],),

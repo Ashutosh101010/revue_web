@@ -1,9 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:webrevue/Message/SearchQuestionWidget.dart';
 import 'package:webrevue/Message/widget/answerWidget.dart';
 import 'package:webrevue/model/CompoundModal.dart';
 import 'package:webrevue/model/QuestionModal.dart';
+import 'package:webrevue/model/arguments/SearchQuestionArgument.dart';
+import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/Webservice.dart';
 
 
@@ -246,29 +249,55 @@ class MessagingScreenState extends State<MessagingScreen>{
                                     borderRadius: BorderRadius.circular(15),
                                     border: Border.all(
                                         color: Color(0x33000000), width: 1)),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Icon(
-                                        CupertinoIcons.search,
-                                        size: 20,
-                                      ),
-                                    ),
-                                    Padding(
+                                child: InkWell(
+                                  mouseCursor: SystemMouseCursors.click,
+                                  onTap: (){
+                                    if(maxWidth){
+                                      showDialog(context: context,
+                                          builder: (context){
+                                        return AlertDialog(
+                                          insetPadding:
+                                          maxWidth?
+                                          EdgeInsets.only(left: 100,right: 100,top: 50,bottom: 50):
+                                          EdgeInsets.all(5),
+                                          contentPadding: EdgeInsets.all(10),
+                                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                                          content: SearchQuestion(questionsList,widget.compoundID,widget.compoundName),
+                                        );
+                                      });
+                                    }else{
+                                      Navigator.pushNamed(context,searchQuestion,
+                                          arguments: SearchQuestionArgument(
+                                              questionsList,widget.compoundID,widget.compoundName
+                                          ));
+                                    }
+
+
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: // Questions
-                                        Text(
-                                            "Search Questions",
-                                            style: const TextStyle(
-                                                color:  Colors.black54,
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle:  FontStyle.normal,
-                                                fontSize: 16.0
-                                            ),
-                                            textAlign: TextAlign.left
-                                        )),
-                                  ],
+                                        child: Icon(
+                                          CupertinoIcons.search,
+                                          size: 20,
+                                        ),
+                                      ),
+                                      Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: // Questions
+                                          Text(
+                                              "Search Questions",
+                                              style: const TextStyle(
+                                                  color:  Colors.black54,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:  FontStyle.normal,
+                                                  fontSize: 16.0
+                                              ),
+                                              textAlign: TextAlign.left
+                                          )),
+                                    ],
+                                  ),
                                 ),
                               ),
 

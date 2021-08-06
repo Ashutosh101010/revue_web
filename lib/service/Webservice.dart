@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webrevue/AppBar/SearchWidget.dart';
 import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/User/UpdatePassword.dart';
+import 'package:webrevue/compound/FilterScreen.dart';
 import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
@@ -108,6 +109,11 @@ class Webservice{
     request["lastObjectID"]= id;
     request["category"] = filterCategoryType;
     request["amenities"] = GlobalKeys.compoundListKey.currentState.amenityList;
+    if(radius>0 && radius<30 && currentPosition!=null)
+    {
+      request["radius"]=radius;
+      request["coordinates"]=[currentPosition.latitude,currentPosition.longitude];
+    }
     // if(radius>0 && radius<30 && currentPosition!=null)
     // {
     //   request["radius"]=radius;
@@ -429,7 +435,7 @@ class Webservice{
     List tempFavIDList = [];
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var request ={};
-    request["userID"] = sharedPreferences.getString("userID");
+    request["userID"] = sharedPreferences.getString("userId");
     // compoundList.clear();
     var response = await http.post(
         Uri.parse
@@ -460,6 +466,9 @@ class Webservice{
       favouriteIDList = tempFavIDList;
 
 
+      GlobalKeys.compoundListKey.currentState.setState(() {
+
+      });
 
     }
   }
@@ -687,6 +696,52 @@ class Webservice{
 
     }
   }
+
+
+  static Future<void> socialMediaLogin(BuildContext context,String email,String name,bool twitter)async{
+    var request ={};
+    if(email.isNotEmpty && email!=null ){
+      request["email"]= email;
+    }
+    if(name.isNotEmpty && name!=null ){
+      request["firstname"]= name;
+    }
+    request["type"] = twitter;
+
+    var response = await http.post(Uri.parse(ServerDetails.social_media_login_request),
+        body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+
+    var jsonResponse = convert.jsonDecode(response.body);
+    print(response);
+
+    if(jsonResponse["status"]==true &&
+        jsonResponse["errorCode"] == 1){
+
+
+
+      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+      window.localStorage["userID"]= jsonResponse["user"]["_id"];
+      sharedPreferences.setString("userID", jsonResponse["user"]["_id"]);
+      sharedPreferences.setString("name", jsonResponse["user"]["firstname"]);
+      if(jsonResponse["user"]["email"]!=null){
+        sharedPreferences.setString("email",jsonResponse["user"]["email"]);
+      }
+      sharedPreferences.setBool("isLoggedIn", true);
+
+      Navigator.pushNamed(context,mainscreenRoute);
+
+    }
+    else {
+      displayAlertDialog(context,title: "Login",content: jsonResponse["message"]);
+
+    }
+
+  }
+
 
 
 

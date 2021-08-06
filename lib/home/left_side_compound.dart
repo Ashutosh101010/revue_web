@@ -47,27 +47,27 @@ class LeftSideCompoundState extends State<LeftSideCompound>{
 
               }),
 
-              SizedBox(height: 20,),
-
-              Container(
-                width: width-200,
-                height: 45,
-                alignment: Alignment.topRight,
-                child: ListView.builder(shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: 10,itemBuilder: (context,index){
-                  return Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: MaterialButton(
-                      onPressed: (){
-                        GlobalKeys.compoundListKey.currentState.updateCompounds();
-                      },color: Colors.grey.shade50,
-                      shape: RoundedRectangleBorder(side: BorderSide(color: Colors.grey)),
-                      child: Text((index+1).toString()),),
-                  );
-                    }),
-              )
+              // SizedBox(height: 20,),
+              //
+              // Container(
+              //   width: width-200,
+              //   height: 45,
+              //   alignment: Alignment.topRight,
+              //   child: ListView.builder(shrinkWrap: true,
+              //       scrollDirection: Axis.horizontal,
+              //       physics: NeverScrollableScrollPhysics(),
+              //       itemCount: 10,itemBuilder: (context,index){
+              //     return Padding(
+              //       padding: const EdgeInsets.all(4.0),
+              //       child: MaterialButton(
+              //         onPressed: (){
+              //           GlobalKeys.compoundListKey.currentState.updateCompounds();
+              //         },color: Colors.grey.shade50,
+              //         shape: RoundedRectangleBorder(side: BorderSide(color: Colors.grey)),
+              //         child: Text((index+1).toString()),),
+              //     );
+              //       }),
+              // )
             ],
           ),
 

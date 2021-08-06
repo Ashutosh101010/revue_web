@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/Message/MessagingScreen.dart';
 import 'package:webrevue/Message/QuestionAnswerScreen.dart';
+import 'package:webrevue/Message/SearchQuestionWidget.dart';
 import 'package:webrevue/SignUp.dart';
 import 'package:webrevue/User/ForgetPassword.dart';
 import 'package:webrevue/MyReview/MyReviews.dart';
@@ -22,6 +23,7 @@ import 'package:webrevue/model/arguments/ChangePasswordArgument.dart';
 import 'package:webrevue/model/arguments/CompoundArgument.dart';
 import 'package:webrevue/model/arguments/CompoundMessagingArgument.dart';
 import 'package:webrevue/model/arguments/QuestionAnswerArgument.dart';
+import 'package:webrevue/model/arguments/SearchQuestionArgument.dart';
 import 'package:webrevue/model/arguments/VerifyOtpArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
@@ -33,6 +35,7 @@ import 'package:webrevue/route/routing_constant.dart';
     AddReviewArgument addReviewArgument;
     VerifyOtpArgument verifyOtpArgument;
     ChangePasswordArgument changePasswordArgument;
+    SearchQuestionArgument searchQuestionArgument;
 
     if(settings.name == compoundDetails){
       compoundArgument = settings.arguments;
@@ -52,6 +55,10 @@ import 'package:webrevue/route/routing_constant.dart';
 
     if(settings.name == newpassword){
       changePasswordArgument= settings.arguments;
+    }
+
+    if(settings.name == searchQuestion){
+      searchQuestionArgument = settings.arguments;
     }
 
     switch(settings.name) {
@@ -141,6 +148,12 @@ import 'package:webrevue/route/routing_constant.dart';
       case myFavourite:
         return MaterialPageRoute(builder: (context)=>FavoriteCompound(),
             settings: RouteSettings(name: "/myFavorites"));
+        break;
+
+      case searchQuestion:
+        return MaterialPageRoute(builder: (context)=>SearchQuestion(searchQuestionArgument.quesList,
+            searchQuestionArgument.compoundID, searchQuestionArgument.compoundName),
+            settings: RouteSettings(name: "/searchQuestion"));
         break;
 
 

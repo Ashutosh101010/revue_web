@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:webrevue/AppBar/SearchWidget.dart';
@@ -22,6 +23,8 @@ class FilterScreen extends StatefulWidget {
 }
 
 List<AmenitiesModal> filterAmenitiesList = [];
+int radius=0;
+Position currentPosition;
 class FilterScreenState extends State<FilterScreen> {
 
   String radiusSelected;
@@ -32,8 +35,9 @@ class FilterScreenState extends State<FilterScreen> {
   String minArea;
   String maxArea;
   String furnishingType;
-
+  Position pos;
   double maxwidth;
+
 
   static List<AmenitiesModal> amenities = [
     AmenitiesModal(id: 1, name: "Any"),
@@ -167,6 +171,35 @@ TextEditingController searchController = new TextEditingController();
       propertyType ="Compound";
     }else{
       propertyType ="Any";
+    }
+
+
+
+    switch (radius){
+      case 0:
+        radiusSelected=searchRadius[0];
+        break;
+      case 2:
+        radiusSelected=searchRadius[1];
+        break;
+      case 5:
+        radiusSelected=searchRadius[2];
+        break;
+      case 10:
+        radiusSelected=searchRadius[3];
+        break;
+      case 20:
+        radiusSelected=searchRadius[4];
+        break;
+      case 25:
+        radiusSelected=searchRadius[5];
+        break;
+      case 30:
+        radiusSelected=searchRadius[6];
+        break;
+      default:
+        radiusSelected=searchRadius[0];
+
     }
 
   }
@@ -309,7 +342,7 @@ TextEditingController searchController = new TextEditingController();
                   hoverColor: Colors.blue.shade900,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
-                  onPressed: () {
+                  onPressed: () async{
                     List tempList =[];
                     filterAmenitiesList=isSelected;
                     isSelected.forEach((element) {
@@ -317,9 +350,23 @@ TextEditingController searchController = new TextEditingController();
                     });
 
                     filterCategoryType =propertyType;
+                    currentPosition=pos;
                     GlobalKeys.compoundListKey.currentState.compoundList.clear();
                     GlobalKeys.compoundListKey.currentState.lastObjectId="";
                     GlobalKeys.compoundListKey.currentState.amenityList= tempList;
+
+                    radius=getRadius();
+
+                    if(getRadius()>0 && getRadius()<30)
+                    {
+                      await determinePosition();
+                      currentPosition=pos;
+
+                    }
+                    print(currentPosition);
+                    print(getRadius());
+
+
 
                     GlobalKeys.compoundListKey.currentState.getCompoundList();
                     Navigator.pop(context);
@@ -412,7 +459,7 @@ TextEditingController searchController = new TextEditingController();
                   ),
                   border: InputBorder.none,
                   fillColor: Colors.white,
-                suffix: searchController.text.isNotEmpty
+                suffixIcon: searchController.text.isNotEmpty
                     ? IconButton(
                   icon: Icon(
                     CupertinoIcons.clear_circled,
@@ -441,6 +488,7 @@ TextEditingController searchController = new TextEditingController();
                   }));
                 } else {
                   compoundSearchList.clear();
+                  hideIndicator(context);
                   setState(() {});
                 }
               },
@@ -473,6 +521,7 @@ TextEditingController searchController = new TextEditingController();
           iconEnabledColor: ColorClass.blueColor,
           value: minArea,
           onChanged: (newValue) {
+            determinePosition();
             setState(() {
               minArea = newValue;
             });
@@ -523,6 +572,83 @@ TextEditingController searchController = new TextEditingController();
         },
       ),
     );
+  }
+
+
+
+
+  Future<Position> determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    Position position;
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+
+
+        // print('Location permissions are denied');
+        // return Future.error('Location permissions are denied');
+        return position;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+
+      print(   'Location permissions are permanently denied, we cannot request permissions.');
+      return position;
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      await Geolocator.openLocationSettings();
+
+      print('Location services are disabled.');
+      return position;
+    }
+    position =await Geolocator.getCurrentPosition();
+    setState(() {
+      pos=position;
+    });
+    return position;
+  }
+
+
+  int getRadius()
+  {
+    int index=searchRadius.indexOf(radiusSelected);
+    switch (index){
+      case 0:
+        return 0;
+      case 1:
+        return 2;
+      case 2:
+        return 5;
+      case 3:
+        return 10;
+      case 4:
+        return 20;
+      case 5:
+        return 25;
+      case 6:
+        return 30;
+      default :
+        return 30;
+    }
   }
 
 }

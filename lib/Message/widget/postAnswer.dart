@@ -88,7 +88,7 @@ class PostAnswer extends StatelessWidget{
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(minimumSize:Size(width/3, 40) ,
+                          style: ElevatedButton.styleFrom(minimumSize:Size(width/4, 40) ,
                             primary: Color(0xffb2b2b2),
                             padding: EdgeInsets.all(10),
                             shape: RoundedRectangleBorder(
@@ -112,7 +112,7 @@ class PostAnswer extends StatelessWidget{
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(minimumSize:Size(width/3, 40) ,
+                          style: ElevatedButton.styleFrom(minimumSize:Size(width/4, 40) ,
                             primary: ColorClass.blueColor,
                             padding: EdgeInsets.all(10),
                             shape: RoundedRectangleBorder(

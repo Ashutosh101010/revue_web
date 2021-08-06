@@ -56,7 +56,8 @@ class CompoundCardState extends State<CompoundCard>{
   Widget build(BuildContext context) {
 
     return Container(
-      height: width>=600?280:450,
+      margin: EdgeInsets.all(8),
+      // height: width>=600?280:450,
       decoration: BoxDecoration(color: Colors.white,),
       child: Column(
         children: [
@@ -418,6 +419,7 @@ class CompoundCardState extends State<CompoundCard>{
                             percent:getpercentage(widget.compoundModal.rating),
                             center: new Text(
                              getpercentage(widget.compoundModal.rating).toStringAsFixed(1),
+                              textAlign: TextAlign.center,
                               style: new TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 10.0),
                             ),

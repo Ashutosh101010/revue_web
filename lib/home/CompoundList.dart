@@ -11,6 +11,7 @@ import 'package:smooth_scroll_web/smooth_scroll_web.dart';
 import 'package:webrevue/AppBar/AppBarFirst.dart';
 import 'package:webrevue/AppBar/AppBarSec.dart';
 import 'package:webrevue/AppBar/SearchWidget.dart';
+import 'package:webrevue/AppBar/popupmenu.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/footer/FooterWidget.dart';
 import 'package:webrevue/home/compound_card.dart';
@@ -52,9 +53,19 @@ class CompoundListState extends State<CompoundList>{
   void initState() {
     super.initState();
     _scrollController  = ScrollController();
-    getCompoundList();
+    getFavoriteCompound();
     // texthover  = List.filled(propertyImage.length, false);
   }
+
+
+  Future<void> getFavoriteCompound()async{
+    await Webservice.getAllFavoritesCompoundRequest();
+    setState(() {
+      getCompoundList();
+    });
+  }
+
+
 
   void toggleDropdown() {
     setState(() {
@@ -64,9 +75,12 @@ class CompoundListState extends State<CompoundList>{
 
   getCompoundList()async{
    await Webservice.getCompoundRequest(context,compoundList, lastObjectId);
-   setState(() {
+   if(mounted){
+     setState(() {
 
-   });
+     });
+   }
+
   }
 
 
@@ -280,25 +294,35 @@ class CompoundListState extends State<CompoundList>{
         ),
         Padding(
           padding: const EdgeInsets.only(top: 5,left:20,right:20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset("assets/images/Profile.png",width: 20,height: 20,fit: BoxFit.contain,),
-              Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: // Profile
-                  Text(
-                      "Profile",
-                      style: const TextStyle(
-                          color:   Colors.red,
-                          fontWeight: FontWeight.w600,
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 12.0
-                      ),
-                      textAlign: TextAlign.left
-                  )
-              ),
-            ],),
+          child: InkWell(
+            onTap: (){
+              Offset offset= new Offset(0,0);
+              showPopupMenu(offset, context);
+            },
+
+            onTapDown: (TapDownDetails details){
+              showPopupMenu(details.globalPosition, context);
+              },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset("assets/images/Profile.png",width: 20,height: 20,fit: BoxFit.contain,),
+                Padding(
+                    padding: const EdgeInsets.only(top: 5),
+                    child: // Profile
+                    Text(
+                        "Profile",
+                        style: const TextStyle(
+                            color:   Colors.red,
+                            fontWeight: FontWeight.w600,
+                            fontStyle:  FontStyle.normal,
+                            fontSize: 12.0
+                        ),
+                        textAlign: TextAlign.left
+                    )
+                ),
+              ],),
+          ),
         ),
       ],
       backgroundColor: Colors.white,

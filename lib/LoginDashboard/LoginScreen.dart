@@ -1,26 +1,16 @@
 import 'dart:async';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hovering/hovering.dart';
-import 'package:smooth_scroll_web/smooth_scroll_web.dart';
-import 'package:webrevue/AppBar/AppBarFirst.dart';
 import 'package:webrevue/LoginDashboard/widgets/login_dashboard.dart';
 import 'package:webrevue/LoginDashboard/widgets/side_drawer.dart';
 import 'package:webrevue/LoginDashboard/widgets/social_media_login.dart';
-import 'package:webrevue/model/UserModal.dart';
-import 'package:webrevue/service/Webservice.dart';
+
 import '../constants/ColorClass.dart';
 import '../SignUp.dart';
-import '../home/CompoundList.dart';
 import '../footer/FooterWidget.dart';
-import '../route/routing_constant.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -192,19 +182,10 @@ class LoginScreenState extends State<LoginScreen> {
     });
 
 
-    getFavoriteCompound();
-
-
 
   }
 
 
-  Future<void> getFavoriteCompound()async{
-   await Webservice.getAllFavoritesCompoundRequest();
-   setState(() {
-
-   });
-  }
 
   Stream<double> throttle(Stream<double> src) async* {
     double offset = pager.position.pixels;

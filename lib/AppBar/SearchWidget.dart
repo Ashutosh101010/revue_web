@@ -107,8 +107,9 @@ class SearchWidgetState extends State<SearchWidget> {
                           onPressed: () {
                             searchController.clear();
                             compoundSearchList.clear();
+                            hideIndicator(context);
                             setState(() {
-                              hideIndicator(context);
+
                             });
                           },
                         )
@@ -131,12 +132,11 @@ class SearchWidgetState extends State<SearchWidget> {
                       .then((value) => this.setState(() {
                         showSearchOverLay(context);
                           }));
-                } else {
-                  searchController.clear();
+                } else{
                   compoundSearchList.clear();
-                  setState(() {
-                    hideIndicator(context);
-                  });
+                  hideIndicator(context);
+                  setState(() {});
+
                 }
               },
               cursorColor: Colors.black,

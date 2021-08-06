@@ -16,6 +16,7 @@ const String signup = "/signup";
 const String initialroute = "/";
 const String answerOfQuestion = "/question-answer";
 const String myFavourite = "/myFavorite";
+const String searchQuestion = "/searchQuestion";
 
 
 

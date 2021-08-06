@@ -98,7 +98,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                   hoverColor: Colors.blue.shade900,
                                   textColor: Colors.white,
                                   child: Text(
-                                    "Write your Question",
+                                    "Write your Answer",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: const Color(0xffffffff),
