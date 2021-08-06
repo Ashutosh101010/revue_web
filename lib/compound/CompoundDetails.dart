@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:webrevue/AppBar/AppBarSec.dart';
+import 'package:webrevue/AppBar/MainDrawer.dart';
 import 'package:webrevue/AppBar/popupmenu.dart';
 import 'package:webrevue/compound/widget/Header.dart';
 import 'package:webrevue/compound/widget/PersistentHeader.dart';
@@ -127,9 +128,11 @@ ScrollController controller=new ScrollController();
         return Scaffold(
           key: scaffoldKey,
          backgroundColor: Colors.white,
+            drawer: Drawer(child: MainDrawer(context),),
             appBar:  maxWidth?
         PreferredSize(preferredSize: Size.fromHeight(70),child:  AppBarSec(key: MainAppBarKey,),)
-             :AppBar(
+             :
+            AppBar(
               actions: [
                 Container(height: 80,
                     alignment: Alignment.center,

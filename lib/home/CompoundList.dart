@@ -10,6 +10,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:smooth_scroll_web/smooth_scroll_web.dart';
 import 'package:webrevue/AppBar/AppBarFirst.dart';
 import 'package:webrevue/AppBar/AppBarSec.dart';
+import 'package:webrevue/AppBar/MainDrawer.dart';
 import 'package:webrevue/AppBar/SearchWidget.dart';
 import 'package:webrevue/AppBar/popupmenu.dart';
 import 'package:webrevue/constants/ColorClass.dart';
@@ -104,8 +105,11 @@ class CompoundListState extends State<CompoundList>{
           backgroundColor: Colors.white,
           key: scaffoldKey,
           appBar: width?
-          PreferredSize(preferredSize: Size.fromHeight(80),child:  AppBarFirst( constraints.maxWidth),)
+          PreferredSize(preferredSize: Size.fromHeight(80),
+            child:  AppBarFirst( constraints.maxWidth),)
               :appBarWidget(),
+
+
           body:Column(
             children: [
             Expanded(
@@ -161,6 +165,8 @@ class CompoundListState extends State<CompoundList>{
 
 
           ],),
+
+
         );
 
       },),
@@ -325,10 +331,13 @@ class CompoundListState extends State<CompoundList>{
           ),
         ),
       ],
+
+
       backgroundColor: Colors.white,
-      leading: IconButton(icon: Icon(Icons.menu,color: Colors.black,),onPressed: (){
-        return scaffoldKey.currentState.openDrawer();
-      },),
+      // leading: IconButton(icon: Icon(Icons.menu,color: Colors.black,),
+      //   onPressed: (){
+      //   return scaffoldKey.currentState.openDrawer();
+      // },),
     );
   }
 
