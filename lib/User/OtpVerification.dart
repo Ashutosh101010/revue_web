@@ -9,6 +9,7 @@ import '../AppBar/AppBarFirst.dart';
 import '../constants/ColorClass.dart';
 import '../SignUp.dart';
 import 'UpdatePassword.dart';
+import 'dart:html' as html;
 
 class OtpVerification extends StatefulWidget{
   String email;
@@ -29,6 +30,15 @@ class OtpVerificationState extends State<OtpVerification>{
   TextEditingController forthController= TextEditingController();
   TextEditingController fifthController= TextEditingController();
   TextEditingController sixthController= TextEditingController();
+
+  onRefresh(){
+    html.window.onBeforeUnload.listen((event) async{
+      setState(() {
+
+      });
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {

@@ -35,7 +35,7 @@ class Webservice{
 
   static Future<bool> registerRequest(BuildContext context,UserModal userModal) async{
     var request = userModal.toJson();
-    print(request);
+    // print(request);
     var response = await http.post(Uri.parse(ServerDetails.register_request),
         body: convert.jsonEncode(request),
         headers: {
@@ -50,7 +50,7 @@ class Webservice{
 
       return true;
     }else{
-      print("not register");
+      // print("not register");
       return false;
     }
   }
@@ -59,7 +59,7 @@ class Webservice{
     var request ={};
     request["email"] = userModal.email;
     request["password"] = userModal.password;
-    print(request);
+    // print(request);
     var response = await http.post(Uri.parse(ServerDetails.login_request),
         body: convert.jsonEncode(request),
         headers: {
@@ -68,7 +68,7 @@ class Webservice{
         });
 
     var jsonResponse = convert.jsonDecode(response.body);
-    print(jsonResponse);
+    // print(jsonResponse);
 
 
     if(jsonResponse["status"]==true &&
@@ -76,7 +76,7 @@ class Webservice{
 
       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-      window.localStorage["userID"]= jsonResponse["user"]["_id"];
+      window.localStorage["userId"]= jsonResponse["user"]["_id"];
       sharedPreferences.setString("userId", jsonResponse["user"]["_id"]);
       sharedPreferences.setString("name", jsonResponse["user"]["firstname"]+" " +jsonResponse["user"]["lastname"]);
       sharedPreferences.setString("email",jsonResponse["user"]["email"]);
@@ -243,7 +243,7 @@ class Webservice{
         });
 
     var jsonResponse = convert.jsonDecode(response.body);
-    print(jsonResponse);
+    // print(jsonResponse);
     if(jsonResponse["status"] == true && jsonResponse["statusCode"]==0){
       Navigator.pop(context);
       displayAlertDialog(context,content: "Post Question Successful",
@@ -335,7 +335,7 @@ class Webservice{
 
   static void reportAnswerRequest(BuildContext context,ReportModal reportModal)async{
     var request = reportModal.toJson();
-    print(request);
+    // print(request);
     var response = await http.post(Uri.parse(ServerDetails.report_answer),
         body: convert.jsonEncode(request),
         headers: {
@@ -393,12 +393,12 @@ class Webservice{
 
     List<http.MultipartFile> newList = new List<http.MultipartFile>();
     newList = reviewModal.multipartImages;
-    print(newList.length);
+    // print(newList.length);
 
     request.files.addAll(newList);
 
-    print(request.files);
-    print(request.fields);
+    // print(request.files);
+    // print(request.fields);
 
     var response = await request.send();
 
@@ -517,7 +517,7 @@ class Webservice{
         });
 
     var jsonResponse = convert.jsonDecode(response.body);
-    print(jsonResponse);
+    // print(jsonResponse);
     if(jsonResponse["status"]== true &&
         jsonResponse["errorcode"] == 1)
     {
@@ -597,7 +597,7 @@ class Webservice{
           "content-type": "application/json",
           "accept": "application/json"
         });
-    print(response.body);
+    // print(response.body);
 
     var jsonResponse  = convert.jsonDecode(response.body);
     return jsonResponse['reviewExists'];
@@ -645,7 +645,7 @@ class Webservice{
         });
 
     var jsonResponse = convert.jsonDecode(response.body);
-    print(jsonResponse);
+    // print(jsonResponse);
     if(jsonResponse["status"]==true && jsonResponse["errorCode"]==0){
     await displayAlertDialog(context,title: "Forget Password",content: "Otp is send to your Email Address");
     Navigator.of(context).pop();
@@ -716,15 +716,13 @@ class Webservice{
         });
 
     var jsonResponse = convert.jsonDecode(response.body);
-    print(response);
+    // print(response);
 
     if(jsonResponse["status"]==true &&
         jsonResponse["errorCode"] == 1){
 
-
-
       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-      window.localStorage["userID"]= jsonResponse["user"]["_id"];
+      window.localStorage["userId"]= jsonResponse["user"]["_id"];
       sharedPreferences.setString("userID", jsonResponse["user"]["_id"]);
       sharedPreferences.setString("name", jsonResponse["user"]["firstname"]);
       if(jsonResponse["user"]["email"]!=null){
@@ -732,7 +730,8 @@ class Webservice{
       }
       sharedPreferences.setBool("isLoggedIn", true);
 
-      Navigator.pushNamed(context,mainscreenRoute);
+      Navigator.pushReplacementNamed(context,mainscreenRoute);
+
 
     }
     else {
@@ -743,20 +742,6 @@ class Webservice{
   }
 
 
-
-
-  static void dummyApiCall()async{
-
-    var request = {"lastObjectId":null};
-    var response = await http.post(Uri.parse("http://192.168.1.12:5050/admin/getServices"),body: convert.jsonEncode(request),
-        headers: {
-          "content-type": "application/json",
-          "accept": "application/json"
-        });
-    var jsonResponse  = convert.jsonDecode(response.body);
-    print(jsonResponse);
-
-  }
 
 
 }

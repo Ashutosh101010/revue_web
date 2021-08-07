@@ -43,6 +43,7 @@ import 'package:webrevue/route/routing_constant.dart';
       Navigator.pushNamed(context, myreviews);
 
     }else if(itemSelected == "4"){
+
       FacebookAuth.instance.logOut();
       googleSignIn.signOut();
       clearSharedPreferences();

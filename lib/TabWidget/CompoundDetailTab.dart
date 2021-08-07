@@ -1,6 +1,7 @@
 
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -198,12 +199,19 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                   padding: const EdgeInsets.all(8.0),
                   child: Column(crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      InkWell(
-                        onTap: (){
-                          // print(window.location.href);
-                          },
-                        child: Icon(Icons.share,size: 25,
-                          color:  ColorClass.blueColor,),
+                      Tooltip(
+                        message: "Copy link to share",
+                        child: InkWell(
+                          onTap: (){
+                            FlutterClipboard.copy("https://revue-app.com/$mainscreenRoute$compoundDetails/${widget.compoundID}").then((value){
+                              print("value");
+                            });
+
+                            // print(window.location.href);
+                            },
+                          child: Icon(Icons.share,size: 25,
+                            color:  ColorClass.blueColor,),
+                        ),
                       ),
                       AutoSizeText('Share',
                         style: TextStyle(
@@ -277,7 +285,7 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                   StarRating(compoundModal.rating),
 
                   Container(
-                    alignment: Alignment.topLeft,
+                    alignment: Alignment.center,
                       margin: EdgeInsets.only(top: 10),
                       child:CompoundRating(compoundModal,maxWidth)),
                 ],

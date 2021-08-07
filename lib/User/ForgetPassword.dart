@@ -8,6 +8,7 @@ import 'package:webrevue/service/Webservice.dart';
 import '../AppBar/AppBarFirst.dart';
 import '../constants/ColorClass.dart';
 import '../SignUp.dart';
+import 'dart:html' as html;
 
 class ForgetPassword extends StatefulWidget{
   @override
@@ -19,6 +20,16 @@ class ForgetPassword extends StatefulWidget{
 class ForgetPasswordState extends State<ForgetPassword>{
   var scaffoldKey = GlobalKey<ScaffoldState>();
 TextEditingController emailController = new TextEditingController();
+
+
+  onRefresh(){
+    html.window.onBeforeUnload.listen((event) async{
+      setState(() {
+
+      });
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {

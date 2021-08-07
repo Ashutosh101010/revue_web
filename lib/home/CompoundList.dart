@@ -23,6 +23,7 @@ import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/Webservice.dart';
 
 import '../compound/FilterScreen.dart';
+import 'dart:html' as html;
 
 class CompoundList extends StatefulWidget{
   @override
@@ -53,9 +54,16 @@ class CompoundListState extends State<CompoundList>{
   @override
   void initState() {
     super.initState();
+
+
+
+
     _scrollController  = ScrollController();
     getFavoriteCompound();
     // texthover  = List.filled(propertyImage.length, false);
+
+
+
   }
 
 
@@ -90,6 +98,18 @@ class CompoundListState extends State<CompoundList>{
     Webservice.getCompoundRequest(context, compoundList, lastObjectId).then((
         value) => this.setState(() {}));
   }
+
+
+
+  onRefresh(){
+    html.window.onBeforeUnload.listen((event) async{
+    setState(() {
+
+    });
+    });
+  }
+
+
 
   double maxWidth;
   @override

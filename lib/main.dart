@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/route/router.dart' as router;
 import 'constants/ColorClass.dart';
@@ -18,8 +19,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 
-void main(){
-
+void main() {
 
   if (kIsWeb) {
     // initialiaze the facebook javascript SDK
@@ -31,15 +31,19 @@ void main(){
     );
   }
 
-  // var url = window.location.href;
-  // print(url);
-  //
-  // if(window.localStorage.containsKey("userID")){
-  //   runApp(MyDashboardApp());
-  // }else{
-  //   runApp(MyApp());
-  // }
+
   runApp(MyApp());
+
+
+
+
+
+    // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  // sharedPreferences.containsKey("userId");
+
+
+
+  // runApp(sharedPreferences.containsKey("userId")?MyDashboardApp():MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -64,7 +68,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:LoginScreen()
+      home:   LoginScreen()
     );
   }
 }

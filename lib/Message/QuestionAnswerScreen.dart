@@ -7,7 +7,7 @@ import 'package:webrevue/constants/getDates.dart';
 import 'package:webrevue/model/AnswerModal.dart';
 import 'package:webrevue/model/LikeUnlikeModal.dart';
 import 'package:webrevue/service/Webservice.dart';
-
+import 'dart:html' as html;
 import '../AppBar/AppBarSec.dart';
 import '../constants/ColorClass.dart';
 import '../footer/FooterWidget.dart';
@@ -33,6 +33,16 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
 
   List<bool> likelist = List.filled(5, true);
   List answerList = [];
+
+
+  onRefresh(){
+    html.window.onBeforeUnload.listen((event) async{
+      setState(() {
+
+      });
+    });
+  }
+
 
   @override
   void initState() {
@@ -88,7 +98,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                           return AlertDialog(
                                             backgroundColor: Colors.white,
                                             content: PostAnswer(
-                                                600.0,
+                                                constraints.maxWidth,
                                                 widget.questionId,
                                                 widget.compoundId),
                                           );
@@ -178,7 +188,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                             backgroundColor:
                                                                 Colors.white,
                                                             content: PostAnswer(
-                                                                600.0,
+                                                              600.0,
                                                                 widget
                                                                     .questionId,
                                                                 widget

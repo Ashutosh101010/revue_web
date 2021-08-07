@@ -25,7 +25,7 @@ class PostQuestion extends StatelessWidget{
         Padding(
           padding: const EdgeInsets.only(top: 20,bottom: 10),
           child: Text(
-              "Post your question",
+              "Write your question",
               style: const TextStyle(
                   color:  Colors.black87,
                   fontWeight: FontWeight.w600,
@@ -114,7 +114,7 @@ class PostQuestion extends StatelessWidget{
                         borderRadius: BorderRadius.circular(5),
                       ),
                     ),
-                    onPressed: () async{
+                    onPressed: () {
                       if(questionController.text.isNotEmpty||questionController.text!=""){
 
                         MessagingModal messaging = new MessagingModal();

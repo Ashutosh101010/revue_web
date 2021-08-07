@@ -14,11 +14,17 @@ class CompoundModal{
   bool _isFav;
   Map<String,dynamic> _position;
   String _category;
-
+  int _reviewCount;
 
 
   CompoundModal();
 
+
+  int get reviewCount => _reviewCount;
+
+  set reviewCount(int value) {
+    _reviewCount = value;
+  }
 
   String get category => _category;
 

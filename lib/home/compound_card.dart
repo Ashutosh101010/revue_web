@@ -188,7 +188,7 @@ class CompoundCardState extends State<CompoundCard>{
                                 progressColor: Colors.red,
                                 footer: Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: AutoSizeText("54 Reviews",
+                                  child: AutoSizeText("${widget.compoundModal.reviewCount.toString()} Reviews",
                                       style:  TextStyle(
                                           color:Colors.black54,
                                           fontWeight: FontWeight.w600,
@@ -418,7 +418,7 @@ class CompoundCardState extends State<CompoundCard>{
                             backgroundColor: Colors.black26,
                             percent:getpercentage(widget.compoundModal.rating),
                             center: new Text(
-                             getpercentage(widget.compoundModal.rating).toStringAsFixed(1),
+                              widget.compoundModal.rating.toStringAsFixed(1),
                               textAlign: TextAlign.center,
                               style: new TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 10.0),
@@ -427,7 +427,7 @@ class CompoundCardState extends State<CompoundCard>{
                             progressColor: Colors.red,
                             footer: Padding(
                               padding: const EdgeInsets.all(5.0),
-                              child: AutoSizeText("54 Reviews",
+                              child: AutoSizeText("${widget.compoundModal.reviewCount.toString()} Reviews",
                                   style:  TextStyle(
                                       color:Colors.black54,
                                       fontWeight: FontWeight.w600,

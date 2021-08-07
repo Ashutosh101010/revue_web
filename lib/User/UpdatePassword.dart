@@ -11,6 +11,7 @@ import '../AppBar/AppBarFirst.dart';
 import '../constants/ColorClass.dart';
 
 import '../SignUp.dart';
+import 'dart:html' as html;
 
 class UpdatePassword extends StatefulWidget{
   String email;
@@ -26,6 +27,15 @@ class UpdatePassword extends StatefulWidget{
 class UpdatePasswordState extends State<UpdatePassword>{
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+
+  onRefresh(){
+    html.window.onBeforeUnload.listen((event) async{
+      setState(() {
+
+      });
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {

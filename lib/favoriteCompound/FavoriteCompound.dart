@@ -284,7 +284,7 @@ class FavoriteCompoundState extends State<FavoriteCompound>{
                                 progressColor: Colors.red,
                                 footer: Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: AutoSizeText("54 Reviews",
+                                  child: AutoSizeText("${(favList[index]as CompoundModal).reviewCount.toString()} Reviews",
                                       style:  TextStyle(
                                         color:Colors.black54,
                                         fontWeight: FontWeight.w600,
@@ -359,7 +359,7 @@ class FavoriteCompoundState extends State<FavoriteCompound>{
                                           favList.remove(favList[index] as CompoundModal);
 
                                         },
-                                        child : Icon(CupertinoIcons.heart_fill,
+                                        child : Icon(CupertinoIcons.heart_solid,
                                             color: ColorClass.blueColor,
                                         size: 20,)),
 
@@ -500,7 +500,7 @@ class FavoriteCompoundState extends State<FavoriteCompound>{
                         backgroundColor: Colors.black26,
                         percent:getpercentage((favList[index]as CompoundModal).rating),
                         center: new Text(
-                          getpercentage((favList[index]as CompoundModal).rating).toStringAsFixed(1),
+                          (favList[index]as CompoundModal).rating.toStringAsFixed(1),
                           style: new TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 10.0),
                         ),
@@ -508,7 +508,7 @@ class FavoriteCompoundState extends State<FavoriteCompound>{
                         progressColor: Colors.red,
                         footer: Padding(
                           padding: const EdgeInsets.all(5.0),
-                          child: AutoSizeText("54 Reviews",
+                          child: AutoSizeText("${(favList[index]as CompoundModal).reviewCount.toString()} Reviews",
                               style:  TextStyle(
                                   color:Colors.black54,
                                   fontWeight: FontWeight.w600,
@@ -570,7 +570,7 @@ class FavoriteCompoundState extends State<FavoriteCompound>{
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(left:20.0,right:5),
-                              child: Icon(CupertinoIcons.heart,color: Colors.black,size: 18,),
+                              child: Icon(CupertinoIcons.heart_fill,color: ColorClass.blueColor,size: 18,),
                             ),
                             AutoSizeText("Save",
                                 style: const TextStyle(shadows: [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],

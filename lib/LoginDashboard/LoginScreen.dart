@@ -11,6 +11,7 @@ import 'package:webrevue/LoginDashboard/widgets/social_media_login.dart';
 import '../constants/ColorClass.dart';
 import '../SignUp.dart';
 import '../footer/FooterWidget.dart';
+import 'dart:html' as html;
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -205,6 +206,17 @@ class LoginScreenState extends State<LoginScreen> {
     pager.dispose();
     super.dispose();
   }
+
+
+  onRefresh(){
+    html.window.onBeforeUnload.listen((event) async{
+      setState(() {
+
+      });
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     double maxWidth = MediaQuery.of(context).size.width;

@@ -18,7 +18,7 @@ class PostAnswer extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 250,
       width: width,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -47,20 +47,24 @@ class PostAnswer extends StatelessWidget{
                   border: Border.all(color: Colors.black26)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  textInputAction: TextInputAction.next,
+                child: TextFormField(
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.multiline,
                   controller: answerController,
+                  expands: true,
+                  maxLines: null,
+                  minLines: null,
                   decoration: InputDecoration(
-                    // contentPadding: EdgeInsets.only(left: 15),
-                      hintText: "Write your Answer here",
+                      contentPadding: EdgeInsets.only(left: 15,top: 15,bottom: 15),
+                      hintText: "Write your answer here",
                       hintStyle: TextStyle(
-                        color: Color(0x7f3c2f47),
-                        fontSize: 18,
-
+                        color: Colors.black54,
+                        fontSize: 16,
                       ),
                       border: InputBorder.none,
-                      fillColor: Colors.white),
-                ),
+                      fillColor: Colors.white
+                  ),),
+
               ),
             ),
 

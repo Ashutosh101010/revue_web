@@ -18,7 +18,8 @@ import 'package:webrevue/model/arguments/AddReviewArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/Webservice.dart';
 
-import '../LoginDashboard/LoginScreen.dart';
+import 'dart:html' as html;
+
 
 class CompoundDetails extends StatefulWidget{
 
@@ -111,6 +112,14 @@ fetchReview(){
 
   }));
 
+}
+
+onRefresh(){
+  html.window.onBeforeUnload.listen((event) async{
+    setState(() {
+
+    });
+  });
 }
 
 

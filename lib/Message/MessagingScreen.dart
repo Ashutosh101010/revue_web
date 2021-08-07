@@ -9,7 +9,7 @@ import 'package:webrevue/model/arguments/SearchQuestionArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/Webservice.dart';
 
-
+import 'dart:html' as html;
 import '../AppBar/AppBarSec.dart';
 import '../constants/ColorClass.dart';
 import '../footer/FooterWidget.dart';
@@ -33,6 +33,14 @@ class MessagingScreen extends StatefulWidget{
 class MessagingScreenState extends State<MessagingScreen>{
 
   List questionsList = [];
+
+  onRefresh(){
+    html.window.onBeforeUnload.listen((event) async{
+      setState(() {
+
+      });
+    });
+  }
 
 
   @override

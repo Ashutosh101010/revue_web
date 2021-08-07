@@ -11,6 +11,7 @@ import '../AppBar/AppBarSec.dart';
 import '../constants/ColorClass.dart';
 import '../footer/FooterWidget.dart';
 import '../Review/ReviewDetails.dart';
+import 'dart:html' as html;
 
 class MyReviews extends StatefulWidget{
   @override
@@ -22,6 +23,14 @@ class MyReviews extends StatefulWidget{
 class MyReviewState extends State<MyReviews>{
 
   List myReviewList = [];
+
+  onRefresh(){
+    html.window.onBeforeUnload.listen((event) async{
+      setState(() {
+
+      });
+    });
+  }
 
 
   @override

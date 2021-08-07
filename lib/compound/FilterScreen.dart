@@ -1,3 +1,4 @@
+import 'dart:html' as html;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -203,6 +204,17 @@ TextEditingController searchController = new TextEditingController();
     }
 
   }
+
+
+
+  onRefresh(){
+    html.window.onBeforeUnload.listen((event) async{
+      setState(() {
+
+      });
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {

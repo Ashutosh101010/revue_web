@@ -1,5 +1,5 @@
 
-
+import 'dart:html' as html;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -43,6 +43,15 @@ class AddReview extends StatefulWidget{
 class AddReviewState extends State<AddReview>{
 
   ReviewModal reviewModal;
+
+
+  onRefresh(){
+    html.window.onBeforeUnload.listen((event) async{
+      setState(() {
+
+      });
+    });
+  }
 
 
   @override

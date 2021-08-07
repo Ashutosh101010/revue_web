@@ -1,5 +1,6 @@
 
 
+import 'dart:html';
 import 'dart:js';
 
 import 'package:flutter/material.dart';
@@ -29,6 +30,8 @@ import 'package:webrevue/route/routing_constant.dart';
 
 
   Route<dynamic> generateRoute(RouteSettings settings){
+    String routeName = settings.name;
+
     CompoundArgument compoundArgument;
     CompoundMessagingArgument compoundMessagingArgument;
     QuestionAnswerArgument questionAnswerArgument;
@@ -37,31 +40,36 @@ import 'package:webrevue/route/routing_constant.dart';
     ChangePasswordArgument changePasswordArgument;
     SearchQuestionArgument searchQuestionArgument;
 
-    if(settings.name == compoundDetails){
+
+    if(!window.localStorage.containsKey("userId")){
+      routeName = initialroute;
+    }
+
+    if(routeName == compoundDetails){
       compoundArgument = settings.arguments;
     }
-    if(settings.name == questionAns){
+    if(routeName == questionAns){
       compoundMessagingArgument = settings.arguments;
     }
-    if(settings.name == answerOfQuestion){
+    if(routeName == answerOfQuestion){
       questionAnswerArgument = settings.arguments;
     }
-    if(settings.name == addreview){
+    if(routeName == addreview){
       addReviewArgument = settings.arguments;
     }
-    if(settings.name == otpVerification){
+    if(routeName == otpVerification){
       verifyOtpArgument = settings.arguments;
     }
 
-    if(settings.name == newpassword){
+    if(routeName== newpassword){
       changePasswordArgument= settings.arguments;
     }
 
-    if(settings.name == searchQuestion){
+    if(routeName == searchQuestion){
       searchQuestionArgument = settings.arguments;
     }
 
-    switch(settings.name) {
+    switch(routeName) {
       case initialroute:
         return MaterialPageRoute(builder: (context) => LoginScreen(),settings: RouteSettings(name: "/login"),);
         break;
