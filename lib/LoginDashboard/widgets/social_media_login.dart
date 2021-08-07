@@ -5,9 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
-import 'package:webrevue/constants/string_constant.dart';
 import 'package:webrevue/model/UserModal.dart';
-import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/Webservice.dart';
 
 GoogleSignIn googleSignIn = GoogleSignIn(
@@ -22,25 +20,27 @@ GoogleSignIn googleSignIn = GoogleSignIn(
 
 
 
-
-
-
 class SocialMediaLogins extends StatelessWidget{
   Future<void> _handleGoogleSignIn(BuildContext context) async {
-    GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-    // GoogleSignInAuthentication googleSignInAuthentication =  await googleSignInAccount.authentication;
-    // print(googleSignInAuthentication.accessToken);
-    print(googleSignInAccount.displayName);
-    print(googleSignInAccount.email);
-    print(googleSignInAccount.id);
-    print(googleSignInAccount.photoUrl);
+    try {
+      GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+      // GoogleSignInAuthentication googleSignInAuthentication =  await googleSignInAccount.authentication;
+      // print(googleSignInAuthentication.accessToken);
+      // print(googleSignInAccount.displayName);
+      // print(googleSignInAccount.email);
+      // print(googleSignInAccount.id);
+      // print(googleSignInAccount.photoUrl);
 
-    UserModal userModal= new UserModal();
-    userModal.email = googleSignInAccount.email;
-    userModal.firstName = googleSignInAccount.displayName;
+      UserModal userModal = new UserModal();
+      userModal.email = googleSignInAccount.email;
+      userModal.firstName = googleSignInAccount.displayName;
 
-    Webservice.socialMediaLogin(context,googleSignInAccount.email,googleSignInAccount.displayName,false);
-
+      Webservice.socialMediaLogin(
+          context, googleSignInAccount.email, googleSignInAccount.displayName,
+          false);
+    }catch(e){
+      print(e);
+    }
   }
 
   // Future<void> _facebookSignIn(BuildContext context) async {
@@ -72,7 +72,7 @@ class SocialMediaLogins extends StatelessWidget{
 
   Future<void> _facebookSignIn(BuildContext context) async {
     final LoginResult result = await FacebookAuth.instance.login(); // by the fault we request the email and the public profile
-    print(result.message);
+    // print(result.message);
     if (result.status == LoginStatus.success) {
       AccessToken _accessToken = result.accessToken;
       // get the user data
@@ -80,7 +80,7 @@ class SocialMediaLogins extends StatelessWidget{
       final userData = await FacebookAuth.instance.getUserData();
       // final userData = await FacebookAuth.instance.getUserData(fields: "email,birthday,friends,gender,link");
       Map<String,dynamic> _userData = userData;
-      print(_userData);
+      // print(_userData);
 
       if(_userData["email"]!=null &&_userData["email"]!=""){
         Webservice.socialMediaLogin(context,_userData["email"],_userData["name"],false);
@@ -90,8 +90,8 @@ class SocialMediaLogins extends StatelessWidget{
 
 
     } else {
-      print(result.status);
-      print(result.message);
+      // print(result.status);
+      // print(result.message);
     }
 
   }

@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webrevue/LoginDashboard/widgets/social_media_login.dart';
 import 'package:webrevue/constants/ColorClass.dart';
@@ -42,6 +43,7 @@ import 'package:webrevue/route/routing_constant.dart';
       Navigator.pushNamed(context, myreviews);
 
     }else if(itemSelected == "4"){
+      FacebookAuth.instance.logOut();
       googleSignIn.signOut();
       clearSharedPreferences();
       window.localStorage.clear();
