@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/model/UserModal.dart';
 import 'package:webrevue/service/Webservice.dart';
@@ -22,7 +23,15 @@ class SignUpState extends State<SignUp> {
   TextEditingController firstNameController = new TextEditingController();
   TextEditingController lastNameController = new TextEditingController();
   TextEditingController mobileNumberController = new TextEditingController();
+  bool emailValidate = false;
+  bool passwordValidate = false;
 
+  bool confirmPasswordValidate = false;
+  bool firstNameValidate = false;
+
+  bool lastNameValidate = false;
+
+  bool mobileNumberValidate = false;
 
 
 
@@ -35,7 +44,7 @@ class SignUpState extends State<SignUp> {
         height: 700,
         width: 420,     color: Colors.white,
         child: ListView(
-          shrinkWrap: true,physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,physics: AlwaysScrollableScrollPhysics(),
          children: [
             // Create Account
             Align(alignment: Alignment.topRight,child: IconButton(
@@ -80,7 +89,9 @@ class SignUpState extends State<SignUp> {
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.name,
                             controller: firstNameController,
+                            inputFormatters: [WhitelistingTextInputFormatter(RegExp("[A-Z]"))],
                             decoration: InputDecoration(
+                              errorText: firstNameValidate?'Please enter name':null,
                                 contentPadding: EdgeInsets.only(left: 15),
                                 labelStyle: TextStyle(
                                   color: Colors.black,
@@ -122,6 +133,9 @@ class SignUpState extends State<SignUp> {
                             keyboardType: TextInputType.name,
                             controller: lastNameController,
                             decoration: InputDecoration(
+
+                                errorText: lastNameValidate?'Please enter name':null,
+
                                 contentPadding: EdgeInsets.only(left: 15),
                                 labelStyle: TextStyle(
                                   color: Colors.black,
@@ -152,11 +166,17 @@ class SignUpState extends State<SignUp> {
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.left),
-                  TextField(
+                  TextFormField(
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
                     controller: emailController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                    validator: (input) => validateEmail(input) ? null : "Check your email",
                     decoration: InputDecoration(
+
+                        errorText: emailValidate?'Please enter email address':null,
+
                         contentPadding: EdgeInsets.only(left: 15),
                         labelStyle: TextStyle(
                           color: Colors.black,
@@ -187,6 +207,9 @@ class SignUpState extends State<SignUp> {
                     keyboardType: TextInputType.phone,
                     controller: mobileNumberController,
                     decoration: InputDecoration(
+
+                        errorText: mobileNumberValidate?'Enter mobile number':null,
+
                         contentPadding: EdgeInsets.only(left: 15),
                         labelStyle: TextStyle(
                           color: Colors.black,
@@ -219,6 +242,9 @@ class SignUpState extends State<SignUp> {
                     controller: passwordController,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
+
+                        errorText: passwordValidate?'Enter Password':null,
+
                         contentPadding: EdgeInsets.only(left: 15),
                         labelStyle: TextStyle(
                           color: Colors.black,
@@ -249,12 +275,17 @@ class SignUpState extends State<SignUp> {
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.left),
-                  TextField(
+                  TextFormField(
                     textInputAction: TextInputAction.next,
                     obscureText: true,
                     controller: confirmPasswordController,
                     keyboardType: TextInputType.visiblePassword,
+                    // validator: (_) => confirmPasswordValidate ? 'Enter password' : null,
                     decoration: InputDecoration(
+                        errorText: confirmPasswordValidate?'Re-type password':null,
+                        // errorBorder: OutlineInputBorder(
+                        //   borderSide: BorderSide(color: Colors.red),
+                        // ),
                         contentPadding: EdgeInsets.only(left: 15),
                         labelStyle: TextStyle(
                           color: Colors.black,
@@ -272,28 +303,33 @@ class SignUpState extends State<SignUp> {
             Container(
                 width: 300,height: 40,
                 margin: EdgeInsets.only(left: 40, right: 40, top: 40,bottom: 40),
-                child: FlatButton(
+                child: MaterialButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(3)),
                   color: ColorClass.blueColor,
                   hoverColor: Colors.blue.shade900,
                   onPressed: (){
+                    validateTextField();
+
                     if(firstNameController.text.isNotEmpty
                         &&lastNameController.text.isNotEmpty
                         &&mobileNumberController.text.isNotEmpty
                     &&passwordController.text.isNotEmpty&&passwordController.text.isNotEmpty
                     &&emailController.text.isNotEmpty){
 
+
+
                       if(passwordController.text==confirmPasswordController.text){
                         signUpRequest();
                       }else{
-                        Scaffold.of(context).showSnackBar(SnackBar(content: Text("Enter Same Password")));
+                        displayAlertDialog(context,title: "Create Account",content: "Enter Same Password");
                       }
 
-                    }else{
-                      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Please complete all Fields")));
-
                     }
+                    // else{
+                    //   displayAlertDialog(context,title: "Create Account",content: "Please complete all Fields");
+                    //
+                    // }
 
 
 
@@ -313,6 +349,46 @@ class SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+
+  validateTextField(){
+    if(emailController.text.isEmpty){
+      setState(() {
+        emailValidate= true;
+      });
+    }
+    if(passwordController.text.isEmpty)
+    {
+      setState(() {
+        passwordValidate = true;
+      });
+    }
+    if(confirmPasswordController.text.isEmpty)
+    {
+      setState(() {
+        confirmPasswordValidate = true;
+      });
+    }
+    if(firstNameController.text.isEmpty)
+    {
+      setState(() {
+        firstNameValidate = true;
+      });
+    }
+    if(lastNameController.text.isEmpty)
+    {
+      setState(() {
+        lastNameValidate = true;
+      });
+    }
+
+    if(mobileNumberController.text.isEmpty)
+    {
+      setState(() {
+        mobileNumberValidate = true;
+      });
+    }
   }
 
 
@@ -340,4 +416,14 @@ class SignUpState extends State<SignUp> {
     }
 
   }
+
+
+
+  bool validateEmail(String email){
+    bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email);
+
+    return emailValid;
+  }
+
 }
