@@ -67,7 +67,7 @@ class SearchWidgetState extends State<SearchWidget> {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             margin: EdgeInsets.only(
@@ -181,41 +181,41 @@ class SearchWidgetState extends State<SearchWidget> {
             ),
           ),
           Container(
-            height: 40,
-            width: width / 2,
-            margin: EdgeInsets.only(
-              left: 10,
-              right: 10,
-            ),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(7),
-                border: Border.all(color: ColorClass.blueColor, width: 1)),
-            child: DropdownButtonHideUnderline(
-              child: GFDropdown(
-                borderRadius: BorderRadius.circular(10),
-                hint: Text(
-                  "Select location",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                dropdownButtonColor: Colors.white,
-                iconEnabledColor: ColorClass.blueColor,
-                value: selectedLocation,
-                onChanged: (newValue) {
-                  setState(() {
-                    selectedLocation = newValue;
-                  });
-                },
-                items: location
-                    .map((value) => DropdownMenuItem(
-                          value: value,
-                          child: Text(value),
-                        ))
-                    .toList(),
-              ),
-            ),
-          ),
+    //        height: 40,
+      //   width: width / 2,
+        //    margin: EdgeInsets.only(
+          //    left: 10,
+            //  right: 10,
+ //           ),
+   //         decoration: BoxDecoration(
+     //           color: Colors.white,
+       //         shape: BoxShape.rectangle,
+         //       borderRadius: BorderRadius.circular(7),
+           //     border: Border.all(color: ColorClass.blueColor, width: 1)),
+  //          child: DropdownButtonHideUnderline(
+    //          child: GFDropdown(
+      //          borderRadius: BorderRadius.circular(10),
+        //        hint: Text(
+          //        "Select location",
+  //                style: TextStyle(color: Colors.grey),
+    //            ),
+      //          dropdownButtonColor: Colors.white,
+        //        iconEnabledColor: ColorClass.blueColor,
+          //      value: selectedLocation,
+            //    onChanged: (newValue) {
+              //    setState(() {
+         //           selectedLocation = newValue;
+           //      });
+      //          },
+        //        items: location
+          //     .map((value) => DropdownMenuItem(
+            //              value: value,
+              //            child: Text(value),
+             //           ))
+        //      .toList(),
+         //     ),
+   ),
+        //  ),
         ],
       ),
     );

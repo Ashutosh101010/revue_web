@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'dart:html' as html;
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';

@@ -13,6 +13,7 @@ import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
 import 'package:webrevue/model/CompoundModal.dart';
 import 'package:webrevue/model/FavoriteModal.dart';
 import 'package:webrevue/model/arguments/CompoundArgument.dart';
+import 'package:webrevue/model/arguments/CompoundMessagingArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/ServerDetails.dart';
 import 'package:webrevue/service/Webservice.dart';
@@ -36,6 +37,7 @@ class CompoundCardState extends State<CompoundCard>{
   double width;
   bool viewmore = false;
   bool favourite =  false;
+  CompoundModal compoundModal;
   @override
   void initState() {
     super.initState();
@@ -231,8 +233,11 @@ class CompoundCardState extends State<CompoundCard>{
                             FittedBox(
                               child: Row(
                                 children: [
-                                  Icon(CupertinoIcons.chat_bubble_2,
-                                    color: Colors.black,size: 18,),
+                                  IconButton(onPressed: (){
+
+                                  },
+                                    icon: Icon(CupertinoIcons.chat_bubble_2,color: Colors.black,size: 18),
+                                  ),
                                   Padding(padding: const EdgeInsets.only(left: 5,right: 20,),
                                     child: AutoSizeText("Q & A",
                                         style: const TextStyle(shadows: [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],
@@ -466,21 +471,33 @@ class CompoundCardState extends State<CompoundCard>{
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        FittedBox(
-                          child: Row(
-                            children: [
-                              Icon(CupertinoIcons.chat_bubble_2,
-                                color: Colors.black,size: 18,),
-                              Padding(padding: const EdgeInsets.only(left: 5,right: 20,),
-                                child: AutoSizeText("Q & A",
-                                    style: const TextStyle(shadows: [Shadow(blurRadius: 5,color: Colors.black12,offset: Offset(1.0, 1.0))],
-                                        color: const Color(0xff000000),
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 14.0),
-                                    textAlign: TextAlign.left),
-                              )
-                            ],
+                        InkWell(onTap: (){
+                          print("tap");
+                          Navigator.pushNamed(context,questionAns,
+                              arguments:CompoundMessagingArgument(
+                                  compoundName: widget.compoundModal.compoundname,
+                                  compoundAddress: widget.compoundModal.address));
+                        },
+                          child: FittedBox(
+                            child: Row(
+                              children: [
+                                Icon(CupertinoIcons.chat_bubble_2,
+                                  color: Colors.black,size: 18,),
+                                Padding(padding: const EdgeInsets.only(left: 5,right: 20,),
+                                  child: AutoSizeText("Q & A",
+                                      style: const TextStyle(shadows: [
+                                        Shadow(blurRadius: 5,
+                                            color: Colors.black12,
+                                            offset: Offset(1.0, 1.0))
+                                      ],
+                                          color: const Color(0xff000000),
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 14.0),
+                                      textAlign: TextAlign.left),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         FittedBox(

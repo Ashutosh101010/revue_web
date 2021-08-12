@@ -48,7 +48,7 @@ bool questionvalidate=false;
           Container(
             height: 50,width: MediaQuery.of(context).size.width,
             alignment: Alignment.center,
-            margin: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
+            margin: EdgeInsets.only(left: 10,right: 10,top: 10,),
             decoration: BoxDecoration(
                 color: Color(0xfffaf7f7),border: Border.all(color: Colors.black26)
             ),
@@ -76,8 +76,10 @@ bool questionvalidate=false;
               ),
             ),
           ),
-          Text(questionvalidate?'please enter question':"",
-            style: TextStyle(color: Colors.red),),
+          Container(margin: EdgeInsets.only(left: 10),
+            child: Text(questionvalidate?'please enter question':"",
+              style: TextStyle(color: Colors.red),),
+          ),
 
           Padding(
             padding:EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),

@@ -31,7 +31,7 @@ class LoginPageState extends State<LoginPage>{
      Container(
        height: 50,
        width: 350,
-       margin: EdgeInsets.only(top: 20, bottom: 10),
+       margin: EdgeInsets.only(top: 20, ),
        // color: Colors.white,
        decoration: BoxDecoration(
          image: DecorationImage(
@@ -58,7 +58,7 @@ class LoginPageState extends State<LoginPage>{
                border: InputBorder.none,
                suffixIcon: Icon(CupertinoIcons.mail_solid),
                contentPadding:
-               EdgeInsets.only(left: 15, top: 25, bottom: 15),
+               EdgeInsets.only(left: 15, top: 15, bottom: 15),
                hintText: "Enter Email",
                hintStyle: TextStyle(
                  color: Color(0x7f3c2f47),
@@ -78,14 +78,14 @@ class LoginPageState extends State<LoginPage>{
        ),
      ),
 
-     Container(margin: EdgeInsets.only(right: 200,bottom: 30),
+     Container(margin: EdgeInsets.only(right: 200,bottom: 10),
        child: Text(_emailValidate?'please enter email':"",
          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
      ),
      Container(
        height: 50,
        width: 350,
-       margin: EdgeInsets.only(bottom: 10),
+      // margin: EdgeInsets.only(),
        decoration: BoxDecoration(
          image: DecorationImage(
              fit: BoxFit.fill,
@@ -124,7 +124,7 @@ class LoginPageState extends State<LoginPage>{
          ),
        ),
      ),
-     Container(margin: EdgeInsets.only(right: 200),
+     Container(margin: EdgeInsets.only(right: 180),
        child: Text(_passwordValidate?'Please enter password':"",
          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
      ),
@@ -132,7 +132,7 @@ class LoginPageState extends State<LoginPage>{
      Container(
        width: 350,
        alignment: Alignment.centerRight,
-       margin: EdgeInsets.only(top: 10, bottom: 10),
+       margin: EdgeInsets.only(top: 5, bottom: 10),
        child: InkWell(
          onTap: () {
            Navigator.pushNamed(context, forgetPassword);
@@ -147,7 +147,7 @@ class LoginPageState extends State<LoginPage>{
        ),
      ),
      Container(
-       margin: EdgeInsets.only(top: 10, bottom: 20),
+       margin: EdgeInsets.only( bottom: 20),
        height: 40,
        width: 350,
        alignment: Alignment.center,

@@ -67,6 +67,8 @@ class HeaderState extends State<Header>{
                 AutoSizeText("Review",maxLines: 1,
                     style:TextStyle(
                         fontWeight: FontWeight.w700,
+
+
                         color: selectedTab==3?Colors.red:Colors.black54)),
 
                 selectedTab==3?Container(

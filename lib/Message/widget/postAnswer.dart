@@ -5,7 +5,7 @@ import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/model/AnswerModal.dart';
 import 'package:webrevue/service/Webservice.dart';
 
-class PostAnswer extends StatelessWidget{
+class PostAnswer extends StatefulWidget{
   double width;
   String questionId;
   String compoundId;
@@ -13,13 +13,21 @@ class PostAnswer extends StatelessWidget{
 
 
   PostAnswer(this.width,this.questionId,this.compoundId);
+
+  @override
+  _PostAnswerState createState() => _PostAnswerState();
+}
+
+class _PostAnswerState extends State<PostAnswer> {
   TextEditingController answerController = new TextEditingController();
+
+  bool answervalidate =false;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 250,
-      width: width,
+      width: widget.width,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -41,13 +49,18 @@ class PostAnswer extends StatelessWidget{
             Container(
               height: 50,
               width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+              margin: EdgeInsets.only(left: 10, right: 10, top: 10, ),
               decoration: BoxDecoration(
                   color: Color(0xfffaf7f7),
                   border: Border.all(color: Colors.black26)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  onChanged: (value){
+                    setState(() {
+                      answervalidate=false;
+                    });
+                  },
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.multiline,
                   controller: answerController,
@@ -67,6 +80,9 @@ class PostAnswer extends StatelessWidget{
 
               ),
             ),
+            Container(margin: EdgeInsets.only(left: 10),
+                child: Text(answervalidate?'please answer here':"",
+                  style: TextStyle(color: Colors.red),)),
 
             Padding(
                 padding:
@@ -85,14 +101,14 @@ class PostAnswer extends StatelessWidget{
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  width: width,
+                  width: widget.width,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(minimumSize:Size(width/4, 40) ,
+                          style: ElevatedButton.styleFrom(minimumSize:Size(widget.width/4, 40) ,
                             primary: Color(0xffb2b2b2),
                             padding: EdgeInsets.all(10),
                             shape: RoundedRectangleBorder(
@@ -116,7 +132,7 @@ class PostAnswer extends StatelessWidget{
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(minimumSize:Size(width/4, 40) ,
+                          style: ElevatedButton.styleFrom(minimumSize:Size(widget.width/4, 40) ,
                             primary: ColorClass.blueColor,
                             padding: EdgeInsets.all(10),
                             shape: RoundedRectangleBorder(
@@ -130,16 +146,22 @@ class PostAnswer extends StatelessWidget{
                               AnswerModal answerModal = new AnswerModal();
                               answerModal.answer = answerController.text;
                               answerModal.timestamp = DateTime.now().millisecondsSinceEpoch;
-                              answerModal.compoundID =compoundId;
-                              answerModal.questionID =questionId;
+                              answerModal.compoundID =widget.compoundId;
+                              answerModal.questionID =widget.questionId;
                               Webservice.postAnswerRequest(context, answerModal);
 
                             }
-                            else{
-
-                              Navigator.pop(context);
-                              displayAlertDialog(context,title: "Post Answer",
-                                  content: "Empty Answer Cannot Be Posted");
+                         //   else{
+//
+  //                            Navigator.pop(context);
+    //                          displayAlertDialog(context,title: "Post Answer",
+      //                            content: "Empty Answer Cannot Be Posted");
+        //                    }
+                            if (answerController.text.isEmpty)
+                            {
+                              setState(() {
+                                answervalidate=true;
+                              });
                             }
 
                           },

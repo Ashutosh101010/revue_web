@@ -279,16 +279,16 @@ TextEditingController searchController = new TextEditingController();
               SizedBox(
                 height: 20,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Text("Search property"),
-                  ),
-                  search(),
-                ],
-              ),
+    //          Column(
+      //          crossAxisAlignment: CrossAxisAlignment.start,
+        //        children: [
+          //        Padding(
+            //        padding: const EdgeInsets.only(left: 10),
+              //      child: Text("Search property"),
+                //  ),
+                  //search(),
+               // ],
+             // ),
               SizedBox(
                 height: 20,
               ),

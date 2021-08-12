@@ -124,6 +124,10 @@ class NearByPropertyState extends State<NearByProperty>{
                             },
                           ),
 
+
+
+
+
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
