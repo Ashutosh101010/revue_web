@@ -29,7 +29,7 @@ class AddReviewSecondFormState extends State<AddReviewSecondForm>{
   List<String> consList = [null];
   List<String> prosList = [null];
 
-
+bool descriptionvalidate=false;
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +72,14 @@ class AddReviewSecondFormState extends State<AddReviewSecondForm>{
                                 shape: BoxShape.rectangle,
                                 border: Border.all(
                                     color: Color(0x33000000), width: 1)),
-                            child: TextField(textInputAction: TextInputAction.next,
+                            child: TextFormField(textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.emailAddress,
                               maxLines: 10,controller: descriptionController,
+                              onChanged: (value){
+                              setState(() {
+                                descriptionvalidate=false;
+                              });
+                              },
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 15,top: 6),
                                   labelStyle: TextStyle(
@@ -85,8 +90,15 @@ class AddReviewSecondFormState extends State<AddReviewSecondForm>{
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none,
                                   fillColor: Colors.white
-                              ),),
+                              ),
+
+
+                            ),
+
+
                           ),
+                          Text(descriptionvalidate?'please  add description ':"",
+                            style: TextStyle(color: Colors.red),),
                         ],
                       ),
                     ),

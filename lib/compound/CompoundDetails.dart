@@ -286,35 +286,35 @@ body: CustomScrollView(shrinkWrap: true,
                   fontStyle:  FontStyle.normal,),),
 
               Container(
-                height: 50,
-                margin: EdgeInsets.only(left: 10, right: 10,),
-                child: DropdownButtonHideUnderline(
-                  child: GFDropdown(
-                    hint: Text(
-                      "Filter",
-                      style: TextStyle(color: Colors.black87),
-                    ),
-                    dropdownButtonColor: Colors.white,
-                    padding: EdgeInsets.all(10),
-                    itemHeight: 4,
-                    icon: Icon(Icons.keyboard_arrow_down_outlined),
-                    iconEnabledColor: ColorClass.blueColor,
-                    value:filterProperty,
-                    onChanged: (newValue) {
-                      setState(() {
-                        filterProperty = newValue;
-                      });
-                    },
-                    items: filterList
-                        .map((value) => DropdownMenuItem(
-                      value: value,
-                      child: Text(value,style: TextStyle(fontSize: 14,color: Colors.black54,
-                          fontWeight: FontWeight.w600),),
-                    ))
-                        .toList(),
-                  ),
+       //         height: 50,
+         //       margin: EdgeInsets.only(left: 10, right: 10,),
+           //     child: DropdownButtonHideUnderline(
+             //     child: GFDropdown(
+               //     hint: Text(
+                 //     "Filter",
+                   //   style: TextStyle(color: Colors.black87),
+ //                   ),
+   //                 dropdownButtonColor: Colors.white,
+     //               padding: EdgeInsets.all(10),
+       //             itemHeight: 4,
+         //           icon: Icon(Icons.keyboard_arrow_down_outlined),
+           //         iconEnabledColor: ColorClass.blueColor,
+             //       value:filterProperty,
+               //     onChanged: (newValue) {
+                 //     setState(() {
+                   //     filterProperty = newValue;
+               //       });
+             //       },
+            //        items: filterList
+              //          .map((value) => DropdownMenuItem(
+             //         value: value,
+               //       child: Text(value,style: TextStyle(fontSize: 14,color: Colors.black54,
+            //              fontWeight: FontWeight.w600),),
+              //      ))
+            //           .toList(),
+                 // ),
                 ),
-              ),
+             // ),
 
 
             ],

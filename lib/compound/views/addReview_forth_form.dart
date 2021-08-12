@@ -15,6 +15,7 @@ class AddReviewForthForm extends StatefulWidget{
 }
 class AddReviewForthFormState extends State<AddReviewForthForm>{
   bool checkBox = false;
+  bool startdatevalidate =false;
   TextEditingController startDateController = TextEditingController();
   TextEditingController endDateController = TextEditingController();
 
@@ -114,9 +115,14 @@ class AddReviewForthFormState extends State<AddReviewForthForm>{
                               shape: BoxShape.rectangle,
                               border: Border.all(
                                   color: Color(0x33000000), width: 1)),
-                          child: TextField(
+                          child: TextFormField(
                             controller: startDateController,
                             readOnly: true,
+                            onChanged: (value){
+                              setState(() {
+                                startdatevalidate=false;
+                              });
+                            },
                             decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(left: 15),
                                 labelStyle: TextStyle(
@@ -127,9 +133,17 @@ class AddReviewForthFormState extends State<AddReviewForthForm>{
                                 hintStyle: TextStyle(color: Colors.grey),
 
                                 fillColor: Colors.white
-                            ),),
+                            ),
+
+
+                          ),
+
                         ),
-                      ],
+                        Text(startdatevalidate?'please select date':"",
+                          style: TextStyle(color: Colors.red),),
+
+
+    ],
                     ),
                   ),
 

@@ -31,9 +31,9 @@ class MessagingScreen extends StatefulWidget{
 }
 
 class MessagingScreenState extends State<MessagingScreen>{
-
+  TextEditingController questionController = new TextEditingController();
   List questionsList = [];
-
+  bool questionvalidate=false;
   onRefresh(){
     html.window.onBeforeUnload.listen((event) async{
       setState(() {
@@ -393,6 +393,8 @@ class MessagingScreenState extends State<MessagingScreen>{
       ),
     );
   }
+
+
 
 
 }

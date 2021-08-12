@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/service/Webservice.dart';
 
@@ -24,7 +25,6 @@ class LoginPageState extends State<LoginPage>{
   bool _emailValidate = false;
   bool _passwordValidate = false;
 
-
   @override
   Widget build(BuildContext context) {
    return Column(children: [
@@ -40,6 +40,9 @@ class LoginPageState extends State<LoginPage>{
        ),
        child: Theme(
          child: TextField(
+           onChanged: (value){
+             _emailValidate=false;
+           },
            cursorColor: ColorClass.lightTextColor,
            textInputAction: TextInputAction.next,
            controller: emailController,
@@ -48,13 +51,14 @@ class LoginPageState extends State<LoginPage>{
              //   borderRadius: BorderRadius.circular(10),
              //   borderSide: BorderSide(color: Colors.grey.shade200)
              // ),
-             errorText: _emailValidate?'Please enter email' : null,
+
+             //errorText: _emailValidate?'Please enter email' : null,
                errorBorder: InputBorder.none,
                focusedErrorBorder: InputBorder.none,
                border: InputBorder.none,
                suffixIcon: Icon(CupertinoIcons.mail_solid),
                contentPadding:
-               EdgeInsets.only(left: 15, top: 15, bottom: 15),
+               EdgeInsets.only(left: 15, top: 25, bottom: 15),
                hintText: "Enter Email",
                hintStyle: TextStyle(
                  color: Color(0x7f3c2f47),
@@ -65,11 +69,18 @@ class LoginPageState extends State<LoginPage>{
              color: Colors.black,
              fontSize: 16,
            ),
+
          ),
+
          data: Theme.of(context).copyWith(
            primaryColor: ColorClass.redColor,
          ),
        ),
+     ),
+
+     Container(margin: EdgeInsets.only(right: 200,bottom: 30),
+       child: Text(_emailValidate?'please enter email':"",
+         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
      ),
      Container(
        height: 50,
@@ -81,13 +92,17 @@ class LoginPageState extends State<LoginPage>{
              image: AssetImage("assets/images/textfieldbg.png")),
        ),
        child: Theme(
-         child: TextField(
+         child: TextField(onChanged: (value){
+           setState(() {
+             _passwordValidate=false;
+           });
+         },
            cursorColor: ColorClass.lightTextColor,
            textInputAction: TextInputAction.done,
            controller: passwordController,
            obscureText: true,
            decoration: InputDecoration(
-             errorText: _passwordValidate?'Please enter password':null,
+            // errorText: _passwordValidate?'Please enter password':null,
 
                suffixIcon: Icon(CupertinoIcons.lock_fill),
                contentPadding:
@@ -108,6 +123,10 @@ class LoginPageState extends State<LoginPage>{
            primaryColor: ColorClass.redColor,
          ),
        ),
+     ),
+     Container(margin: EdgeInsets.only(right: 200),
+       child: Text(_passwordValidate?'Please enter password':"",
+         style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
      ),
      // Forget password?
      Container(

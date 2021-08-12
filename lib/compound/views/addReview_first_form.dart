@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/model/ReviewModal.dart';
 
@@ -12,12 +15,27 @@ class AddReviewFirstForm extends StatefulWidget{
 
 class AddReviewFirstFormState extends State<AddReviewFirstForm>{
 
+
   TextEditingController floorPlanController = TextEditingController();
   TextEditingController rentController = TextEditingController();
   TextEditingController bedroomController = TextEditingController();
   TextEditingController bathroomController = TextEditingController();
   ReviewModal reviewModal;
+  bool flooplanvalidate = false;
+  bool rentvalidate=false;
+bool bedroomvalidate=false;
+bool bathroomvalidate=false;
 
+//  String numberValidator(String value) {
+  //  if(value == null) {
+    //  return null;
+   // }
+//    final n = num.tryParse(value);
+  //  if(n == null) {
+    //  return '"$value" is not a valid number';
+   // }
+  //  return null;
+ // }
 
   @override
   void initState() {
@@ -83,9 +101,19 @@ class AddReviewFirstFormState extends State<AddReviewFirstForm>{
                           shape: BoxShape.rectangle,
                           border: Border.all(
                               color: Color(0x33000000), width: 1)),
-                      child: TextField(textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.text,
+                      child: TextFormField(keyboardType: TextInputType.number,
+                     //   validator: numberValidator,
+                        onChanged: (value){
+                        setState(() {
+                          flooplanvalidate=false;
+                        });
+                      },
+                        textInputAction: TextInputAction.next,
+                      //  keyboardType: TextInputType.text,
                         controller: floorPlanController,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
                         decoration: InputDecoration(
                             hintText: "Enter floor plan",
                             hintStyle: TextStyle(color: Colors.grey),
@@ -97,8 +125,13 @@ class AddReviewFirstFormState extends State<AddReviewFirstForm>{
                             ),
 
                             fillColor: Colors.white
-                        ),),
-                    ),
+                        ),
+                      ),
+                      ),
+                    Text(flooplanvalidate?'please enter floor plan':"",
+                      style: TextStyle(color: Colors.red),),
+
+
                   ],
                 ),
               ),
@@ -127,9 +160,16 @@ class AddReviewFirstFormState extends State<AddReviewFirstForm>{
                           shape: BoxShape.rectangle,
                           border: Border.all(
                               color: Color(0x33000000), width: 1)),
-                      child: TextField(textInputAction: TextInputAction.next,
+                      child: TextFormField(textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.emailAddress,
-                        controller: rentController,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        controller: rentController,onChanged: (value){
+                        setState(() {
+                          rentvalidate=false;
+                        });
+                        },
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(left: 15),
                             hintText: "Enter Rent",
@@ -141,8 +181,12 @@ class AddReviewFirstFormState extends State<AddReviewFirstForm>{
                             ),
 
                             fillColor: Colors.white
-                        ),),
+                        ),
+
+                      ),
                     ),
+                    Text(rentvalidate?'please enter rent':"",
+                      style: TextStyle(color: Colors.red),),
                   ],
                 ),
               ),
@@ -172,9 +216,16 @@ class AddReviewFirstFormState extends State<AddReviewFirstForm>{
                           shape: BoxShape.rectangle,
                           border: Border.all(
                               color: Color(0x33000000), width: 1)),
-                      child: TextField(textInputAction: TextInputAction.next,
+                      child: TextFormField(textInputAction: TextInputAction.next,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
                         keyboardType: TextInputType.text,
-                        controller: bedroomController,
+                        controller: bedroomController,onChanged: (value){
+                        setState(() {
+                          bedroomvalidate=false;
+                        });
+                        },
                         decoration: InputDecoration(
                             hintText: "Enter number of BedRooms",
                             hintStyle: TextStyle(color: Colors.grey),
@@ -188,8 +239,12 @@ class AddReviewFirstFormState extends State<AddReviewFirstForm>{
                             //   borderSide: BorderSide(color: Color(0x66000000)),
                             // ),
                             fillColor: Colors.white
-                        ),),
+                        ),
+                        ),
+
                     ),
+                    Text(bedroomvalidate?'please enter bedrooms':"",
+                      style: TextStyle(color: Colors.red),),
                   ],
                 ),
               ),
@@ -219,9 +274,18 @@ class AddReviewFirstFormState extends State<AddReviewFirstForm>{
                           shape: BoxShape.rectangle,
                           border: Border.all(
                               color: Color(0x33000000), width: 1)),
-                      child: TextField(textInputAction: TextInputAction.next,
+                      child: TextFormField(textInputAction: TextInputAction.next,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
                         keyboardType: TextInputType.text,
                         controller: bathroomController,
+                        onChanged: (value){
+                        setState(() {
+                          bathroomvalidate=false;
+                        });
+
+                        },
                         decoration: InputDecoration(
                             hintText: "Enter number of Bathrooms",
                             hintStyle: TextStyle(color: Colors.grey),
@@ -235,8 +299,12 @@ class AddReviewFirstFormState extends State<AddReviewFirstForm>{
                             //   borderSide: BorderSide(color: Color(0x66000000)),
                             // ),
                             fillColor: Colors.white
-                        ),),
+                        ),
+
+                      ),
                     ),
+                    Text(bathroomvalidate?'please enter  numbers bathrooms':"",
+                      style: TextStyle(color: Colors.red),),
                   ],
                 ),
               ),
@@ -250,6 +318,8 @@ class AddReviewFirstFormState extends State<AddReviewFirstForm>{
     ],),
   );
   }
+
+
 
 
   bool validate(){
