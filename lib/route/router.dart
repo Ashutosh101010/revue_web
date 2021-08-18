@@ -1,5 +1,6 @@
 
 
+//import 'dart:ffi';
 import 'dart:html';
 import 'dart:js';
 
@@ -29,7 +30,9 @@ import 'package:webrevue/model/arguments/VerifyOtpArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
 
-  Route<dynamic> generateRoute(RouteSettings settings){
+
+   Route<dynamic> generateRoute(RouteSettings settings) {
+    
     String routeName = settings.name;
 
     CompoundArgument compoundArgument;
@@ -41,133 +44,147 @@ import 'package:webrevue/route/routing_constant.dart';
     SearchQuestionArgument searchQuestionArgument;
 
 
-    if(!window.localStorage.containsKey("userId")){
-      routeName = initialroute;
+    if (!window.localStorage.containsKey("userId")) {
+     routeName = initialroute;
     }
 
-    if(routeName == compoundDetails){
-      compoundArgument = settings.arguments;
+    if (routeName == compoundDetails) {
+     compoundArgument = settings.arguments;
     }
-    if(routeName == questionAns){
-      compoundMessagingArgument = settings.arguments;
+    if (routeName == questionAns) {
+     compoundMessagingArgument = settings.arguments;
     }
-    if(routeName == answerOfQuestion){
-      questionAnswerArgument = settings.arguments;
+    if (routeName == answerOfQuestion) {
+     questionAnswerArgument = settings.arguments;
     }
-    if(routeName == addreview){
-      addReviewArgument = settings.arguments;
+    if (routeName == addreview) {
+     addReviewArgument = settings.arguments;
     }
-    if(routeName == otpVerification){
-      verifyOtpArgument = settings.arguments;
-    }
-
-    if(routeName== newpassword){
-      changePasswordArgument= settings.arguments;
+    if (routeName == otpVerification) {
+     verifyOtpArgument = settings.arguments;
     }
 
-    if(routeName == searchQuestion){
-      searchQuestionArgument = settings.arguments;
+    if (routeName == newpassword) {
+     changePasswordArgument = settings.arguments;
     }
 
-    switch(routeName) {
-      case initialroute:
-        return MaterialPageRoute(builder: (context) => LoginScreen(),settings: RouteSettings(name: "/login"),);
-        break;
-
-      case loginRoute:
-        return MaterialPageRoute(builder: (context) => LoginScreen(),settings: RouteSettings(name: "/login"));
-        break;
-      case mainscreenRoute:
-        return MaterialPageRoute(builder: (context) => CompoundList(key: GlobalKeys.compoundListKey ,),
-            settings: RouteSettings(name: "/home"));
-        break;
-
-      case compoundDetails:
-        return MaterialPageRoute(builder: (context) =>
-            CompoundDetails(
-              key: GlobalKeys.compoundDetailsKey,
-              compoundID: compoundArgument.compoundId,
-              compoundName: compoundArgument.compoundName,
-            images: compoundArgument.images,
-            address: compoundArgument.address,),
-            settings: RouteSettings(name: "$mainscreenRoute/compoundDetail",),maintainState: true);
-        break;
-      case addreview:
-        return MaterialPageRoute(builder: (context) =>
-            AddReview(
-                key: GlobalKeys.addReviewClassKey,
-              compoundID:   addReviewArgument.compoundId,
-               compoundName:  addReviewArgument.compoundName,
-               images: addReviewArgument.images,
-            address: addReviewArgument.address,),
-            settings: RouteSettings(name: "$mainscreenRoute$compoundDetails/addreview"));
-        break;
-
-      case forgetPassword:
-        return MaterialPageRoute(builder: (context)=>ForgetPassword(),settings: RouteSettings(name: "/forgetpassword"));
-        break;
-
-      case otpVerification:
-        return MaterialPageRoute(builder: (context)=>OtpVerification(verifyOtpArgument.email),
-            settings: RouteSettings(name: "/verifyotp"));
-        break;
-
-      case newpassword:
-        return MaterialPageRoute(builder: (context)=>UpdatePassword(changePasswordArgument.email),
-            settings: RouteSettings(name: "/new-password"));
-        break;
-
-      case questionAns:
-
-        return MaterialPageRoute(builder: (context)=>
-            MessagingScreen(
-              key: GlobalKeys.postQuestionClassKey,
-              compoundID: compoundMessagingArgument.compoundID,
-              compoundName: compoundMessagingArgument.compoundName,
-            compoundAddress: compoundMessagingArgument.compoundAddress,),
-            settings: RouteSettings(name: "$mainscreenRoute$compoundDetails/messages"));
-        break;
-
-
-      case filtercompound:
-        return MaterialPageRoute(builder: (context)=>FilterScreen(),settings: RouteSettings(name: "/filter"));
-        break;
-
-      case myreviews:
-        return MaterialPageRoute(builder: (context)=>
-            MyReviews(),
-            settings: RouteSettings(name: "/my-reviews"));
-        break;
-
-      case signup:
-        return MaterialPageRoute(builder: (context)=>SignUp(),settings: RouteSettings(name: "/signup"));
-        break;
-
-      case answerOfQuestion:
-        return MaterialPageRoute(builder: (context)=>
-            QuestionAnswerScreen(key: GlobalKeys.postAnswerClassKey,
-            compoundId: questionAnswerArgument.compoundID,
-            question: questionAnswerArgument.question,
-            questionId: questionAnswerArgument.questionID,),
-
-            settings: RouteSettings(name: "$mainscreenRoute$compoundDetails$questionAns/question-answer"));
-        break;
-
-      case myFavourite:
-        return MaterialPageRoute(builder: (context)=>FavoriteCompound(),
-            settings: RouteSettings(name: "/myFavorites"));
-        break;
-
-      case searchQuestion:
-        return MaterialPageRoute(builder: (context)=>SearchQuestion(searchQuestionArgument.quesList,
-            searchQuestionArgument.compoundID, searchQuestionArgument.compoundName),
-            settings: RouteSettings(name: "/searchQuestion"));
-        break;
-
-
-
-      default:
-        return MaterialPageRoute(builder: (context) => LoginScreen(),settings: RouteSettings(name: "/login"));
-        break;
+    if (routeName == searchQuestion) {
+     searchQuestionArgument = settings.arguments;
     }
-  }
+
+    switch (routeName) {
+     case initialroute:
+      return MaterialPageRoute(builder: (context) => LoginScreen(["id"][0]),
+       settings: RouteSettings(name: "/login"),);
+      break;
+
+     case loginRoute:
+      return MaterialPageRoute(builder: (context) => LoginScreen(["id"][0]),
+          settings: RouteSettings(name: "/login"));
+      break;
+     case mainscreenRoute:
+      return MaterialPageRoute(
+          builder: (context) => CompoundList(key: GlobalKeys.compoundListKey,),
+          settings: RouteSettings(name: "/home"));
+      break;
+
+     case compoundDetails:
+      return MaterialPageRoute(builder: (context) =>
+          CompoundDetails(
+           key: GlobalKeys.compoundDetailsKey,
+           compoundID: compoundArgument.compoundId,
+           compoundName: compoundArgument.compoundName,
+           images: compoundArgument.images,
+           address: compoundArgument.address,),
+          settings: RouteSettings(name: "$mainscreenRoute/compoundDetail",),
+          maintainState: true);
+      break;
+     case addreview:
+      return MaterialPageRoute(builder: (context) =>
+          AddReview(
+           key: GlobalKeys.addReviewClassKey,
+           compoundID: addReviewArgument.compoundId,
+           compoundName: addReviewArgument.compoundName,
+           images: addReviewArgument.images,
+           address: addReviewArgument.address,),
+          settings: RouteSettings(
+              name: "$mainscreenRoute$compoundDetails/addreview"));
+      break;
+
+     case forgetPassword:
+      return MaterialPageRoute(builder: (context) => ForgetPassword(),
+          settings: RouteSettings(name: "/forgetpassword"));
+      break;
+
+     case otpVerification:
+      return MaterialPageRoute(
+          builder: (context) => OtpVerification(verifyOtpArgument.email),
+          settings: RouteSettings(name: "/verifyotp"));
+      break;
+
+     case newpassword:
+      return MaterialPageRoute(
+          builder: (context) => UpdatePassword(changePasswordArgument.email),
+          settings: RouteSettings(name: "/new-password"));
+      break;
+
+     case questionAns:
+      return MaterialPageRoute(builder: (context) =>
+          MessagingScreen(
+           key: GlobalKeys.postQuestionClassKey,
+           compoundID: compoundMessagingArgument.compoundID,
+           compoundName: compoundMessagingArgument.compoundName,
+           compoundAddress: compoundMessagingArgument.compoundAddress,),
+          settings: RouteSettings(
+              name: "$mainscreenRoute$compoundDetails/messages"));
+      break;
+
+
+     case filtercompound:
+      return MaterialPageRoute(builder: (context) => FilterScreen(),
+          settings: RouteSettings(name: "/filter"));
+      break;
+
+     case myreviews:
+      return MaterialPageRoute(builder: (context) =>
+          MyReviews(),
+          settings: RouteSettings(name: "/my-reviews"));
+      break;
+
+     case signup:
+      return MaterialPageRoute(builder: (context) => SignUp(),
+          settings: RouteSettings(name: "/signup"));
+      break;
+
+     case answerOfQuestion:
+      return MaterialPageRoute(builder: (context) =>
+          QuestionAnswerScreen(key: GlobalKeys.postAnswerClassKey,
+           compoundId: questionAnswerArgument.compoundID,
+           question: questionAnswerArgument.question,
+           questionId: questionAnswerArgument.questionID,),
+
+          settings: RouteSettings(
+              name: "$mainscreenRoute$compoundDetails$questionAns/question-answer"));
+      break;
+
+     case myFavourite:
+      return MaterialPageRoute(builder: (context) => FavoriteCompound(),
+          settings: RouteSettings(name: "/myFavorites"));
+      break;
+
+     case searchQuestion:
+      return MaterialPageRoute(builder: (context) =>
+          SearchQuestion(searchQuestionArgument.quesList,
+              searchQuestionArgument.compoundID,
+              searchQuestionArgument.compoundName),
+          settings: RouteSettings(name: "/searchQuestion"));
+      break;
+
+
+     default:
+      return MaterialPageRoute(builder: (context) => LoginScreen(["id"][4]),
+          settings: RouteSettings(name: "/login"));
+      break;
+    }
+   }
+

@@ -43,7 +43,8 @@ class LeftSideCompoundState extends State<LeftSideCompound>{
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context,index){
-                return CompoundCard(width: width,compoundModal: (widget.list[index] as CompoundModal),);
+                return CompoundCard(width: width,
+                  compoundModal: (widget.list[index] as CompoundModal),);
 
               }),
 

@@ -7,6 +7,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 import 'package:webrevue/AppBar/AppBarSec.dart';
+import 'package:webrevue/compound/CompoundDetails.dart';
 import 'package:webrevue/compound/views/addReview_first_form.dart';
 import 'package:webrevue/compound/views/addReview_forth_form.dart';
 import 'package:webrevue/compound/views/addReview_second_form.dart';
@@ -29,9 +30,10 @@ class AddReview extends StatefulWidget{
   String compoundName;
   List images = [];
   String address;
+ String id;
 
 
-  AddReview({Key key,this.compoundID, this.compoundName, this.images,this.address}):super(key: key);
+  AddReview({Key key,this.compoundID, this.compoundName, this.images,this.address,this.id}):super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -73,7 +75,9 @@ class AddReviewState extends State<AddReview>{
 
   @override
   Widget build(BuildContext context) {
-    return Material(child: LayoutBuilder(builder: (context,constraints){
+    return Material(
+
+      child: LayoutBuilder(builder: (context,constraints){
       var width = constraints.maxWidth>700;
       return Scaffold(
         appBar: PreferredSize(preferredSize: Size.fromHeight(70),child: AppBarSec(),),
@@ -285,7 +289,7 @@ class AddReviewState extends State<AddReview>{
                                         compoundId: widget.compoundID,
                                         compoundName: widget.compoundName,
                                         images: widget.images,
-                                        address: widget.address));
+                                        address: widget.address,));
 
                               }// Navigator.pop(context);
 

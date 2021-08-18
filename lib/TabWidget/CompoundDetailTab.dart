@@ -67,7 +67,6 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
 
 
 
-
   @override
   Widget build(BuildContext context) {
      maxWidth = MediaQuery.of(context).size.width;

@@ -1,5 +1,5 @@
 import 'dart:html' as html;
-
+import 'package:share/share.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:   LoginScreen()
+      home:   LoginScreen(['id'][0])
     );
   }
 }
@@ -79,6 +79,7 @@ class MyDashboardApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
         title: 'Revue',
         initialRoute:initialroute,
         navigatorKey: navKey,

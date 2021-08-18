@@ -27,9 +27,10 @@ class CompoundDetails extends StatefulWidget{
   String compoundName;
   List images= [];
   String address;
+  String id;
 
 
-  CompoundDetails({Key key,this.compoundID,this.compoundName,this.images,this.address}):super(key:key);
+  CompoundDetails({Key key,this.compoundID,this.compoundName,this.images,this.address, this.id,}):super(key:key);
 
   @override
   State<StatefulWidget> createState() {
@@ -215,6 +216,7 @@ body: CustomScrollView(shrinkWrap: true,
                }else{
                  displayAlertDialog(context,content: "Your review already exists",title: "Post Review");
                }
+
 
              },
              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

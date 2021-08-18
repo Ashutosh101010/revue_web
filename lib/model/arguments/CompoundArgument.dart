@@ -3,6 +3,6 @@ class CompoundArgument{
 final String compoundName;
 final List images ;
 final String address;
-
- CompoundArgument({this.compoundId,this.compoundName,this.images,this.address});
+final String id;
+ CompoundArgument({this.compoundId,this.compoundName,this.images,this.address,this.id});
 }

@@ -13,7 +13,12 @@ import '../SignUp.dart';
 import '../footer/FooterWidget.dart';
 import 'dart:html' as html;
 
+
 class LoginScreen extends StatefulWidget {
+  LoginScreen(param);
+
+ // String id;
+ // LoginScreen( {this.id});
   @override
   State<StatefulWidget> createState() {
     return LoginScreenState();

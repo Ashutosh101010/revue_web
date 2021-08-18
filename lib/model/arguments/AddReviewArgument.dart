@@ -4,5 +4,5 @@ class AddReviewArgument{
  final List images;
  final String address;
 
-  AddReviewArgument(this.compoundId, this.compoundName, this.images,this.address);
+  AddReviewArgument(this.compoundId, this.compoundName, this.images,this.address, );
 }
