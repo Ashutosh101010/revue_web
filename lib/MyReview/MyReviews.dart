@@ -75,7 +75,7 @@ class MyReviewState extends State<MyReviews>{
                  Padding(
                     padding: EdgeInsets.only(left: 50,right: 20,top: 20,bottom: 20),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         InkWell(
                           onTap: () {
@@ -88,6 +88,7 @@ class MyReviewState extends State<MyReviews>{
                           ),
                         ),
 
+                        SizedBox(width: 20,),
                         // Question & Answers
                         Text(" My Reviews",
                             style: TextStyle(

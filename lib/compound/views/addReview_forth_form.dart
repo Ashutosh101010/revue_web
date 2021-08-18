@@ -100,12 +100,19 @@ class AddReviewForthFormState extends State<AddReviewForthForm>{
                             ),
 
 
-                            IconButton(icon: Icon(CupertinoIcons.calendar,size: 25,),
+                            IconButton(icon: Icon(CupertinoIcons.calendar,size: 30,color: ColorClass.blueColor,),
                               onPressed: ()async{
+                                FocusScopeNode currentFocus = FocusScope.of(context);
+
+                                if (!currentFocus.hasPrimaryFocus) {
+                                  currentFocus.unfocus();
+                                }
+
                                 await selectDate(context,startDateController);
                                 setState(() {
 
                                 });
+
                               },)
                           ],
                         ),
@@ -169,12 +176,19 @@ class AddReviewForthFormState extends State<AddReviewForthForm>{
                                 textAlign: TextAlign.left
                             ),
 
-                            IconButton(icon: Icon(CupertinoIcons.calendar,size: 25,),
+                            IconButton(icon: Icon(CupertinoIcons.calendar,size: 30,color: ColorClass.blueColor,),
                               onPressed: ()async{
-                              await selectDate(context,endDateController);
-                              setState(() {
+                                FocusScopeNode currentFocus = FocusScope.of(context);
 
-                              });
+                                if (!currentFocus.hasPrimaryFocus) {
+                                  currentFocus.unfocus();
+                                }
+
+                                await selectDate(context,endDateController);
+                                setState(() {
+
+                                });
+
                               },)
                           ],
                         ),

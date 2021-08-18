@@ -15,7 +15,6 @@ import 'dart:html' as html;
 
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen(param);
 
  // String id;
  // LoginScreen( {this.id});
@@ -644,7 +643,7 @@ class LoginScreenState extends State<LoginScreen> {
                           insetPadding: EdgeInsets.all(20),
                           contentPadding: EdgeInsets.zero,
                           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          content: SignUp(),
+                          content: SignUp(context),
                         );
                       });
                 },

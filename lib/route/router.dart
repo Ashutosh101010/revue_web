@@ -44,9 +44,9 @@ import 'package:webrevue/route/routing_constant.dart';
     SearchQuestionArgument searchQuestionArgument;
 
 
-    if (!window.localStorage.containsKey("userId")) {
-     routeName = initialroute;
-    }
+    // if (!window.localStorage.containsKey("userId")) {
+    //  routeName = initialroute;
+    // }
 
     if (routeName == compoundDetails) {
      compoundArgument = settings.arguments;
@@ -74,12 +74,12 @@ import 'package:webrevue/route/routing_constant.dart';
 
     switch (routeName) {
      case initialroute:
-      return MaterialPageRoute(builder: (context) => LoginScreen(["id"][0]),
+      return MaterialPageRoute(builder: (context) => LoginScreen(),
        settings: RouteSettings(name: "/login"),);
       break;
 
      case loginRoute:
-      return MaterialPageRoute(builder: (context) => LoginScreen(["id"][0]),
+      return MaterialPageRoute(builder: (context) => LoginScreen(),
           settings: RouteSettings(name: "/login"));
       break;
      case mainscreenRoute:
@@ -152,7 +152,7 @@ import 'package:webrevue/route/routing_constant.dart';
       break;
 
      case signup:
-      return MaterialPageRoute(builder: (context) => SignUp(),
+      return MaterialPageRoute(builder: (context) => SignUp(context),
           settings: RouteSettings(name: "/signup"));
       break;
 
@@ -182,7 +182,7 @@ import 'package:webrevue/route/routing_constant.dart';
 
 
      default:
-      return MaterialPageRoute(builder: (context) => LoginScreen(["id"][4]),
+      return MaterialPageRoute(builder: (context) => LoginScreen(),
           settings: RouteSettings(name: "/login"));
       break;
     }

@@ -89,13 +89,13 @@ Future<void> getImages(ReviewModal reviewModal)async{
             key: UniqueKey(),
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,),
             itemBuilder: (context, index) {
               return Semantics(
                 label: 'pick images',
                 child: kIsWeb
                     ? Container(
-                    height: 70,width: 70,
+                    height: 40,width: 40,
                     margin: EdgeInsets.all(10),
                     child: Image.network(imageFileList[index].path,fit: BoxFit.fill,))
                     : Image.asset(""),
@@ -131,6 +131,9 @@ Future<void> getImages(ReviewModal reviewModal)async{
     }
   }
 
+  bool imageValidate = false;
+
+
   @override
   Widget build(BuildContext context) {
    return  Container(
@@ -154,7 +157,7 @@ Future<void> getImages(ReviewModal reviewModal)async{
              ),
                  textAlign: TextAlign.left)
          ),
-         Container(margin: EdgeInsets.only(left:30,right:30,top:10,bottom: 20),
+         Container(margin: EdgeInsets.only(left:30,right:30,top:10,bottom: 10),
              child:  imageFileList.isEmpty
                  ? Padding(
                  padding: const EdgeInsets.all(8.0),
@@ -185,6 +188,11 @@ Future<void> getImages(ReviewModal reviewModal)async{
                          width: 15,height: 15,)),
                  )
              ) :_handlePreview()),
+
+         imageValidate?Padding(
+           padding: const EdgeInsets.only(left: 40),
+           child: Text("Images cannot be empty",style: TextStyle(color: ColorClass.redColor),),
+         ):Container()
 
        ],
      ),

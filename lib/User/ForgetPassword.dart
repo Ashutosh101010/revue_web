@@ -147,6 +147,18 @@ TextEditingController emailController = new TextEditingController();
 
                       ),
 
+                      Padding(
+                        padding: const EdgeInsets.only(left: 60),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(emailValidate?"Please enter email":"",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(color:
+
+                          emailValidate?Colors.black87:Colors.white,fontWeight: FontWeight.w600),),
+                        ),
+                      ),
+
                       SizedBox(height: 50,),
 
                       Padding(
@@ -158,7 +170,13 @@ TextEditingController emailController = new TextEditingController();
                               borderRadius: BorderRadius.circular(5),
                             ),
                             onPressed: (){
-                              Webservice.forgetPasswordRequest(emailController.text,context);
+                              if(emailController.text.isNotEmpty){
+                                Webservice.forgetPasswordRequest(emailController.text,context);
+                              }else{
+                                validateEmail();
+                              }
+
+
 
                             },
                             color: ColorClass.blueColor,
@@ -203,4 +221,15 @@ TextEditingController emailController = new TextEditingController();
 
     );
   }
+
+
+  bool emailValidate = false;
+   validateEmail(){
+    if(emailController.text.isEmpty){
+      setState(() {
+        emailValidate= true;
+      });
+    }
+  }
+
 }

@@ -5,16 +5,18 @@ import 'package:webrevue/service/ServerDetails.dart';
 Widget review_image(List images,BuildContext context){
   return  Container(
     height: 230,
+    margin: EdgeInsets.only(top: 5),
     child: Stack(
       children: [
         SizedBox(
-          height: 230,
+          height: 250,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Swiper(
               itemBuilder: (BuildContext context, int index) {
                 return new Image.network(
                   ServerDetails.get_images+images[index],
+                  alignment: Alignment.center,
                   fit: BoxFit.fill,
                 );
               },

@@ -1,17 +1,12 @@
 import 'dart:html' as html;
-import 'package:share/share.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/route/router.dart' as router;
-import 'constants/ColorClass.dart';
 import 'constants/keys.dart';
 import 'constants/string_constant.dart';
 import 'home/CompoundList.dart';
@@ -68,7 +63,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:   LoginScreen(['id'][0])
+      home:   LoginScreen()
     );
   }
 }

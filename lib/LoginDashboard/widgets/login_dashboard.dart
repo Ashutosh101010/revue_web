@@ -24,6 +24,7 @@ class LoginPageState extends State<LoginPage>{
 
   bool _emailValidate = false;
   bool _passwordValidate = false;
+  bool passwordHover= false;
 
   @override
   Widget build(BuildContext context) {
@@ -134,12 +135,17 @@ class LoginPageState extends State<LoginPage>{
        alignment: Alignment.centerRight,
        margin: EdgeInsets.only(top: 5, bottom: 10),
        child: InkWell(
+         onHover: (value){
+           setState(() {
+             passwordHover = value;
+           });
+         },
          onTap: () {
            Navigator.pushNamed(context, forgetPassword);
          },
          child: Text("Forget password?",
              style: TextStyle(
-                 color: Color(0xffffffff),
+                 color: passwordHover? ColorClass.redColor:Color(0xffffffff),
                  fontWeight: FontWeight.w600,
                  fontStyle: FontStyle.normal,
                  fontSize: 14.0),
@@ -175,16 +181,23 @@ class LoginPageState extends State<LoginPage>{
 
                showLoadingDialog(context);
 
-               bool loginStatus = await  Webservice.loginRequest(context, userModal);
+               String loginStatus = await  Webservice.loginRequest(context, userModal);
                setState(() {
 
                });
                Navigator.pop(context);
-               if(loginStatus == true){
-                 // Navigator.of(context).pop();
+               if(loginStatus=="Login Successful"){
                  Navigator.pushReplacementNamed(context,mainscreenRoute);
+               }
+
+               else if(loginStatus == "Password Not Match"){
+                 displayAlertDialog(context,content: "Wrong Username or Password");
+
+               }else if(loginStatus=="User Not Found"){
+                 displayAlertDialog(context,content: loginStatus);
                }else{
-                 displayAlertDialog(context,content: "Unable to Login");
+
+
                }
              }
 

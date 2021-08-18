@@ -13,8 +13,9 @@ import 'package:webrevue/service/Webservice.dart';
 class ReviewsTab extends StatefulWidget{
   String compoundID;
   List reviewList = [];
+  String compoundAddress;
 
-  ReviewsTab(this.reviewList);
+  ReviewsTab(this.reviewList,this.compoundAddress);
 
   @override
   State<StatefulWidget> createState() {
@@ -43,18 +44,26 @@ class ReviewTabState extends State<ReviewsTab> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child:
-      widget.reviewList.isEmpty?
-          Text("No Review Posted for this Compound"):
+    return Column(
+      children: [
 
-      ListView.builder(shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: exists?
-        widget.reviewList.length:
-        widget.reviewList.length>2?2:widget.reviewList.length, itemBuilder: (context, index) {
-          return ReviewCard(widget.reviewList[index] as ReviewModal);
-        },),
+        widget.reviewList.isEmpty?
+        Text("No Review Posted for this Compound"):
+        ListView.builder(shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: exists?
+            widget.reviewList.length:
+            widget.reviewList.length>2?2:widget.reviewList.length, itemBuilder: (context, index) {
+              return ReviewCard(widget.reviewList[index] as ReviewModal,widget.compoundAddress);
+            },),
+
+        SizedBox(
+            child:
+            widget.reviewList.isEmpty?
+            Text("No Review Posted for this Compound"):
+            exists?Container():Text("To view more review! Post your review",
+              style: TextStyle(color: ColorClass.redColor),)),
+        ],
     );
   }
 }

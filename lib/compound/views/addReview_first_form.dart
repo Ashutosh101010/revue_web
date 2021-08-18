@@ -243,7 +243,7 @@ bool bathroomvalidate=false;
                         ),
 
                     ),
-                    Text(bedroomvalidate?'please enter bedrooms':"",
+                    Text(bedroomvalidate?'please enter something':"",
                       style: TextStyle(color: Colors.red),),
                   ],
                 ),
@@ -303,7 +303,7 @@ bool bathroomvalidate=false;
 
                       ),
                     ),
-                    Text(bathroomvalidate?'please enter  numbers bathrooms':"",
+                    Text(bathroomvalidate?'please enter something':"",
                       style: TextStyle(color: Colors.red),),
                   ],
                 ),

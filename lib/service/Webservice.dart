@@ -33,7 +33,7 @@ import 'dart:convert' as convert;
 
 class Webservice{
 
-  static Future<bool> registerRequest(BuildContext context,UserModal userModal) async{
+  static Future<String> registerRequest(BuildContext context,UserModal userModal) async{
     var request = userModal.toJson();
     // print(request);
     var response = await http.post(Uri.parse(ServerDetails.register_request),
@@ -47,15 +47,14 @@ class Webservice{
 
     if(jsonResponse["status"]== true &&
         jsonResponse["errorCode"] ==1 ){
-
-      return true;
+      return jsonResponse["message"];
     }else{
       // print("not register");
-      return false;
+      return jsonResponse["message"];
     }
   }
 
-  static Future<bool> loginRequest(BuildContext context,UserModal userModal)async{
+  static Future<String> loginRequest(BuildContext context,UserModal userModal)async{
     var request ={};
     request["email"] = userModal.email;
     request["password"] = userModal.password;
@@ -83,14 +82,14 @@ class Webservice{
       sharedPreferences.setBool("isLoggedIn", true);
 
       // displayAlertDialog(context,content: jsonResponse["message"],title: "Login");
-      return true;
+      return jsonResponse["message"];
     }
     else if(jsonResponse["status"] == false &&
         jsonResponse["errorCode"]==0
         && jsonResponse["message"] == "Password Not Match"){
 
       // displayAlertDialog(context,content: jsonResponse["message"],title: "Login");
-      return false;
+      return jsonResponse["message"];
     }
 
     else if(jsonResponse["status"] == false &&
@@ -98,7 +97,7 @@ class Webservice{
         && jsonResponse["message"] =="User Not Found"){
 
       // displayAlertDialog(context,content: jsonResponse["message"],title: "Login");
-      return false;
+      return jsonResponse["message"];
     }
   }
 
@@ -365,10 +364,6 @@ class Webservice{
 
     var  request = new http.MultipartRequest("POST",
       Uri.parse(ServerDetails.add_Review),);
-    // Map<String,String> headerMap ={"content-type":"multipart/form-data"};
-    // // request.headers['content-type '] = 'multipart/form-data';
-    //
-    // request.headers.addAll(headerMap);
 
     request.fields["review"] = reviewModal.review.trim();
     request.fields["rent"] =reviewModal.price.trim();
@@ -396,23 +391,12 @@ class Webservice{
     // print(newList.length);
 
     request.files.addAll(newList);
-
-    // print(request.files);
-    // print(request.fields);
-
     var response = await request.send();
-
-    // print(response.statusCode);
 
     response.stream.transform(utf8.decoder).listen((value) {
       print("response------------------ "+response.toString());
-      print("valeue--------------"+value);
       Map map = json.decode(value);
       if(map["errorcode"] == 0 && map["status"]==true){
-
-        displayAlertDialog(context,content: "Review posted successfully",
-            title: "Post Review");
-        GlobalKeys.compoundDetailsKey.currentState.fetchReview();
 
        return true;
       }
@@ -424,6 +408,7 @@ class Webservice{
 
 
     });
+
 
   }
 

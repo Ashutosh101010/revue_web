@@ -290,45 +290,16 @@ body: CustomScrollView(shrinkWrap: true,
                   fontSize: 18,
                   fontStyle:  FontStyle.normal,),),
 
-              Container(
-       //         height: 50,
-         //       margin: EdgeInsets.only(left: 10, right: 10,),
-           //     child: DropdownButtonHideUnderline(
-             //     child: GFDropdown(
-               //     hint: Text(
-                 //     "Filter",
-                   //   style: TextStyle(color: Colors.black87),
- //                   ),
-   //                 dropdownButtonColor: Colors.white,
-     //               padding: EdgeInsets.all(10),
-       //             itemHeight: 4,
-         //           icon: Icon(Icons.keyboard_arrow_down_outlined),
-           //         iconEnabledColor: ColorClass.blueColor,
-             //       value:filterProperty,
-               //     onChanged: (newValue) {
-                 //     setState(() {
-                   //     filterProperty = newValue;
-               //       });
-             //       },
-            //        items: filterList
-              //          .map((value) => DropdownMenuItem(
-             //         value: value,
-               //       child: Text(value,style: TextStyle(fontSize: 14,color: Colors.black54,
-            //              fontWeight: FontWeight.w600),),
-              //      ))
-            //           .toList(),
-                 // ),
-                ),
-             // ),
-
 
             ],
           ),
         ),
-        ReviewsTab(reviewList),
-        exists?Container():filterList.length>2?Container():
-        Text("Please Add Review to view more Reviews",
-          style: TextStyle(color: ColorClass.redColor,fontSize: 16,fontWeight: FontWeight.w500),)
+        ReviewsTab(reviewList,widget.address),
+
+        // reviewList.isEmpty?
+        // Text("Please Add Review to view more Reviews",
+        //   style: TextStyle(color: ColorClass.redColor,fontSize: 16,fontWeight: FontWeight.w500),):
+        //     Text("")
 
       ],
     );

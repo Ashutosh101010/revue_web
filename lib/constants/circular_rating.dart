@@ -8,7 +8,6 @@ import 'package:webrevue/model/CompoundModal.dart';
 class CompoundRating extends StatelessWidget{
   CompoundModal compoundModal;
 
-
   CompoundRating(this.compoundModal);
 
   @override
@@ -24,7 +23,7 @@ class CompoundRating extends StatelessWidget{
                 padding: const EdgeInsets.only(left:8.0,right:8,top:8),
                 child: CircularPercentIndicator(
                   radius: 38.0,
-                  lineWidth: 3.8,
+                  lineWidth: 3.4,
                   backgroundColor: Colors.black26,
                   percent: getpercentage(compoundModal.facility),
                   center: new Text(
@@ -55,7 +54,7 @@ class CompoundRating extends StatelessWidget{
                 padding: const EdgeInsets.only(left:8.0,right:8,top:8),
                 child: CircularPercentIndicator(
                   radius: 38.0,
-                  lineWidth: 3.8,
+                  lineWidth: 3.4,
                   backgroundColor: Colors.black26,
                   percent: getpercentage(compoundModal.design),
                   center: new Text(
@@ -87,7 +86,7 @@ class CompoundRating extends StatelessWidget{
                 padding: const EdgeInsets.only(left:8.0,right:8,top:8),
                 child: CircularPercentIndicator(
                   radius: 38.0,
-                  lineWidth: 3.8,
+                  lineWidth: 3.4,
                   backgroundColor: Colors.black26,
                   percent: getpercentage(compoundModal.location),
                   center: new Text(compoundModal.location.toStringAsFixed(1),
@@ -115,7 +114,7 @@ class CompoundRating extends StatelessWidget{
                 padding: const EdgeInsets.only(left:8.0,right:8,top:8),
                 child: CircularPercentIndicator(
                   radius: 38.0,
-                  lineWidth: 3.8,
+                  lineWidth: 3.4,
                   backgroundColor: Colors.black26,
                   percent: getpercentage(compoundModal.management),
                   center: new Text(

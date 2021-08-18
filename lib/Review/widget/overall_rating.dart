@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/constants/get_rating_percent.dart';
 
 Widget overAllRating(double rating){
@@ -9,20 +10,27 @@ Widget overAllRating(double rating){
       child: Column(
         children: [
           CircularPercentIndicator(
-            radius: 50.0,
+            radius: 45.0,
             animation: true,
             animationDuration: 1200,
-            lineWidth: 5.0,
+            lineWidth: 3.5,
             percent: getpercentage(rating),
             center: new Text(
              rating.toStringAsFixed(1),
               style: new TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20.0),
+                  fontSize: 15.0),
             ),
             circularStrokeCap: CircularStrokeCap.butt,
             backgroundColor: Colors.black26,
-            progressColor: Colors.red,
+            progressColor: rating.toInt()>=0&&rating.toInt()<2?
+            ColorClass.redColor:
+            rating.toInt()<=2&&rating.toInt()<3?
+            Colors.orangeAccent.shade400:
+            rating.toInt()>=3 &&rating.toInt()<4?
+            Colors.green.shade500:
+            rating.toInt()>=4?
+            ColorClass.blueColor:ColorClass.blueColor,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

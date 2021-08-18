@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:webrevue/AppBar/popupmenu.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/SignUp.dart';
@@ -242,7 +243,39 @@ class AppBarFirstState extends State<AppBarFirst>{
             ),
           ),
         ),
-        Expanded(child: Container(),)
+        Expanded(child: Container(),),
+        Container(height: 80,
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(
+              left: 20, right: 50,top: 5, ),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTapDown: (TapDownDetails details){
+                  showPopupMenu(details.globalPosition,context);
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/images/Profile.png",width: 20,height: 20,fit: BoxFit.contain,),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: // Profile
+                        Text(
+                            "Profile",
+                            style: const TextStyle(
+                                color:  Colors.red,
+                                fontWeight: FontWeight.w600,
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 14.0
+                            ),
+                            textAlign: TextAlign.left
+                        )
+                    ),
+                  ],),
+              ),
+            )),
         // Expanded(
         //   child: Align(
         //     alignment: Alignment.centerRight,
@@ -554,7 +587,7 @@ class AppBarFirstState extends State<AppBarFirst>{
                                 insetPadding: EdgeInsets.all(20),
                                 contentPadding: EdgeInsets.zero,
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                                content: SignUp(),
+                                content: SignUp(context),
                               );
                             });
                       },

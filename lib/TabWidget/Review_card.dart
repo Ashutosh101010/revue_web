@@ -17,7 +17,9 @@ import '../Review/widget/floor_plan.dart';
 class ReviewCard extends StatefulWidget{
   ReviewModal reviewModal;
 
-  ReviewCard(this.reviewModal);
+  String compoundAddress;
+
+  ReviewCard(this.reviewModal,this.compoundAddress);
 
   @override
   State<StatefulWidget> createState() {
@@ -126,11 +128,12 @@ class ReviewCardState extends State<ReviewCard>{
                                 backgroundColor: Colors.white,
                                 insetPadding:
                                 width>700?
-                                EdgeInsets.only(left: 100,right: 100,top: 50,bottom: 50):
+                                EdgeInsets.only(left: 150,right: 150,top: 50,bottom: 50):
                                 EdgeInsets.all(5),
-                                contentPadding: EdgeInsets.all(10),
+                                contentPadding: EdgeInsets.all(10
+                                ),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                                content: ReviewDetails(reviewModal:widget.reviewModal ,),
+                                content: ReviewDetails(reviewModal:widget.reviewModal,address: widget.compoundAddress),
                               );
                             }
                         );

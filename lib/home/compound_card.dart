@@ -233,9 +233,14 @@ class CompoundCardState extends State<CompoundCard>{
                             FittedBox(
                               child: Row(
                                 children: [
-                                  IconButton(onPressed: (){
-
-                                  },
+                                  IconButton( mouseCursor: SystemMouseCursors.click,
+                                    onPressed: (){
+                                      Navigator.pushNamed(context,questionAns,
+                                          arguments:CompoundMessagingArgument(
+                                              compoundID:widget.compoundModal.id,
+                                              compoundName: widget.compoundModal.compoundname,
+                                              compoundAddress:widget.compoundModal.address));
+                                    },
                                     icon: Icon(CupertinoIcons.chat_bubble_2,color: Colors.black,size: 18),
                                   ),
                                   Padding(padding: const EdgeInsets.only(left: 5,right: 20,),
@@ -471,33 +476,35 @@ class CompoundCardState extends State<CompoundCard>{
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        InkWell(onTap: (){
-                          print("tap");
-                          Navigator.pushNamed(context,questionAns,
-                              arguments:CompoundMessagingArgument(
-                                  compoundName: widget.compoundModal.compoundname,
-                                  compoundAddress: widget.compoundModal.address));
-                        },
-                          child: FittedBox(
-                            child: Row(
-                              children: [
-                                Icon(CupertinoIcons.chat_bubble_2,
+                        FittedBox(
+                          child: Row(
+                            children: [
+                              IconButton(
+                                mouseCursor: SystemMouseCursors.click,
+                                onPressed: (){
+                                  Navigator.pushNamed(context,questionAns,
+                                      arguments:CompoundMessagingArgument(
+                                          compoundID:widget.compoundModal.id,
+                                          compoundName: widget.compoundModal.compoundname,
+                                          compoundAddress:widget.compoundModal.address));
+                                },
+                                icon: Icon(CupertinoIcons.chat_bubble_2,
                                   color: Colors.black,size: 18,),
-                                Padding(padding: const EdgeInsets.only(left: 5,right: 20,),
-                                  child: AutoSizeText("Q & A",
-                                      style: const TextStyle(shadows: [
-                                        Shadow(blurRadius: 5,
-                                            color: Colors.black12,
-                                            offset: Offset(1.0, 1.0))
-                                      ],
-                                          color: const Color(0xff000000),
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: 14.0),
-                                      textAlign: TextAlign.left),
-                                )
-                              ],
-                            ),
+                              ),
+                              Padding(padding: const EdgeInsets.only(left: 5,right: 20,),
+                                child: AutoSizeText("Q & A",
+                                    style: const TextStyle(shadows: [
+                                      Shadow(blurRadius: 5,
+                                          color: Colors.black12,
+                                          offset: Offset(1.0, 1.0))
+                                    ],
+                                        color: const Color(0xff000000),
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 14.0),
+                                    textAlign: TextAlign.left),
+                              )
+                            ],
                           ),
                         ),
                         FittedBox(

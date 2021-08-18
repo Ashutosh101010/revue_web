@@ -4,10 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:intl/intl.dart';
+import 'package:progress_indicators/progress_indicators.dart';
 import 'package:webrevue/AppBar/AppBarSec.dart';
-import 'package:webrevue/compound/CompoundDetails.dart';
 import 'package:webrevue/compound/views/addReview_first_form.dart';
 import 'package:webrevue/compound/views/addReview_forth_form.dart';
 import 'package:webrevue/compound/views/addReview_second_form.dart';
@@ -45,6 +43,7 @@ class AddReview extends StatefulWidget{
 class AddReviewState extends State<AddReview>{
   final _formKey = GlobalKey<FormState>();
   ReviewModal reviewModal;
+  bool load=false;
 
 
   onRefresh(){
@@ -224,74 +223,43 @@ class AddReviewState extends State<AddReview>{
                           height: 50,
                           width:350,
                           margin: EdgeInsets.only(bottom: 50,top: 50),
-                          child: MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: ColorClass.blueColor,
+                              onPrimary: Colors.blue.shade900,
+                              // hoverColor: Colors.blue.shade900,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              padding: EdgeInsets.all(10),
                             ),
-                            onPressed: () async{
-
-                            if (_formKey.currentState.validate()) {
-                                // If the form is valid, display a snackbar. In the real world,
-                                // you'd often call a server or save the information in a database.
-                               // ScaffoldMessenger.of(context).showSnackBar(
-                                 // const SnackBar(content: Text('Processing Data')),
-
-                                //);
-                              }
-
-                         //     if(GlobalKeys.addReviewImagesKey.currentState.imageFileList.isEmpty){
-                           //     displayAlertDialog(context,content: "Please select atLeast one Image",
-                             //       title: "Post Review");
-                              //}
-
-
-                              if(
-                              GlobalKeys.addReviewFirstKey.currentState.validate()
-                                  &&GlobalKeys.addReviewSecondKey.currentState.validate()
-                                  &&GlobalKeys.addReviewThirdKey.currentState.validate()
-                              &&GlobalKeys.addReviewImagesKey.currentState.validate())
-                              {
-
-
-                                reviewModal.price = GlobalKeys.addReviewFirstKey.currentState.
-                                rentController.text;
-                                reviewModal.floorplan = GlobalKeys.addReviewFirstKey.currentState.
-                                floorPlanController.text;
-                                reviewModal.bedRooms = int.parse(GlobalKeys.addReviewFirstKey.
-                                currentState.bedroomController.text.trim());
-                                reviewModal.bathRooms = int.parse(GlobalKeys.addReviewFirstKey.
-                                currentState.bathroomController.text.trim());
-
-                                reviewModal.review = GlobalKeys.addReviewSecondKey.currentState.
-                                descriptionController.text;
-
-                                await GlobalKeys.addReviewSecondKey.currentState.addToReview(reviewModal);
-                               await GlobalKeys.addReviewImagesKey.currentState.getImages(reviewModal);
-                                GlobalKeys.addReviewThirdKey.currentState.addToReview(reviewModal);
-
-                                reviewModal.compoundID = widget.compoundID;
-                                reviewModal.compoundName = widget.compoundName;
-
-
-                                print(reviewModal.maptoJson());
+                            child: Text(
+                              "Submit Review",
+                              style: const TextStyle(
+                                  color: const Color(0xffffffff),
+                                  fontWeight: FontWeight.w700,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 16.0
+                              ),
+                            ),
 
 
 
-                              bool status = await  Webservice.addReviewRequest(context, reviewModal);
-                              setState(() {
+                              onPressed: () async{
 
-                              });
-                              if(status==true){
-
-                                }
-                                Navigator.popAndPushNamed(context, compoundDetails,
-                                    arguments: CompoundArgument(
-                                        compoundId: widget.compoundID,
-                                        compoundName: widget.compoundName,
-                                        images: widget.images,
-                                        address: widget.address,));
-
-                              }// Navigator.pop(context);
+                         //    if (_formKey.currentState.validate()) {
+                         //        // If the form is valid, display a snackbar. In the real world,
+                         //        // you'd often call a server or save the information in a database.
+                         //       // ScaffoldMessenger.of(context).showSnackBar(
+                         //         // const SnackBar(content: Text('Processing Data')),
+                         //
+                         //        //);
+                         //      }
+                         //
+                         // //     if(GlobalKeys.addReviewImagesKey.currentState.imageFileList.isEmpty){
+                         //   //     displayAlertDialog(context,content: "Please select atLeast one Image",
+                         //     //       title: "Post Review");
+                         //      //}
 
                               if(GlobalKeys.addReviewFirstKey.currentState.floorPlanController.text.isEmpty)
                                 {
@@ -329,29 +297,64 @@ class AddReviewState extends State<AddReview>{
                                   GlobalKeys.addReviewForthKey.currentState.startdatevalidate=true;
                                 });
                               }
+
+                              if(GlobalKeys.addReviewImagesKey.currentState.imageFileList.isEmpty){
+                                GlobalKeys.addReviewImagesKey.currentState.setState(() {
+                                  GlobalKeys.addReviewImagesKey.currentState.imageValidate = true;
+                                });
                               }
 
 
-                            //else
-                            // {
-                            // displayAlertDialog(context,title: "Add Review",
-                            //        content: "Please complete all field");
-                            //  }
-                            //  },
+                              if(
+                              GlobalKeys.addReviewFirstKey.currentState.validate()
+                                  &&GlobalKeys.addReviewSecondKey.currentState.validate()
+                                  &&GlobalKeys.addReviewThirdKey.currentState.validate()
+                                  &&GlobalKeys.addReviewImagesKey.currentState.validate()
+                              &&GlobalKeys.addReviewImagesKey.currentState.validate())
+                              {
+                                reviewModal.price = GlobalKeys.addReviewFirstKey.currentState.
+                                rentController.text;
+                                reviewModal.floorplan = GlobalKeys.addReviewFirstKey.currentState.
+                                floorPlanController.text;
+                                reviewModal.bedRooms = int.parse(GlobalKeys.addReviewFirstKey.
+                                currentState.bedroomController.text.trim());
+                                reviewModal.bathRooms = int.parse(GlobalKeys.addReviewFirstKey.
+                                currentState.bathroomController.text.trim());
 
-                            , color: ColorClass.blueColor,
-                            hoverColor: Colors.blue.shade900,
-                            textColor: Colors.white,
-                            child: Text(
-                              "Submit Review",
-                              style: const TextStyle(
-                                  color: const Color(0xffffffff),
-                                  fontWeight: FontWeight.w700,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 16.0
-                              ),
-                            ),
-                            padding: EdgeInsets.all(10),
+                                reviewModal.review = GlobalKeys.addReviewSecondKey.currentState.
+                                descriptionController.text;
+
+                                await GlobalKeys.addReviewSecondKey.currentState.addToReview(reviewModal);
+                                await GlobalKeys.addReviewImagesKey.currentState.getImages(reviewModal);
+                                GlobalKeys.addReviewThirdKey.currentState.addToReview(reviewModal);
+
+                                reviewModal.compoundID = widget.compoundID;
+                                reviewModal.compoundName = widget.compoundName;
+
+
+                                // showLoadingDialog(context);
+
+                               bool status =await Webservice.addReviewRequest(context, reviewModal);
+                                // Navigator.pop(context);
+                                if(status==true){
+                                  GlobalKeys.compoundDetailsKey.currentState.fetchReview();
+
+                                  Navigator.pushNamed(context, compoundDetails,
+                                      arguments: CompoundArgument(
+                                        compoundId: widget.compoundID,
+                                        compoundName: widget.compoundName,
+                                        images: widget.images,
+                                        address: widget.address,));
+                                }else{
+                                  displayAlertDialog(context,title: "Add Review",content: "Unable to post review");
+                                }
+
+
+                              }
+
+                              }
+
+
                             ),
                         ),
                       )

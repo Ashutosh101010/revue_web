@@ -34,9 +34,12 @@ class MyReviewDetailState extends State<MyReviewDetails>{
     maxWidth = MediaQuery.of(context).size.width;
     return Container(
       width: MediaQuery.of(context).size.width,
+      alignment: Alignment.topCenter,
       child: maxWidth>=700?
+
       Row(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           leftReviewPanel(context),
           rightReviewPanel(context)

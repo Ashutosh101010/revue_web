@@ -3,12 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/model/UserModal.dart';
+import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/Webservice.dart';
 
 import 'constants/ColorClass.dart';
 
 
 class SignUp extends StatefulWidget {
+  BuildContext context;
+
+
+  SignUp(this.context);
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -32,6 +38,8 @@ class SignUpState extends State<SignUp> {
   bool lastNameValidate = false;
 
   bool mobileNumberValidate = false;
+
+  bool validatePassword = false;
 
 
 
@@ -87,11 +95,11 @@ class SignUpState extends State<SignUp> {
                           width: MediaQuery.of(context).size.width / 2,
                           child: TextField(
                             textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.name,
+                            keyboardType: TextInputType.text,
                             controller: firstNameController,
-                            inputFormatters: [WhitelistingTextInputFormatter(RegExp("[A-Z]"))],
+                            // inputFormatters: [WhitelistingTextInputFormatter(RegExp("[A-Z]"))],
                             decoration: InputDecoration(
-                              errorText: firstNameValidate?'Please enter name':null,
+                              errorText: firstNameValidate?'Enter name':null,
                                 contentPadding: EdgeInsets.only(left: 15),
                                 labelStyle: TextStyle(
                                   color: Colors.black,
@@ -133,9 +141,7 @@ class SignUpState extends State<SignUp> {
                             keyboardType: TextInputType.name,
                             controller: lastNameController,
                             decoration: InputDecoration(
-
-                                errorText: lastNameValidate?'Please enter name':null,
-
+                                errorText: lastNameValidate?'Enter name':null,
                                 contentPadding: EdgeInsets.only(left: 15),
                                 labelStyle: TextStyle(
                                   color: Colors.black,
@@ -174,8 +180,7 @@ class SignUpState extends State<SignUp> {
 
                     validator: (input) => validateEmail(input) ? null : "Check your email",
                     decoration: InputDecoration(
-
-                        errorText: emailValidate?'Please enter email address':null,
+                        errorText: emailValidate?'Enter email address':null,
 
                         contentPadding: EdgeInsets.only(left: 15),
                         labelStyle: TextStyle(
@@ -202,14 +207,13 @@ class SignUpState extends State<SignUp> {
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.left),
-                  TextField(
+                  TextFormField(
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.phone,
                     controller: mobileNumberController,
                     decoration: InputDecoration(
 
                         errorText: mobileNumberValidate?'Enter mobile number':null,
-
                         contentPadding: EdgeInsets.only(left: 15),
                         labelStyle: TextStyle(
                           color: Colors.black,
@@ -236,13 +240,12 @@ class SignUpState extends State<SignUp> {
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.left),
-                  TextField(
+                  TextFormField(
                     textInputAction: TextInputAction.next,
-                    obscureText: false,
+                    obscureText: true,
                     controller: passwordController,
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
-
                         errorText: passwordValidate?'Enter Password':null,
 
                         contentPadding: EdgeInsets.only(left: 15),
@@ -280,12 +283,8 @@ class SignUpState extends State<SignUp> {
                     obscureText: true,
                     controller: confirmPasswordController,
                     keyboardType: TextInputType.visiblePassword,
-                    // validator: (_) => confirmPasswordValidate ? 'Enter password' : null,
                     decoration: InputDecoration(
                         errorText: confirmPasswordValidate?'Re-type password':null,
-                        // errorBorder: OutlineInputBorder(
-                        //   borderSide: BorderSide(color: Colors.red),
-                        // ),
                         contentPadding: EdgeInsets.only(left: 15),
                         labelStyle: TextStyle(
                           color: Colors.black,
@@ -317,21 +316,18 @@ class SignUpState extends State<SignUp> {
                     &&passwordController.text.isNotEmpty&&passwordController.text.isNotEmpty
                     &&emailController.text.isNotEmpty){
 
-
-
                       if(passwordController.text==confirmPasswordController.text){
-                        signUpRequest();
+                        if(passwordController.text.length<6){
+
+                        }else{
+                          signUpRequest();
+                        }
+
                       }else{
                         displayAlertDialog(context,title: "Create Account",content: "Enter Same Password");
                       }
 
                     }
-                    // else{
-                    //   displayAlertDialog(context,title: "Create Account",content: "Please complete all Fields");
-                    //
-                    // }
-
-
 
                   },
                   child: Text(
@@ -402,18 +398,26 @@ class SignUpState extends State<SignUp> {
     userModal.mobileNumber = mobileNumberController.text;
 
     showLoadingDialog(context);
-   bool register = await Webservice.registerRequest(context, userModal);
+   String register = await Webservice.registerRequest(context, userModal);
    setState(() {
 
    });
     Navigator.pop(context);
 
-    if(register==true){
+    if(register=="Registration Successful"){
       displayAlertDialog(context,title: "Create Account",content: "Registration Success");
+      Navigator.pushReplacementNamed(context,loginRoute);
 
+    }else if(register=="User Already Exist"){
+      displayAlertDialog(context,title: "Create Account",content: "User already exist");
+      Navigator.popAndPushNamed(context,loginRoute);
     }else{
-      displayAlertDialog(context,title: "Create Account",content: "Unable to Register");
+     await displayAlertDialog(context,title: "Create Account",content: "Unable to create account");
+     Navigator.popAndPushNamed(context,loginRoute);
     }
+
+
+
 
   }
 

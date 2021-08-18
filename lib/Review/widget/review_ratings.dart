@@ -27,17 +27,17 @@ class ReviewRatings extends StatelessWidget{
               child: CircularPercentIndicator(
                 radius: 40.0,
                 animation: false,
-                lineWidth: 4.0,
+                lineWidth: 3.5,
                 percent: getpercentage(facility),
                 center: new Text(
                   facility.toStringAsFixed(1),
                   style: new TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 15.0),
+                      fontSize: 12.0),
                 ),
                 circularStrokeCap: CircularStrokeCap.butt,
                 backgroundColor: Colors.black26,
-                progressColor: Colors.red,
+                progressColor: Colors.orange,
                 footer: Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text("Facilities",
@@ -55,17 +55,17 @@ class ReviewRatings extends StatelessWidget{
               child: CircularPercentIndicator(
                 radius: 40.0,
                 animation: false,
-                lineWidth: 4.0,
+                lineWidth: 3.5,
                 percent: getpercentage(design),
                 center: new Text(
                   design.toStringAsFixed(1),
                   style: new TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 15.0),
+                      fontSize: 12.0),
                 ),
                 circularStrokeCap: CircularStrokeCap.butt,
                 backgroundColor: Colors.black26,
-                progressColor: Colors.green.shade500,
+                progressColor: Colors.blue,
                 footer: Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text("Design",
@@ -83,17 +83,17 @@ class ReviewRatings extends StatelessWidget{
               child: CircularPercentIndicator(
                 radius: 40.0,
                 animation: false,
-                lineWidth: 4.0,
+                lineWidth: 3.5,
                 percent: getpercentage(location),
                 center: new Text(
                   location.toStringAsFixed(1),
                   style: new TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 15.0),
+                      fontSize: 12.0),
                 ),
                 circularStrokeCap: CircularStrokeCap.butt,
                 backgroundColor: Colors.black26,
-                progressColor: Colors.orangeAccent.shade400,
+                progressColor: Colors.green.shade500,
                 footer: Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text("Location",
@@ -111,13 +111,13 @@ class ReviewRatings extends StatelessWidget{
               child: CircularPercentIndicator(
                 radius: 40.0,
                 animation: false,
-                lineWidth: 4.0,
+                lineWidth: 3.5,
                 percent: getpercentage(value),
                 center: new Text(
                  value.toStringAsFixed(1),
                   style: new TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 15.0),
+                      fontSize: 12.0),
                 ),
                 circularStrokeCap: CircularStrokeCap.butt,
                 backgroundColor: Colors.black26,
@@ -145,11 +145,11 @@ class ReviewRatings extends StatelessWidget{
                 management.toStringAsFixed(1),
                   style: new TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 15.0),
+                      fontSize: 12.0),
                 ),
                 circularStrokeCap: CircularStrokeCap.butt,
                 backgroundColor: Colors.black26,
-                progressColor: Colors.indigo.shade600,
+                progressColor: Colors.purple,
                 footer: Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text("Management",

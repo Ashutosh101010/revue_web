@@ -11,30 +11,30 @@ Widget bottomNav(BuildContext context,String reviewID){
       child:
       maxWidth>=1000?
       Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.thumb_up,
-                    color: Colors.yellow,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: AutoSizeText("Was this review helpful?",
-                        style: const TextStyle(
-                            color: Colors.black,
-
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 16.0),
-                        textAlign: TextAlign.left),
-                  ),
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Row(
+            //     children: [
+            //       Icon(
+            //         Icons.thumb_up,
+            //         color: Colors.yellow,
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.all(8.0),
+            //         child: AutoSizeText("Was this review helpful?",
+            //             style: const TextStyle(
+            //                 color: Colors.black,
+            //
+            //                 fontWeight: FontWeight.w500,
+            //                 fontStyle: FontStyle.normal,
+            //                 fontSize: 16.0),
+            //             textAlign: TextAlign.left),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -88,28 +88,28 @@ Widget bottomNav(BuildContext context,String reviewID){
       Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.thumb_up,
-                    color: Colors.yellow,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: AutoSizeText("Was this review helpful?",
-                        style: const TextStyle(
-                            color: Colors.black,
-
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 16.0),
-                        textAlign: TextAlign.left),
-                  ),
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Row(
+            //     children: [
+            //       Icon(
+            //         Icons.thumb_up,
+            //         color: Colors.yellow,
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.all(8.0),
+            //         child: AutoSizeText("Was this review helpful?",
+            //             style: const TextStyle(
+            //                 color: Colors.black,
+            //
+            //                 fontWeight: FontWeight.w500,
+            //                 fontStyle: FontStyle.normal,
+            //                 fontSize: 16.0),
+            //             textAlign: TextAlign.left),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(

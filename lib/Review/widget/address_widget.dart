@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget addressWidget(String address){
@@ -6,6 +7,7 @@ Widget addressWidget(String address){
     padding: const EdgeInsets.all(8.0),
     child: Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
             alignment: Alignment.topLeft,

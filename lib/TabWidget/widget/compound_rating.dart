@@ -21,7 +21,7 @@ class CompoundRating extends StatelessWidget{
             padding: const EdgeInsets.all(4.0),
             child: CircularPercentIndicator(
               radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
-              lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
+              lineWidth:maxWidth>=900? 4.0:maxWidth>=600?3.5:2.5,
               animation: false,
 
               percent: getpercentage(compoundModal.facility),
@@ -56,7 +56,7 @@ class CompoundRating extends StatelessWidget{
             padding: const EdgeInsets.all(4.0),
             child: CircularPercentIndicator(
               radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
-              lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
+              lineWidth:maxWidth>=900? 4.0:maxWidth>=600?3.5:2.5,
 
               animation: false,
 
@@ -91,7 +91,7 @@ class CompoundRating extends StatelessWidget{
             padding: const EdgeInsets.all(4.0),
             child: CircularPercentIndicator(
               radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
-              lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
+              lineWidth:maxWidth>=900? 4.0:maxWidth>=600?3.5:2.5,
 
               animation: false,
               percent: getpercentage(compoundModal.location),
@@ -126,7 +126,7 @@ class CompoundRating extends StatelessWidget{
             child: CircularPercentIndicator(
               animation: false,
               radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
-              lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
+              lineWidth:maxWidth>=900? 4.0:maxWidth>=600?3.5:2.5,
 
               percent:getpercentage( compoundModal.value),
               center: new Text(
@@ -159,7 +159,7 @@ class CompoundRating extends StatelessWidget{
             padding: const EdgeInsets.all(4.0),
             child: CircularPercentIndicator(
               radius:maxWidth>=900? 40.0:maxWidth>=600?35:30,
-              lineWidth:maxWidth>=900? 4.3:maxWidth>=600?3.5:2.5,
+              lineWidth:maxWidth>=900? 4.0:maxWidth>=600?3.5:2.5,
 
               animation: false,
               percent:getpercentage(compoundModal.management),

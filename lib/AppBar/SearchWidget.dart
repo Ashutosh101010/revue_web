@@ -67,12 +67,12 @@ class SearchWidgetState extends State<SearchWidget> {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             margin: EdgeInsets.only(
-              left: 10,
-              right: 10,
+              left: 20,
+              right: 20,
             ),
             height: 40,
             width: width - 100,
@@ -146,8 +146,8 @@ class SearchWidgetState extends State<SearchWidget> {
             height: 40,
             width: width / 2,
             margin: EdgeInsets.only(
-              left: 10,
-              right: 10,
+              left: 20,
+              right: 20,
             ),
             decoration: BoxDecoration(
                 color: Colors.white,

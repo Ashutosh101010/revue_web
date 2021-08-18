@@ -26,14 +26,10 @@ class AppBarSec extends StatefulWidget{
 }
 
 class AppBarSecState extends State<AppBarSec>{
-  bool aboutHover = false;
-  bool blogHover = false;
-  bool filterHover = false;
-  bool profileHover = false;
-  bool searchHover = false;
+
   var optionMenuSelected;
 
-
+  bool homeHover = false;
 
   // showPopupMenu(Offset offset) async {
   //   double left = offset.dx;
@@ -116,6 +112,35 @@ class AppBarSecState extends State<AppBarSec>{
          alignment: Alignment.centerRight,
          child: Row(
            children: [
+             InkWell(
+               onHover: (value) {
+                 setState(() {
+                   homeHover = value;
+                 });
+               },
+               onTap: (){
+                 Navigator.of(context).pop();
+                 Navigator.pushReplacementNamed(context,mainscreenRoute);
+
+               },
+               child: Padding(
+                   padding: const EdgeInsets.only(
+                       left: 20, right: 20, top: 10, bottom: 10),
+                   child: // About us
+                   Text(
+                       "Home",
+                       style:  TextStyle(
+                           color:homeHover?ColorClass.redColor :Color(0x99000000),
+                           fontWeight: FontWeight.w600,
+                           fontStyle:  FontStyle.normal,
+                           fontSize: 15.0
+                       ),
+                       textAlign: TextAlign.left
+                   )
+               ),
+             ),
+
+
              MouseRegion(
                cursor: SystemMouseCursors.click,
                child: GestureDetector(

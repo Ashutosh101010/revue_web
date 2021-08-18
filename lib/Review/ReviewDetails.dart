@@ -19,9 +19,10 @@ import 'package:webrevue/model/ReviewModal.dart';
 
 class ReviewDetails extends StatefulWidget {
   ReviewModal reviewModal;
+  String address;
 
 
-  ReviewDetails({this.reviewModal});
+  ReviewDetails({this.reviewModal,this.address});
 
   @override
   State<StatefulWidget> createState() {
@@ -37,20 +38,22 @@ class ReviewDetailState extends State<ReviewDetails> {
   Widget build(BuildContext context) {
      maxWidth = MediaQuery.of(context).size.width;
     return Container(
+      alignment: Alignment.topCenter,
       width: MediaQuery.of(context).size.width,
       child: maxWidth>=700?
       Row(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           leftReviewPanel(context),
           rightReviewPanel(context)
-         
         ],
       ):ListView(
         shrinkWrap: true,
         children: [
           review_image(widget.reviewModal.images,context),
-          addressWidget("xzsxzs"),
+          addressWidget(widget.address),
           overAllRating(widget.reviewModal.rating),
         ReviewRatings(design: widget.reviewModal.design,
           value: widget.reviewModal.value,
@@ -70,13 +73,6 @@ class ReviewDetailState extends State<ReviewDetails> {
     );
   }
 
-
-
-
-
-
-
-  
   
   Widget leftReviewPanel(BuildContext context){
     return Flexible(
@@ -103,7 +99,7 @@ class ReviewDetailState extends State<ReviewDetails> {
                   thickness: 1,
                   color: Colors.black12,
                 ),
-                addressWidget("sxd"),
+                addressWidget(widget.address),
 
                 SizedBox(
                   height: 20,
