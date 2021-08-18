@@ -1,6 +1,7 @@
 import 'dart:html' as html;
 import 'package:share/share.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,6 @@ import 'package:flutter/foundation.dart';
 
 
 void main() {
-
   if (kIsWeb) {
     // initialiaze the facebook javascript SDK
     FacebookAuth.i.webInitialize(
