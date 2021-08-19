@@ -28,7 +28,6 @@ class SearchWidgetState extends State<SearchWidget> {
   String selectedCategory;
   String selectedLocation;
   List category = ['Any','Apartment','Compound'];
-  List location = ['Doha','Abu Dhabi','Qatar'];
   double width;
 
   SearchModal searchModal;
@@ -227,8 +226,8 @@ class SearchWidgetState extends State<SearchWidget> {
       builder: (BuildContext context) {
         return Positioned(
           top: 150.0,
-          left: 120,
-          right: 500,
+          left: 270,
+          right: 600,
           bottom: 100,
           child: Material(
             elevation: 5,
@@ -267,7 +266,7 @@ class SearchWidgetState extends State<SearchWidget> {
                                 .compoundname,
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w700,
                                 color: ColorClass.lightTextColor),
                           ),
@@ -279,7 +278,7 @@ class SearchWidgetState extends State<SearchWidget> {
                                 .address,
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 12,
                                 fontWeight: FontWeight.w400,
                                 color: ColorClass.lightTextColor),
                           ),

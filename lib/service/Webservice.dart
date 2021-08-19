@@ -395,14 +395,12 @@ class Webservice{
 
     response.stream.transform(utf8.decoder).listen((value) {
       print("response------------------ "+response.toString());
+
       Map map = json.decode(value);
       if(map["errorcode"] == 0 && map["status"]==true){
-
        return true;
       }
       else{
-        displayAlertDialog(context,content: "Review Not Added. Please Try Again Later",);
-
         return false;
       }
 
@@ -451,10 +449,7 @@ class Webservice{
       favouriteIDList = tempFavIDList;
 
 
-      GlobalKeys.compoundListKey.currentState.setState(() {
-
-      });
-
+      GlobalKeys.compoundListKey.currentState.getCompoundList();
     }
   }
 

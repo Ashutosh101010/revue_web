@@ -105,7 +105,7 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                     });
                   },
                   child: Container(
-                    width: 35,height: 35,alignment: Alignment.center,
+                    width: 40,height: 40,alignment: Alignment.center,
                     margin: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -253,12 +253,19 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
             padding: const EdgeInsets.all(8.0),
             child: Column(crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                InkWell(
-                  onTap: (){
-                    // print(window.location.href);
-                  },
-                  child: Icon(Icons.share,size: 25,
-                    color:  ColorClass.blueColor,),
+                Tooltip(
+                  message: "Copy link to share",
+                  child: InkWell(
+                    onTap: (){
+                      FlutterClipboard.copy("https://revue-app.com/$mainscreenRoute$compoundDetails/${widget.compoundID}").then((value){
+                        print("value");
+                      });
+
+                      // print(window.location.href);
+                    },
+                    child: Icon(Icons.share,size: 25,
+                      color:  ColorClass.blueColor,),
+                  ),
                 ),
                 AutoSizeText('Share',
                   style: TextStyle(

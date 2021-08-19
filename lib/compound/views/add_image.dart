@@ -60,7 +60,7 @@ Future<void> getImages(ReviewModal reviewModal)async{
 
     if (isMultiImage) {
       try {
-        final pickedFileList = await _picker.pickMultiImage();
+        final pickedFileList = await _picker.pickMultiImage(imageQuality: 50,maxHeight: 480, maxWidth: 640);
         setState(() {
           imageFileList = pickedFileList;
         });
@@ -182,6 +182,7 @@ Future<void> getImages(ReviewModal reviewModal)async{
                            ImageSource.gallery,
                            context: context,
                            isMultiImage: true,
+
                          );
                        },
                        child: Image.asset("assets/images/addCamera.png",

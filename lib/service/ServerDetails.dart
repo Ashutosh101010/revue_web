@@ -7,7 +7,7 @@ class ServerDetails{
   static String get_compound_request = base_url+"/getCompound";
   static String get_compound_detail_request = base_url+"/getCompoundDetails/";
   static String get_AllReviews = base_url+"/getReviews";
-  static String add_Review= "http://192.168.1.6:8080/addReview";
+  static String add_Review= base_url+"/addReview";
   static String post_New_Question = base_url+"/postQuestion";
   static String get_images = base_url+"/image/";
   static String my_Reviews = base_url+"/myReviews";

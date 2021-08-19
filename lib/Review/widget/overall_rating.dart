@@ -23,14 +23,7 @@ Widget overAllRating(double rating){
             ),
             circularStrokeCap: CircularStrokeCap.butt,
             backgroundColor: Colors.black26,
-            progressColor: rating.toInt()>=0&&rating.toInt()<2?
-            ColorClass.redColor:
-            rating.toInt()<=2&&rating.toInt()<3?
-            Colors.orangeAccent.shade400:
-            rating.toInt()>=3 &&rating.toInt()<4?
-            Colors.green.shade500:
-            rating.toInt()>=4?
-            ColorClass.blueColor:ColorClass.blueColor,
+            progressColor: ColorClass.redColor
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

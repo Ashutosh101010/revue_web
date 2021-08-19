@@ -48,7 +48,7 @@ class ReviewTabState extends State<ReviewsTab> {
       children: [
 
         widget.reviewList.isEmpty?
-        Text("No Review Posted for this Compound"):
+        Text("No Review Posted"):
         ListView.builder(shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: exists?
@@ -57,12 +57,14 @@ class ReviewTabState extends State<ReviewsTab> {
               return ReviewCard(widget.reviewList[index] as ReviewModal,widget.compoundAddress);
             },),
 
-        SizedBox(
-            child:
-            widget.reviewList.isEmpty?
-            Text("No Review Posted for this Compound"):
-            exists?Container():Text("To view more review! Post your review",
-              style: TextStyle(color: ColorClass.redColor),)),
+        !exists?Text("To view more review! Post your review",
+          style: TextStyle(color: ColorClass.redColor),):Text("")
+
+
+
+
+
+
         ],
     );
   }

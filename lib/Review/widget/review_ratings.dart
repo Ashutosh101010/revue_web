@@ -13,6 +13,22 @@ class ReviewRatings extends StatelessWidget{
   double design;
 
   ReviewRatings({this.facility,this.management,this.location,this.value,this.design});
+  
+  Color getColor(double rating){
+    if(rating.toInt()>=0&&rating.toInt()<2){
+      return  ColorClass.redColor;
+    }else if(rating.toInt()<=2&&rating.toInt()<3){
+      return Colors.orangeAccent.shade400;
+    }else if(rating.toInt()>=3 &&rating.toInt()<4){
+     return  Colors.green.shade500;
+    }else if( rating.toInt()>=4){
+     return ColorClass.blueColor;
+    }else{
+      return ColorClass.blueColor;
+    }
+  }
+  
+  
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +53,7 @@ class ReviewRatings extends StatelessWidget{
                 ),
                 circularStrokeCap: CircularStrokeCap.butt,
                 backgroundColor: Colors.black26,
-                progressColor: Colors.orange,
+                progressColor: getColor(facility),
                 footer: Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text("Facilities",
@@ -65,7 +81,7 @@ class ReviewRatings extends StatelessWidget{
                 ),
                 circularStrokeCap: CircularStrokeCap.butt,
                 backgroundColor: Colors.black26,
-                progressColor: Colors.blue,
+                progressColor: getColor(design),
                 footer: Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text("Design",
@@ -93,7 +109,7 @@ class ReviewRatings extends StatelessWidget{
                 ),
                 circularStrokeCap: CircularStrokeCap.butt,
                 backgroundColor: Colors.black26,
-                progressColor: Colors.green.shade500,
+                progressColor: getColor(location),
                 footer: Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text("Location",
@@ -121,7 +137,7 @@ class ReviewRatings extends StatelessWidget{
                 ),
                 circularStrokeCap: CircularStrokeCap.butt,
                 backgroundColor: Colors.black26,
-                progressColor: Colors.yellow,
+                progressColor: getColor(value),
                 footer: Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text("Value",
@@ -149,7 +165,7 @@ class ReviewRatings extends StatelessWidget{
                 ),
                 circularStrokeCap: CircularStrokeCap.butt,
                 backgroundColor: Colors.black26,
-                progressColor: Colors.purple,
+                progressColor: getColor(management),
                 footer: Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text("Management",

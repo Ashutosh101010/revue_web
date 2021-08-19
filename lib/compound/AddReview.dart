@@ -337,7 +337,7 @@ class AddReviewState extends State<AddReview>{
                                bool status =await Webservice.addReviewRequest(context, reviewModal);
                                 // Navigator.pop(context);
                                 if(status==true){
-                                  GlobalKeys.compoundDetailsKey.currentState.fetchReview();
+
 
                                   Navigator.pushNamed(context, compoundDetails,
                                       arguments: CompoundArgument(
@@ -345,8 +345,11 @@ class AddReviewState extends State<AddReview>{
                                         compoundName: widget.compoundName,
                                         images: widget.images,
                                         address: widget.address,));
+
+                                  GlobalKeys.compoundDetailsKey.currentState.fetchReview();
                                 }else{
-                                  displayAlertDialog(context,title: "Add Review",content: "Unable to post review");
+                                  displayAlertDialog(context,title: "Add Review",
+                                      content: "Unable to post review");
                                 }
 
 

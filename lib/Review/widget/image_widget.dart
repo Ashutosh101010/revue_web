@@ -4,11 +4,11 @@ import 'package:webrevue/service/ServerDetails.dart';
 
 Widget review_image(List images,BuildContext context){
   return  Container(
-    height: 230,
-    margin: EdgeInsets.only(top: 5),
+    height: 250,
     child: Stack(
       children: [
-        SizedBox(
+        Container(
+          margin: EdgeInsets.only(top: 5),
           height: 250,
           child: Padding(
             padding: const EdgeInsets.all(10.0),

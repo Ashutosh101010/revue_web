@@ -148,9 +148,52 @@ ScrollController controller=new ScrollController();
             AppBar(
               actions: [
                 Container(height: 80,
+                  alignment: Alignment.center,
+                    margin: EdgeInsets.only(
+                      left: 20,top: 5,),
+                    child: InkWell(
+                      mouseCursor: SystemMouseCursors.click,
+                      onTap: (){
+
+                        if(!exists){
+                          Navigator.pushNamed(context, addreview,
+                              arguments: AddReviewArgument(widget.compoundID,
+                                widget.compoundName,
+                                widget.images,widget.address,
+
+                              ));
+                        }else{
+                          displayAlertDialog(context,content: "Your review already exists",title: "Post Review");
+                        }
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.add_circle,color: ColorClass.blueColor,size: 23,),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Text(
+                                "Add Review",
+                                style: const TextStyle(
+                                    color:   Colors.red,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 12.0
+                                ),
+                                textAlign: TextAlign.left
+                            ),
+                          ),
+                        ],),
+                    )),
+
+
+
+
+                Container(height: 80,
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(
-                      left: 20, right: 50,top: 5, ),
+                      left: 20, right: 20,top: 5, ),
                     child: MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
