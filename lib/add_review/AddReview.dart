@@ -341,7 +341,7 @@ class AddReviewState extends State<AddReview>{
                                         compoundId: widget.compoundID,
                                         compoundName: widget.compoundName,
                                         images: widget.images,
-                                        address: widget.address,count:0));
+                                        address: widget.address,));
 
                                 Navigator.of(context);
 

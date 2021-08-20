@@ -68,7 +68,7 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
   Widget build(BuildContext context) {
      maxWidth = MediaQuery.of(context).size.width;
     return
-      load?CircularProgressIndicator():
+      load?Center(child: SizedBox(height: 30,width: 30,child: CircularProgressIndicator())):
       Container(
       margin: maxWidth>800?EdgeInsets.only(left: 50,top: 10,):EdgeInsets.only(top: 10,),
       child: ListView(
@@ -287,7 +287,7 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  StarRating(widget.compoundModal.rating),
+                  StarRating(widget.compoundModal.rating,widget.compoundModal.reviewCount),
 
                   Container(
                     alignment: Alignment.center,

@@ -156,7 +156,7 @@ ScrollController controller=new ScrollController();
     return Material(
       child:
 
-      compoundModal==null?CircularProgressIndicator():LayoutBuilder(builder: (context, constraints) {
+      compoundModal==null?Center(child: CircularProgressIndicator()):LayoutBuilder(builder: (context, constraints) {
         var maxWidth = constraints.maxWidth>700;
         return Scaffold(
           key: scaffoldKey,

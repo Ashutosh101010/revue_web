@@ -22,6 +22,6 @@ class GlobalKeys{
   static final compoundDetailsKey = new GlobalKey<CompoundDetailState>();
   static final addReviewImagesKey = new GlobalKey<AddImageReviewState>();
   static final compoundListKey =  new GlobalKey<CompoundListState>();
-  static final compoundDetailTabKey  = new GlobalKey<CompoundDetailTabState>();
+  static final compoundDetailTabKey  = new GlobalKey<CompoundDetailState>();
 
 }
