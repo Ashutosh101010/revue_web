@@ -7,11 +7,11 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:webrevue/compound/views/ProsTextFields.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/model/ReviewModal.dart';
 
 import 'ConsTextFields.dart';
+import 'ProsTextFields.dart';
 
 class AddReviewSecondForm extends StatefulWidget{
   AddReviewSecondForm({Key key}):super(key: key);

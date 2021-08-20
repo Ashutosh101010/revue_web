@@ -93,13 +93,13 @@ class MyReviewDetailState extends State<MyReviewDetails>{
                   facility: widget.myReviewsModal.facilities,
                   location: widget.myReviewsModal.location,
                   management: widget.myReviewsModal.management,),
-                reviewDetail(widget.myReviewsModal.review),
+
 
                 Divider(
                   thickness: 1,
                   color: Colors.black12,
                 ),
-                // addressWidget("sxd"),
+                addressWidget("sxd"),
 
                 SizedBox(
                   height: 20,

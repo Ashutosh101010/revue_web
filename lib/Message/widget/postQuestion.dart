@@ -82,7 +82,8 @@ bool questionvalidate=false;
           ),
 
           Padding(
-            padding:EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
+            padding:EdgeInsets.only(left: widget.width>=700?10:5,right: widget.width>=700?10:5,
+                top: widget.width>=700?10:5,bottom: widget.width>=700?10:5),
             child: Text(
                 "Your question might be answered by any user who lived there",
                 style: const TextStyle(
@@ -105,7 +106,8 @@ bool questionvalidate=false;
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(minimumSize:Size(widget.width/4, 40) ,
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(widget.width>=500?widget.width/4:widget.width/3, 50) ,
                         primary: Colors.grey.shade500,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
@@ -127,40 +129,35 @@ bool questionvalidate=false;
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(minimumSize:Size(widget.width/4, 40) ,
+                      style: ElevatedButton.styleFrom(
+                        minimumSize:Size(widget.width>=500?widget.width/4:widget.width/3, 50) ,
                         primary: ColorClass.blueColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
                       onPressed: () {
+
+                        if (questionController.text.isEmpty)
+                        {
+                          setState(() {
+                            questionvalidate=true;
+                          });
+                        }
+
+
       if (_formKey.currentState.validate()) {
         if (questionController.text.isNotEmpty || questionController.text != "") {
           MessagingModal messaging = new MessagingModal();
           messaging.question = questionController.text;
           messaging.compoundID = widget.compoundId;
           messaging.compoundName = widget.compoundName;
-          messaging.timestamp = DateTime
-              .now()
-              .millisecondsSinceEpoch;
+          messaging.timestamp = DateTime.now().millisecondsSinceEpoch;
 
           Webservice.postQuestionRequest(context, messaging);
         }
       }
 
-                     //   else{
-
-                       //   Navigator.pop(context);
-                       //   displayAlertDialog(context,title: "Post Question",
-                       //       content: "Empty Question Cannot Be Posted");
-                       // }
-
-                        if (questionController.text.isEmpty)
-                        {
-                         setState(() {
-                       questionvalidate=true;
-                          });
-                        }
                       },
                       child: Text(
                         "Post",

@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:webrevue/Message/MessagingScreen.dart';
 import 'package:webrevue/Message/QuestionAnswerScreen.dart';
-import 'package:webrevue/compound/AddReview.dart';
+import 'package:webrevue/add_review/AddReview.dart';
+import 'package:webrevue/add_review/views/addReview_first_form.dart';
+import 'package:webrevue/add_review/views/addReview_forth_form.dart';
+import 'package:webrevue/add_review/views/addReview_second_form.dart';
+import 'package:webrevue/add_review/views/addReview_third_form.dart';
+import 'package:webrevue/add_review/views/add_image.dart';
 import 'package:webrevue/compound/CompoundDetails.dart';
-import 'package:webrevue/compound/views/addReview_first_form.dart';
-import 'package:webrevue/compound/views/addReview_forth_form.dart';
-import 'package:webrevue/compound/views/addReview_second_form.dart';
-import 'package:webrevue/compound/views/addReview_third_form.dart';
-import 'package:webrevue/compound/views/add_image.dart';
 import 'package:webrevue/home/CompoundList.dart';
 
 class GlobalKeys{
