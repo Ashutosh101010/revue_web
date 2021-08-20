@@ -1,8 +1,11 @@
+import 'package:webrevue/model/CompoundModal.dart';
+
 class CompoundArgument{
- final String compoundId;
-final String compoundName;
-final List images ;
-final String address;
-final String id;
- CompoundArgument({this.compoundId,this.compoundName,this.images,this.address,this.id});
+  String compoundId;
+ String compoundName;
+ List images ;
+ String address;
+ String id;
+ CompoundModal compoundModal;
+ CompoundArgument({this.compoundId,this.compoundName,this.images,this.address,this.id,this.compoundModal});
 }

@@ -28,12 +28,23 @@ import 'package:webrevue/model/arguments/QuestionAnswerArgument.dart';
 import 'package:webrevue/model/arguments/SearchQuestionArgument.dart';
 import 'package:webrevue/model/arguments/VerifyOtpArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
+import 'package:webrevue/service/Webservice.dart';
 
 
 
    Route<dynamic> generateRoute(RouteSettings settings) {
-    
-    String routeName = settings.name;
+
+    List<String> pathParam=settings.name.split("/");
+    print(pathParam);
+    String routeName = "/${pathParam[1]}";
+    print(routeName);
+
+    if(pathParam.contains("compoundDetail") && pathParam.length>3)
+     {
+      routeName="/${pathParam[2]}";
+      print(routeName);
+      print(pathParam[3]);
+     }
 
     CompoundArgument compoundArgument;
     CompoundMessagingArgument compoundMessagingArgument;
@@ -50,6 +61,13 @@ import 'package:webrevue/route/routing_constant.dart';
 
     if (routeName == compoundDetails) {
      compoundArgument = settings.arguments;
+     if(pathParam.length>3&& pathParam[3]!=null && pathParam[3]!="")
+      {
+       compoundArgument=new CompoundArgument();
+       compoundArgument.compoundId=pathParam[3];
+      }
+     print(routeName);
+     print(compoundArgument.compoundId);
     }
     if (routeName == questionAns) {
      compoundMessagingArgument = settings.arguments;
@@ -93,10 +111,11 @@ import 'package:webrevue/route/routing_constant.dart';
           CompoundDetails(
            key: GlobalKeys.compoundDetailsKey,
            compoundID: compoundArgument.compoundId,
-           compoundName: compoundArgument.compoundName,
-           images: compoundArgument.images,
-           address: compoundArgument.address,),
-          settings: RouteSettings(name: "$mainscreenRoute/compoundDetail",),
+           // compoundName: compoundArgument.compoundName,
+           // images: compoundArgument.images,
+           // address: compoundArgument.address,
+              ),
+          settings: RouteSettings(name: "$mainscreenRoute/compoundDetail/${compoundArgument.compoundId}",),
           maintainState: true);
       break;
      case addreview:
