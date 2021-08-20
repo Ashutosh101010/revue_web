@@ -4,13 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:progress_indicators/progress_indicators.dart';
 import 'package:webrevue/AppBar/AppBarSec.dart';
-import 'package:webrevue/compound/views/addReview_first_form.dart';
-import 'package:webrevue/compound/views/addReview_forth_form.dart';
-import 'package:webrevue/compound/views/addReview_second_form.dart';
-import 'package:webrevue/compound/views/addReview_third_form.dart';
-import 'package:webrevue/compound/views/add_image.dart';
+import 'package:webrevue/add_review/views/addReview_first_form.dart';
+import 'package:webrevue/add_review/views/addReview_forth_form.dart';
+import 'package:webrevue/add_review/views/addReview_second_form.dart';
+import 'package:webrevue/add_review/views/addReview_third_form.dart';
+import 'package:webrevue/add_review/views/add_image.dart';
 import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/footer/FooterWidget.dart';
@@ -332,25 +331,33 @@ class AddReviewState extends State<AddReview>{
                                 reviewModal.compoundName = widget.compoundName;
 
 
-                                // showLoadingDialog(context);
+                                showLoadingDialog(context);
 
-                               bool status =await Webservice.addReviewRequest(context, reviewModal);
+                              await Webservice.addReviewRequest(context, reviewModal);
+                               setState(() {
+
+                               });
+                                Navigator.popAndPushNamed(context, compoundDetails,
+                                    arguments: CompoundArgument(
+                                      compoundId: reviewModal.compoundID ,
+                                      compoundName: widget.compoundName,
+                                      images: widget.images,
+                                      address: widget.address,));
+
                                 // Navigator.pop(context);
-                                if(status==true){
-
-
-                                  Navigator.pushNamed(context, compoundDetails,
-                                      arguments: CompoundArgument(
-                                        compoundId: widget.compoundID,
-                                        compoundName: widget.compoundName,
-                                        images: widget.images,
-                                        address: widget.address,));
-
-                                  GlobalKeys.compoundDetailsKey.currentState.fetchReview();
-                                }else{
-                                  displayAlertDialog(context,title: "Add Review",
-                                      content: "Unable to post review");
-                                }
+                                // if(status==true){
+                                //   Navigator.pushNamed(context, compoundDetails,
+                                //       arguments: CompoundArgument(
+                                //         compoundId: widget.compoundID,
+                                //         compoundName: widget.compoundName,
+                                //         images: widget.images,
+                                //         address: widget.address,));
+                                //
+                                //   GlobalKeys.compoundDetailsKey.currentState.fetchReview();
+                                // }else{
+                                //   displayAlertDialog(context,title: "Add Review",
+                                //       content: "Unable to post review");
+                                // }
 
 
                               }

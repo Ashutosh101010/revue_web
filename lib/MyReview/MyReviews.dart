@@ -98,26 +98,6 @@ class MyReviewState extends State<MyReviews>{
                                 fontSize: 18.0),
                             textAlign: TextAlign.left),
 
-               //         Expanded(child: Align(alignment: Alignment.centerRight,
-                 //         child: SizedBox(
-                   //         height: 40,width: 200,
-                     //       child: MaterialButton(
-                       //       shape: RoundedRectangleBorder(
-                         //       borderRadius: BorderRadius.circular(5),
-   //                           ),
-     //                         onPressed: () {},
-       //                       color: ColorClass.blueColor,
-         //                     hoverColor: Colors.blue.shade900,
-           //                   textColor: Colors.white,
-             //                 child: Text(
-               //                 "Latest",
-                 //               textAlign: TextAlign.center,
-                   //             style: TextStyle(fontSize: 16),
-                     //         ),
-                       //       padding: EdgeInsets.all(10),
-                         //   ),
-                         // ),),)
-
                       ],),
                   ):Container(),
 

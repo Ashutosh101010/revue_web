@@ -130,61 +130,66 @@ class CompoundListState extends State<CompoundList>{
               :appBarWidget(),
 
 
-          body:Column(
-            children: [
-            Expanded(
-            child: Scrollbar(
-              child: SingleChildScrollView(
-                child:  Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    maxWidth>=900?Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border(bottom: BorderSide(color: Colors.black12))
-                      ),
-                      child: SearchWidget(maxWidth/2.3),
-                    ):Container(),
+          body:GestureDetector(
+            onTap: (){
+              AppBarFirstState().hideIndicator(context);
+            },
+            child: Column(
+              children: [
+              Expanded(
+              child: Scrollbar(
+                child: SingleChildScrollView(
+                  child:  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      maxWidth>=900?Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border(bottom: BorderSide(color: Colors.black12))
+                        ),
+                        child: SearchWidget(maxWidth/2.3),
+                      ):Container(),
 
-                    width?Padding(
-                      padding: EdgeInsets.only(left: maxWidth/30,bottom: 40),
-                      child: filterWidget(width,maxWidth),
-                    ):Container(),
-                   // filter? showOverLay(context):Container(),
+                      width?Padding(
+                        padding: EdgeInsets.only(left: maxWidth/30,bottom: 40),
+                        child: filterWidget(width,maxWidth),
+                      ):Container(),
+                     // filter? showOverLay(context):Container(),
 
-                    maxWidth>=1300?
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left:8.0,right:20),
-                        child: LeftSideCompound(maxWidth/2,compoundList),
-                      ),
-                      NearByProperty(width:maxWidth/3)
-                    ],):
-                    maxWidth>=1000?
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        LeftSideCompound(maxWidth/2,compoundList),
-                      NearByProperty(width:maxWidth/3)
-                    ],):
-                    LeftSideCompound(maxWidth,compoundList),
-                    Container(margin: EdgeInsets.only(top:10,left: 8,right: 8),
+                      maxWidth>=1300?
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left:8.0,right:20),
+                          child: LeftSideCompound(maxWidth/2,compoundList),
+                        ),
+                        NearByProperty(width:maxWidth/3)
+                      ],):
+                      maxWidth>=1000?
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          LeftSideCompound(maxWidth/2,compoundList),
+                        NearByProperty(width:maxWidth/3)
+                      ],):
+                      LeftSideCompound(maxWidth,compoundList),
+                      Container(margin: EdgeInsets.only(top:10,left: 8,right: 8),
         color: Colors.black26,width: MediaQuery.of(context).size.width,height: 1,)
 ,FooterWidget()
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            ),
+              ),
 
 
-          ],),
+            ],),
+          ),
 
 
         );

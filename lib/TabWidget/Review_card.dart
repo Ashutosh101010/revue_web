@@ -128,7 +128,7 @@ class ReviewCardState extends State<ReviewCard>{
                                 backgroundColor: Colors.white,
                                 insetPadding:
                                 width>700?
-                                EdgeInsets.only(left: 150,right: 150,top: 50,bottom: 50):
+                                EdgeInsets.only(left: 130,right: 130,top: 70,bottom: 70):
                                 EdgeInsets.all(5),
                                 contentPadding: EdgeInsets.all(10
                                 ),

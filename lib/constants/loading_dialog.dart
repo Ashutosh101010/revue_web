@@ -24,7 +24,7 @@ Future<void> displayAlertDialog(BuildContext context,{String title="Error Occurs
       context: context,
       barrierDismissible: true,
       builder: (context){
-        Future.delayed(Duration(seconds: 3), () {
+        Future.delayed(Duration(seconds: 2), () {
           Navigator.of(context).pop(true);
         });
         return  AlertDialog(

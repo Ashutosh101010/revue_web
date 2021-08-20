@@ -24,6 +24,7 @@ import 'package:webrevue/model/ReviewModal.dart';
 import 'package:webrevue/model/SearchModal.dart';
 import 'package:webrevue/model/UserModal.dart';
 import 'package:webrevue/model/arguments/ChangePasswordArgument.dart';
+import 'package:webrevue/model/arguments/CompoundArgument.dart';
 import 'package:webrevue/model/arguments/VerifyOtpArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 
@@ -359,7 +360,7 @@ class Webservice{
 
 
 
-  static Future<bool> addReviewRequest(BuildContext context,ReviewModal reviewModal)async{
+  static Future<void> addReviewRequest(BuildContext context,ReviewModal reviewModal)async{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     var  request = new http.MultipartRequest("POST",
@@ -397,11 +398,15 @@ class Webservice{
       print("response------------------ "+response.toString());
 
       Map map = json.decode(value);
+      // print("review addeed map "+map.toString());
+
       if(map["errorcode"] == 0 && map["status"]==true){
-       return true;
+        getCompoundDetails(reviewModal.compoundID);
+        GlobalKeys.compoundDetailsKey.currentState.fetchReview();
       }
       else{
-        return false;
+        displayAlertDialog(context,title: "Add Review",
+            content: "Unable to post review");
       }
 
 
@@ -449,7 +454,9 @@ class Webservice{
       favouriteIDList = tempFavIDList;
 
 
-      GlobalKeys.compoundListKey.currentState.getCompoundList();
+      GlobalKeys.compoundListKey.currentState.setState(() {
+
+      });
     }
   }
 
@@ -469,7 +476,7 @@ class Webservice{
     // print(response.body);
 
     var jsonResponse = convert.jsonDecode(response.body);
-    print(jsonResponse);
+    // print(jsonResponse);
     if(jsonResponse["status"]== true &&
         jsonResponse["errorcode"] ==0)
     {

@@ -64,11 +64,10 @@ class _PostAnswerState extends State<PostAnswer> {
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.multiline,
                   controller: answerController,
-                  expands: true,
+                  minLines: 1,
                   maxLines: null,
-                  minLines: null,
                   decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 15,top: 15,bottom: 15),
+                      contentPadding: EdgeInsets.only(left: 15,bottom: 15),
                       hintText: "Write your answer here",
                       hintStyle: TextStyle(
                         color: Colors.black54,
@@ -86,7 +85,8 @@ class _PostAnswerState extends State<PostAnswer> {
 
             Padding(
                 padding:
-                EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+                EdgeInsets.only(left:widget.width>=700?10:5, right: widget.width>=700?10:5,
+                    top: widget.width>=700?10:5, bottom: widget.width>=700?10:5),
                 child: // Your answer will shown among the oyher answer.
                 Text("Your answer will shown among the other answer.",
                     style: const TextStyle(
@@ -108,7 +108,8 @@ class _PostAnswerState extends State<PostAnswer> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(minimumSize:Size(widget.width/4, 40) ,
+                          style: ElevatedButton.styleFrom(
+                            minimumSize:Size(widget.width>=500?widget.width/4:widget.width/3, 50) ,
                             primary: Color(0xffb2b2b2),
                             padding: EdgeInsets.all(10),
                             shape: RoundedRectangleBorder(
@@ -132,7 +133,8 @@ class _PostAnswerState extends State<PostAnswer> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(minimumSize:Size(widget.width/4, 40) ,
+                          style: ElevatedButton.styleFrom(
+                            minimumSize:Size(widget.width>=500?widget.width/4:widget.width/3, 50) ,
                             primary: ColorClass.blueColor,
                             padding: EdgeInsets.all(10),
                             shape: RoundedRectangleBorder(
@@ -142,6 +144,12 @@ class _PostAnswerState extends State<PostAnswer> {
                           ),
 
                           onPressed: () {
+                            if (answerController.text.isEmpty)
+                            {
+                              setState(() {
+                                answervalidate=true;
+                              });
+                            }
                             if(answerController.text.isNotEmpty||answerController.text!=""){
                               AnswerModal answerModal = new AnswerModal();
                               answerModal.answer = answerController.text;
@@ -150,18 +158,6 @@ class _PostAnswerState extends State<PostAnswer> {
                               answerModal.questionID =widget.questionId;
                               Webservice.postAnswerRequest(context, answerModal);
 
-                            }
-                         //   else{
-//
-  //                            Navigator.pop(context);
-    //                          displayAlertDialog(context,title: "Post Answer",
-      //                            content: "Empty Answer Cannot Be Posted");
-        //                    }
-                            if (answerController.text.isEmpty)
-                            {
-                              setState(() {
-                                answervalidate=true;
-                              });
                             }
 
                           },
