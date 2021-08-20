@@ -14,7 +14,7 @@ import 'package:webrevue/User/ForgetPassword.dart';
 import 'package:webrevue/MyReview/MyReviews.dart';
 import 'package:webrevue/User/OtpVerification.dart';
 import 'package:webrevue/User/UpdatePassword.dart';
-import 'package:webrevue/compound/AddReview.dart';
+import 'package:webrevue/add_review/AddReview.dart';
 import 'package:webrevue/compound/CompoundDetails.dart';
 import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
