@@ -239,7 +239,7 @@ class CompoundCardState extends State<CompoundCard>{
                                           arguments:CompoundMessagingArgument(
                                               compoundID:widget.compoundModal.id,
                                               compoundName: widget.compoundModal.compoundname,
-                                              compoundAddress:widget.compoundModal.address,));
+                                              compoundAddress:widget.compoundModal.address));
                                     },
                                     icon: Icon(CupertinoIcons.chat_bubble_2,color: Colors.black,size: 18),
                                   ),
@@ -323,10 +323,8 @@ class CompoundCardState extends State<CompoundCard>{
                         onTap: (){
                           Navigator.pushNamed(context, compoundDetails,
                               arguments: CompoundArgument(
-                                  compoundId: widget.compoundModal.id,
-                              compoundName: widget.compoundModal.compoundname,
-                              images: widget.compoundModal.images,
-                              address: widget.compoundModal.address,count: widget.compoundModal.reviewCount));
+                                compoundId: widget.compoundModal.id,
+                                  compoundModal: widget.compoundModal));
                           // Navigator.push(context,
                           //     MaterialPageRoute(builder: (context)=>CompoundDetails()));
                         },onHover: (value){
@@ -569,7 +567,7 @@ class CompoundCardState extends State<CompoundCard>{
                               compoundId: widget.compoundModal.id,
                               compoundName: widget.compoundModal.compoundname,
                               images: widget.compoundModal.images,
-                              address: widget.compoundModal.address,count: widget.compoundModal.reviewCount));
+                              address: widget.compoundModal.address));
 
                       },onHover: (value){
                     viewmore = value;

@@ -14,20 +14,20 @@ import 'package:webrevue/TabWidget/widget/compound_rating.dart';
 import 'package:webrevue/TabWidget/widget/compound_rating_bar.dart';
 import 'package:webrevue/TabWidget/widget/star_rating.dart';
 import 'package:webrevue/constants/ColorClass.dart';
+import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
 import 'package:webrevue/model/CompoundModal.dart';
 import 'package:webrevue/model/FavoriteModal.dart';
+import 'package:webrevue/model/arguments/CompoundArgument.dart';
 import 'package:webrevue/model/arguments/CompoundMessagingArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/ServerDetails.dart';
 import 'package:webrevue/service/Webservice.dart';
 
-//ignore: must_be_immutable
 class CompoundDetailTab extends StatefulWidget {
-  String compoundID;
+  // String compoundID;
   CompoundModal compoundModal;
-  int count;
-  CompoundDetailTab({Key key,this.compoundID,this.count}):super(key: key);
+  CompoundDetailTab(this.compoundModal);
 
   @override
   State<StatefulWidget> createState() {
@@ -43,35 +43,33 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
   bool shareHover = false;
   bool favhover = false;
   double maxWidth;
-  CompoundModal compoundModal;
+  // CompoundModal compoundModal;
     bool favourite=false;
-
+    bool load=false;
   @override
   void initState() {
     super.initState();
-    getCompoundDetails();
 
 
-    if(favouriteIDList.contains(widget.compoundID)){
+
+    if(favouriteIDList.contains(widget.compoundModal.id)){
       favourite = !favourite;
     }
+
+
   }
 
 
-  getCompoundDetails()async{
-    CompoundModal value = await Webservice.getCompoundDetails(widget.compoundID);
-    setState(() {
-      compoundModal = value;
-    });
 
-  }
 
 
 
   @override
   Widget build(BuildContext context) {
      maxWidth = MediaQuery.of(context).size.width;
-    return Container(
+    return
+      load?CircularProgressIndicator():
+      Container(
       margin: maxWidth>800?EdgeInsets.only(left: 50,top: 10,):EdgeInsets.only(top: 10,),
       child: ListView(
         physics: NeverScrollableScrollPhysics(),
@@ -86,12 +84,12 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
               Swiper(
                 itemBuilder: (BuildContext context, int index) {
                   return new Image.network(
-                    ServerDetails.get_images+compoundModal.images[index],
+                    ServerDetails.get_images+widget.compoundModal.images[index],
                     fit: BoxFit.fill,
                   );
                 },
                 autoplay: true,
-                itemCount: compoundModal.images.length,
+                itemCount: widget.compoundModal.images.length,
                 pagination: new SwiperPagination(),
               ),
 
@@ -125,9 +123,9 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                         FavoriteModal favModal = new FavoriteModal();
 
                         if(favourite == false){
-                          favouriteIDList.remove(widget.compoundID);
+                          favouriteIDList.remove(widget.compoundModal.id);
                           favList.remove(widget.compoundModal);
-                          favModal.compoundID =widget.compoundID;
+                          favModal.compoundID =widget.compoundModal.id;
                          await Webservice.removeFavoriteRequest(context,favModal);
 
                          setState(() {
@@ -135,9 +133,9 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                          });
                         }
                         else{
-                          favouriteIDList.add(widget.compoundID);
+                          favouriteIDList.add(widget.compoundModal.id);
                           favList.add(widget.compoundModal);
-                          favModal.compoundID =   widget.compoundID;
+                          favModal.compoundID =   widget.compoundModal.id;
                          await Webservice.addFavoriteRequest(context,favModal);
                          setState(() {
 
@@ -158,14 +156,14 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
 
             Column(crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              AutoSizeText(compoundModal.compoundname,softWrap: true,
+              AutoSizeText(widget.compoundModal.compoundname,softWrap: true,
                 style:TextStyle(
                     color:  Colors.black87,
                     fontWeight: FontWeight.w600,
                     fontStyle:  FontStyle.normal,
                     fontSize: 18.0
                 ) ,),
-                AutoSizeText(compoundModal.address,softWrap: true,
+                AutoSizeText(widget.compoundModal.address,softWrap: true,
                 style: TextStyle(
                     color:  Colors.black87,
                     fontSize: 16,fontWeight: FontWeight.w500),)
@@ -182,9 +180,9 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                       onTap: (){
                         Navigator.pushNamed(context,questionAns,
                             arguments:CompoundMessagingArgument(
-                            compoundID:compoundModal.id,
-                            compoundName: compoundModal.compoundname,
-                            compoundAddress: compoundModal.address));
+                            compoundID:widget.compoundModal.id,
+                            compoundName: widget.compoundModal.compoundname,
+                            compoundAddress: widget.compoundModal.address));
                       },
                       child: Icon(CupertinoIcons.chat_bubble_2_fill,size: 25,
                       color:ColorClass.blueColor,),
@@ -203,7 +201,7 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                         message: "Copy link to share",
                         child: InkWell(
                           onTap: (){
-                            FlutterClipboard.copy("https://revue-app.com/$mainscreenRoute$compoundDetails/${widget.compoundID}").then((value){
+                            FlutterClipboard.copy("https://revue-app.com/$mainscreenRoute$compoundDetails/${widget.compoundModal.id}").then((value){
                               print("value");
                             });
 
@@ -237,9 +235,9 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
 
                     Navigator.pushNamed(context,questionAns,
                         arguments:CompoundMessagingArgument(
-                            compoundID:compoundModal.id,
-                            compoundName: compoundModal.compoundname,
-                        compoundAddress: compoundModal.address));
+                            compoundID:widget.compoundModal.id,
+                            compoundName: widget.compoundModal.compoundname,
+                        compoundAddress: widget.compoundModal.address));
                   },
                   child: Icon(CupertinoIcons.chat_bubble_2_fill,size: 25,
                     color:ColorClass.blueColor,),
@@ -258,7 +256,7 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                   message: "Copy link to share",
                   child: InkWell(
                     onTap: (){
-                      FlutterClipboard.copy("https://revue-app.com/$mainscreenRoute$compoundDetails/${widget.compoundID}").then((value){
+                      FlutterClipboard.copy("https://revue-app.com/$mainscreenRoute$compoundDetails/${widget.compoundModal.id}").then((value){
                         print("value");
                       });
 
@@ -289,12 +287,12 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  StarRating(compoundModal.rating,widget.count),
+                  StarRating(widget.compoundModal.rating),
 
                   Container(
                     alignment: Alignment.center,
                       margin: EdgeInsets.only(top: 10),
-                      child:CompoundRating(compoundModal,maxWidth)),
+                      child:CompoundRating(widget.compoundModal,maxWidth)),
                 ],
               ),
             ),
@@ -323,7 +321,7 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
             Flexible(
               flex: 2,
               fit: FlexFit.loose,
-              child: AmenitiesWidget(compoundModal.amenities)),
+              child: AmenitiesWidget(widget.compoundModal.amenities)),
 
             maxWidth>=900?
             Flexible(
@@ -331,7 +329,7 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
               flex: 1,
               child:Padding(
                 padding: const EdgeInsets.only(left:10,top:80.0,right:10),
-                child: MapsWidget(maxWidth,compoundModal),
+                child: MapsWidget(maxWidth,widget.compoundModal),
               )):Container()
           ],
         ),
@@ -344,7 +342,7 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
 
         Padding(
           padding: const EdgeInsets.only(right: 10),
-          child:  AboutWidget(compoundModal.description)
+          child:  AboutWidget(widget.compoundModal.description)
 
         ),
 

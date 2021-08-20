@@ -13,7 +13,6 @@ import 'package:webrevue/compound/widget/PersistentHeader.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/TabWidget/CompoundDetailTab.dart';
 import 'package:webrevue/TabWidget/ReviewsTab.dart';
-import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/footer/FooterWidget.dart';
 import 'package:webrevue/model/CompoundModal.dart';
@@ -27,12 +26,14 @@ import 'dart:html' as html;
 class CompoundDetails extends StatefulWidget{
 
   String compoundID;
-  String compoundName;
-  List images= [];
-  String address;
-  int count;
+  CompoundModal compoundModal;
+  // String compoundName;
+  // List images= [];
+  // String address;
+  // String id;
 
-  CompoundDetails({Key key,this.compoundID,this.compoundName,this.images,this.address, this.count}):super(key:key);
+
+  CompoundDetails({Key key,this.compoundID}):super(key:key);
 
   @override
   State<StatefulWidget> createState() {
@@ -55,16 +56,18 @@ var optionMenuSelected;
 String filterProperty;
 List filterList =["Most Recent","Most Useful","Highest Rating"];
 
+bool load=false;
 
   bool favhover = false;
 
+  CompoundModal compoundModal;
 
 int selectedTab=1;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    getCompoundDetails();
 
     filterProperty = filterList[0];
     controller.addListener(() {
@@ -118,6 +121,7 @@ fetchReview(){
 
 }
 
+
 onRefresh(){
   html.window.onBeforeUnload.listen((event) async{
     setState(() {
@@ -125,7 +129,21 @@ onRefresh(){
     });
   });
 }
+getCompoundDetails()async{
+  setState(() {
+    load=true;
+  });
+  CompoundModal value = await Webservice.getCompoundDetails(widget.compoundID);
+  setState(() {
+compoundModal=value;
+    load=false;
+  });
 
+  // GlobalKeys.compoundDetailsKey.currentState.setState(() {
+  //   GlobalKeys.compoundDetailsKey.currentState.widget.compoundModal=value;
+  // });
+
+}
 
 ScrollController controller=new ScrollController();
 
@@ -136,7 +154,9 @@ ScrollController controller=new ScrollController();
   {
 
     return Material(
-      child: LayoutBuilder(builder: (context, constraints) {
+      child:
+
+      compoundModal==null?CircularProgressIndicator():LayoutBuilder(builder: (context, constraints) {
         var maxWidth = constraints.maxWidth>700;
         return Scaffold(
           key: scaffoldKey,
@@ -158,15 +178,17 @@ ScrollController controller=new ScrollController();
                         if(!exists){
                           Navigator.pushNamed(context, addreview,
                               arguments: AddReviewArgument(widget.compoundID,
-                                widget.compoundName,
-                                widget.images,widget.address,
+                                compoundModal.compoundname,
+                                compoundModal.images,
+                                compoundModal.address,
 
                               ));
                         }else{
                           displayAlertDialog(context,content: "Your review already exists",title: "Post Review");
                         }
                       },
-                      child: Column(
+                      child:
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -255,8 +277,8 @@ body: CustomScrollView(shrinkWrap: true,
                if(!exists){
                  Navigator.pushNamed(context, addreview,
                      arguments: AddReviewArgument(widget.compoundID,
-                       widget.compoundName,
-                       widget.images,widget.address,
+                       compoundModal.compoundname,
+                       compoundModal.images,compoundModal.address,
 
                      ));
                }else{
@@ -294,7 +316,7 @@ body: CustomScrollView(shrinkWrap: true,
               Flexible(child:
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: leftPanel(context,constraints.maxWidth),
+                child: compoundModal==null?Container():leftPanel(context,constraints.maxWidth),
               )
               ),
               constraints.maxWidth>=1100?rightPanel(context):Container()
@@ -321,7 +343,7 @@ body: CustomScrollView(shrinkWrap: true,
   {
     return   Column(
       children: [
-        CompoundDetailTab(key:GlobalKeys.compoundDetailTabKey,compoundID: widget.compoundID,count: widget.count),
+        CompoundDetailTab(compoundModal),
         Padding(
           padding:  EdgeInsets.only(left: width<=800?10:50,bottom: 10),
           child: Row(
@@ -337,7 +359,7 @@ body: CustomScrollView(shrinkWrap: true,
             ],
           ),
         ),
-        ReviewsTab(reviewList,widget.address),
+       compoundModal==null?Container():ReviewsTab(reviewList,compoundModal.address),
 
         // reviewList.isEmpty?
         // Text("Please Add Review to view more Reviews",
