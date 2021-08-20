@@ -42,7 +42,7 @@ class AddReview extends StatefulWidget{
 class AddReviewState extends State<AddReview>{
   final _formKey = GlobalKey<FormState>();
   ReviewModal reviewModal;
-  bool load=false;
+  bool isLoading = false;
 
 
   onRefresh(){
@@ -83,7 +83,8 @@ class AddReviewState extends State<AddReview>{
           key: _formKey,
           child: Container(
             color: Colors.white,
-            child: ListView(children: [
+            child:
+            ListView(children: [
               Padding(
                 padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 20),
                 child: Container(
@@ -216,6 +217,15 @@ class AddReviewState extends State<AddReview>{
                       AddReviewForthForm(key: GlobalKeys.addReviewForthKey),
 
 
+                      Visibility(
+                          maintainAnimation: true,
+                          maintainSize: true,
+                          visible: isLoading,
+                          maintainState: true,
+                          child: Center(child: CircularProgressIndicator(),)),
+
+
+
                       Align(
                         alignment: Alignment.center,
                         child: Container(
@@ -246,19 +256,6 @@ class AddReviewState extends State<AddReview>{
 
                               onPressed: () async{
 
-                         //    if (_formKey.currentState.validate()) {
-                         //        // If the form is valid, display a snackbar. In the real world,
-                         //        // you'd often call a server or save the information in a database.
-                         //       // ScaffoldMessenger.of(context).showSnackBar(
-                         //         // const SnackBar(content: Text('Processing Data')),
-                         //
-                         //        //);
-                         //      }
-                         //
-                         // //     if(GlobalKeys.addReviewImagesKey.currentState.imageFileList.isEmpty){
-                         //   //     displayAlertDialog(context,content: "Please select atLeast one Image",
-                         //     //       title: "Post Review");
-                         //      //}
 
                               if(GlobalKeys.addReviewFirstKey.currentState.floorPlanController.text.isEmpty)
                                 {
@@ -311,6 +308,10 @@ class AddReviewState extends State<AddReview>{
                                   &&GlobalKeys.addReviewImagesKey.currentState.validate()
                               &&GlobalKeys.addReviewImagesKey.currentState.validate())
                               {
+                                setState(() {
+                                  isLoading = true;
+                                });
+
                                 reviewModal.price = GlobalKeys.addReviewFirstKey.currentState.
                                 rentController.text;
                                 reviewModal.floorplan = GlobalKeys.addReviewFirstKey.currentState.
@@ -330,34 +331,20 @@ class AddReviewState extends State<AddReview>{
                                 reviewModal.compoundID = widget.compoundID;
                                 reviewModal.compoundName = widget.compoundName;
 
-
-                                showLoadingDialog(context);
-
                               await Webservice.addReviewRequest(context, reviewModal);
-                               setState(() {
+                                setState(() {
+                                  isLoading = false;
+                                });
 
-                               });
-                                Navigator.popAndPushNamed(context, compoundDetails,
+                                Navigator.pushNamed(context, compoundDetails,
                                     arguments: CompoundArgument(
-                                      compoundId: reviewModal.compoundID ,
-                                      compoundName: widget.compoundName,
-                                      images: widget.images,
-                                      address: widget.address,));
+                                        compoundId: widget.compoundID,
+                                        compoundName: widget.compoundName,
+                                        images: widget.images,
+                                        address: widget.address,count:0));
 
-                                // Navigator.pop(context);
-                                // if(status==true){
-                                //   Navigator.pushNamed(context, compoundDetails,
-                                //       arguments: CompoundArgument(
-                                //         compoundId: widget.compoundID,
-                                //         compoundName: widget.compoundName,
-                                //         images: widget.images,
-                                //         address: widget.address,));
-                                //
-                                //   GlobalKeys.compoundDetailsKey.currentState.fetchReview();
-                                // }else{
-                                //   displayAlertDialog(context,title: "Add Review",
-                                //       content: "Unable to post review");
-                                // }
+                                Navigator.of(context);
+
 
 
                               }

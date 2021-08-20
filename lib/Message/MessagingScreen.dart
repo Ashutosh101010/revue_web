@@ -174,7 +174,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                                           return AlertDialog(
                                             backgroundColor: Colors.white,
                                             content: PostQuestion(compoundId: widget.compoundID,
-                                                compoundName:widget.compoundName ,width:600.0),
+                                              compoundName:widget.compoundName ,width: constraints.maxWidth,),
                                           );
                                         });
                                   },

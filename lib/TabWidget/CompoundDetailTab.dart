@@ -17,16 +17,17 @@ import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
 import 'package:webrevue/model/CompoundModal.dart';
 import 'package:webrevue/model/FavoriteModal.dart';
-import 'package:webrevue/model/arguments/CompoundArgument.dart';
 import 'package:webrevue/model/arguments/CompoundMessagingArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/ServerDetails.dart';
 import 'package:webrevue/service/Webservice.dart';
 
+//ignore: must_be_immutable
 class CompoundDetailTab extends StatefulWidget {
   String compoundID;
   CompoundModal compoundModal;
-  CompoundDetailTab(this.compoundID);
+  int count;
+  CompoundDetailTab({Key key,this.compoundID,this.count}):super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -288,7 +289,7 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  StarRating(compoundModal.rating),
+                  StarRating(compoundModal.rating,widget.count),
 
                   Container(
                     alignment: Alignment.center,

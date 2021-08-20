@@ -95,7 +95,8 @@ import 'package:webrevue/route/routing_constant.dart';
            compoundID: compoundArgument.compoundId,
            compoundName: compoundArgument.compoundName,
            images: compoundArgument.images,
-           address: compoundArgument.address,),
+           address: compoundArgument.address,
+          count: compoundArgument.count,),
           settings: RouteSettings(name: "$mainscreenRoute/compoundDetail",),
           maintainState: true,);
       break;

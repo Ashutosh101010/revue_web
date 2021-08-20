@@ -55,9 +55,6 @@ class CompoundListState extends State<CompoundList>{
   void initState() {
     super.initState();
 
-
-
-
     _scrollController  = ScrollController();
     getFavoriteCompound();
     // texthover  = List.filled(propertyImage.length, false);
@@ -83,12 +80,10 @@ class CompoundListState extends State<CompoundList>{
   }
 
   getCompoundList()async{
-   await Webservice.getCompoundRequest(context,compoundList, lastObjectId);
-   if(mounted){
-     setState(() {
+   await Webservice.getCompoundRequest(context,compoundList, "");
+   setState(() {
 
-     });
-   }
+   });
 
   }
 

@@ -117,19 +117,19 @@ Future<void> getImages(ReviewModal reviewModal)async{
     }
   }
 
-  Future<void> retrieveLostData() async {
-    final LostDataResponse response = await _picker.retrieveLostData();
-    if (response.isEmpty) {
-      return;
-    }
-    if (response.file != null) {
-      setState(() {
-        _imageFile = response.file;
-      });
-    } else {
-      _retrieveDataError = response.exception.code;
-    }
-  }
+  // Future<void> retrieveLostData() async {
+  //   final LostDataResponse response = await _picker.retrieveLostData();
+  //   if (response.isEmpty) {
+  //     return;
+  //   }
+  //   if (response.file != null) {
+  //     setState(() {
+  //       _imageFile = response.file;
+  //     });
+  //   } else {
+  //     _retrieveDataError = response.exception.code;
+  //   }
+  // }
 
   bool imageValidate = false;
 

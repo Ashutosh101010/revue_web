@@ -5,8 +5,9 @@ import 'package:getwidget/getwidget.dart';
 // ignore: must_be_immutable
 class StarRating extends StatelessWidget{
   double valueRating;
+  int reviewCount;
 
-  StarRating(this.valueRating);
+  StarRating(this.valueRating,this.reviewCount);
 
 
   @override
@@ -42,7 +43,7 @@ class StarRating extends StatelessWidget{
                ),
 
                AutoSizeText(
-                   " (54 reviews)",
+                   " ($reviewCount reviews)",
                    style: TextStyle(
                        color: Colors.black54,
 

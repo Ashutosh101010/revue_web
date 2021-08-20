@@ -165,6 +165,8 @@ class LoginPageState extends State<LoginPage>{
                  borderRadius: BorderRadius.circular(10)),),
 
            onPressed: () async{
+
+
              if(emailController.text.isEmpty){
                setState(() {
                  _emailValidate = !_emailValidate;

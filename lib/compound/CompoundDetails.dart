@@ -13,6 +13,7 @@ import 'package:webrevue/compound/widget/PersistentHeader.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/TabWidget/CompoundDetailTab.dart';
 import 'package:webrevue/TabWidget/ReviewsTab.dart';
+import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/footer/FooterWidget.dart';
 import 'package:webrevue/model/CompoundModal.dart';
@@ -29,10 +30,9 @@ class CompoundDetails extends StatefulWidget{
   String compoundName;
   List images= [];
   String address;
-  String id;
+  int count;
 
-
-  CompoundDetails({Key key,this.compoundID,this.compoundName,this.images,this.address, this.id,}):super(key:key);
+  CompoundDetails({Key key,this.compoundID,this.compoundName,this.images,this.address, this.count}):super(key:key);
 
   @override
   State<StatefulWidget> createState() {
@@ -321,7 +321,7 @@ body: CustomScrollView(shrinkWrap: true,
   {
     return   Column(
       children: [
-        CompoundDetailTab(widget.compoundID),
+        CompoundDetailTab(key:GlobalKeys.compoundDetailTabKey,compoundID: widget.compoundID,count: widget.count),
         Padding(
           padding:  EdgeInsets.only(left: width<=800?10:50,bottom: 10),
           child: Row(

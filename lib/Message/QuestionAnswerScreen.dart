@@ -182,17 +182,13 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen> {
                                                   onPressed: () {
                                                     return showDialog(
                                                         context: context,
-                                                        builder:
-                                                            (BuildContext con) {
+                                                        builder: (BuildContext con) {
                                                           return AlertDialog(
-                                                            backgroundColor:
-                                                                Colors.white,
+                                                            backgroundColor: Colors.white,
                                                             content: PostAnswer(
-                                                              600.0,
-                                                                widget
-                                                                    .questionId,
-                                                                widget
-                                                                    .compoundId),
+                                                                constraints.maxWidth,
+                                                                widget.questionId,
+                                                                widget.compoundId),
                                                           );
                                                         });
                                                   },

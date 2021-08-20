@@ -58,7 +58,7 @@ class MyReviewCardState extends  State<MyReviewCard>{
                       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
                         priceWidget(widget.myReviewsModal.price),
                         bedRoomWidget(widget.myReviewsModal.bedRooms.toString()),
-                        ratingWidget(widget.myReviewsModal.rating)
+                        ratingWidget(widget.myReviewsModal.rating,0)
                       ],),
                       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
                         floorPlanWidget(widget.myReviewsModal.floorplan),
@@ -79,7 +79,7 @@ class MyReviewCardState extends  State<MyReviewCard>{
                         bathRoomWidget(widget.myReviewsModal.bathRooms.toString()),
                       ],),
                       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                        ratingWidget(widget.myReviewsModal.rating),
+                        ratingWidget(widget.myReviewsModal.rating,0),
                         reviewDateWidget(widget.myReviewsModal.reviewDate)
                       ],)
                     ],
@@ -93,7 +93,7 @@ class MyReviewCardState extends  State<MyReviewCard>{
                       bathRoomWidget(widget.myReviewsModal.bathRooms.toString()),
                       reviewDateWidget(widget.myReviewsModal.reviewDate),
                       bedRoomWidget(widget.myReviewsModal.bedRooms.toString()),
-                      ratingWidget(widget.myReviewsModal.rating)
+                      ratingWidget(widget.myReviewsModal.rating,0)
 
                     ],),
                   ),

@@ -51,15 +51,15 @@ class ReviewTabState extends State<ReviewsTab> {
         Text("No Review Posted"):
         ListView.builder(shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount:exists?widget.reviewList.length: widget.reviewList.length<3?2:widget.reviewList.length, itemBuilder: (context, index) {
-              return ReviewCard(widget.reviewList[index] as ReviewModal,widget.compoundAddress);
+            itemCount:exists?widget.reviewList.length:
+            widget.reviewList.length<2?1:
+                widget.reviewList.length, itemBuilder: (context, index) {
+              return ReviewCard(widget.reviewList[index] as ReviewModal,
+                  widget.compoundAddress,widget.reviewList.length);
             },),
 
         widget.reviewList.isNotEmpty&&!exists &&widget.reviewList.length>2?Text("To view more review! Post your review",
           style: TextStyle(color: ColorClass.redColor),):Text("")
-
-
-
 
 
 

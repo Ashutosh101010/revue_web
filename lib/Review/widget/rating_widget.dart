@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:webrevue/constants/get_rating_percent.dart';
 
-Widget ratingWidget(double rating){
+Widget ratingWidget(double rating,int count){
   return   Flexible(
     flex: 1,
     child:  Padding(
@@ -39,8 +39,19 @@ Widget ratingWidget(double rating){
                         textAlign: TextAlign.left
                     ),
 
+                    count!=0?
+
                     AutoSizeText(
-                        " (54 reviews)",
+                        " ($count reviews)",
+                        style: TextStyle(
+                            color: Colors.black54,
+                            fontStyle:  FontStyle.normal,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16.0
+                        ),
+                        textAlign: TextAlign.left
+                    ): AutoSizeText(
+                        "",
                         style: TextStyle(
                             color: Colors.black54,
                             fontStyle:  FontStyle.normal,

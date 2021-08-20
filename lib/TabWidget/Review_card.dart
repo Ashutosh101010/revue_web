@@ -16,10 +16,10 @@ import '../Review/widget/floor_plan.dart';
 
 class ReviewCard extends StatefulWidget{
   ReviewModal reviewModal;
-
   String compoundAddress;
+  int count;
 
-  ReviewCard(this.reviewModal,this.compoundAddress);
+  ReviewCard(this.reviewModal,this.compoundAddress,this.count);
 
   @override
   State<StatefulWidget> createState() {
@@ -59,7 +59,7 @@ class ReviewCardState extends State<ReviewCard>{
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
                     priceWidget(widget.reviewModal.price),
                     bedRoomWidget(widget.reviewModal.bedRooms.toString()),
-                    ratingWidget(widget.reviewModal.rating)
+                    ratingWidget(widget.reviewModal.rating,widget.count)
                   ],),
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
                     floorPlanWidget(widget.reviewModal.floorplan),
@@ -80,7 +80,7 @@ class ReviewCardState extends State<ReviewCard>{
                     bathRoomWidget(widget.reviewModal.bathRooms.toString()),
                   ],),
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                    ratingWidget(widget.reviewModal.rating),
+                    ratingWidget(widget.reviewModal.rating,widget.count),
                     reviewDateWidget(widget.reviewModal.reviewDate)
                   ],)
                 ],
@@ -94,7 +94,7 @@ class ReviewCardState extends State<ReviewCard>{
                   bathRoomWidget(widget.reviewModal.bathRooms.toString()),
                   reviewDateWidget(widget.reviewModal.reviewDate),
                   bedRoomWidget(widget.reviewModal.bedRooms.toString()),
-                  ratingWidget(widget.reviewModal.rating)
+                  ratingWidget(widget.reviewModal.rating,widget.count)
 
                 ],),
               ),
@@ -133,7 +133,8 @@ class ReviewCardState extends State<ReviewCard>{
                                 contentPadding: EdgeInsets.all(10
                                 ),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                                content: ReviewDetails(reviewModal:widget.reviewModal,address: widget.compoundAddress),
+                                content: ReviewDetails(reviewModal:widget.reviewModal,
+                                    address: widget.compoundAddress,count: widget.count,),
                               );
                             }
                         );

@@ -26,7 +26,7 @@ class _PostAnswerState extends State<PostAnswer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
+      height: 270,
       width: widget.width,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -102,6 +102,7 @@ class _PostAnswerState extends State<PostAnswer> {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   width: widget.width,
+                  alignment: Alignment.center,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

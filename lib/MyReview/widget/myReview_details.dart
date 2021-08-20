@@ -137,7 +137,7 @@ class MyReviewDetailState extends State<MyReviewDetails>{
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
               priceWidget(widget.myReviewsModal.price),
               bedRoomWidget(widget.myReviewsModal.bedRooms.toString()),
-              ratingWidget(widget.myReviewsModal.rating)
+              ratingWidget(widget.myReviewsModal.rating,0)
             ],),
           ),
 

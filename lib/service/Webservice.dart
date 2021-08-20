@@ -139,6 +139,7 @@ class Webservice{
       List list = jsonResponse["compoundList"];
       list.forEach((element) {
       CompoundModal  compoundModal = new CompoundModal.fromJson(element);
+      print("Review count"+compoundModal.reviewCount.toString());
         cList.add(compoundModal);
       });
     }else if(jsonResponse["status"]==false &&
@@ -401,7 +402,10 @@ class Webservice{
       // print("review addeed map "+map.toString());
 
       if(map["errorcode"] == 0 && map["status"]==true){
-        getCompoundDetails(reviewModal.compoundID);
+        print("jjbbbbbbbgbuhygjygjgygygyjgyjygjygj");
+
+        GlobalKeys.compoundListKey.currentState.getCompoundList();
+        GlobalKeys.compoundDetailTabKey.currentState.getCompoundDetails();
         GlobalKeys.compoundDetailsKey.currentState.fetchReview();
       }
       else{
@@ -411,6 +415,9 @@ class Webservice{
 
 
     });
+
+
+
 
 
   }

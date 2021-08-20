@@ -77,7 +77,8 @@ class CompoundModal{
         _facility = json["facility"],
         _design = json["design"],
         _position ={"coordinates":json["position"]["coordinates"],"type":json["position"]["type"]},
-        _category = json["category"];
+        _category = json["category"],
+        _reviewCount = json["reviewCount"];
 
 
 

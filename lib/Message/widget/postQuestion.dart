@@ -100,6 +100,7 @@ bool questionvalidate=false;
             alignment: Alignment.bottomCenter,
             child: Container(
               width: widget.width,
+              alignment: Alignment.center,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

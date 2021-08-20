@@ -20,9 +20,11 @@ import 'package:webrevue/model/ReviewModal.dart';
 class ReviewDetails extends StatefulWidget {
   ReviewModal reviewModal;
   String address;
+  int count;
 
 
-  ReviewDetails({this.reviewModal,this.address});
+
+  ReviewDetails({this.reviewModal,this.address,this.count});
 
   @override
   State<StatefulWidget> createState() {
@@ -78,45 +80,47 @@ class ReviewDetailState extends State<ReviewDetails> {
     return Flexible(
       flex: 1,
       fit: FlexFit.loose,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                border: Border(right: BorderSide(color: Colors.black12))),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  border: Border(right: BorderSide(color: Colors.black12))),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
 
-                overAllRating(widget.reviewModal.rating),
-                ReviewRatings(design: widget.reviewModal.design,
-                  value: widget.reviewModal.value,
-                facility: widget.reviewModal.facilities,
-                location: widget.reviewModal.location,
-                management: widget.reviewModal.management,),
+                  overAllRating(widget.reviewModal.rating),
+                  ReviewRatings(design: widget.reviewModal.design,
+                    value: widget.reviewModal.value,
+                  facility: widget.reviewModal.facilities,
+                  location: widget.reviewModal.location,
+                  management: widget.reviewModal.management,),
 
-                Divider(
-                  thickness: 1,
-                  color: Colors.black12,
-                ),
-                addressWidget(widget.address),
+                  Divider(
+                    thickness: 1,
+                    color: Colors.black12,
+                  ),
+                  addressWidget(widget.address),
 
-                SizedBox(
-                  height: 20,
-                ),
+                  SizedBox(
+                    height: 20,
+                  ),
 
-                ProsWidget(widget.reviewModal.pros),
+                  ProsWidget(widget.reviewModal.pros),
 
-                SizedBox(
-                  height: 20,
-                ),
+                  SizedBox(
+                    height: 20,
+                  ),
 
-                ConsWidget(widget.reviewModal.cons)
+                  ConsWidget(widget.reviewModal.cons)
 
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -137,7 +141,7 @@ class ReviewDetailState extends State<ReviewDetails> {
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
               priceWidget(widget.reviewModal.price),
               bedRoomWidget(widget.reviewModal.bedRooms.toString()),
-              ratingWidget(widget.reviewModal.rating)
+              ratingWidget(widget.reviewModal.rating,widget.count)
             ],),
           ),
 
