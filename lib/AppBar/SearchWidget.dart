@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:webrevue/ContactusProperty.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/constants/keys.dart';
+import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/model/CompoundModal.dart';
 import 'package:webrevue/model/SearchModal.dart';
 import 'package:webrevue/model/arguments/CompoundArgument.dart';
@@ -39,12 +41,20 @@ class SearchWidgetState extends State<SearchWidget> {
     super.initState();
     width = widget.maxWidth;
     searchModal = new SearchModal();
+
   }
 
   static OverlayEntry overlayEntry;
 
   static void  hideIndicator(BuildContext context) {
-    overlayEntry.remove();
+
+    if(overlayEntry!=null)
+      {
+        overlayEntry.remove();
+        overlayEntry=null;
+      }
+
+
   }
 
 
@@ -106,10 +116,9 @@ class SearchWidgetState extends State<SearchWidget> {
                             padding: EdgeInsets.all(8),
                             onPressed: () {
 
-                              if(overlayEntry!=null && overlayEntry.mounted)
-                                {
+
                                   hideIndicator(context);
-                                }
+
                               compoundSearchList.clear();
 
                               setState(() {
@@ -127,6 +136,11 @@ class SearchWidgetState extends State<SearchWidget> {
                     fillColor: Colors.white),
                 onChanged: (string) {
 
+                      hideIndicator(context);
+
+
+
+
                   if (string.length > 3) {
                     print(string);
                     // searchableitem.clear();
@@ -134,13 +148,12 @@ class SearchWidgetState extends State<SearchWidget> {
 
                     Webservice.searchCompoundRequest(searchModal,context)
                         .then((value) => this.setState(() {
-                          if(compoundSearchList.isNotEmpty)
+                          // if(compoundSearchList.isNotEmpty)
                           showSearchOverLay(context);
                             }));
                   } else{
                     compoundSearchList.clear();
-                    if(overlayEntry!=null && overlayEntry.mounted)
-                    hideIndicator(context);
+
                     setState(() {});
 
                   }
@@ -149,7 +162,7 @@ class SearchWidgetState extends State<SearchWidget> {
               ),
             ),
           ),
-         width>1800? Container(
+         MediaQuery.of(context).size.width>600? Container(
             height: 40,
             width: width / 2,
             margin: EdgeInsets.only(
@@ -187,14 +200,15 @@ class SearchWidgetState extends State<SearchWidget> {
               ),
             ),
           ):Container(),
-          MaterialButton(
+         MediaQuery.of(context).size.width>700? MaterialButton(
             height: 45,
             onPressed: (){
               if(searchController.text.isNotEmpty)
 GlobalKeys.compoundListKey.currentState.getCompoundList(search: searchController.text);
 
-              if(overlayEntry!=null && overlayEntry.mounted)
-                hideIndicator(context);
+                  hideIndicator(context);
+
+
 
             },
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -210,7 +224,7 @@ GlobalKeys.compoundListKey.currentState.getCompoundList(search: searchController
                     fontSize: 16.0
                 ),
                 textAlign: TextAlign.left
-            ),),
+            ),):Container(),
           Container(
     //        height: 40,
       //   width: width / 2,
@@ -254,13 +268,18 @@ GlobalKeys.compoundListKey.currentState.getCompoundList(search: searchController
 
 
   void showSearchOverLay(BuildContext context) {
+
+    if(overlayEntry!=null)
+    {
+      hideIndicator(context);
+    }
     overlayEntry =
     OverlayEntry(
       builder: (BuildContext context) {
         return Positioned(
           top: 150.0,
-          left: 270,
-          right: 600,
+          left: MediaQuery.of(context).size.width>700?270:60,
+          right: MediaQuery.of(context).size.width>700?600:10,
           bottom: 100,
           child: CompositedTransformFollower(offset: Offset(0,50),
             link: _layerLink,
@@ -272,26 +291,88 @@ GlobalKeys.compoundListKey.currentState.getCompoundList(search: searchController
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               child: SizedBox(
                 child:
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: AlwaysScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    CompoundModal compoundModal =
-                    (compoundSearchList[index] as CompoundModal);
-                    return InkWell(
+                ListView(shrinkWrap: true,
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: AlwaysScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        CompoundModal compoundModal =
+                        (compoundSearchList[index] as CompoundModal);
+                        return
+                          InkWell(
+                          mouseCursor: SystemMouseCursors.click,
+                          onTap: () {
+
+                            // searchController.clear();
+                            hideIndicator(context);
+                            if(MediaQuery.of(context).size.width>700)
+                            searchController.text=compoundModal.compoundname;
+                            else
+                            Navigator.pushNamed(context, compoundDetails,
+                                arguments: CompoundArgument(
+                                    compoundId: compoundModal.id,
+                                    compoundName: compoundModal.compoundname,
+                                    images: compoundModal.images,
+                                    address: compoundModal.address));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 10, bottom: 10, left: 10, right: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  (compoundSearchList[index] as CompoundModal)
+                                      .compoundname,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                      color: ColorClass.lightTextColor),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  (compoundSearchList[index] as CompoundModal)
+                                      .address,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      color: ColorClass.lightTextColor),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Divider(
+                                  color: Colors.grey,
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: compoundSearchList.length,
+                    ),
+                    InkWell(
                       mouseCursor: SystemMouseCursors.click,
                       onTap: () {
 
-                        // searchController.clear();
-                        if(overlayEntry!=null && overlayEntry.mounted)
-                        hideIndicator(context);
-                        searchController.text=compoundModal.compoundname;
-                        // Navigator.pushNamed(context, compoundDetails,
-                        //     arguments: CompoundArgument(
-                        //         compoundId: compoundModal.id,
-                        //         compoundName: compoundModal.compoundname,
-                        //         images: compoundModal.images,
-                        //         address: compoundModal.address));
+                          hideIndicator(context);
+
+
+                        showDialog(context: context, builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.white,
+                            insetPadding: EdgeInsets.all(20),
+                            contentPadding: EdgeInsets.zero,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            content: ContactusProperty(context),
+                          );
+                        },);
+
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -300,8 +381,7 @@ GlobalKeys.compoundListKey.currentState.getCompoundList(search: searchController
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              (compoundSearchList[index] as CompoundModal)
-                                  .compoundname,
+                              ("Cant find your property"),
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                   fontSize: 14,
@@ -312,8 +392,7 @@ GlobalKeys.compoundListKey.currentState.getCompoundList(search: searchController
                               height: 5,
                             ),
                             Text(
-                              (compoundSearchList[index] as CompoundModal)
-                                  .address,
+                              ("Contact us"),
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                   fontSize: 12,
@@ -329,10 +408,11 @@ GlobalKeys.compoundListKey.currentState.getCompoundList(search: searchController
                           ],
                         ),
                       ),
-                    );
-                  },
-                  itemCount: compoundSearchList.length,
+                    )
+                  ],
                 ),
+
+
               ),
             ),
           ),

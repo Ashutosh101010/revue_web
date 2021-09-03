@@ -430,6 +430,8 @@ class Webservice{
         GlobalKeys.compoundListKey.currentState.getCompoundList();
         GlobalKeys.compoundDetailTabKey.currentState.getCompoundDetails();
         GlobalKeys.compoundDetailsKey.currentState.fetchReview();
+        ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.ADD_REVIEW_SUCCESS),width: 500 ,behavior: SnackBarBehavior.floating));
+
       }
       else{
         ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.ADD_REVIEW_FAIL),width: 500 ,behavior: SnackBarBehavior.floating));
@@ -855,13 +857,7 @@ print(request);
     else{
       request["coordinates"]=[Constants.RECOMMENDED_COMPOUNDS_DEFAULT_LATITUDE,Constants.RECOMMENDED_COMPOUNDS_DEFAULT_LONGITUDE];
     }
-    // if(radius>0 && radius<30 && currentPosition!=null)
-    // {
-    //   request["radius"]=radius;
-    //   request["coordinates"]=[currentPosition.latitude,currentPosition.longitude];
-    // }
 
-    // print(convert.jsonEncode(request));
     var response = await http.post(Uri.parse(ServerDetails.recommendedProperty),
         body: convert.jsonEncode(request),
         headers: {
@@ -891,5 +887,27 @@ print(request);
 
 
 
+  static Future<dynamic> addPropertyRequest(String propertyName,String propertyAddress,BuildContext context) async {
 
-}
+    var request={};
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    request['userId']=sharedPreferences.getString("userId");
+    request['propertyName']=propertyName;
+    request['propertyAddress']=propertyAddress;
+
+    var response= await http.post(Uri.parse(ServerDetails.addPropertyUser),body: jsonEncode(request),headers: {
+      "content-type": "application/json",
+      "accept": "application/json"
+    });
+    var jsonResponse = convert.jsonDecode(response.body);
+    print(jsonResponse);
+    if(jsonResponse['errorCode']==0) {
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text("Request for property submited"),width: 500 ,behavior: SnackBarBehavior.floating));
+
+    }
+    }
+
+
+
+  }

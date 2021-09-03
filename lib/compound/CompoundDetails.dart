@@ -174,7 +174,7 @@ ScrollController controller=new ScrollController();
         return Scaffold(
           key: scaffoldKey,
          backgroundColor: Colors.white,
-            drawer: Drawer(child: SideDrawer(),),
+            drawer: Drawer(child: MainDrawer(context),),
             appBar:  maxWidth?
         PreferredSize(preferredSize: Size.fromHeight(70),child:  AppBarFirst(constraints.maxWidth,loggedIn),)
              :

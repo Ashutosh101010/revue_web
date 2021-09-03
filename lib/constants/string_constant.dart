@@ -11,6 +11,7 @@ class Constants{
    static const  String ANSWER_REPORTED_SUCCESS="Answer Reported Success";
    static const  String ANSWER_REPORTED_FAIL="Unable to report Answer";
    static const  String ADD_REVIEW_FAIL="Unable to post review";
+   static const  String ADD_REVIEW_SUCCESS="Review Posted";
    static const  String FAVOURITES_ADDED_SUCCESS="Added to favourites";
    static const  String FAVOURITES_REMOVED_SUCCESS="Removed from favourites";
    static const  String SOMETHING_WENT_WRONG="Something went wrong";

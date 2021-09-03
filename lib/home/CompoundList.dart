@@ -91,7 +91,7 @@ ItemScrollController itemScrollController=new ItemScrollController();
 
     _scrollController.addListener(() {
 
-      if(SearchWidgetState.overlayEntry!=null && SearchWidgetState.overlayEntry.mounted)
+      if(SearchWidgetState.overlayEntry!=null)
       SearchWidgetState.hideIndicator(context);
     });
 
@@ -181,7 +181,7 @@ load=false;
                             color: Colors.white,
                             border: Border(bottom: BorderSide(color: Colors.black12))
                         ),
-                        child: SearchWidget(maxWidth/2.3),
+                        child: SearchWidget(maxWidth<=700?maxWidth:maxWidth/2.3),
                       ),
 
                       width?Padding(
