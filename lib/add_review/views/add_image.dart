@@ -3,6 +3,7 @@ import 'package:http/http.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:webrevue/add_review/custom_textfield.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/model/ReviewModal.dart';
 
@@ -149,13 +150,7 @@ Future<void> getImages(ReviewModal reviewModal)async{
 
          Padding(
              padding: EdgeInsets.only(left: 20,right: 20,top: 20),
-             child: Text("Upload Images", style: TextStyle(
-                 color:  ColorClass.blueColor,
-                 fontWeight: FontWeight.w600,
-                 fontStyle:  FontStyle.normal,
-                 fontSize: 18.0
-             ),
-                 textAlign: TextAlign.left)
+             child:CustomTextField(label: "Upload Images",withAsterisk: true,)
          ),
          Container(margin: EdgeInsets.only(left:30,right:30,top:10,bottom: 10),
              child:  imageFileList.isEmpty

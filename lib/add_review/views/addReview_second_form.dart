@@ -7,6 +7,7 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:webrevue/add_review/custom_textfield.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/model/ReviewModal.dart';
 
@@ -49,16 +50,7 @@ bool descriptionvalidate=false;
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                          "Your Description",
-                          style: TextStyle(
-                              color:  ColorClass.blueColor,
-                              fontWeight: FontWeight.w600,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 18.0
-                          ),
-                          textAlign: TextAlign.left
-                      ),
+                      child:CustomTextField(withAsterisk: true,label: "Your Description",)
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 20,right: 20,top: 20),
@@ -109,16 +101,7 @@ bool descriptionvalidate=false;
                         children: [
                       Padding(
                       padding: EdgeInsets.only(top: 5,bottom: 5),
-                      child: Text(
-                          "Pros",
-                          style: TextStyle(
-                              color:Colors.black87,
-                              fontWeight: FontWeight.w600,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 14.0
-                          ),
-                          textAlign: TextAlign.left
-                      ),
+                      child: CustomTextField(label:  "Pros",withAsterisk: true,)
                     ),
                           ..._getProsWidget(),
 
@@ -132,16 +115,7 @@ bool descriptionvalidate=false;
                         children: [
                       Padding(
                       padding: EdgeInsets.only(top: 5,bottom: 5),
-                      child: Text(
-                          "Cons",
-                          style: TextStyle(
-                              color:Colors.black87,
-                              fontWeight: FontWeight.w600,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 14.0
-                          ),
-                          textAlign: TextAlign.left
-                      ),
+                      child:CustomTextField(withAsterisk: true,label: "Cons",)
                     ),
 
                           ..._getConsWidget()

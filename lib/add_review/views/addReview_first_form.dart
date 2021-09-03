@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:webrevue/add_review/custom_textfield.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/model/ReviewModal.dart';
 
@@ -83,17 +84,7 @@ bool bathroomvalidate=false;
                     // First Name
                     Padding(
                       padding: EdgeInsets.only(top: 5,bottom: 5),
-                      child: Text(
-
-                          "Floor Plan (sqft)",
-                          style:  TextStyle(
-                              color:Colors.black87,
-                              fontWeight: FontWeight.w600,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 14.0
-                          ),
-                          textAlign: TextAlign.left
-                      ),
+                      child: CustomTextField(withAsterisk: true,label:  "Floor Plan (sqft)",)
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -143,16 +134,7 @@ bool bathroomvalidate=false;
                     // First Name
                     Padding(
                       padding: EdgeInsets.only(top: 5,bottom: 5),
-                      child: Text(
-                          "Rent",
-                          style: const TextStyle(
-                              color:  Colors.black87,
-                              fontWeight: FontWeight.w600,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 14.0
-                          ),
-                          textAlign: TextAlign.left
-                      ),
+                      child: CustomTextField(label: "Rent",withAsterisk: true,)
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -199,16 +181,7 @@ bool bathroomvalidate=false;
                     // First Name
                     Padding(
                       padding: EdgeInsets.only(top: 5,bottom: 5),
-                      child: Text(
-                          "BedRooms",
-                          style: TextStyle(
-                              color:Colors.black87,
-                              fontWeight: FontWeight.w600,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 14.0
-                          ),
-                          textAlign: TextAlign.left
-                      ),
+                      child: CustomTextField(label: "BedRooms",withAsterisk: true,)
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -257,16 +230,7 @@ bool bathroomvalidate=false;
                     // First Name
                     Padding(
                       padding: EdgeInsets.only(top: 5,bottom: 5),
-                      child: Text(
-                          "Bathrooms",
-                          style: TextStyle(
-                              color:Colors.black87,
-                              fontWeight: FontWeight.w600,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 14.0
-                          ),
-                          textAlign: TextAlign.left
-                      ),
+                      child: CustomTextField(withAsterisk: true,label: "Bathrooms",)
                     ),
                     Container(
                       decoration: BoxDecoration(

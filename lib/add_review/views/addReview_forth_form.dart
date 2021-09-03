@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
+import 'package:webrevue/add_review/custom_textfield.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
 
@@ -87,18 +88,7 @@ class AddReviewForthFormState extends State<AddReviewForthForm>{
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                                "Start Date",
-                                style: TextStyle(
-                                    color:Colors.black87,
-                                    fontWeight: FontWeight.w600,
-
-                                    fontStyle:  FontStyle.normal,
-                                    fontSize: 16.0
-                                ),
-                                textAlign: TextAlign.left
-                            ),
-
+                            CustomTextField(label: "Start Date", withAsterisk: true),
 
                             IconButton(icon: Icon(CupertinoIcons.calendar,size: 30,color: ColorClass.blueColor,),
                               onPressed: ()async{
