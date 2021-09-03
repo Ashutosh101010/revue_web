@@ -1,13 +1,16 @@
 
 import 'dart:html';
 
+import 'package:fbroadcast/fbroadcast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:webrevue/AppBar/AppBarFirst.dart';
 import 'package:webrevue/AppBar/AppBarSec.dart';
 import 'package:webrevue/AppBar/MainDrawer.dart';
 import 'package:webrevue/AppBar/popupmenu.dart';
+import 'package:webrevue/LoginDashboard/widgets/side_drawer.dart';
 import 'package:webrevue/compound/widget/Header.dart';
 import 'package:webrevue/compound/widget/PersistentHeader.dart';
 import 'package:webrevue/constants/ColorClass.dart';
@@ -15,12 +18,15 @@ import 'package:webrevue/TabWidget/CompoundDetailTab.dart';
 import 'package:webrevue/TabWidget/ReviewsTab.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/footer/FooterWidget.dart';
+import 'package:webrevue/home/nearby_property.dart';
 import 'package:webrevue/model/CompoundModal.dart';
 import 'package:webrevue/model/arguments/AddReviewArgument.dart';
 import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/Webservice.dart';
 
 import 'dart:html' as html;
+
+import '../main.dart';
 
 
 class CompoundDetails extends StatefulWidget{
@@ -62,11 +68,18 @@ bool load=false;
 
   CompoundModal compoundModal;
 
+  // bool loggedIn=false;
 int selectedTab=1;
+
+  bool signInHover=false;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
+
+
     getCompoundDetails();
 
     filterProperty = filterList[0];
@@ -121,14 +134,14 @@ fetchReview(){
 
 }
 
-
-onRefresh(){
-  html.window.onBeforeUnload.listen((event) async{
-    setState(() {
-
-    });
-  });
-}
+//
+// onRefresh(){
+//   html.window.onBeforeUnload.listen((event) async{
+//     setState(() {
+//
+//     });
+//   });
+// }
 getCompoundDetails()async{
   setState(() {
     load=true;
@@ -161,9 +174,9 @@ ScrollController controller=new ScrollController();
         return Scaffold(
           key: scaffoldKey,
          backgroundColor: Colors.white,
-            drawer: Drawer(child: MainDrawer(context),),
+            drawer: Drawer(child: SideDrawer(),),
             appBar:  maxWidth?
-        PreferredSize(preferredSize: Size.fromHeight(70),child:  AppBarSec(key: MainAppBarKey,),)
+        PreferredSize(preferredSize: Size.fromHeight(70),child:  AppBarFirst(constraints.maxWidth,loggedIn),)
              :
             AppBar(
               actions: [
@@ -175,6 +188,11 @@ ScrollController controller=new ScrollController();
                       mouseCursor: SystemMouseCursors.click,
                       onTap: (){
 
+                        if(!loggedIn)
+                          {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You must log In"),behavior: SnackBarBehavior.floating,width: 500,));
+                          return;
+                          }
                         if(!exists){
                           Navigator.pushNamed(context, addreview,
                               arguments: AddReviewArgument(widget.compoundID,
@@ -212,7 +230,7 @@ ScrollController controller=new ScrollController();
 
 
 
-                Container(height: 80,
+              loggedIn?  Container(height: 80,
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(
                       left: 20, right: 20,top: 5, ),
@@ -246,7 +264,34 @@ ScrollController controller=new ScrollController();
                             ),
                           ],),
                       ),
-                    )),
+                    )):     Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                           top:15,  bottom: 10, left: 10, right: 30),
+                        child: InkWell(
+                          hoverColor: Color(0xfff9f9f9),
+                          onHover: (value) {
+                            setState(() {
+                              signInHover = value;
+                            });
+                          },
+                          onTap: () {
+
+                            Navigator.of(context).pushNamedAndRemoveUntil(initialroute,
+                                    (Route<dynamic> route) => false);
+                          },
+                          child: Text(
+                            "Sign In",
+                            style: TextStyle(
+                                color: signInHover ? ColorClass.redColor : ColorClass.blueColor,
+                                fontWeight: FontWeight.w700,
+                                fontStyle: FontStyle.normal,
+                                fontSize: 20.0),
+                          ),
+                        ),
+                      ),
+                    ),
               ],
 
            backgroundColor: Colors.white,
@@ -271,10 +316,14 @@ body: CustomScrollView(shrinkWrap: true,
            width: 200,
            height: 40,
            margin: EdgeInsets.only( left: constraints.maxWidth>=1200?constraints.maxWidth/2:constraints.maxWidth/4,right:50 ,  top: 10, bottom: 10),
-           child: MaterialButton(
+           child:
+           MaterialButton(
              onPressed: (){
-
-               if(!exists){
+if(!loggedIn)
+  {
+    ScaffoldMessenger.of(context).showSnackBar(new SnackBar(content: Text("Please login to Add Review"),width: 500 ,behavior: SnackBarBehavior.floating,));
+  }
+              else if(!exists){
                  Navigator.pushNamed(context, addreview,
                      arguments: AddReviewArgument(widget.compoundID,
                        compoundModal.compoundname,
@@ -282,7 +331,9 @@ body: CustomScrollView(shrinkWrap: true,
 
                      ));
                }else{
-                 displayAlertDialog(context,content: "Your review already exists",title: "Post Review");
+  ScaffoldMessenger.of(context).showSnackBar(new SnackBar(content: Text("Your review already exists"),width: 500 ,behavior: SnackBarBehavior.floating,));
+
+  // displayAlertDialog(context,content: "Your review already exists",title: "Post Review");
                }
 
 
@@ -316,7 +367,7 @@ body: CustomScrollView(shrinkWrap: true,
               Flexible(child:
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: compoundModal==null?Container():leftPanel(context,constraints.maxWidth),
+                child: compoundModal==null?Container():leftPanel(context,constraints.maxWidth,compoundModal),
               )
               ),
               constraints.maxWidth>=1100?rightPanel(context):Container()
@@ -339,7 +390,7 @@ body: CustomScrollView(shrinkWrap: true,
 
 
 
-  Widget leftPanel(BuildContext context,double width)
+  Widget leftPanel(BuildContext context,double width,CompoundModal compoundModal)
   {
     return   Column(
       children: [
@@ -359,7 +410,16 @@ body: CustomScrollView(shrinkWrap: true,
             ],
           ),
         ),
-       compoundModal==null?Container():ReviewsTab(reviewList,compoundModal.address),
+       compoundModal!=null?loggedIn?ReviewsTab(reviewList,compoundModal.address):
+       Container(padding: EdgeInsets.all(60),
+         child:
+       Text("Please Login to View Reviews",
+           style:  TextStyle(
+               color:ColorClass.redColor ,
+               fontWeight: FontWeight.w700,
+               fontStyle: FontStyle.normal,
+               fontSize: 16.0),
+           textAlign: TextAlign.center),):Container(),
 
         // reviewList.isEmpty?
         // Text("Please Add Review to view more Reviews",
@@ -377,186 +437,11 @@ body: CustomScrollView(shrinkWrap: true,
       width: 350,
       alignment: Alignment.topCenter,
       margin: EdgeInsets.only(left: 20,right:50,top: 10,),
-      child: ListView(
-        shrinkWrap: true,physics: NeverScrollableScrollPhysics(),
-        children: <Widget>[
+      child: NearByProperty(width: 350,),
 
-          Padding(
-            padding: EdgeInsets.only( left: 20,right:20 ,  top: 20, bottom: 10),
-            child: Text(
-                "Also by these companies Explore other developments by More. ‘Superenting’",
-                style:  TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700,
-                    fontStyle:  FontStyle.normal,
-                    fontSize: 16.0
-                ),
-                textAlign: TextAlign.left
-            ),
-          ),
-          ListView.builder(
-            itemCount: 4,
-            shrinkWrap: true,
-            itemBuilder: (context,index){
-              return Container(
-                margin: EdgeInsets.only(left: 20,right: 20,top: 15,bottom: 15),
-                width: 300,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 140,width: 300,
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: InkWell(onTap: (){},
-                          child: Container(
-                            width: 35,height: 35,alignment: Alignment.center,
-                            margin: EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: favhover?ColorClass.blueColor:Colors.white,),
-                            child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: favhover?
-                              Image.asset(
-                                "assets/images/heart.png",
-                                fit: BoxFit.contain,height: 20,width: 20,):
-                              Image.asset(
-                                "assets/images/heart.png",
-                                fit: BoxFit.contain,height: 20,width: 20,),
-                            ),
-                          ),
-                        ),),
-                      decoration: BoxDecoration(image:
-                      DecorationImage(
-                        image: AssetImage("assets/images/house.png"),
-                        fit: BoxFit.fill,)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15,top: 5),
-                      child: Text(
-                          "The Trilogy, M15",
-                          style:  TextStyle(
-                              color:  Colors.black87,
-                              fontWeight: FontWeight.w700,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 16.0
-                          ),
-                          textAlign: TextAlign.left
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15,top: 5),
-                      child: Text(
-                          "More ‘Superenting’, Allsop Letting and Managementr",
-                          style:  TextStyle(
-                              color:  Colors.black87,
-                              fontWeight: FontWeight.w500,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 15.0
-                          ),
-                          textAlign: TextAlign.left
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15,top: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          GFRating(
-                            size: 20,
-                            value: valueRating,
-                            color: Colors.yellow,
-                            borderColor: Colors.yellow,
-                            onChanged: (value) {
-                              setState(() {
-                                valueRating = value;
-                              });
-                            },
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                    "4.85",
-                                    style: TextStyle(
-                                        color: Colors.black87,
-                                        fontWeight: FontWeight.w700,
-                                        fontStyle:  FontStyle.normal,
-                                        fontSize: 16.0
-                                    ),
-                                    textAlign: TextAlign.left
-                                ),
-
-                                Text(
-                                    " (54 reviews)",
-                                    style: TextStyle(
-                                        color: Colors.black87,
-                                        fontStyle:  FontStyle.normal,
-                                        fontSize: 16.0
-                                    ),
-                                    textAlign: TextAlign.left
-                                ),
-
-
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],),
-              );
-            },
-          ),
-
-        ],
-      ),
     );
   }
-  // showPopupMenu(Offset offset) async {
-  //   double left = offset.dx;
-  //   double top = offset.dy;
-  //   await showMenu<String>(
-  //     context: context,
-  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-  //     color: ColorClass.blueColor,
-  //     position: RelativeRect.fromLTRB(left, top, left+1, top+2),
-  //     items: [
-  //       PopupMenuItem(child:
-  //       Text("My Account",textAlign: TextAlign.center,
-  //         style: TextStyle(color: Colors.white,),),value: '1',),
-  //       PopupMenuDivider(),
-  //       PopupMenuItem(child:
-  //       Text("Favourites",textAlign: TextAlign.center,style: TextStyle(color: Colors.white)),value: '2',),
-  //       PopupMenuDivider(),
-  //       PopupMenuItem(child:
-  //       Text("My Reviews",textAlign: TextAlign.center,style: TextStyle(color: Colors.white)),value: '3',),
-  //       PopupMenuDivider(),
-  //       PopupMenuItem(
-  //         child: Container(alignment: Alignment.center,child: Text("Logout",
-  //           textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600),))
-  //         ,value: '4',)
-  //     ],
-  //     elevation: 8.0,
-  //   ).then<void>((String itemSelected) {
-  //     if (itemSelected == null) return;
-  //
-  //     if(itemSelected == "1"){
-  //
-  //     }else if(itemSelected == "2"){
-  //
-  //     }else if(itemSelected == "3"){
-  //       Navigator.pushNamed(context, myreviews);
-  //
-  //     }else if(itemSelected == "4"){
-  //       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
-  //     }
-  //
-  //   });
-  // }
+
 
 }
 

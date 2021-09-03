@@ -1,4 +1,5 @@
 import 'dart:html' as html;
+import 'package:fbroadcast/fbroadcast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webrevue/LoginDashboard/LoginScreen.dart';
 import 'package:webrevue/route/router.dart' as router;
+import 'package:webrevue/service/Webservice.dart';
 import 'constants/keys.dart';
 import 'constants/string_constant.dart';
 import 'home/CompoundList.dart';
@@ -29,6 +31,7 @@ void main() {
 
   runApp(MyApp());
 
+listner();
 
 
 
@@ -40,15 +43,21 @@ void main() {
 
   // runApp(sharedPreferences.containsKey("userId")?MyDashboardApp():MyApp());
 }
-
+bool loggedIn=false;
+// BuildContext buildContext;
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+MyApp()
+{
+  Webservice.verifySession();
+}
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Revue',
         initialRoute:initialroute,
-        navigatorKey: navKey,
+        navigatorKey: GlobalKeys.navKey,
         onGenerateRoute:router.generateRoute,
       theme: ThemeData(pageTransitionsTheme: NoTransitionsOnWeb(),fontFamily: GoogleFonts.muli().fontFamily,
         bottomSheetTheme: Theme.of(context).bottomSheetTheme,
@@ -66,18 +75,51 @@ class MyApp extends StatelessWidget {
       home:   LoginScreen()
     );
   }
-}
 
+
+
+}
+listner()
+{
+  FBroadcast.instance().register("lfalse", (value, callback) {
+
+    loggedIn=false;
+    print("loggedIn-------"+loggedIn.toString());
+
+  });
+  FBroadcast.instance().register("ltrue", (value, callback) {
+    BuildContext buildContext;
+    if(value!=null)
+buildContext =value as BuildContext;
+    loggedIn=true;
+    print("!!!!!loggedIn-------"+loggedIn.toString());
+
+    if(buildContext!=null)
+      {
+
+        if(loggedIn &&(ModalRoute.of(buildContext).settings.name==initialroute ||
+            ModalRoute.of(buildContext).settings.name==loginRoute))
+          {
+
+Navigator.of(buildContext).pushNamedAndRemoveUntil(mainscreenRoute, (route) => false);
+          }
+      }
+    else{
+      print("context null");
+    }
+  });
+}
 
 class MyDashboardApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
 
         title: 'Revue',
         initialRoute:initialroute,
-        navigatorKey: navKey,
+        navigatorKey: GlobalKeys.navKey,
         onGenerateRoute:router.generateRoute,
         theme: ThemeData(pageTransitionsTheme: NoTransitionsOnWeb(),fontFamily: GoogleFonts.muli().fontFamily,
           bottomSheetTheme: Theme.of(context).bottomSheetTheme,

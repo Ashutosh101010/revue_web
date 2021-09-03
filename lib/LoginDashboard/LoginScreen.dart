@@ -1,17 +1,23 @@
 import 'dart:async';
 
+import 'package:fbroadcast/fbroadcast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webrevue/AppBar/MainDrawer.dart';
 import 'package:webrevue/LoginDashboard/widgets/login_dashboard.dart';
 import 'package:webrevue/LoginDashboard/widgets/side_drawer.dart';
 import 'package:webrevue/LoginDashboard/widgets/social_media_login.dart';
+import 'package:webrevue/route/routing_constant.dart';
+import 'package:webrevue/service/Webservice.dart';
 
 import '../constants/ColorClass.dart';
 import '../SignUp.dart';
 import '../footer/FooterWidget.dart';
 import 'dart:html' as html;
+
+import '../main.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -28,8 +34,9 @@ List favList = [];
 class LoginScreenState extends State<LoginScreen> {
 
 
+
   bool signUp = false;
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  static var scaffoldKey = GlobalKey<ScaffoldState>();
 
   int selectedCard = -1;
   OverlayEntry overlayEntry;
@@ -178,47 +185,50 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    throttle(sink.stream).listen((offset) {
-      pager.animateTo(
-        offset,
-        duration: Duration(milliseconds: 3000),
-        curve: Curves.ease,
-      );
-    });
+    // throttle(sink.stream).listen((offset) {
+    //   pager.animateTo(
+    //     offset,
+    //     duration: Duration(milliseconds: 3000),
+    //     curve: Curves.ease,
+    //   );
+    // });
 
+
+
+    Webservice.verifySession(context: context);
 
 
   }
 
 
 
-  Stream<double> throttle(Stream<double> src) async* {
-    double offset = pager.position.pixels;
-    DateTime dt = DateTime.now();
-    await for (var delta in src) {
-      if (DateTime.now().difference(dt) > Duration(milliseconds: 3000)) {
-        offset = pager.position.pixels;
-      }
-      dt = DateTime.now();
-      offset += delta;
-      yield offset;
-    }}
+  // Stream<double> throttle(Stream<double> src) async* {
+  //   double offset = pager.position.pixels;
+  //   DateTime dt = DateTime.now();
+  //   await for (var delta in src) {
+  //     if (DateTime.now().difference(dt) > Duration(milliseconds: 3000)) {
+  //       offset = pager.position.pixels;
+  //     }
+  //     dt = DateTime.now();
+  //     offset += delta;
+  //     yield offset;
+  //   }}
 
   @override
   void dispose() {
-    sink.close();
-    pager.dispose();
+    // sink.close();
+    // pager.dispose();
     super.dispose();
   }
 
 
-  onRefresh(){
-    html.window.onBeforeUnload.listen((event) async{
-      setState(() {
-
-      });
-    });
-  }
+  // onRefresh(){
+  //   html.window.onBeforeUnload.listen((event) async{
+  //     setState(() {
+  //
+  //     });
+  //   });
+  // }
 
 
   @override
@@ -262,7 +272,7 @@ class LoginScreenState extends State<LoginScreen> {
                                   color: Colors.white,
                                 ),
                                 onPressed: () {
-                                  return scaffoldKey.currentState.openDrawer();
+                                  scaffoldKey.currentState.openDrawer();
                                 },
                               ),
                             ),
@@ -681,7 +691,8 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Widget drawerItems(BuildContext context, bool Status) {
-    return SideDrawer();
+    // return SideDrawer();
+    return MainDrawer(context);
   }
 
 

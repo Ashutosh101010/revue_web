@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:html';
 
+import 'package:fbroadcast/fbroadcast.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webrevue/AppBar/SearchWidget.dart';
@@ -10,6 +11,7 @@ import 'package:webrevue/User/UpdatePassword.dart';
 import 'package:webrevue/compound/FilterScreen.dart';
 import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
+import 'package:webrevue/constants/string_constant.dart';
 import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
 import 'package:webrevue/home/CompoundList.dart';
 import 'package:webrevue/model/AnswerModal.dart';
@@ -81,6 +83,8 @@ class Webservice{
       sharedPreferences.setString("name", jsonResponse["user"]["firstname"]+" " +jsonResponse["user"]["lastname"]);
       sharedPreferences.setString("email",jsonResponse["user"]["email"]);
       sharedPreferences.setBool("isLoggedIn", true);
+      sharedPreferences.setString("token",jsonResponse["user"]["token"]);
+
 
       // displayAlertDialog(context,content: jsonResponse["message"],title: "Login");
       return jsonResponse["message"];
@@ -103,12 +107,15 @@ class Webservice{
   }
 
 
-  static Future<dynamic>  getCompoundRequest(BuildContext context,List cList,String id)async{
+  static Future<dynamic>  getCompoundRequest(BuildContext context,List cList,String id,int propertyCount,{String search,int page})async{
 
     var request ={};
     request["lastObjectID"]= id;
     request["category"] = filterCategoryType;
     request["amenities"] = GlobalKeys.compoundListKey.currentState.amenityList;
+    request["search"]=search;
+    request["page"]=page;
+    print(request);
     if(radius>0 && radius<30 && currentPosition!=null)
     {
       request["radius"]=radius;
@@ -120,7 +127,7 @@ class Webservice{
     //   request["coordinates"]=[currentPosition.latitude,currentPosition.longitude];
     // }
 
-    // print(convert.jsonEncode(request));
+    print(convert.jsonEncode(request));
     var response = await http.post(Uri.parse(ServerDetails.get_compound_request),
         body: convert.jsonEncode(request),
         headers: {
@@ -136,15 +143,23 @@ class Webservice{
     // CompoundModal compoundModal;
     if(jsonResponse["status"]==true &&
         jsonResponse["fetchCode"]==1){
+      cList.clear();
       List list = jsonResponse["compoundList"];
+      print("Compound List length"+ list.length.toString());
+
       list.forEach((element) {
       CompoundModal  compoundModal = new CompoundModal.fromJson(element);
-      print("Review count"+compoundModal.reviewCount.toString());
+      // print("Review count"+compoundModal.reviewCount.toString());
         cList.add(compoundModal);
+      });
+
+      GlobalKeys.compoundListKey.currentState.setState(() {
+        GlobalKeys.compoundListKey.currentState.propertyCount=jsonResponse['count'];
       });
     }else if(jsonResponse["status"]==false &&
         jsonResponse["fetchCode"]==2){
-      displayAlertDialog(context,content: "Unable to Fetch Compound",title: "Compounds");
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(Constants.NO_RESULTS_MESSAGE),width: 500 ,behavior: SnackBarBehavior.floating));
+      // displayAlertDialog(context,content: "Unable to Fetch Compound",title: "Compounds");
     }
    }
 
@@ -247,13 +262,14 @@ class Webservice{
     // print(jsonResponse);
     if(jsonResponse["status"] == true && jsonResponse["statusCode"]==0){
       Navigator.pop(context);
-      displayAlertDialog(context,content: "Post Question Successful",
-          title: "Post Question");
+      // displayAlertDialog(context,content: "Post Question Successful",
+      //     title: "Post Question");
     }else{
-      displayAlertDialog(context,content: "Unable to Post Question",
-          title: "Post Question");
+      // displayAlertDialog(context,content: "Unable to Post Question",
+      //     title: "Post Question");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.POST_QUESTION_ERROR_MESSAGE),width: 500 ,behavior: SnackBarBehavior.floating));
 
-    }
+      }
 
     GlobalKeys.postQuestionClassKey.currentState.getAllQuestions();
   }
@@ -306,10 +322,13 @@ class Webservice{
         && jsonResponse["errorCode"]==0){
 
       Navigator.pop(context);
-      displayAlertDialog(context,title: "Post Answer",content: "Post answer successfully");
+      // displayAlertDialog(context,title: "Post Answer",content: "Post answer successfully");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.POST_ANSWER_SUCCESSFUL_MESSAGE),width: 500 ,behavior: SnackBarBehavior.floating));
 
     }else{
-      displayAlertDialog(context,title: "Post Answer",content: "Unable to Post answer");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.POST_ANSWER_ERROR_MESSAGE),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,title: "Post Answer",content: "Unable to Post answer");
 
     }
 
@@ -350,11 +369,15 @@ class Webservice{
     if(jsonResponse["status"]==true &&
         jsonResponse["errorcode"] == 0){
       Navigator.pop(context);
-      displayAlertDialog(context,content: "Answer Reported Successfully",title: "Report Answer");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.ANSWER_REPORTED_SUCCESS),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,content: "Answer Reported Successfully",title: "Report Answer");
 
     }else{
       Navigator.pop(context);
-      displayAlertDialog(context,content: "Unable to report answer",title: "Report Answer");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.ANSWER_REPORTED_FAIL),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,content: "Unable to report answer",title: "Report Answer");
 
     }
   }
@@ -409,8 +432,10 @@ class Webservice{
         GlobalKeys.compoundDetailsKey.currentState.fetchReview();
       }
       else{
-        displayAlertDialog(context,title: "Add Review",
-            content: "Unable to post review");
+        ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.ADD_REVIEW_FAIL),width: 500 ,behavior: SnackBarBehavior.floating));
+
+        // displayAlertDialog(context,title: "Add Review",
+        //     content: "Unable to post review");
       }
 
 
@@ -453,6 +478,7 @@ class Webservice{
       if(list.isNotEmpty){
         list.forEach((element) {
           compoundModal = CompoundModal.fromJson(element);
+          print(compoundModal.reviewCount);
           tempFavIDList.add(compoundModal.id);
           tempFavList.add(compoundModal);
         });
@@ -487,10 +513,14 @@ class Webservice{
     if(jsonResponse["status"]== true &&
         jsonResponse["errorcode"] ==0)
     {
-      displayAlertDialog(context,title: "Favorite Compound",content: "Compound added to your Favorites");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.FAVOURITES_ADDED_SUCCESS),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,title: "Favorite Compound",content: "Compound added to your Favorites");
 
     }else{
-      displayAlertDialog(context,title: "Favorite Compound",content: "Something Went wrong");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.SOMETHING_WENT_WRONG),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,title: "Favorite Compound",content: "Something Went wrong");
 
     }
 
@@ -515,10 +545,14 @@ class Webservice{
     if(jsonResponse["status"]== true &&
         jsonResponse["errorcode"] == 1)
     {
-      displayAlertDialog(context,title: "Favorite Compound",content: "Removed from Favorite");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.FAVOURITES_REMOVED_SUCCESS),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,title: "Favorite Compound",content: "Removed from Favorite");
 
     }else{
-      displayAlertDialog(context,title: "Favorite Compound",content: "Something went wrong");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.SOMETHING_WENT_WRONG),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,title: "Favorite Compound",content: "Something went wrong");
 
     }
 
@@ -571,10 +605,14 @@ class Webservice{
     if(jsonResponse["status"] == true &&
         jsonResponse["errorCode"] == 0)
     {
-      displayAlertDialog(context,content: "Review Reported Successfully",title: "Report Review");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.REVIEW_REPORTED_SUCCESS),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,content: "Review Reported Successfully",title: "Report Review");
 
     }else{
-      displayAlertDialog(context,content: "Something went wrong");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.SOMETHING_WENT_WRONG),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,content: "Something went wrong");
     }
 
   }
@@ -599,7 +637,7 @@ class Webservice{
 
   }
 
-  static Future<dynamic> searchCompoundRequest(SearchModal searchModal)async{
+  static Future<dynamic> searchCompoundRequest(SearchModal searchModal,BuildContext context)async{
     var request = searchModal.toJson();
     var response = await http.post(Uri.parse(ServerDetails.search_compound),
         body: convert.jsonEncode(request),
@@ -625,7 +663,7 @@ class Webservice{
 
 
       // print(jsonResponse["code"]);
-      // Scaffold.of(context).showSnackBar(SnackBar(content: Text("Unable to Fetch Compound")));
+      // Scaffold.of(context ).showSnackBar(SnackBar(content: Text("No Results")));
     }
   }
 
@@ -641,11 +679,15 @@ class Webservice{
     var jsonResponse = convert.jsonDecode(response.body);
     // print(jsonResponse);
     if(jsonResponse["status"]==true && jsonResponse["errorCode"]==0){
-    await displayAlertDialog(context,title: "Forget Password",content: "Otp is send to your Email Address");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.OTP_SENT),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // await displayAlertDialog(context,title: "Forget Password",content: "Otp is send to your Email Address");
     Navigator.of(context).pop();
       Navigator.pushNamed(context, otpVerification,arguments: VerifyOtpArgument(email));
     }else{
-      displayAlertDialog(context,content: "Fail to Send OTP",title: "Forget Password");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.OTP_SENT_FAIL),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,content: "Fail to Send OTP",title: "Forget Password");
     }
   }
 
@@ -661,11 +703,15 @@ class Webservice{
 
     var jsonResponse = convert.jsonDecode(response.body);
     if(jsonResponse["status"]==true && jsonResponse["errorCode"]==0){
-     await displayAlertDialog(context,title: "OTP Verification",content: "OTP verified successfully");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.OTP_VERIFIED),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // await displayAlertDialog(context,title: "OTP Verification",content: "OTP verified successfully");
      Navigator.of(context).pop();
       Navigator.pushNamed(context, newpassword,arguments: ChangePasswordArgument(email));
     }else{
-      displayAlertDialog(context,title: "OTP Verification",content: "Unable to Verify OTP, Request Again");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.UNABLE_VERIFY_OTP),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,title: "OTP Verification",content: "Unable to Verify OTP, Request Again");
     }
   }
 
@@ -680,11 +726,15 @@ class Webservice{
         });
     var jsonResponse  = convert.jsonDecode(response.body);
     if(jsonResponse["status"]==true && jsonResponse["errorCode"]==0){
-     await displayAlertDialog(context,title: "Change Password",content: "Password changes Successfully");
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.PASSWORD_CHANGE_SUCCESS),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // await displayAlertDialog(context,title: "Change Password",content: "Password changes Successfully");
      Navigator.of(context).pop();
       Navigator.of(context).pushReplacementNamed(initialroute);
     }else{
-     await displayAlertDialog(context);
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(Constants.SOMETHING_WENT_WRONG),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // await displayAlertDialog(context);
       Navigator.of(context).pop();
       Navigator.of(context).pushReplacementNamed(initialroute);
 
@@ -717,22 +767,126 @@ class Webservice{
 
       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
       window.localStorage["userId"]= jsonResponse["user"]["_id"];
-      sharedPreferences.setString("userID", jsonResponse["user"]["_id"]);
+      sharedPreferences.setString("userId", jsonResponse["user"]["_id"]);
       sharedPreferences.setString("name", jsonResponse["user"]["firstname"]);
       if(jsonResponse["user"]["email"]!=null){
         sharedPreferences.setString("email",jsonResponse["user"]["email"]);
       }
       sharedPreferences.setBool("isLoggedIn", true);
+      sharedPreferences.setString("token",jsonResponse["user"]["token"]);
+      verifySession();
 
       Navigator.pushReplacementNamed(context,mainscreenRoute);
 
 
     }
     else {
-      displayAlertDialog(context,title: "Login",content: jsonResponse["message"]);
+      ScaffoldMessenger.of(  context).showSnackBar(SnackBar(content: Text(jsonResponse["message"]),width: 500 ,behavior: SnackBarBehavior.floating));
+
+      // displayAlertDialog(context,title: "Login",content: jsonResponse["message"]);
 
     }
 
+  }
+
+
+  static Future<void> verifySession({BuildContext context})
+  async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if(sharedPreferences.containsKey("isLoggedIn")&&sharedPreferences.containsKey("token")&&sharedPreferences.containsKey("userId"))
+      {
+        var request ={};
+        request['token']=sharedPreferences.getString("token");
+        request['isLoggedIn']=sharedPreferences.getBool("isLoggedIn");
+        request['userId']=sharedPreferences.getString("userId");
+print(request);
+        var response= await http.post(Uri.parse(ServerDetails.verifySession),body: jsonEncode(request),headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+
+        var jsonResponse = convert.jsonDecode(response.body);
+        print(jsonResponse);
+        if(jsonResponse['errorCode']!=0)
+          {
+            FBroadcast.instance().broadcast("lfalse");
+            sharedPreferences.clear();
+          }
+        else if(jsonResponse['errorCode']==0)
+          {
+            if(context!=null)
+            FBroadcast.instance().broadcast("ltrue",value: context);
+            else
+              FBroadcast.instance().broadcast("ltrue");
+          }
+      }
+  }
+
+
+  static Future<void> logOut()
+  async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if(sharedPreferences.containsKey("userId"))
+      {
+        var request ={};
+        request['userId']=sharedPreferences.getString("userId");
+print(request);
+        var response= await http.post(Uri.parse(ServerDetails.logOut),body: jsonEncode(request),headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+      }
+
+
+
+  }
+
+
+
+  static Future<dynamic>  getRecommendedCompoundRequest(BuildContext context)async{
+
+    var request ={};
+    print(request);
+    if(currentPosition!=null)
+    {
+
+      request["coordinates"]=[currentPosition.latitude,currentPosition.longitude];
+    }
+    else{
+      request["coordinates"]=[Constants.RECOMMENDED_COMPOUNDS_DEFAULT_LATITUDE,Constants.RECOMMENDED_COMPOUNDS_DEFAULT_LONGITUDE];
+    }
+    // if(radius>0 && radius<30 && currentPosition!=null)
+    // {
+    //   request["radius"]=radius;
+    //   request["coordinates"]=[currentPosition.latitude,currentPosition.longitude];
+    // }
+
+    // print(convert.jsonEncode(request));
+    var response = await http.post(Uri.parse(ServerDetails.recommendedProperty),
+        body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+
+    print(response);
+    // cList.clear();
+    print(response.body);
+    Map<String,dynamic> jsonResponse = convert.jsonDecode(response.body);
+    print("recommend"+jsonResponse.toString());
+    // List tempList = [];
+    if(jsonResponse["status"]==true &&
+        jsonResponse["fetchCode"]==0){
+      recommendedList.clear();
+      List list = jsonResponse["compoundList"];
+
+      list.forEach((element) {
+        CompoundModal  compoundModal = new CompoundModal.fromJson(element);
+        recommendedList.add(compoundModal);
+      });
+
+    }
+    print("List length"+recommendedList.length.toString());
   }
 
 

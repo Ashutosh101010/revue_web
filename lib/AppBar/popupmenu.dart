@@ -6,6 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webrevue/LoginDashboard/widgets/social_media_login.dart';
 import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/route/routing_constant.dart';
+import 'package:webrevue/service/Webservice.dart';
+
+import 'dart:html' as html;
 
  showPopupMenu(Offset offset,BuildContext context) async {
   double left = offset.dx;
@@ -44,12 +47,20 @@ import 'package:webrevue/route/routing_constant.dart';
 
     }else if(itemSelected == "4"){
 
+      Webservice.logOut();
       FacebookAuth.instance.logOut();
       googleSignIn.signOut();
       clearSharedPreferences();
       window.localStorage.clear();
+
+
+
       Navigator.of(context).pushNamedAndRemoveUntil(initialroute,
               (Route<dynamic> route) => false);
+
+
+      html.window.location.reload();
+
     }
 
   });

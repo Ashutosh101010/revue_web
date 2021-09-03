@@ -42,7 +42,7 @@ class ReviewCardState extends State<ReviewCard>{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 250,
+              height: width>800?width/4:width/2,
               decoration: BoxDecoration(image:
               DecorationImage(
                 image: NetworkImage(ServerDetails.get_images+widget.reviewModal.images[0]),

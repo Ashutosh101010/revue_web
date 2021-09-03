@@ -112,96 +112,96 @@ class AppBarSecState extends State<AppBarSec>{
          alignment: Alignment.centerRight,
          child: Row(
            children: [
-             InkWell(
-               onHover: (value) {
-                 setState(() {
-                   homeHover = value;
-                 });
-               },
-               onTap: (){
-                 Navigator.of(context).pop();
-                 Navigator.pushReplacementNamed(context,mainscreenRoute);
-
-               },
-               child: Padding(
-                   padding: const EdgeInsets.only(
-                       left: 20, right: 20, top: 10, bottom: 10),
-                   child: // About us
-                   Text(
-                       "Home",
-                       style:  TextStyle(
-                           color:homeHover?ColorClass.redColor :Color(0x99000000),
-                           fontWeight: FontWeight.w600,
-                           fontStyle:  FontStyle.normal,
-                           fontSize: 15.0
-                       ),
-                       textAlign: TextAlign.left
-                   )
-               ),
-             ),
-
-
-             MouseRegion(
-               cursor: SystemMouseCursors.click,
-               child: GestureDetector(
-                 onTap: (){},
-                 child: Padding(
-                   padding: const EdgeInsets.only(
-                       left: 20, right: 20, top: 10, bottom: 10),
-                   child: // About us
-                   Text(
-                       "About us",
-                       style:  TextStyle(
-                           color:  Color(0x99000000),
-                           fontWeight: FontWeight.w600,
-                           fontStyle:  FontStyle.normal,
-                           fontSize: 15.0
-                       ),
-                       textAlign: TextAlign.left
-                   )
-                 ),
-               ),
-             ),
-             Padding(
-               padding: const EdgeInsets.only(
-                   left: 20, right: 10, top: 10, bottom: 10),
-               child: MouseRegion(
-                 cursor: SystemMouseCursors.click,
-                 child: GestureDetector(
-                   onTap: (){
-                     showSearchDialog(context);
-                   },
-                   child: Container(
-                     height: 40,width: 160,
-                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
-                     color: Colors.white,
-                         border: Border.all(
-                             color: const Color(0xcc156fc2),
-                             width: 2
-                         )),
-                     child: Padding(
-                       padding: const EdgeInsets.all(8.0),
-                       child: Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                           Text(
-                               "Search",
-                               style:  TextStyle(
-                                  color: Color(0x99000000),
-                                   fontWeight: FontWeight.w500,
-                                   fontStyle:  FontStyle.normal,
-                                   fontSize: 15.0
-                               ),
-                               textAlign: TextAlign.left
-                           ),
-                           Icon(Icons.search,color: const Color(0xcc156fc2,),size: 20,)
-                         ],
-                       ),
-                     ),
-                   ),
-                 ),
-               ),
-             ),
+             // InkWell(
+             //   onHover: (value) {
+             //     setState(() {
+             //       homeHover = value;
+             //     });
+             //   },
+             //   onTap: (){
+             //     Navigator.of(context).pop();
+             //     Navigator.pushReplacementNamed(context,mainscreenRoute);
+             //
+             //   },
+             //   child: Padding(
+             //       padding: const EdgeInsets.only(
+             //           left: 20, right: 20, top: 10, bottom: 10),
+             //       child: // About us
+             //       Text(
+             //           "Home",
+             //           style:  TextStyle(
+             //               color:homeHover?ColorClass.redColor :Color(0x99000000),
+             //               fontWeight: FontWeight.w600,
+             //               fontStyle:  FontStyle.normal,
+             //               fontSize: 15.0
+             //           ),
+             //           textAlign: TextAlign.left
+             //       )
+             //   ),
+             // ),
+             //
+             //
+             // MouseRegion(
+             //   cursor: SystemMouseCursors.click,
+             //   child: GestureDetector(
+             //     onTap: (){},
+             //     child: Padding(
+             //       padding: const EdgeInsets.only(
+             //           left: 20, right: 20, top: 10, bottom: 10),
+             //       child: // About us
+             //       Text(
+             //           "About us",
+             //           style:  TextStyle(
+             //               color:  Color(0x99000000),
+             //               fontWeight: FontWeight.w600,
+             //               fontStyle:  FontStyle.normal,
+             //               fontSize: 15.0
+             //           ),
+             //           textAlign: TextAlign.left
+             //       )
+             //     ),
+             //   ),
+             // ),
+             // Padding(
+             //   padding: const EdgeInsets.only(
+             //       left: 20, right: 10, top: 10, bottom: 10),
+             //   child: MouseRegion(
+             //     cursor: SystemMouseCursors.click,
+             //     child: GestureDetector(
+             //       onTap: (){
+             //         showSearchDialog(context);
+             //       },
+             //       child: Container(
+             //         height: 40,width: 160,
+             //         decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
+             //         color: Colors.white,
+             //             border: Border.all(
+             //                 color: const Color(0xcc156fc2),
+             //                 width: 2
+             //             )),
+             //         child: Padding(
+             //           padding: const EdgeInsets.all(8.0),
+             //           child: Row(
+             //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             //             children: [
+             //               Text(
+             //                   "Search",
+             //                   style:  TextStyle(
+             //                      color: Color(0x99000000),
+             //                       fontWeight: FontWeight.w500,
+             //                       fontStyle:  FontStyle.normal,
+             //                       fontSize: 15.0
+             //                   ),
+             //                   textAlign: TextAlign.left
+             //               ),
+             //               Icon(Icons.search,color: const Color(0xcc156fc2,),size: 20,)
+             //             ],
+             //           ),
+             //         ),
+             //       ),
+             //     ),
+             //   ),
+             // ),
              // Container(height: 80,
              //     alignment: Alignment.center,
              //     margin: EdgeInsets.only(right: 8,top: 5, bottom: 5),

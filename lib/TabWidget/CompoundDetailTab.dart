@@ -24,6 +24,8 @@ import 'package:webrevue/route/routing_constant.dart';
 import 'package:webrevue/service/ServerDetails.dart';
 import 'package:webrevue/service/Webservice.dart';
 
+import '../main.dart';
+
 class CompoundDetailTab extends StatefulWidget {
   // String compoundID;
   CompoundModal compoundModal;
@@ -119,6 +121,13 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                     ),alignment: Alignment.center,
                       color: ColorClass.blueColor,
                       onPressed: () async{
+
+                      if(!loggedIn)
+                        {
+                          ScaffoldMessenger.of(context).showSnackBar(new SnackBar(content: Text("You must log In"),width: 500 ,behavior: SnackBarBehavior.floating,));
+
+                        }
+                      else{
                         favourite = !favourite;
                         FavoriteModal favModal = new FavoriteModal();
 
@@ -126,21 +135,23 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                           favouriteIDList.remove(widget.compoundModal.id);
                           favList.remove(widget.compoundModal);
                           favModal.compoundID =widget.compoundModal.id;
-                         await Webservice.removeFavoriteRequest(context,favModal);
+                          await Webservice.removeFavoriteRequest(context,favModal);
 
-                         setState(() {
+                          setState(() {
 
-                         });
+                          });
                         }
                         else{
                           favouriteIDList.add(widget.compoundModal.id);
                           favList.add(widget.compoundModal);
                           favModal.compoundID =   widget.compoundModal.id;
-                         await Webservice.addFavoriteRequest(context,favModal);
-                         setState(() {
+                          await Webservice.addFavoriteRequest(context,favModal);
+                          setState(() {
 
-                         });
+                          });
                         }
+                      }
+
                       },),
               ),
                 ),),
@@ -178,6 +189,11 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                     children: [
                     InkWell(
                       onTap: (){
+                        if(!loggedIn)
+                        {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You must log in"),width: 500,elevation: 5,behavior: SnackBarBehavior.floating,));
+                          return;
+                        }
                         Navigator.pushNamed(context,questionAns,
                             arguments:CompoundMessagingArgument(
                             compoundID:widget.compoundModal.id,
@@ -201,6 +217,11 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                         message: "Copy link to share",
                         child: InkWell(
                           onTap: (){
+                            if(!loggedIn)
+                            {
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You must log in"),width: 500,elevation: 5,behavior: SnackBarBehavior.floating,));
+                              return;
+                            }
                             FlutterClipboard.copy("https://revue-app.com/$mainscreenRoute$compoundDetails/${widget.compoundModal.id}").then((value){
                               print("value");
                             });
@@ -232,7 +253,11 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
               children: [
                 InkWell(
                   onTap: (){
-
+                    if(!loggedIn)
+                    {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You must log in"),width: 500,elevation: 5,behavior: SnackBarBehavior.floating,));
+                      return;
+                    }
                     Navigator.pushNamed(context,questionAns,
                         arguments:CompoundMessagingArgument(
                             compoundID:widget.compoundModal.id,
@@ -256,6 +281,11 @@ class CompoundDetailTabState extends State<CompoundDetailTab>{
                   message: "Copy link to share",
                   child: InkWell(
                     onTap: (){
+                      if(!loggedIn)
+                      {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You must log in"),width: 500,elevation: 5,behavior: SnackBarBehavior.floating,));
+                        return;
+                      }
                       FlutterClipboard.copy("https://revue-app.com/$mainscreenRoute$compoundDetails/${widget.compoundModal.id}").then((value){
                         print("value");
                       });

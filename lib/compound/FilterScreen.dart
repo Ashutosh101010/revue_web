@@ -494,7 +494,7 @@ TextEditingController searchController = new TextEditingController();
                   // searchableitem.clear();
                   searchModal.string = string;
 
-                  Webservice.searchCompoundRequest(searchModal)
+                  Webservice.searchCompoundRequest(searchModal,context)
                       .then((value) => this.setState(() {
                     showSearchOverLay(context);
                   }));
@@ -531,12 +531,14 @@ TextEditingController searchController = new TextEditingController();
           border: const BorderSide(color: Colors.black12, width: 1),
           dropdownButtonColor: Colors.white,
           iconEnabledColor: ColorClass.blueColor,
-          value: minArea,
+          value: radiusSelected,
           onChanged: (newValue) {
             determinePosition();
             setState(() {
-              minArea = newValue;
+              radiusSelected = newValue;
+              print(radiusSelected);
             });
+
           },
           items: searchRadius
               .map((value) => DropdownMenuItem(

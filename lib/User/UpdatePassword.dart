@@ -45,7 +45,7 @@ class UpdatePasswordState extends State<UpdatePassword>{
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: maxWidth?
-            PreferredSize(preferredSize: Size.fromHeight(80),child:  AppBarFirst(constraints.maxWidth),)
+            PreferredSize(preferredSize: Size.fromHeight(80),child:  AppBarFirst(constraints.maxWidth,false),)
 
                 :AppBar(
               backgroundColor: Colors.white,

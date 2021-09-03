@@ -24,4 +24,6 @@ class GlobalKeys{
   static final compoundListKey =  new GlobalKey<CompoundListState>();
   static final compoundDetailTabKey  = new GlobalKey<CompoundDetailState>();
 
+
+ static  final navKey = new GlobalKey<NavigatorState>();
 }

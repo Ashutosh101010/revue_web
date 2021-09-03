@@ -34,9 +34,11 @@ class LeftSideCompoundState extends State<LeftSideCompound>{
     return Container(
       width:width,alignment: Alignment.topCenter,
       margin: width>=700?EdgeInsets.only(right: 40):EdgeInsets.all(10),
-      child: widget.list.isEmpty?
-          Text("Getting compounds")
-          : Column(
+      child:
+      // widget.list.isEmpty?
+      //     Text("Getting compounds")
+      //     :
+      Column(
             children: [
               ListView.builder(
               itemCount: widget.list.length,

@@ -20,5 +20,3 @@ const String searchQuestion = "/searchQuestion";
 
 
 
-final navKey = new GlobalKey<NavigatorState>();
-

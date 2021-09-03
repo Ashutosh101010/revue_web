@@ -10,6 +10,7 @@ import 'package:webrevue/constants/ColorClass.dart';
 import 'package:webrevue/constants/circular_rating.dart';
 import 'package:webrevue/constants/get_rating_percent.dart';
 import 'package:webrevue/favoriteCompound/FavoriteCompound.dart';
+import 'package:webrevue/main.dart';
 import 'package:webrevue/model/CompoundModal.dart';
 import 'package:webrevue/model/FavoriteModal.dart';
 import 'package:webrevue/model/arguments/CompoundArgument.dart';
@@ -235,6 +236,12 @@ class CompoundCardState extends State<CompoundCard>{
                                 children: [
                                   IconButton( mouseCursor: SystemMouseCursors.click,
                                     onPressed: (){
+
+                                    if(!loggedIn)
+                                      {
+                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You must log in"),width: 500,elevation: 5,behavior: SnackBarBehavior.floating,));
+                                        return;
+                                      }
                                       Navigator.pushNamed(context,questionAns,
                                           arguments:CompoundMessagingArgument(
                                               compoundID:widget.compoundModal.id,
@@ -264,6 +271,11 @@ class CompoundCardState extends State<CompoundCard>{
                                     InkWell(
                                     mouseCursor: SystemMouseCursors.click,
                                         onTap: (){
+                                          if(!loggedIn)
+                                          {
+                                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You must log in"),width: 500,elevation: 5,behavior: SnackBarBehavior.floating,));
+                                            return;
+                                          }
 
                                           setState(() {
                                             favourite = !favourite;
@@ -480,6 +492,11 @@ class CompoundCardState extends State<CompoundCard>{
                               IconButton(
                                 mouseCursor: SystemMouseCursors.click,
                                 onPressed: (){
+                                  if(!loggedIn)
+                                  {
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You must log In"),behavior: SnackBarBehavior.floating,width: 500,));
+                                    return;
+                                  }
                                   Navigator.pushNamed(context,questionAns,
                                       arguments:CompoundMessagingArgument(
                                           compoundID:widget.compoundModal.id,
@@ -513,7 +530,11 @@ class CompoundCardState extends State<CompoundCard>{
                                 InkWell(
                                     mouseCursor: SystemMouseCursors.click,
                                     onTap: (){
-
+                                      if(!loggedIn)
+                                      {
+                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You must log In"),behavior: SnackBarBehavior.floating,width: 500,));
+                                        return;
+                                      }
                                       setState(() {
                                         favourite = !favourite;
                                         // isFavourite[index] = !isFavourite[index];

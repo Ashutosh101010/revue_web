@@ -86,7 +86,7 @@ class FavoriteCompoundState extends State<FavoriteCompound>{
                   ),
 
                   // Question & Answers
-                  Text("Favorite Compounds",
+                  Text("     Favorite Compounds",
                       style: TextStyle(
                           color: ColorClass.redColor,
                           fontWeight: FontWeight.w700,
@@ -147,6 +147,7 @@ class FavoriteCompoundState extends State<FavoriteCompound>{
 
   Widget compoundCard(int index){
     bool viewmore = false;
+    print("Review count"+ (favList[index]as CompoundModal).reviewCount.toString());
     return Container(
       margin: width>=600?EdgeInsets.only(left: 20,right: 20,top:10,bottom: 10):
       EdgeInsets.only(left: 5,right: 5,top: 5,bottom:5),

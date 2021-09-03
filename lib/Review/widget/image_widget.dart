@@ -3,18 +3,19 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:webrevue/service/ServerDetails.dart';
 
 Widget review_image(List images,BuildContext context){
+  double width=MediaQuery.of(context).size.width;
   return  Container(
-    height: 250,
+    height: width>=700?width/4:width/2,
     child: Stack(
       children: [
         Container(
           margin: EdgeInsets.only(top: 5),
-          height: 250,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Swiper(
               itemBuilder: (BuildContext context, int index) {
                 return new Image.network(
+
                   ServerDetails.get_images+images[index],
                   alignment: Alignment.center,
                   fit: BoxFit.fill,

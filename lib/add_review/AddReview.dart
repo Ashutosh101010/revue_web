@@ -1,5 +1,6 @@
 
 import 'dart:html' as html;
+import 'package:fbroadcast/fbroadcast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -45,13 +46,17 @@ class AddReviewState extends State<AddReview>{
   bool isLoading = false;
 
 
-  onRefresh(){
-    html.window.onBeforeUnload.listen((event) async{
-      setState(() {
 
-      });
-    });
-  }
+
+  // onRefresh(){
+  //   html.window.onBeforeUnload.listen((event) async{
+  //     print("refresh-------------");
+  //     setState(() {
+  //
+  //     });
+  //   });
+  // }
+
 
   @override
   void initState() {
@@ -62,6 +67,14 @@ class AddReviewState extends State<AddReview>{
 
     print(widget.compoundName);
     print(widget.compoundID);
+
+    if (widget.compoundName == null || widget.address == null ||
+        widget.images == null)
+  {
+
+  Navigator.of(context).pushNamedAndRemoveUntil(compoundDetails ,(Route<dynamic> route) => false,arguments: CompoundArgument(compoundId: widget.compoundID) );
+  }
+
 
   }
 
@@ -336,7 +349,7 @@ class AddReviewState extends State<AddReview>{
                                   isLoading = false;
                                 });
 
-                                Navigator.pushNamed(context, compoundDetails,
+                                Navigator.pushReplacementNamed(context, compoundDetails,
                                     arguments: CompoundArgument(
                                         compoundId: widget.compoundID,
                                         compoundName: widget.compoundName,

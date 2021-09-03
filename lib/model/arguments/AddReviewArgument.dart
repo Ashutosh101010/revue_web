@@ -1,5 +1,5 @@
 class AddReviewArgument{
- final String compoundId;
+ String compoundId;
  final String compoundName;
  final List images;
  final String address;

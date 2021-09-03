@@ -99,7 +99,7 @@ class MyReviewDetailState extends State<MyReviewDetails>{
                   thickness: 1,
                   color: Colors.black12,
                 ),
-                addressWidget("sxd"),
+                // addressWidget("sxd"),
 
                 SizedBox(
                   height: 20,

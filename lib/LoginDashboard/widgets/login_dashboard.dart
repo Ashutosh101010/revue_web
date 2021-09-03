@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webrevue/constants/keys.dart';
 import 'package:webrevue/constants/loading_dialog.dart';
 import 'package:webrevue/service/Webservice.dart';
 
 import '../../constants/ColorClass.dart';
+import '../../main.dart';
 import '../../model/UserModal.dart';
 import '../../route/routing_constant.dart';
 
@@ -26,6 +28,13 @@ class LoginPageState extends State<LoginPage>{
   bool _passwordValidate = false;
   bool passwordHover= false;
 
+  bool skipHover=false;
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
   @override
   Widget build(BuildContext context) {
    return Column(children: [
@@ -102,6 +111,48 @@ class LoginPageState extends State<LoginPage>{
            textInputAction: TextInputAction.done,
            controller: passwordController,
            obscureText: true,
+           onSubmitted: (string) async{
+
+
+             if(emailController.text.isEmpty){
+               setState(() {
+                 _emailValidate = !_emailValidate;
+               });
+             }else if(passwordController.text.isEmpty){
+               setState(() {
+                 _passwordValidate= !_passwordValidate;
+               });
+             }else{
+
+               UserModal userModal = new UserModal();
+               userModal.email = emailController.text;
+               userModal.password = passwordController.text;
+
+               showLoadingDialog(context);
+
+               String loginStatus = await  Webservice.loginRequest(context, userModal);
+               setState(() {
+
+               });
+               Navigator.pop(context);
+               if(loginStatus=="Login Successful"){
+                 Navigator.pushNamedAndRemoveUntil(context,mainscreenRoute,(route) => false);
+
+               }
+
+               else if(loginStatus == "Password Not Match"){
+                 displayAlertDialog(context,content: "Wrong Username or Password");
+
+               }else if(loginStatus=="User Not Found"){
+                 displayAlertDialog(context,content: loginStatus);
+               }else{
+
+
+               }
+             }
+
+
+           },
            decoration: InputDecoration(
             // errorText: _passwordValidate?'Please enter password':null,
 
@@ -145,10 +196,10 @@ class LoginPageState extends State<LoginPage>{
          },
          child: Text("Forget password?",
              style: TextStyle(
-                 color: passwordHover? ColorClass.redColor:Color(0xffffffff),
-                 fontWeight: FontWeight.w600,
+                 color:Color(0xffffffff),
+                 fontWeight: passwordHover?FontWeight.w700:FontWeight.w600,
                  fontStyle: FontStyle.normal,
-                 fontSize: 14.0),
+                 fontSize: passwordHover?14.5:14.0),
              textAlign: TextAlign.end),
        ),
      ),
@@ -189,7 +240,8 @@ class LoginPageState extends State<LoginPage>{
                });
                Navigator.pop(context);
                if(loginStatus=="Login Successful"){
-                 Navigator.pushReplacementNamed(context,mainscreenRoute);
+                 Navigator.pushNamedAndRemoveUntil(context,mainscreenRoute,(route) => false);
+
                }
 
                else if(loginStatus == "Password Not Match"){
@@ -230,6 +282,24 @@ class LoginPageState extends State<LoginPage>{
              ],
            )),
      ),
+     InkWell(
+       onHover: (value){
+         setState(() {
+           skipHover = value;
+         });
+       },
+       onTap: () {
+         Navigator.pushNamed(context, mainscreenRoute);
+         SharedPreferences.getInstance().then((value) => value.clear());
+       },
+       child: Text("Continue Without Email",
+           style: TextStyle(
+               color: Color(0xffffffff),
+               fontWeight: skipHover?FontWeight.w700:FontWeight.w600,
+               fontStyle: FontStyle.normal,
+               fontSize: skipHover?16.5:16.0),
+           textAlign: TextAlign.end),
+     )
    ],);
   }
 

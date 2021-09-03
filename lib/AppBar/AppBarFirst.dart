@@ -10,8 +10,9 @@ import 'package:webrevue/route/routing_constant.dart';
 
 class AppBarFirst extends StatefulWidget{
   double width;
+  bool loggedIn=false;
 
-  AppBarFirst(this.width);
+  AppBarFirst(this.width,this.loggedIn);
 
   @override
   State<StatefulWidget> createState() {
@@ -176,7 +177,9 @@ class AppBarFirstState extends State<AppBarFirst>{
         Padding(
           padding: const EdgeInsets.only(left: 10,top: 10,bottom: 10),
           child: InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.pushReplacementNamed(context,mainscreenRoute);
+            },
             child: Image.asset(
               "assets/images/revue.png",
               fit: BoxFit.cover,
@@ -211,7 +214,6 @@ class AppBarFirstState extends State<AppBarFirst>{
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
-                        fontFamily: "Montserrat",
                         fontStyle: FontStyle.normal,
                         fontSize: 15.0),
                   ),
@@ -234,7 +236,6 @@ class AppBarFirstState extends State<AppBarFirst>{
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w500,
-                      fontFamily: "Montserrat",
                       fontStyle: FontStyle.normal,
                       fontSize: 15.0),
                 ),
@@ -244,7 +245,7 @@ class AppBarFirstState extends State<AppBarFirst>{
           ),
         ),
         Expanded(child: Container(),),
-        Container(height: 80,
+       widget.loggedIn? Container(height: 80,
             alignment: Alignment.center,
             margin: EdgeInsets.only(
               left: 20, right: 50,top: 5, ),
@@ -275,8 +276,37 @@ class AppBarFirstState extends State<AppBarFirst>{
                     ),
                   ],),
               ),
-            )),
-        // Expanded(
+            )):
+       Expanded(
+         child: Align(
+           alignment: Alignment.topRight,
+           child: Padding(
+             padding: const EdgeInsets.only(
+                 top: 25, bottom: 10, left: 10, right: 50),
+             child: InkWell(
+               hoverColor: Color(0xfff9f9f9),
+               onHover: (value) {
+                 setState(() {
+                   signInHover = value;
+                 });
+               },
+               onTap: () {
+
+                 Navigator.of(context).pushNamedAndRemoveUntil(initialroute,
+                         (Route<dynamic> route) => false);
+               },
+               child: Text(
+                 "Sign In",
+                 style: TextStyle(
+                     color: signInHover ? ColorClass.redColor : ColorClass.blueColor,
+                     fontWeight: FontWeight.w700,
+                     fontStyle: FontStyle.normal,
+                     fontSize: 20.0),
+               ),
+             ),
+           ),
+         ),
+       ), // Expanded(
         //   child: Align(
         //     alignment: Alignment.centerRight,
         //     child: Padding(
@@ -536,7 +566,6 @@ class AppBarFirstState extends State<AppBarFirst>{
                           style:  TextStyle(
                               color:Colors.white ,
                               fontWeight: FontWeight.w700,
-                              fontFamily: "Montserrat",
                               fontStyle: FontStyle.normal,
                               fontSize: 16.0),
                           textAlign: TextAlign.center),
